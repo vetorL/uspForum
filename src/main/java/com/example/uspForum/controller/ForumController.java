@@ -1,4 +1,4 @@
-package com.example.uspForum.controllers;
+package com.example.uspForum.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

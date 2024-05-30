@@ -6,12 +6,16 @@
 </head>
 <body>
 
-    <form action="/busca" method="get" th:fragment="search-bar">
-        <div id="busca">
-            <input type="text" name="q">
-            <button type="submit">Buscar</button>
-        </div>
-    </form>
+    <div th:fragment="search-bar">
+        <form action="/busca" method="get">
+            <div id="busca">
+                <input type="text" name="q">
+                <button type="submit">Buscar</button>
+            </div>
+        </form>
+
+        <h2>Busque por uma matéria ou um professor</h2>
+    </div>
 
 </body>
 </html>

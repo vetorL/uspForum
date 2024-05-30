@@ -1,15 +1,6 @@
 <!DOCTYPE html>
-<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" th:href="@{/style.css}">
-    <title>Fórum da USP</title>
-</head>
+<html th:replace="~{layout :: layout (~{:: main})}">
 <body>
-
-    <h1>Fórum da USP</h1>
-    <p id="subtitulo">Criado por sistemáticos da informática</p>
 
     <main>
         <div th:replace="~{fragments/search-bar :: search-bar}"></div>

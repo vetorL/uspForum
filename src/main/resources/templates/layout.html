@@ -1,10 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR" th:fragment="layout (content)"  xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Fórum da USP</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/style.css}">
 </head>
 <body>
+    <header>
+        <h1>Fórum da USP</h1>
+        <p id="subtitulo">Criado por sistemáticos da informática</p>
+    </header>
 
+    <main th:insert="${content}"></main>
+
+    <footer></footer>
 </body>
 </html>

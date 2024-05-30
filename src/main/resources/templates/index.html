@@ -12,14 +12,7 @@
     <p id="subtitulo">Criado por sistemáticos da informática</p>
 
     <main>
-        <form action="/busca" method="get">
-            <div id="busca">
-                <input type="text" name="query">
-                <button type="submit">Buscar</button>
-            </div>
-        </form>
-
-        <h2>Busque por uma matéria ou um professor</h2>
+        <div th:replace="~{fragments/search-bar :: search-bar}"></div>
     </main>
 
 </body>

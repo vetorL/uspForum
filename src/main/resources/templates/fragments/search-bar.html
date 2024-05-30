@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+    <form action="/busca" method="get" th:fragment="search-bar">
+        <div id="busca">
+            <input type="text" name="q">
+            <button type="submit">Buscar</button>
+        </div>
+    </form>
+
+</body>
+</html>

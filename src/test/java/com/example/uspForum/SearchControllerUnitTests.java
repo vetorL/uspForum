@@ -10,6 +10,8 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.ui.Model;
 
 
+import java.util.ArrayList;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.verify;
 
@@ -42,6 +44,17 @@ public class SearchControllerUnitTests {
 
         verify(searchService)
                 .searchSubjectByAbbreviation(q);
+    }
+
+    @Test
+    public void testGetSearchWithNoTypeHappyFlow() {
+        String q = "";
+        String t = "";
+
+        String result = searchController.search(q, t, model);
+
+        // Verify that it passes as results to the model an empty list
+        verify(model).addAttribute("results", new ArrayList<>());
     }
 
 }

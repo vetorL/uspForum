@@ -2,7 +2,7 @@ package com.example.uspForum.model;
 
 import org.springframework.data.annotation.Id;
 
-public class User {
+public class Account {
 
     @Id
     private long id;

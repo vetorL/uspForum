@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.verify;
 
 @ExtendWith(MockitoExtension.class)
 public class SearchControllerUnitTests {
@@ -30,6 +31,17 @@ public class SearchControllerUnitTests {
         String result = searchController.search("", "", model);
 
         assertEquals("busca.html", result);
+    }
+
+    @Test
+    public void testGetSearchWithSubjectAbbreviation() {
+        String q = "";
+        String t = "abreviacao-da-materia";
+
+        String result = searchController.search(q, t, model);
+
+        verify(searchService)
+                .searchSubjectByAbbreviation(q);
     }
 
 }

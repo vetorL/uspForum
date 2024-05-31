@@ -53,8 +53,11 @@ public class SearchControllerUnitTests {
 
         String result = searchController.search(q, t, model);
 
-        // Verify that it passes as results to the model an empty list
+        // Verify that it passes the correct attributes to the view
         verify(model).addAttribute("results", new ArrayList<>());
+        verify(model).addAttribute("message",
+                "Não foram encontrados resultados para \'" + q + "\'");
+        verify(model).addAttribute("q", q);
     }
 
 }

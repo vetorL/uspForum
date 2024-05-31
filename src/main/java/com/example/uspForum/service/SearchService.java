@@ -1,7 +1,6 @@
 package com.example.uspForum.service;
 
-import com.example.uspForum.model.Subject;
-import com.example.uspForum.model.Teacher;
+import com.example.uspForum.model.SubjectResult;
 import com.example.uspForum.repository.SubjectRepository;
 import com.example.uspForum.repository.TeacherRepository;
 import org.springframework.stereotype.Service;
@@ -19,12 +18,16 @@ public class SearchService {
         this.subjectRepository = subjectRepository;
     }
 
-    public List<Teacher> searchTeacher(String teacherName) {
-        return teacherRepository.findByTeacherName(teacherName);
-    }
-
-    public List<Subject> searchSubjectByAbbreviation(String subjectAbbreviation) {
-        return subjectRepository.findSubjectByAbbreviation(subjectAbbreviation);
+    public List<SubjectResult> searchSubjectByAbbreviation(String subjectAbbreviation) {
+        List<SubjectResult> subjectResults = subjectRepository.findSubjectByAbbreviation(subjectAbbreviation)
+                .stream()
+                .map(subject -> new SubjectResult(
+                        subject,
+                        teacherRepository
+                                .findByTeacherId(subject.getTeacherId())
+                                .getName()
+                )).toList();
+        return subjectResults;
     }
 
 }

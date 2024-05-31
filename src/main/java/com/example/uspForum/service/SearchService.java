@@ -1,5 +1,6 @@
 package com.example.uspForum.service;
 
+import com.example.uspForum.model.Subject;
 import com.example.uspForum.model.Teacher;
 import com.example.uspForum.repository.SubjectRepository;
 import com.example.uspForum.repository.TeacherRepository;
@@ -20,6 +21,10 @@ public class SearchService {
 
     public List<Teacher> searchTeacher(String teacherName) {
         return teacherRepository.findByTeacherName(teacherName);
+    }
+
+    public List<Subject> searchSubjectByAbbreviation(String subjectAbbreviation) {
+        return subjectRepository.findSubjectByAbbreviation(subjectAbbreviation);
     }
 
 }

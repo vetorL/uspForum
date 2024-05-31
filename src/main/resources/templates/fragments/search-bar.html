@@ -10,6 +10,14 @@
         <form action="/busca" method="get">
             <div id="busca">
                 <input type="text" name="q">
+
+                <select name="t">
+                    <option value="nome-da-materia">Nome da Matéria</option>
+                    <option value="professor">Professor</option>
+                    <option value="abreviacao-da-materia">Abreviação da Matéria</option>
+                    <option value="codigo-da-materia">Código da Matéria</option>
+                </select>
+
                 <button type="submit">Buscar</button>
             </div>
         </form>

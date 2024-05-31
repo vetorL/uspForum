@@ -1,17 +1,19 @@
-CREATE TABLE account (
+TRUNCATE subject, teacher, account;
+
+CREATE TABLE IF NOT EXISTS account (
     id SERIAL PRIMARY KEY,
     username TEXT,
     password TEXT
 );
 
-CREATE TABLE teacher (
+CREATE TABLE IF NOT EXISTS teacher (
     id SERIAL PRIMARY KEY,
     name TEXT NOT NULL,
     email TEXT,
     teaches_at TEXT
 );
 
-CREATE TABLE subject (
+CREATE TABLE IF NOT EXISTS subject (
     id SERIAL PRIMARY KEY,
     name TEXT NOT NULL,
     abbreviation TEXT,

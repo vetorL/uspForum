@@ -5,6 +5,14 @@
     <main>
         <div th:replace="~{fragments/search-bar :: search-bar}"></div>
 
+        <p th:text="${message}"></p>
+
+        <p th:if="${#lists.isEmpty(results)}">
+            Parece que no momento não temos a matéria que você procura :/
+            <br>
+            Contribua <a href="#">adicionando suas proprias matérias!</a>
+        </p>
+
         <a href="#" class="materia-card" th:each="subject: ${results}">
             <p th:text="${subject.relatedCourse}"></p>
             <div class="materia-main">

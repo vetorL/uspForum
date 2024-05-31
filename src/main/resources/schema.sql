@@ -1,4 +1,6 @@
-TRUNCATE subject, teacher, account;
+DROP TABLE IF EXISTS subject;
+DROP TABLE IF EXISTS teacher;
+DROP TABLE IF EXISTS account;
 
 CREATE TABLE IF NOT EXISTS account (
     id SERIAL PRIMARY KEY,

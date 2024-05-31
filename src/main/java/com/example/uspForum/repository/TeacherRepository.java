@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface TeacherRepository extends CrudRepository<Teacher, Long> {
 
-    @Query("SELECT * FROM teacher WHERE name = :teacherName")
+    @Query("SELECT * FROM teacher WHERE teacherName = :teacherName")
     List<Teacher> findByTeacherName(String teacherName);
 
 }

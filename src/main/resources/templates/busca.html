@@ -5,12 +5,17 @@
     <main>
         <div th:replace="~{fragments/search-bar :: search-bar}"></div>
 
-        <a href="#" class="materia-card">
+        <a href="#" class="materia-card" th:each="subject: ${results}">
+            <p th:text="${subject.relatedCourse}"></p>
             <div class="materia-main">
-                <p class="materia-nome"><b>IAEC</b> - Introdução à Administração e Economia para Computação</p>
-                <p class="materia-professor">por <i>Violeta Sun</i></p>
+                <p class="materia-nome"><b th:text="${subject.abbreviation}"></b>
+                    - <span th:text="${subject.name}"></span>
+                </p>
+                <p class="materia-professor">por <i th:text="${subject.teacherId}"></i></p>
             </div>
-            <p class="materia-codigo">Código da disciplina:<br> ACH2053</p>
+            <p class="materia-codigo">Código da disciplina:<br>
+                <span th:text="${subject.code}"></span>
+            </p>
         </a>
     </main>
 

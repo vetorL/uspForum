@@ -1,6 +1,6 @@
 package com.example.uspForum.controller;
 
-import com.example.uspForum.model.Subject;
+import com.example.uspForum.model.SubjectResult;
 import com.example.uspForum.service.SearchService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,7 +25,7 @@ public class SearchController {
             @RequestParam String t,
             Model model) {
 
-        List<Subject> results = new ArrayList<>();
+        List<SubjectResult> results = new ArrayList<>();
         String message = "";
 
         if(t.equals("abreviacao-da-materia")) {

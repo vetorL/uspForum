@@ -1,7 +1,6 @@
 package com.example.uspForum;
 
 import com.example.uspForum.controller.SearchController;
-import com.example.uspForum.model.Teacher;
 import com.example.uspForum.service.SearchService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -10,11 +9,8 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.ui.Model;
 
-import java.util.ArrayList;
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.BDDMockito.given;
 
 @ExtendWith(MockitoExtension.class)
 public class SearchControllerUnitTests {
@@ -29,14 +25,9 @@ public class SearchControllerUnitTests {
     private SearchController searchController;
 
     @Test
-    public void testPostSearchTeacherReturnsCorrectHtml() {
+    public void testGetSearchReturnsCorrectHtml() {
 
-        List<Teacher> teachers = new ArrayList<>();
-
-        given(searchService.searchTeacher(""))
-                .willReturn(teachers);
-
-        String result = searchController.searchTeacher("", model);
+        String result = searchController.search("", "", model);
 
         assertEquals("busca.html", result);
     }

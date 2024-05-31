@@ -27,6 +27,10 @@ public class SearchController {
 
         List<Subject> results = new ArrayList<>();
 
+        if(t.equals("abreviacao-da-materia")) {
+            results = searchService.searchSubjectByAbbreviation(q);
+        }
+
         model.addAttribute("q", q);
         model.addAttribute("results", results);
 

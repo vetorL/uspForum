@@ -1,4 +1,4 @@
 package com.example.uspForum.repository;
 
-public class TeacherRepository {
+public interface TeacherRepository {
 }

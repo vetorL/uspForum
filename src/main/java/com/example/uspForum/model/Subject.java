@@ -12,6 +12,6 @@ public class Subject {
     private String code;
     private String relatedCourse;
     private long teacherId;
-    private long createdByUserId;
+    private long createdByAccountId;
 
 }

@@ -18,6 +18,5 @@ CREATE TABLE subject (
     code TEXT,
     related_course TEXT,
     teacher_id integer REFERENCES teacher (id),
-    teacher_name TEXT,
     created_by_account_id integer REFERENCES account (id)
 );

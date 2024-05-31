@@ -10,3 +10,14 @@ CREATE TABLE teacher (
     email TEXT,
     teaches_at TEXT
 );
+
+CREATE TABLE subject (
+    id SERIAL PRIMARY KEY,
+    name TEXT NOT NULL,
+    abbreviation TEXT,
+    code TEXT,
+    related_course TEXT,
+    teacher_id integer REFERENCES teacher (id),
+    teacher_name TEXT,
+    created_by_account_id integer REFERENCES account (id)
+);

@@ -26,13 +26,23 @@ public class SearchController {
             Model model) {
 
         List<Subject> results = new ArrayList<>();
+        String message = "";
 
         if(t.equals("abreviacao-da-materia")) {
             results = searchService.searchSubjectByAbbreviation(q);
         }
 
+        if(results.size() == 0) {
+            message = "Não foram encontrados resultados para \'" + q + "\'";
+        } else if(results.size() == 1) {
+            message = "Foi encontrado 1 resultado para \'" + q + "\'";
+        } else if (results.size() > 1) {
+            message = "Foram encontrados " + results.size() + " resultados para \'" + q + "\'";
+        }
+
         model.addAttribute("q", q);
         model.addAttribute("results", results);
+        model.addAttribute("message", message);
 
         return "busca.html";
     }

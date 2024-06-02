@@ -60,4 +60,15 @@ public class SearchControllerUnitTests {
         verify(model).addAttribute("q", q);
     }
 
+    @Test
+    public void testGetSearchWithSubjectCode() {
+        String q = "";
+        String t = "codigo-da-materia";
+
+        String result = searchController.search(q, t, model);
+
+        verify(searchService)
+                .searchSubjectByCode(q);
+    }
+
 }

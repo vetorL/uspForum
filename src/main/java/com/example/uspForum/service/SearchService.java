@@ -18,6 +18,18 @@ public class SearchService {
         this.subjectRepository = subjectRepository;
     }
 
+    public List<SubjectResult> searchSubjectByCode(String subjectCode) {
+        List<SubjectResult> subjectResults = subjectRepository.findSubjectByCode(subjectCode)
+                .stream()
+                .map(subject -> new SubjectResult(
+                        subject,
+                        teacherRepository
+                                .findByTeacherId(subject.getTeacherId())
+                                .getName()
+                )).toList();
+        return subjectResults;
+    }
+
     public List<SubjectResult> searchSubjectByAbbreviation(String subjectAbbreviation) {
         List<SubjectResult> subjectResults = subjectRepository.findSubjectByAbbreviation(subjectAbbreviation)
                 .stream()

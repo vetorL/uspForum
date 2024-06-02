@@ -82,4 +82,15 @@ public class SearchControllerUnitTests {
                 .searchSubjectByName(q);
     }
 
+    @Test
+    public void testGetSearchWithSubjectTeacher() {
+        String q = "";
+        String t = "professor";
+
+        String result = searchController.search(q, t, model);
+
+        verify(searchService)
+                .searchSubjectByTeacherName(q);
+    }
+
 }

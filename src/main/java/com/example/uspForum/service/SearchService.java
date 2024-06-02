@@ -54,4 +54,16 @@ public class SearchService {
         return subjectResults;
     }
 
+    public List<SubjectResult> searchSubjectByTeacherName(String teacherName) {
+        List<SubjectResult> subjectResults = subjectRepository.findSubjectByTeacherName(teacherName)
+                .stream()
+                .map(subject -> new SubjectResult(
+                        subject,
+                        teacherRepository
+                                .findByTeacherId(subject.getTeacherId())
+                                .getName()
+                )).toList();
+        return subjectResults;
+    }
+
 }

@@ -34,6 +34,8 @@ public class SearchController {
             results = searchService.searchSubjectByCode(q);
         } else if(t.equals("nome-da-materia")) {
             results = searchService.searchSubjectByName(q);
+        } else if(t.equals("professor")) {
+            results = searchService.searchSubjectByTeacherName(q);
         }
 
         if(results.size() == 0) {

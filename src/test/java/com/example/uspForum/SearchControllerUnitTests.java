@@ -71,4 +71,15 @@ public class SearchControllerUnitTests {
                 .searchSubjectByCode(q);
     }
 
+    @Test
+    public void testGetSearchWithSubjectName() {
+        String q = "";
+        String t = "nome-da-materia";
+
+        String result = searchController.search(q, t, model);
+
+        verify(searchService)
+                .searchSubjectByName(q);
+    }
+
 }

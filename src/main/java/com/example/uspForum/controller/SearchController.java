@@ -32,6 +32,8 @@ public class SearchController {
             results = searchService.searchSubjectByAbbreviation(q);
         } else if(t.equals("codigo-da-materia")) {
             results = searchService.searchSubjectByCode(q);
+        } else if(t.equals("nome-da-materia")) {
+            results = searchService.searchSubjectByName(q);
         }
 
         if(results.size() == 0) {

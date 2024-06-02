@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html th:replace="~{layout :: layout (~{:: main})}">
+<body>
+
+    <main>
+        <form action="/criar" method="post">
+            Nome da materia: <input type="text" name="nome-da-materia">
+            Abreviacao da materia: <input type="text" name="abreviacao-da-materia">
+            Codigo da materia: <input type="text" name="codigo-da-materia">
+            Professor: <input type="text" name="professor">
+
+            <button type="submit">Criar</button>
+        </form>
+    </main>
+
+</body>
+</html>

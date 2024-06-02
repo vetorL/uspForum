@@ -1,3 +1,4 @@
+DROP VIEW subject_with_teacher_name;
 DROP TABLE IF EXISTS subject;
 DROP TABLE IF EXISTS teacher;
 DROP TABLE IF EXISTS account;

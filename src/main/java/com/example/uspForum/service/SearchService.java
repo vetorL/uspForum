@@ -1,8 +1,7 @@
 package com.example.uspForum.service;
 
-import com.example.uspForum.model.SubjectResult;
+import com.example.uspForum.model.Subject;
 import com.example.uspForum.repository.SubjectRepository;
-import com.example.uspForum.repository.TeacherRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -10,60 +9,26 @@ import java.util.List;
 @Service
 public class SearchService {
 
-    private final TeacherRepository teacherRepository;
     private final SubjectRepository subjectRepository;
 
-    public SearchService(TeacherRepository teacherRepository, SubjectRepository subjectRepository) {
-        this.teacherRepository = teacherRepository;
+    public SearchService(SubjectRepository subjectRepository) {
         this.subjectRepository = subjectRepository;
     }
 
-    public List<SubjectResult> searchSubjectByCode(String subjectCode) {
-        List<SubjectResult> subjectResults = subjectRepository.findSubjectByCode(subjectCode)
-                .stream()
-                .map(subject -> new SubjectResult(
-                        subject,
-                        teacherRepository
-                                .findByTeacherId(subject.getTeacherId())
-                                .getName()
-                )).toList();
-        return subjectResults;
+    public List<Subject> searchSubjectByCode(String subjectCode) {
+        return subjectRepository.findSubjectByCode(subjectCode);
     }
 
-    public List<SubjectResult> searchSubjectByName(String subjectName) {
-        List<SubjectResult> subjectResults = subjectRepository.findSubjectByName(subjectName)
-                .stream()
-                .map(subject -> new SubjectResult(
-                        subject,
-                        teacherRepository
-                                .findByTeacherId(subject.getTeacherId())
-                                .getName()
-                )).toList();
-        return subjectResults;
+    public List<Subject> searchSubjectByName(String subjectName) {
+        return subjectRepository.findSubjectByName(subjectName);
     }
 
-    public List<SubjectResult> searchSubjectByAbbreviation(String subjectAbbreviation) {
-        List<SubjectResult> subjectResults = subjectRepository.findSubjectByAbbreviation(subjectAbbreviation)
-                .stream()
-                .map(subject -> new SubjectResult(
-                        subject,
-                        teacherRepository
-                                .findByTeacherId(subject.getTeacherId())
-                                .getName()
-                )).toList();
-        return subjectResults;
+    public List<Subject> searchSubjectByAbbreviation(String subjectAbbreviation) {
+        return subjectRepository.findSubjectByAbbreviation(subjectAbbreviation);
     }
 
-    public List<SubjectResult> searchSubjectByTeacherName(String teacherName) {
-        List<SubjectResult> subjectResults = subjectRepository.findSubjectByTeacherName(teacherName)
-                .stream()
-                .map(subject -> new SubjectResult(
-                        subject,
-                        teacherRepository
-                                .findByTeacherId(subject.getTeacherId())
-                                .getName()
-                )).toList();
-        return subjectResults;
+    public List<Subject> searchSubjectByTeacherName(String teacherName) {
+        return subjectRepository.findSubjectByTeacherName(teacherName);
     }
 
 }

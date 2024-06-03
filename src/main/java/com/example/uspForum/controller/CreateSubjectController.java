@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 public class CreateSubjectController {
 
-    public CreateSubjectService createSubjectService;
+    private final CreateSubjectService createSubjectService;
 
     public CreateSubjectController(CreateSubjectService createSubjectService) {
         this.createSubjectService = createSubjectService;

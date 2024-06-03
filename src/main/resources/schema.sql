@@ -6,6 +6,5 @@ CREATE TABLE IF NOT EXISTS subject (
     abbreviation TEXT,
     code TEXT,
     related_course TEXT,
-    teacher_name TEXT,
-    created_by_account_id integer REFERENCES account (id)
+    teacher_name TEXT
 );

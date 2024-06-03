@@ -12,7 +12,6 @@ public class Subject {
     private String code;
     private String relatedCourse;
     private String teacherName;
-    private long createdByAccountId;
 
     public long getId() {
         return id;
@@ -62,11 +61,4 @@ public class Subject {
         return teacherName;
     }
 
-    public long getCreatedByAccountId() {
-        return createdByAccountId;
-    }
-
-    public void setCreatedByAccountId(long createdByAccountId) {
-        this.createdByAccountId = createdByAccountId;
-    }
 }

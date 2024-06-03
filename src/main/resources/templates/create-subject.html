@@ -3,11 +3,33 @@
 <body>
 
     <main>
-        <form action="/criar" method="post">
-            Nome da materia: <input type="text" name="nome-da-materia">
-            Abreviacao da materia: <input type="text" name="abreviacao-da-materia">
-            Codigo da materia: <input type="text" name="codigo-da-materia">
-            Professor: <input type="text" name="professor">
+
+        <form action="#" th:action="@{/criar}" th:object="${subject}" method="post">
+            <p>
+                Nome da matéria:
+                <input type="text" th:field="*{name}">
+            </p>
+
+            <p>
+                Abreviação da matéria:
+                <input type="text" th:field="*{abbreviation}">
+            </p>
+
+            <p>
+                Código da matéria:
+                <input type="text" th:field="*{code}">
+            </p>
+
+            <p>
+                Curso da matéria:
+                <input type="text" th:field="*{relatedCourse}">
+            </p>
+
+            <p>
+                Professor da matéria:
+                <input type="text" name="professor" th:field="*{teacherName}">
+            </p>
+
 
             <button type="submit">Criar</button>
         </form>

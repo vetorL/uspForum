@@ -11,7 +11,7 @@ public class Subject {
     private String abbreviation;
     private String code;
     private String relatedCourse;
-    private long teacherId;
+    private String teacherName;
     private long createdByAccountId;
 
     public long getId() {
@@ -54,12 +54,12 @@ public class Subject {
         this.relatedCourse = relatedCourse;
     }
 
-    public long getTeacherId() {
-        return teacherId;
+    public void setTeacherName(String teacherName) {
+        this.teacherName = teacherName;
     }
 
-    public void setTeacherId(long teacherId) {
-        this.teacherId = teacherId;
+    public String getTeacherName() {
+        return teacherName;
     }
 
     public long getCreatedByAccountId() {

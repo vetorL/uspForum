@@ -1,11 +1,4 @@
 DROP TABLE IF EXISTS subject;
-DROP TABLE IF EXISTS account;
-
-CREATE TABLE IF NOT EXISTS account (
-    id SERIAL PRIMARY KEY,
-    username TEXT,
-    password TEXT
-);
 
 CREATE TABLE IF NOT EXISTS subject (
     id SERIAL PRIMARY KEY,

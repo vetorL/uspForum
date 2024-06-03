@@ -16,7 +16,8 @@ public class CreateSubjectController {
     }
 
     @GetMapping("/criar")
-    public String getCreateSubject() {
+    public String getCreateSubject(Model model) {
+        model.addAttribute("subject", new Subject());
         return "create-subject.html";
     }
 

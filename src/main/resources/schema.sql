@@ -1,4 +1,3 @@
-DROP VIEW subject_with_teacher_name;
 DROP TABLE IF EXISTS subject;
 DROP TABLE IF EXISTS account;
 
@@ -14,6 +13,6 @@ CREATE TABLE IF NOT EXISTS subject (
     abbreviation TEXT,
     code TEXT,
     related_course TEXT,
-    teacher_id integer REFERENCES teacher (id),
+    teacher_name TEXT,
     created_by_account_id integer REFERENCES account (id)
 );

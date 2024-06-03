@@ -4,6 +4,10 @@
 
     <main>
 
+        <div th:if="${message}">
+            <p th:text="${message}"></p>
+        </div>
+
         <form action="#" th:action="@{/criar}" th:object="${subject}" method="post">
             <p>
                 Nome da matéria:

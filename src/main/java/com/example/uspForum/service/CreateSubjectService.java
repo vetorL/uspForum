@@ -1,5 +1,6 @@
 package com.example.uspForum.service;
 
+import com.example.uspForum.model.Subject;
 import com.example.uspForum.repository.SubjectRepository;
 import org.springframework.stereotype.Service;
 
@@ -10,6 +11,17 @@ public class CreateSubjectService {
 
     public CreateSubjectService(SubjectRepository subjectRepository) {
         this.subjectRepository = subjectRepository;
+    }
+
+    public boolean createSubject(Subject subject) {
+
+        try {
+            subjectRepository.save(subject);
+        } catch (Exception e) {
+            return false;
+        }
+
+        return true;
     }
 
 }

@@ -13,6 +13,20 @@ public class Subject {
     private String relatedCourse;
     private String teacherName;
 
+    public Subject() {
+
+    }
+
+    public Subject(long id, String name, String abbreviation, String code,
+                   String relatedCourse, String teacherName) {
+        this.id = id;
+        this.name = name;
+        this.abbreviation = abbreviation;
+        this.code = code;
+        this.relatedCourse = relatedCourse;
+        this.teacherName = teacherName;
+    }
+
     public long getId() {
         return id;
     }

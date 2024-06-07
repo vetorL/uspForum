@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: uspForum
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/uspforumdb
+    username: postgres
+    password: 123
+
+  sql:
+    init:
+      mode: always

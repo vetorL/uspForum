@@ -15,6 +15,8 @@ public class DevelopmentConfig {
     public CommandLineRunner dataLoader(SubjectRepository repo) {
         return args -> {
             repo.save(new Subject(0, "Introdução à Administração e Economia para Computação","IAEC", "ACH2063", "Sistemas de Informação", "Violeta Sun"));
+            repo.save(new Subject(0, "Computação Orientada a Objetos", "COO", "ACH2003", "Sistemas de Informação", "Flavio Luiz Coutinho"));
+            repo.save(new Subject(0, "Fundamentos de Sistemas de Informação", "FSI", "ACH2014", "Sistemas de Informação", "Edmir Parada Vasques Prado"));
         };
     }
 

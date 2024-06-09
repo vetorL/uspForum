@@ -31,4 +31,8 @@ public class SearchService {
         return subjectRepository.findSubjectByTeacherName(teacherName);
     }
 
+    public List<Subject> searchSubjectBySearchText(String subjectText) {
+        return subjectRepository.findSubjectBySearchText(subjectText);
+    }
+
 }

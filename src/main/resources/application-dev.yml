@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:h2:mem:testdb
+    url: jdbc:h2:mem:testdb # set this exact same value on the JDBC URL field in h2 console
 
   h2:
     console:

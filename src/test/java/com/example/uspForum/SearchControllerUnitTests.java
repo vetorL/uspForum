@@ -32,7 +32,7 @@ public class SearchControllerUnitTests {
 
         String result = searchController.search("", "", model);
 
-        assertEquals("busca.html", result);
+        assertEquals("search.html", result);
     }
 
     @Test

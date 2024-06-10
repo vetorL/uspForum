@@ -52,7 +52,7 @@ public class SearchController {
         model.addAttribute("results", results);
         model.addAttribute("message", message);
 
-        return "busca.html";
+        return "search.html";
     }
 
 }

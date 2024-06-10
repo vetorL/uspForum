@@ -3,7 +3,7 @@
 <body>
 
     <main>
-        <div th:replace="~{fragments/search-bar :: search-bar}"></div>
+        <div th:replace="~{fragments/search-bar :: search-bar(query=${q})}"></div>
 
         <p th:text="${message}"></p>
 

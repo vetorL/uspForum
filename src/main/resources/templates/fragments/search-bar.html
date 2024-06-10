@@ -9,7 +9,7 @@
     <div th:fragment="search-bar">
         <form action="/busca" method="get">
             <div id="busca">
-                <input type="text" name="q">
+                <input type="text" name="q" th:value="${query}">
 
                 <select name="t">
                     <option value="geral">Pesquisa geral</option>

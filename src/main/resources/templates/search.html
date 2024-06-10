@@ -10,21 +10,12 @@
         <p th:if="${#lists.isEmpty(results)}">
             Parece que no momento não temos a matéria que você procura :/
             <br>
-            Contribua <a href="/criar">adicionando suas proprias matérias!</a>
+            Contribua <a href="/criar">adicionando suas próprias matérias!</a>
         </p>
 
-        <a href="#" class="materia-card" th:each="subject: ${results}">
-            <p th:text="${subject.relatedCourse}"></p>
-            <div class="materia-main">
-                <p class="materia-nome"><b th:text="${subject.abbreviation}"></b>
-                    - <span th:text="${subject.name}"></span>
-                </p>
-                <p class="materia-professor">por <i th:text="${subject.teacherName}"></i></p>
-            </div>
-            <p class="materia-codigo">Código da disciplina:<br>
-                <span th:text="${subject.code}"></span>
-            </p>
-        </a>
+        <div th:each="subject: ${results}" th:insert="~{fragments/subject-card :: subject-card(${subject})}" th:remove="tag">
+
+        </div>
     </main>
 
 </body>

@@ -19,6 +19,7 @@
 .subject-main {
     display: flex;
     flex-direction: column;
+    flex: 0 0 40%;
 }
 
 .subject-code {

@@ -1,4 +1,4 @@
-.materia-card {
+.subject-card {
     border: 2px solid black;
     color: black;
     text-decoration: none;
@@ -9,11 +9,11 @@
     padding: 1rem;
 }
 
-.materia-main {
+.subject-main {
     display: flex;
     flex-direction: column;
 }
 
-.materia-codigo {
+.subject-code {
     color: gray;
 }

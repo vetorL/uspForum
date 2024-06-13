@@ -7,15 +7,15 @@
 <body>
 
     <div th:fragment="subject-card(subject)">
-        <a th:href="@{/disciplina/{id}(id=${subject.id})}" class="materia-card">
+        <a th:href="@{/disciplina/{id}(id=${subject.id})}" class="subject-card">
             <p th:text="${subject.relatedCourse}"></p>
-            <div class="materia-main">
-                <p class="materia-nome"><b th:text="${subject.abbreviation}"></b>
+            <div class="subject-main">
+                <p><b th:text="${subject.abbreviation}"></b>
                     - <span th:text="${subject.name}"></span>
                 </p>
-                <p class="materia-professor">por <i th:text="${subject.teacherName}"></i></p>
+                <p>por <i th:text="${subject.teacherName}"></i></p>
             </div>
-            <p class="materia-codigo">Código da disciplina:<br>
+            <p class="subject-code">Código da disciplina:<br>
                 <span th:text="${subject.code}"></span>
             </p>
         </a>

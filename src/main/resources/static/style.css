@@ -30,7 +30,7 @@ h2 {
     color: gray;
 }
 
-button, input {
+button, input, select {
 
     font-size: 1.2rem;
 

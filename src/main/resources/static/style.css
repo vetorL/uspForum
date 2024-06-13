@@ -35,23 +35,3 @@ button, input, select {
     font-size: 1.2rem;
 
 }
-
-.materia-card {
-    border: 2px solid black;
-    color: black;
-    text-decoration: none;
-    display: flex;
-    text-align: center;
-    align-items: center;
-    gap: 1rem;
-    padding: 1rem;
-}
-
-.materia-main {
-    display: flex;
-    flex-direction: column;
-}
-
-.materia-codigo {
-    color: gray;
-}

@@ -33,7 +33,7 @@ public class CreateSubjectController {
 
         if (result) {
             model.addAttribute("message",
-                    "Matéria criada com sucesso!");
+                    "Disciplina criada com sucesso!");
         } else {
             model.addAttribute("message",
                     "Falha na tentativa, preencha todos os campos!");

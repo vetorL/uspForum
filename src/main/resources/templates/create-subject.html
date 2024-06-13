@@ -10,27 +10,27 @@
 
         <form action="#" th:action="@{/criar}" th:object="${subject}" method="post">
             <p>
-                Nome da matéria:
+                Nome da disciplina:
                 <input type="text" th:field="*{name}">
             </p>
 
             <p>
-                Abreviação da matéria:
+                Abreviação da disciplina:
                 <input type="text" th:field="*{abbreviation}">
             </p>
 
             <p>
-                Código da matéria:
+                Código da disciplina:
                 <input type="text" th:field="*{code}">
             </p>
 
             <p>
-                Curso da matéria:
+                Curso da disciplina:
                 <input type="text" th:field="*{relatedCourse}">
             </p>
 
             <p>
-                Professor da matéria:
+                Professor da disciplina:
                 <input type="text" name="professor" th:field="*{teacherName}">
             </p>
 

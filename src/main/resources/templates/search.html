@@ -8,9 +8,9 @@
         <p th:text="${message}"></p>
 
         <p th:if="${#lists.isEmpty(results)}">
-            Parece que no momento não temos a matéria que você procura :/
+            Parece que no momento não temos a disciplina que você procura :/
             <br>
-            Contribua <a href="/criar">adicionando suas próprias matérias!</a>
+            Contribua <a href="/criar">adicionando suas próprias disciplinas!</a>
         </p>
 
         <div th:each="subject: ${results}" th:insert="~{fragments/subject-card :: subject-card(${subject})}" th:remove="tag">

@@ -28,11 +28,11 @@ public class SearchController {
         List<Subject> results = new ArrayList<>();
         String message = "";
 
-        if(t.equals("abreviacao-da-materia")) {
+        if(t.equals("abreviacao-da-disciplina")) {
             results = searchService.searchSubjectByAbbreviation(q);
-        } else if(t.equals("codigo-da-materia")) {
+        } else if(t.equals("codigo-da-disciplina")) {
             results = searchService.searchSubjectByCode(q);
-        } else if(t.equals("nome-da-materia")) {
+        } else if(t.equals("nome-da-disciplina")) {
             results = searchService.searchSubjectByName(q);
         } else if(t.equals("professor")) {
             results = searchService.searchSubjectByTeacherName(q);

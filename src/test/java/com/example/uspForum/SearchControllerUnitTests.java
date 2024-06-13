@@ -38,7 +38,7 @@ public class SearchControllerUnitTests {
     @Test
     public void testGetSearchWithSubjectAbbreviation() {
         String q = "";
-        String t = "abreviacao-da-materia";
+        String t = "abreviacao-da-disciplina";
 
         String result = searchController.search(q, t, model);
 
@@ -63,7 +63,7 @@ public class SearchControllerUnitTests {
     @Test
     public void testGetSearchWithSubjectCode() {
         String q = "";
-        String t = "codigo-da-materia";
+        String t = "codigo-da-disciplina";
 
         String result = searchController.search(q, t, model);
 
@@ -74,7 +74,7 @@ public class SearchControllerUnitTests {
     @Test
     public void testGetSearchWithSubjectName() {
         String q = "";
-        String t = "nome-da-materia";
+        String t = "nome-da-disciplina";
 
         String result = searchController.search(q, t, model);
 

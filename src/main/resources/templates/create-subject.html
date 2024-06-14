@@ -12,42 +12,54 @@
             <fieldset>
                 <legend>Criação de disciplina</legend>
                 <p>
-                    Nome: <br/>
-                    <input type="text" th:field="*{name}">
+                    <label>
+                        Nome: <br/>
+                        <input type="text" th:field="*{name}">
+                    </label>
                 </p>
 
                 <p>
-                    Abreviação: <br/>
-                    <input type="text" th:field="*{abbreviation}">
+                    <label>
+                        Abreviação: <br/>
+                        <input type="text" th:field="*{abbreviation}">
+                    </label>
                 </p>
 
                 <p>
-                    Código: <br/>
-                    <input type="text" th:field="*{code}">
+                    <label>
+                        Código: <br/>
+                        <input type="text" th:field="*{code}">
+                    </label>
                 </p>
 
                 <p>
-                    Curso: <br/>
-                    <input type="text" th:field="*{relatedCourse}">
+                    <label>
+                        Curso: <br/>
+                        <input type="text" th:field="*{relatedCourse}">
+                    </label>
                 </p>
 
                 <p>
-                    Campus: <br/>
-                    <select id="campi" th:field="*{relatedCampus}">
-                        <option value="Butantã">Butantã</option>
-                        <option value="EACH">EACH</option>
-                        <option value="Bauru">Bauru</option>
-                        <option value="Ribeirão Preto">Ribeirão Preto</option>
-                        <option value="São Carlos">São Carlos</option>
-                        <option value="Piracicaba">Piracicaba</option>
-                        <option value="Pirassununga">Pirassununga</option>
-                        <option value="Lorena">Lorena</option>
-                    </select>
+                    <label>
+                        Campus: <br/>
+                        <select id="campi" th:field="*{relatedCampus}">
+                            <option value="Butantã">Butantã</option>
+                            <option value="EACH">EACH</option>
+                            <option value="Bauru">Bauru</option>
+                            <option value="Ribeirão Preto">Ribeirão Preto</option>
+                            <option value="São Carlos">São Carlos</option>
+                            <option value="Piracicaba">Piracicaba</option>
+                            <option value="Pirassununga">Pirassununga</option>
+                            <option value="Lorena">Lorena</option>
+                        </select>
+                    </label>
                 </p>
 
                 <p>
-                    Professor: <br/>
-                    <input type="text" name="professor" th:field="*{teacherName}">
+                    <label>
+                        Professor: <br/>
+                        <input type="text" name="professor" th:field="*{teacherName}">
+                    </label>
                 </p>
 
 

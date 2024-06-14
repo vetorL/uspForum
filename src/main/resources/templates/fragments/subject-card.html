@@ -10,7 +10,7 @@
         <a th:href="@{/disciplina/{id}(id=${subject.id})}" class="subject-card">
             <p >
                 <span th:text="${subject.relatedCourse}"></span>
-                (<span th:text="${subject.relatedCampus}"></span>)
+                (<span th:text="${subject.relatedCampus.abbreviation}"></span>)
             </p>
             <div class="subject-main">
                 <p><b th:text="${subject.abbreviation}"></b>

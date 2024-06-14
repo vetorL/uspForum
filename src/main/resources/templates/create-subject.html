@@ -8,7 +8,7 @@
             <p th:text="${message}"></p>
         </div>
 
-        <form action="#" th:action="@{/criar}" th:object="${subject}" method="post">
+        <form action="#" th:action="@{/criar}" th:object="${subjectCreationDTO}" method="post">
             <fieldset>
                 <legend>Criação de disciplina</legend>
                 <p>
@@ -42,8 +42,11 @@
                 <p>
                     <label>
                         Campus (abreviação): <br/>
-                        <select id="campi">
-                            <option th:each="campus: ${campi}" th:text="${campus.abbreviation}"></option>
+                        <select id="campi" th:field="*{relatedCampusId}">
+                            <option th:each="campus: ${campi}"
+                                    th:value="${campus.id}"
+                                    th:text="${campus.abbreviation}">
+                            </option>
                         </select>
                     </label>
                 </p>

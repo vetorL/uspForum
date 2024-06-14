@@ -13,15 +13,14 @@ public class CreateSubjectService {
         this.subjectRepository = subjectRepository;
     }
 
-    public boolean createSubject(Subject subject) {
+    public Subject createSubject(Subject subject) {
 
         try {
-            subjectRepository.save(subject);
+            return subjectRepository.save(subject);
         } catch (Exception e) {
-            return false;
+            return null;
         }
 
-        return true;
     }
 
 }

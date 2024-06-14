@@ -9,47 +9,50 @@
         </div>
 
         <form action="#" th:action="@{/criar}" th:object="${subject}" method="post">
-            <p>
-                Nome da disciplina: <br/>
-                <input type="text" th:field="*{name}">
-            </p>
+            <fieldset>
+                <legend>Criação de disciplina</legend>
+                <p>
+                    Nome: <br/>
+                    <input type="text" th:field="*{name}">
+                </p>
 
-            <p>
-                Abreviação da disciplina: <br/>
-                <input type="text" th:field="*{abbreviation}">
-            </p>
+                <p>
+                    Abreviação: <br/>
+                    <input type="text" th:field="*{abbreviation}">
+                </p>
 
-            <p>
-                Código da disciplina: <br/>
-                <input type="text" th:field="*{code}">
-            </p>
+                <p>
+                    Código: <br/>
+                    <input type="text" th:field="*{code}">
+                </p>
 
-            <p>
-                Curso da disciplina: <br/>
-                <input type="text" th:field="*{relatedCourse}">
-            </p>
+                <p>
+                    Curso: <br/>
+                    <input type="text" th:field="*{relatedCourse}">
+                </p>
 
-            <p>
-                Campus da disciplina: <br/>
-                <select id="campi">
-                    <option value="Butantã">Butantã</option>
-                    <option value="EACH">EACH</option>
-                    <option value="Bauru">Bauru</option>
-                    <option value="Ribeirão Preto">Ribeirão Preto</option>
-                    <option value="São Carlos">São Carlos</option>
-                    <option value="Piracicaba">Piracicaba</option>
-                    <option value="Pirassununga">Pirassununga</option>
-                    <option value="Lorena">Lorena</option>
-                </select>
-            </p>
+                <p>
+                    Campus: <br/>
+                    <select id="campi">
+                        <option value="Butantã">Butantã</option>
+                        <option value="EACH">EACH</option>
+                        <option value="Bauru">Bauru</option>
+                        <option value="Ribeirão Preto">Ribeirão Preto</option>
+                        <option value="São Carlos">São Carlos</option>
+                        <option value="Piracicaba">Piracicaba</option>
+                        <option value="Pirassununga">Pirassununga</option>
+                        <option value="Lorena">Lorena</option>
+                    </select>
+                </p>
 
-            <p>
-                Professor da disciplina: <br/>
-                <input type="text" name="professor" th:field="*{teacherName}">
-            </p>
+                <p>
+                    Professor: <br/>
+                    <input type="text" name="professor" th:field="*{teacherName}">
+                </p>
 
 
-            <button type="submit">Criar</button>
+                <button type="submit">Criar</button>
+            </fieldset>
         </form>
     </main>
 

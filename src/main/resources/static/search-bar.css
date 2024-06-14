@@ -2,3 +2,18 @@
     font-size: 1rem;
     text-align: center;
 }
+
+#busca {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+@media only screen and (min-width: 768px) {
+
+    /*for desktop*/
+
+    #busca {
+        flex-direction: row;
+    }
+}

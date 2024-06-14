@@ -42,10 +42,9 @@
                 <p>
                     <label>
                         Campus (abreviação): <br/>
-                        <input list="campi">
-                        <datalist id="campi">
-                            <option th:each="campus: ${campi}" th:value="${campus.abbreviation}"></option>
-                        </datalist>
+                        <select id="campi">
+                            <option th:each="campus: ${campi}" th:text="${campus.abbreviation}"></option>
+                        </select>
                     </label>
                 </p>
 

@@ -22,4 +22,8 @@ public class CampusService {
         return campi;
     }
 
+    public Campus findById(long id) {
+        return campusRepository.findById(id).orElse(null);
+    }
+
 }

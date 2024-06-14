@@ -22,6 +22,7 @@ public class Subject {
     private String abbreviation;
     private String code;
     private String relatedCourse;
+    private String relatedCampus;
     private String teacherName;
 
 }

@@ -43,17 +43,14 @@ public class CreateSubjectController {
         );
         Subject subject = mapper.toSubject(subjectCreationDTO, campus);
 
-        boolean result = createSubjectService.createSubject(subject);
+        Subject s = createSubjectService.createSubject(subject);
 
-        if (result) {
-            model.addAttribute("message",
-                    "Disciplina criada com sucesso!");
-        } else {
-            model.addAttribute("message",
-                    "Falha na tentativa, preencha todos os campos!");
+        if(s == null) {
+            model.addAttribute("message", "Falha ao criar uma disciplina");
+            return "create-subject.html";
         }
 
-        return "create-subject.html";
+        return "redirect:/disciplina/" + s.getId();
     }
 
 }

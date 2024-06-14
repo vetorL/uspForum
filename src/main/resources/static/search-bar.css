@@ -3,7 +3,7 @@
     text-align: center;
 }
 
-#busca {
+#search {
     display: flex;
     flex-direction: column;
     gap: 0.4rem;
@@ -13,7 +13,7 @@
 
     /*for desktop*/
 
-    #busca {
+    #search {
         flex-direction: row;
     }
 }

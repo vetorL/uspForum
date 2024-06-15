@@ -3,11 +3,6 @@
 <body>
 
     <main>
-
-        <div th:if="${message}">
-            <p th:text="${message}"></p>
-        </div>
-
         <form action="#" th:action="@{/criar}" th:object="${subjectCreationDTO}" method="post">
             <fieldset>
                 <legend>Criação de disciplina</legend>

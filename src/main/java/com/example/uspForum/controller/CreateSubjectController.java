@@ -41,11 +41,11 @@ public class CreateSubjectController {
         Campus campus = campusService.findById(
                 Long.parseLong(subjectCreationDTO.getRelatedCampusId())
         );
-        Subject subject = mapper.toSubject(subjectCreationDTO, campus);
+        Subject subjectToBeCreated = mapper.toSubject(subjectCreationDTO, campus);
 
-        Subject s = createSubjectService.createSubject(subject);
+        Subject createdSubject = createSubjectService.createSubject(subjectToBeCreated);
 
-        return "redirect:/disciplina/" + s.getId();
+        return "redirect:/disciplina/" + createdSubject.getId();
     }
 
 }

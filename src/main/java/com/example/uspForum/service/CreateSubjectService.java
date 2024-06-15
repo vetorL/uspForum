@@ -14,13 +14,7 @@ public class CreateSubjectService {
     }
 
     public Subject createSubject(Subject subject) {
-
-        try {
-            return subjectRepository.save(subject);
-        } catch (Exception e) {
-            return null;
-        }
-
+        return subjectRepository.save(subject);
     }
 
 }

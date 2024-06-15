@@ -45,11 +45,6 @@ public class CreateSubjectController {
 
         Subject s = createSubjectService.createSubject(subject);
 
-        if(s == null) {
-            model.addAttribute("message", "Falha ao criar uma disciplina");
-            return "create-subject.html";
-        }
-
         return "redirect:/disciplina/" + s.getId();
     }
 

@@ -28,6 +28,6 @@ public class Subject {
     private String teacherName;
 
     @OneToMany
-    private List<SubjectReview> subjectReviews;
+    private List<SubjectReview> reviews;
 
 }

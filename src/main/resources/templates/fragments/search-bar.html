@@ -7,17 +7,17 @@
 <body>
 
     <div th:fragment="search-bar" id="search-bar">
-        <form action="/busca" method="get">
+        <form action="/busca" method="get" id="search-form">
             <div id="search">
-                <input id="search-input" type="search" name="q" th:value="${query}">
-
-                <select name="t" style="display: none">
+                <select name="t">
                     <option value="geral">Pesquisa geral</option>
                     <option value="nome-da-disciplina">Nome da Disciplina</option>
                     <option value="professor">Professor</option>
                     <option value="abreviacao-da-disciplina">Abreviação da Disciplina</option>
                     <option value="codigo-da-disciplina">Código da Disciplina</option>
                 </select>
+
+                <input id="search-input" type="search" name="q" th:value="${query}">
 
                 <button type="submit">Buscar</button>
             </div>

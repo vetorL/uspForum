@@ -15,5 +15,15 @@
 
     #search {
         flex-direction: row;
+        flex-wrap: wrap;
     }
+
+    #search-form {
+        width: 100%;
+    }
+
+    #search-input {
+        flex: 1;
+    }
+
 }

@@ -12,12 +12,14 @@
                 <span th:text="${subject.relatedCourse}"></span>
                 (<span th:text="${subject.relatedCampus.abbreviation}"></span>)
             </p>
+            <hr class="subject-card-separation">
             <div class="subject-main">
                 <p><b th:text="${subject.abbreviation}"></b>
                     - <span th:text="${subject.name}"></span>
                 </p>
                 <p>por <i th:text="${subject.teacherName}"></i></p>
             </div>
+            <hr class="subject-card-separation">
             <p class="subject-code">Código da disciplina:<br>
                 <span th:text="${subject.code}"></span>
             </p>

@@ -3,8 +3,6 @@
 <body>
 
     <main>
-        <div th:replace="~{fragments/search-bar :: search-bar(query=${q})}"></div>
-
         <p th:text="${message}"></p>
 
         <p th:if="${#lists.isEmpty(results)}">

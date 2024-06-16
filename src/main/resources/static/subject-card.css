@@ -19,7 +19,7 @@
 .subject-main {
     display: flex;
     flex-direction: column;
-    flex: 0 0 40%;
+    flex: 0 0 50%;
 }
 
 .subject-code {
@@ -28,4 +28,31 @@
 
 .subject-card-separation {
     width: 90%;
+}
+
+@media only screen and (min-width: 768px) {
+
+    /*for desktop*/
+
+    .subject-card-separation {
+        display: none;
+    }
+
+    .subject-card {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+    .subject-course {
+        grid-column: 1 / 2;
+    }
+
+    .subject-main {
+        grid-column: 2 / 4;
+    }
+
+    .subject-code {
+        grid-column: 4 / 5;
+    }
+
 }

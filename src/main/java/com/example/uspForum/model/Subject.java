@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Data
 @Entity
 @AllArgsConstructor
@@ -24,5 +26,8 @@ public class Subject {
     private Campus relatedCampus;
 
     private String teacherName;
+
+    @OneToMany
+    private List<SubjectReview> subjectReviews;
 
 }

@@ -16,3 +16,8 @@ button, input, select {
 #usp {
     color: red;
 }
+
+#logo > h1 > a {
+    text-decoration: none;
+    color: black;
+}

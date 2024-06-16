@@ -10,6 +10,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.web.servlet.MockMvc;
 
+import java.util.ArrayList;
 import java.util.Optional;
 
 import static org.hamcrest.Matchers.containsString;
@@ -34,7 +35,7 @@ public class SubjectControllerUnitTests {
         long subjectId = 1L;
 
         Subject subject = new Subject(subjectId, "Test Subject", "TS", "TCH4839", "Testing",
-                new Campus(1, "TST", "Testing Test"), "Testor");
+                new Campus(1, "TST", "Testing Test"), "Testor", new ArrayList<>());
         Optional<Subject> subjectOptional = Optional.of(subject);
 
         when(subjectService.findSubjectById(subjectId)).thenReturn(subjectOptional);

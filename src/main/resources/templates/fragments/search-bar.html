@@ -6,12 +6,12 @@
 </head>
 <body>
 
-    <div th:fragment="search-bar">
+    <div th:fragment="search-bar" id="search-bar">
         <form action="/busca" method="get">
             <div id="search">
                 <input type="text" name="q" th:value="${query}">
 
-                <select name="t">
+                <select name="t" style="display: none">
                     <option value="geral">Pesquisa geral</option>
                     <option value="nome-da-disciplina">Nome da Disciplina</option>
                     <option value="professor">Professor</option>
@@ -23,7 +23,7 @@
             </div>
         </form>
 
-        <h2 id="description">Busque por uma disciplina ou um professor</h2>
+        <h2 id="description" style="display: none">Busque por uma disciplina ou um professor</h2>
     </div>
 
 </body>

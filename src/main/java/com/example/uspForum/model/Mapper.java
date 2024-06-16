@@ -2,6 +2,8 @@ package com.example.uspForum.model;
 
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+
 @Component
 public class Mapper {
 
@@ -13,7 +15,8 @@ public class Mapper {
                 subjectCreationDTO.getCode(),
                 subjectCreationDTO.getRelatedCourse(),
                 campus,
-                subjectCreationDTO.getTeacherName()
+                subjectCreationDTO.getTeacherName(),
+                new ArrayList<>()
         );
     }
 

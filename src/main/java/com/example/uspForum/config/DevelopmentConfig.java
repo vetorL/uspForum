@@ -64,9 +64,9 @@ public class DevelopmentConfig {
             Campus cena = campusRepo.save(new Campus(0, "Centro de Energia Nuclear na Agricultura", "CENA"));
             Campus fzea = campusRepo.save(new Campus(0, "Faculdade de Zootecnia e Engenharia de Alimentos", "FZEA"));
 
-            SubjectReview iaecReview = subjectReviewRepo.save(new SubjectReview(0, "Foi bom", "Nao teve prova, mas teve varios trabalhinhos"));
-            SubjectReview cooReview = subjectReviewRepo.save(new SubjectReview(0, "Foi OK", "O conteudo foi passado com grande rigorosidade, mas atraves de slides."));
-            SubjectReview fsiReview = subjectReviewRepo.save(new SubjectReview(0, "STELLAR", "Prova online e tudo mais"));
+            SubjectReview iaecReview = subjectReviewRepo.save(new SubjectReview(0, "Foi bom", "Nao teve prova, mas teve varios trabalhinhos", 0));
+            SubjectReview cooReview = subjectReviewRepo.save(new SubjectReview(0, "Foi OK", "O conteudo foi passado com grande rigorosidade, mas atraves de slides.", 0));
+            SubjectReview fsiReview = subjectReviewRepo.save(new SubjectReview(0, "STELLAR", "Prova online e tudo mais", 0));
 
             subjectRepo.save(new Subject(0, "Introdução à Administração e Economia para Computação",
                     "IAEC", "ACH2063", "Sistemas de Informação",

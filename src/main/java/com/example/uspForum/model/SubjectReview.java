@@ -17,5 +17,6 @@ public class SubjectReview {
 
     private String title;
     private String content;
+    private long voteCount;
 
 }

@@ -7,11 +7,20 @@
     <link rel="stylesheet" th:href="@{/style.css}">
     <link rel="stylesheet" th:href="@{/subject-card.css}">
     <link rel="stylesheet" th:href="@{/search-bar.css}">
+    <link rel="stylesheet" th:href="@{/header.css}">
 </head>
 <body>
     <header>
-        <h1>Fórum da USP</h1>
-        <p id="subtitulo">Criado por sistemáticos da informática</p>
+        <div id="logo">
+            <h1>Fórum da USP</h1>
+            <p id="subtitulo">Criado por sistemáticos da informática</p>
+        </div>
+
+        <div th:replace="~{fragments/search-bar :: search-bar(query=${q})}"></div>
+
+        <div id="login">
+            <a id="login-link" th:href="@{/login}">Fazer Login</a>
+        </div>
     </header>
 
     <main th:insert="${content}"></main>

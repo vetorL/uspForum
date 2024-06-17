@@ -20,10 +20,9 @@ public class Subject {
     private String name;
     private String abbreviation;
     private String code;
-    private String relatedCourse;
 
     @ManyToOne
-    private Campus relatedCampus;
+    private Course course;
 
     @ManyToOne
     private Professor professor;

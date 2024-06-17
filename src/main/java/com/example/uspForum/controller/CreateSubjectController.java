@@ -2,6 +2,7 @@ package com.example.uspForum.controller;
 
 import com.example.uspForum.model.*;
 import com.example.uspForum.service.CampusService;
+import com.example.uspForum.service.CourseService;
 import com.example.uspForum.service.CreateSubjectService;
 import com.example.uspForum.service.ProfessorService;
 import org.springframework.stereotype.Controller;
@@ -17,12 +18,14 @@ public class CreateSubjectController {
     private final CampusService campusService;
     private final Mapper mapper;
     private final ProfessorService professorService;
+    private final CourseService courseService;
 
-    public CreateSubjectController(CreateSubjectService createSubjectService, CampusService campusService, Mapper mapper, ProfessorService professorService) {
+    public CreateSubjectController(CreateSubjectService createSubjectService, CampusService campusService, Mapper mapper, ProfessorService professorService, CourseService courseService) {
         this.createSubjectService = createSubjectService;
         this.campusService = campusService;
         this.mapper = mapper;
         this.professorService = professorService;
+        this.courseService = courseService;
     }
 
     @GetMapping("/criar")
@@ -30,6 +33,7 @@ public class CreateSubjectController {
         model.addAttribute("subjectCreationDTO", new SubjectCreationDTO());
         model.addAttribute("campi", campusService.findAll());
         model.addAttribute("allProfessors", professorService.findAll());
+        model.addAttribute("allCourses", courseService.getAllCourses());
         return "create-subject.html";
     }
 

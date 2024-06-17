@@ -49,7 +49,10 @@
                 <p>
                     <label>
                         Professor: <br/>
-                        <input type="text" name="professor" th:field="*{teacherName}">
+                        <input type="text" name="professor" list="professor-list" th:field="*{professorEmail}">
+                        <datalist id="professor-list">
+                            <option th:each="professor : ${allProfessors}" th:value="${professor.email}" th:text="${professor.name} + ' - ' + ${professor.email}"></option>
+                        </datalist>
                     </label>
                 </p>
 

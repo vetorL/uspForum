@@ -1,9 +1,11 @@
 package com.example.uspForum.config;
 
 import com.example.uspForum.model.Campus;
+import com.example.uspForum.model.Professor;
 import com.example.uspForum.model.Subject;
 import com.example.uspForum.model.SubjectReview;
 import com.example.uspForum.repository.CampusRepository;
+import com.example.uspForum.repository.ProfessorRepository;
 import com.example.uspForum.repository.SubjectRepository;
 import com.example.uspForum.repository.SubjectReviewRepository;
 import org.springframework.boot.CommandLineRunner;
@@ -20,7 +22,8 @@ public class DevelopmentConfig {
     @Bean
     public CommandLineRunner dataLoader(SubjectRepository subjectRepo,
                                         CampusRepository campusRepo,
-                                        SubjectReviewRepository subjectReviewRepo) {
+                                        SubjectReviewRepository subjectReviewRepo,
+                                        ProfessorRepository professorRepo) {
         return args -> {
             Campus each = campusRepo.save(new Campus(0, "Escola de Artes, Ciências e Humanidades", "EACH"));
             Campus eca = campusRepo.save(new Campus(0, "Escola de Comunicações e Artes", "ECA"));
@@ -68,14 +71,18 @@ public class DevelopmentConfig {
             SubjectReview cooReview = subjectReviewRepo.save(new SubjectReview(0, "Foi OK", "O conteudo foi passado com grande rigorosidade, mas atraves de slides.", 0));
             SubjectReview fsiReview = subjectReviewRepo.save(new SubjectReview(0, "STELLAR", "Prova online e tudo mais", 0));
 
+            Professor violeta = professorRepo.save(new Professor(0, "Violeta Sun", "violeta@usp.br"));
+            Professor edmir = professorRepo.save(new Professor(0, "Edmir Parada Vasques Prado", "eprado@usp.br"));
+            Professor coutinho = professorRepo.save(new Professor(0, "Flavio Luiz Coutinho", "flcoutinho@usp.br"));
+
             subjectRepo.save(new Subject(0, "Introdução à Administração e Economia para Computação",
                     "IAEC", "ACH2063", "Sistemas de Informação",
-                    each, "Violeta Sun", Arrays.asList(iaecReview)));
+                    each, violeta, Arrays.asList(iaecReview)));
 
             subjectRepo.save(new Subject(0, "Computação Orientada a Objetos", "COO", "ACH2003",
-                    "Sistemas de Informação", each, "Flavio Luiz Coutinho", Arrays.asList(cooReview)));
+                    "Sistemas de Informação", each, coutinho, Arrays.asList(cooReview)));
             subjectRepo.save(new Subject(0, "Fundamentos de Sistemas de Informação", "FSI", "ACH2014",
-                    "Sistemas de Informação", each, "Edmir Parada Vasques Prado", Arrays.asList(fsiReview)));
+                    "Sistemas de Informação", each, edmir, Arrays.asList(fsiReview)));
 
             // below is fantasy data
 //            subjectRepo.save(new Subject(0, "Algoritmos e Estruturas de Dados", "AED", "ACH2025", "Sistemas de Informação", "São Carlos", "Roberto Felipe Dias Ferreira"));

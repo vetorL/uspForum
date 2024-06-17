@@ -30,16 +30,19 @@
                 <p>
                     <label>
                         Curso: <br/>
-                        <input type="text" th:field="*{relatedCourse}">
+                        <input type="text" list="course-list" th:field="*{relatedCourseName}">
+                        <datalist id="course-list">
+                            <option th:each="course : ${allCourses}" th:value="${course.name}" th:text="${course.name} + ' (' + ${course.campus.abbreviation} + ')'"></option>
+                        </datalist>
                     </label>
                 </p>
 
                 <p>
                     <label>
                         Campus (abreviação): <br/>
-                        <select id="campi" th:field="*{relatedCampusId}">
+                        <select id="campi" th:field="*{relatedCampusAbbreviation}">
                             <option th:each="campus: ${campi}"
-                                    th:value="${campus.id}"
+                                    th:value="${campus.abbreviation}"
                                     th:text="${campus.abbreviation}">
                             </option>
                         </select>

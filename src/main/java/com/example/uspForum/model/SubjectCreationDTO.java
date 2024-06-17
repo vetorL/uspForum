@@ -12,8 +12,8 @@ public class SubjectCreationDTO {
     private String name;
     private String abbreviation;
     private String code;
-    private String relatedCourse;
-    private String relatedCampusId;
+    private String relatedCourseName;
+    private String relatedCampusAbbreviation;
     private String professorEmail;
 
 }

@@ -13,7 +13,7 @@ public interface SubjectRepository extends CrudRepository<Subject, Long> {
             "LOWER(s.abbreviation) LIKE LOWER(CONCAT('%', :searchText, '%')) OR " +
             "LOWER(s.code) LIKE LOWER(CONCAT('%', :searchText, '%')) OR " +
             "LOWER(s.relatedCourse) LIKE LOWER(CONCAT('%', :searchText, '%')) OR " +
-            "LOWER(s.teacherName) LIKE LOWER(CONCAT('%', :searchText, '%')) ")
+            "LOWER(s.professor.name) LIKE LOWER(CONCAT('%', :searchText, '%')) ")
     List<Subject> findSubjectBySearchText(String searchText);
 
     @Query("SELECT s FROM Subject s WHERE " +
@@ -29,7 +29,7 @@ public interface SubjectRepository extends CrudRepository<Subject, Long> {
     List<Subject> findSubjectByName(String name);
 
     @Query("SELECT s FROM Subject s WHERE " +
-            "LOWER(s.teacherName) LIKE LOWER(CONCAT('%', :teacherName, '%'))")
+            "LOWER(s.professor.name) LIKE LOWER(CONCAT('%', :teacherName, '%'))")
     List<Subject> findSubjectByTeacherName(String teacherName);
 
 }

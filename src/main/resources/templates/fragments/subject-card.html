@@ -9,8 +9,8 @@
     <div th:fragment="subject-card(subject)">
         <a th:href="@{/disciplina/{id}(id=${subject.id})}" class="subject-card">
             <p class="subject-course">
-                <span th:text="${subject.relatedCourse}"></span>
-                (<span th:text="${subject.relatedCampus.abbreviation}"></span>)
+                <span th:text="${subject.course.name}"></span>
+                (<span th:text="${subject.course.campus.abbreviation}"></span>)
             </p>
             <hr class="subject-card-separation">
             <div class="subject-main">

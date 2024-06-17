@@ -1,13 +1,7 @@
 package com.example.uspForum.config;
 
-import com.example.uspForum.model.Campus;
-import com.example.uspForum.model.Professor;
-import com.example.uspForum.model.Subject;
-import com.example.uspForum.model.SubjectReview;
-import com.example.uspForum.repository.CampusRepository;
-import com.example.uspForum.repository.ProfessorRepository;
-import com.example.uspForum.repository.SubjectRepository;
-import com.example.uspForum.repository.SubjectReviewRepository;
+import com.example.uspForum.model.*;
+import com.example.uspForum.repository.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -23,7 +17,8 @@ public class DevelopmentConfig {
     public CommandLineRunner dataLoader(SubjectRepository subjectRepo,
                                         CampusRepository campusRepo,
                                         SubjectReviewRepository subjectReviewRepo,
-                                        ProfessorRepository professorRepo) {
+                                        ProfessorRepository professorRepo,
+                                        CourseRepository courseRepo) {
         return args -> {
             Campus each = campusRepo.save(new Campus(0, "Escola de Artes, Ciências e Humanidades", "EACH"));
             Campus eca = campusRepo.save(new Campus(0, "Escola de Comunicações e Artes", "ECA"));
@@ -67,6 +62,8 @@ public class DevelopmentConfig {
             Campus cena = campusRepo.save(new Campus(0, "Centro de Energia Nuclear na Agricultura", "CENA"));
             Campus fzea = campusRepo.save(new Campus(0, "Faculdade de Zootecnia e Engenharia de Alimentos", "FZEA"));
 
+            Course si = courseRepo.save(new Course(0, "Sistemas de Informação", each));
+
             SubjectReview iaecReview = subjectReviewRepo.save(new SubjectReview(0, "Foi bom", "Nao teve prova, mas teve varios trabalhinhos", 0));
             SubjectReview cooReview = subjectReviewRepo.save(new SubjectReview(0, "Foi OK", "O conteudo foi passado com grande rigorosidade, mas atraves de slides.", 0));
             SubjectReview fsiReview = subjectReviewRepo.save(new SubjectReview(0, "STELLAR", "Prova online e tudo mais", 0));
@@ -76,13 +73,12 @@ public class DevelopmentConfig {
             Professor coutinho = professorRepo.save(new Professor(0, "Flavio Luiz Coutinho", "flcoutinho@usp.br"));
 
             subjectRepo.save(new Subject(0, "Introdução à Administração e Economia para Computação",
-                    "IAEC", "ACH2063", "Sistemas de Informação",
-                    each, violeta, Arrays.asList(iaecReview)));
+                    "IAEC", "ACH2063", si, violeta, Arrays.asList(iaecReview)));
 
             subjectRepo.save(new Subject(0, "Computação Orientada a Objetos", "COO", "ACH2003",
-                    "Sistemas de Informação", each, coutinho, Arrays.asList(cooReview)));
+                    si, coutinho, Arrays.asList(cooReview)));
             subjectRepo.save(new Subject(0, "Fundamentos de Sistemas de Informação", "FSI", "ACH2014",
-                    "Sistemas de Informação", each, edmir, Arrays.asList(fsiReview)));
+                    si, edmir, Arrays.asList(fsiReview)));
 
             // below is fantasy data
 //            subjectRepo.save(new Subject(0, "Algoritmos e Estruturas de Dados", "AED", "ACH2025", "Sistemas de Informação", "São Carlos", "Roberto Felipe Dias Ferreira"));

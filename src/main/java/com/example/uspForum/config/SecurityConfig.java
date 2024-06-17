@@ -36,7 +36,11 @@ public class SecurityConfig {
         http
                 .authorizeHttpRequests((authorize) -> authorize
                         .requestMatchers("/criar").hasAuthority("USER")
-                        .anyRequest().permitAll());
+                        .anyRequest().permitAll())
+                .formLogin(form -> form
+                        .loginPage("/login")
+                        .permitAll()
+                );
 
         return http.build();
     }

@@ -1,6 +1,7 @@
 package com.example.uspForum;
 
 import com.example.uspForum.model.Campus;
+import com.example.uspForum.model.Professor;
 import com.example.uspForum.model.Subject;
 import com.example.uspForum.service.SubjectService;
 import org.junit.jupiter.api.Test;
@@ -35,7 +36,7 @@ public class SubjectControllerUnitTests {
         long subjectId = 1L;
 
         Subject subject = new Subject(subjectId, "Test Subject", "TS", "TCH4839", "Testing",
-                new Campus(1, "TST", "Testing Test"), "Testor", new ArrayList<>());
+                new Campus(1, "TST", "Testing Test"), new Professor(0, "Testor", "testor@usp.br"), new ArrayList<>());
         Optional<Subject> subjectOptional = Optional.of(subject);
 
         when(subjectService.findSubjectById(subjectId)).thenReturn(subjectOptional);

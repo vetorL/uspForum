@@ -14,6 +14,6 @@ public class SubjectCreationDTO {
     private String code;
     private String relatedCourse;
     private String relatedCampusId;
-    private String teacherName;
+    private String professorEmail;
 
 }

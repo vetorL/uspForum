@@ -1,11 +1,9 @@
 package com.example.uspForum.controller;
 
-import com.example.uspForum.model.Campus;
-import com.example.uspForum.model.Mapper;
-import com.example.uspForum.model.Subject;
-import com.example.uspForum.model.SubjectCreationDTO;
+import com.example.uspForum.model.*;
 import com.example.uspForum.service.CampusService;
 import com.example.uspForum.service.CreateSubjectService;
+import com.example.uspForum.service.ProfessorService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,17 +16,20 @@ public class CreateSubjectController {
     private final CreateSubjectService createSubjectService;
     private final CampusService campusService;
     private final Mapper mapper;
+    private final ProfessorService professorService;
 
-    public CreateSubjectController(CreateSubjectService createSubjectService, CampusService campusService, Mapper mapper) {
+    public CreateSubjectController(CreateSubjectService createSubjectService, CampusService campusService, Mapper mapper, ProfessorService professorService) {
         this.createSubjectService = createSubjectService;
         this.campusService = campusService;
         this.mapper = mapper;
+        this.professorService = professorService;
     }
 
     @GetMapping("/criar")
     public String getCreateSubject(Model model) {
         model.addAttribute("subjectCreationDTO", new SubjectCreationDTO());
         model.addAttribute("campi", campusService.findAll());
+        model.addAttribute("allProfessors", professorService.findAll());
         return "create-subject.html";
     }
 
@@ -41,7 +42,10 @@ public class CreateSubjectController {
         Campus campus = campusService.findById(
                 Long.parseLong(subjectCreationDTO.getRelatedCampusId())
         );
-        Subject subjectToBeCreated = mapper.toSubject(subjectCreationDTO, campus);
+
+        Professor professor = professorService.findByEmail(subjectCreationDTO.getProfessorEmail());
+
+        Subject subjectToBeCreated = mapper.toSubject(subjectCreationDTO, professor, campus);
 
         Subject createdSubject = createSubjectService.createSubject(subjectToBeCreated);
 

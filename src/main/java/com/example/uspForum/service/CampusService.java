@@ -22,8 +22,8 @@ public class CampusService {
         return campi;
     }
 
-    public Campus findById(long id) {
-        return campusRepository.findById(id).orElse(null);
+    public Campus findByAbbreviation(String abbreviation) {
+        return campusRepository.findByAbbreviation(abbreviation);
     }
 
 }

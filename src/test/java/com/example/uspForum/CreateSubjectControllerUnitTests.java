@@ -27,7 +27,7 @@ public class CreateSubjectControllerUnitTests {
     @MockBean
     private CampusService campusService;
 
-    @WithMockUser(authorities="USER")
+    @WithMockUser(authorities="ROLE_USER")
     @Test
     void testGetCreateSubjectWithAuthority() throws Exception {
 

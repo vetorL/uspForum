@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.util.List;
+
 @Controller
 public class CreateSubjectController {
 
@@ -43,13 +45,18 @@ public class CreateSubjectController {
             Model model
     ) {
 
-        Campus campus = campusService.findById(
-                Long.parseLong(subjectCreationDTO.getRelatedCampusId())
+        Campus campus = campusService.findByAbbreviation(
+                subjectCreationDTO.getRelatedCampusAbbreviation()
+        );
+
+        List<Course> course = courseService.findByNameAndCampusAbbreviation(
+                subjectCreationDTO.getRelatedCourseName(),
+                subjectCreationDTO.getRelatedCampusAbbreviation()
         );
 
         Professor professor = professorService.findByEmail(subjectCreationDTO.getProfessorEmail());
 
-        Subject subjectToBeCreated = mapper.toSubject(subjectCreationDTO, professor, campus);
+        Subject subjectToBeCreated = mapper.toSubject(subjectCreationDTO, course.get(0), professor);
 
         Subject createdSubject = createSubjectService.createSubject(subjectToBeCreated);
 

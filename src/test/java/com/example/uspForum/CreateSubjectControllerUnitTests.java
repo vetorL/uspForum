@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.ArrayList;
@@ -26,9 +27,9 @@ public class CreateSubjectControllerUnitTests {
     @MockBean
     private CampusService campusService;
 
-
+    @WithMockUser(authorities="USER")
     @Test
-    void testGetCreateSubject() throws Exception {
+    void testGetCreateSubjectWithAuthority() throws Exception {
 
         when(campusService.findAll()).thenReturn(new ArrayList<Campus>());
 

@@ -1,9 +1,11 @@
 package com.example.uspForum.controller;
 
+import com.example.uspForum.model.RegistrationFormDTO;
 import com.example.uspForum.repository.CustomUserRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -21,6 +23,12 @@ public class RegistrationController {
     @GetMapping
     public String registerForm() {
         return "registration";
+    }
+
+    @PostMapping
+    public String processRegistration(RegistrationFormDTO form) {
+        customUserRepository.save(form.toCustomUser(passwordEncoder));
+        return "redirect:/login";
     }
 
 }

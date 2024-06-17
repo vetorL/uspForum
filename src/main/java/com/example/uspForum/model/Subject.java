@@ -25,7 +25,8 @@ public class Subject {
     @ManyToOne
     private Campus relatedCampus;
 
-    private String teacherName;
+    @ManyToOne
+    private Professor professor;
 
     @OneToMany
     private List<SubjectReview> reviews;

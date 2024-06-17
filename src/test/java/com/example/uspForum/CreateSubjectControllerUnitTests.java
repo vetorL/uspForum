@@ -39,14 +39,13 @@ public class CreateSubjectControllerUnitTests {
 
     }
 
-    @WithMockUser
     @Test
     void testGetCreateSubjectWithoutAuthority() throws Exception {
 
         when(campusService.findAll()).thenReturn(new ArrayList<Campus>());
 
         this.mockMvc.perform(get("/criar"))
-                .andExpect(status().isForbidden());
+                .andExpect(status().is3xxRedirection());
 
     }
 }

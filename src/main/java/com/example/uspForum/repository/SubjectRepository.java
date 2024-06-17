@@ -12,7 +12,7 @@ public interface SubjectRepository extends CrudRepository<Subject, Long> {
             "LOWER(s.name) LIKE LOWER(CONCAT('%', :searchText, '%')) OR " +
             "LOWER(s.abbreviation) LIKE LOWER(CONCAT('%', :searchText, '%')) OR " +
             "LOWER(s.code) LIKE LOWER(CONCAT('%', :searchText, '%')) OR " +
-            "LOWER(s.relatedCourse) LIKE LOWER(CONCAT('%', :searchText, '%')) OR " +
+            "LOWER(s.course.name) LIKE LOWER(CONCAT('%', :searchText, '%')) OR " +
             "LOWER(s.professor.name) LIKE LOWER(CONCAT('%', :searchText, '%')) ")
     List<Subject> findSubjectBySearchText(String searchText);
 

@@ -18,6 +18,7 @@ public class Course {
     private String name;
 
     @ManyToOne
+    @JoinColumn(name = "campus_id")
     private Campus campus;
 
 }

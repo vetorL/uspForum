@@ -65,7 +65,7 @@ public class DevelopmentConfig {
             Campus cena = campusRepo.save(new Campus("Centro de Energia Nuclear na Agricultura", "CENA"));
             Campus fzea = campusRepo.save(new Campus("Faculdade de Zootecnia e Engenharia de Alimentos", "FZEA"));
 
-            Course si = courseRepo.save(new Course(0, "Sistemas de Informação", each));
+            Course si = courseRepo.save(new Course("Sistemas de Informação", each));
 
             CustomUser usr = customUserRepository.save(new CustomUser("test@test.com", "test", passwordEncoder.encode("test")));
 

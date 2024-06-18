@@ -39,7 +39,7 @@ public class SubjectControllerUnitTests {
         Course course = new Course(0, "Testing", new Campus("TST", "Testing Test"));
 
         Subject subject = new Subject(subjectId, "Test Subject", "TS", "TCH4839", course,
-                new Professor(0, "Testor", "testor@usp.br"), new ArrayList<>());
+                new Professor("Testor", "testor@usp.br"), new ArrayList<>());
         Optional<Subject> subjectOptional = Optional.of(subject);
 
         when(subjectService.findSubjectById(subjectId)).thenReturn(subjectOptional);

@@ -6,6 +6,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Data
 @Entity
 @RequiredArgsConstructor
@@ -24,8 +27,10 @@ public class SubjectReview {
     @JoinColumn(name = "subject_id")
     private final Subject subject;
 
+    @OneToMany(mappedBy = "subjectReview")
+    private List<Vote> votes = new ArrayList<>();
+
     private final String title;
     private final String content;
-    private long voteCount = 0;
 
 }

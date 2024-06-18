@@ -21,4 +21,8 @@ public class Vote {
     @JoinColumn(name = "voter_id")
     private final CustomUser voter;
 
+    @ManyToOne
+    @JoinColumn(name = "subject_review_id")
+    private final SubjectReview subjectReview;
+
 }

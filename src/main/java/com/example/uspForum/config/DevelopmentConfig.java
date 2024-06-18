@@ -67,7 +67,7 @@ public class DevelopmentConfig {
 
             Course si = courseRepo.save(new Course(0, "Sistemas de Informação", each));
 
-            CustomUser usr = customUserRepository.save(new CustomUser(0, "test@test.com", "test", passwordEncoder.encode("test"), new ArrayList<>()));
+            CustomUser usr = customUserRepository.save(new CustomUser("test@test.com", "test", passwordEncoder.encode("test")));
 
             SubjectReview iaecReview = subjectReviewRepo.save(new SubjectReview(0, usr, "Foi bom", "Nao teve prova, mas teve varios trabalhinhos", 0));
             SubjectReview cooReview = subjectReviewRepo.save(new SubjectReview(0, usr, "Foi OK", "O conteudo foi passado com grande rigorosidade, mas atraves de slides.", 0));

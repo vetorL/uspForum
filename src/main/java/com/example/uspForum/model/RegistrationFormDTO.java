@@ -14,11 +14,9 @@ public class RegistrationFormDTO {
 
     public CustomUser toCustomUser(PasswordEncoder passwordEncoder) {
         return new CustomUser(
-                0,
                 email,
                 username,
-                passwordEncoder.encode(password),
-                new ArrayList<>()
+                passwordEncoder.encode(password)
         );
     }
 

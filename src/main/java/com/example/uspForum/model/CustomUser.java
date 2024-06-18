@@ -1,33 +1,34 @@
 package com.example.uspForum.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
 @Entity
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
+@NoArgsConstructor(force = true)
+@RequiredArgsConstructor
 public class CustomUser implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    private String email;
-    private String username;
-    private String password;
+    private final String email;
+    private final String username;
+    private final String password;
 
     @OneToMany(mappedBy = "author")
-    private List<SubjectReview> subjectReviews;
+    private List<SubjectReview> subjectReviews = new ArrayList<>();
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

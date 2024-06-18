@@ -1,9 +1,6 @@
 package com.example.uspForum.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,6 +10,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.List;
 
 @Entity
 @Data
@@ -27,6 +25,9 @@ public class CustomUser implements UserDetails {
     private String email;
     private String username;
     private String password;
+
+    @OneToMany(mappedBy = "author")
+    private List<SubjectReview> subjectReviews;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

@@ -3,6 +3,8 @@ package com.example.uspForum.model;
 import lombok.Data;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import java.util.ArrayList;
+
 @Data
 public class RegistrationFormDTO {
 
@@ -15,7 +17,8 @@ public class RegistrationFormDTO {
                 0,
                 email,
                 username,
-                passwordEncoder.encode(password)
+                passwordEncoder.encode(password),
+                new ArrayList<>()
         );
     }
 

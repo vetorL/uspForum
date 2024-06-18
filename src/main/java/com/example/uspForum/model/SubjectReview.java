@@ -16,6 +16,7 @@ public class SubjectReview {
     private long id;
 
     @ManyToOne
+    @JoinColumn(name = "author_id")
     private CustomUser author;
 
     private String title;

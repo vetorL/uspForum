@@ -1,10 +1,12 @@
 package com.example.uspForum.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Data
@@ -21,5 +23,8 @@ public class Course {
     @ManyToOne
     @JoinColumn(name = "campus_id")
     private final Campus campus;
+
+    @OneToMany(mappedBy = "course")
+    private List<Subject> subjects = new ArrayList<>();
 
 }

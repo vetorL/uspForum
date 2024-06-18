@@ -4,11 +4,12 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 
 @Data
 @Entity
-@AllArgsConstructor
-@NoArgsConstructor
+@RequiredArgsConstructor
+@NoArgsConstructor(force = true)
 public class SubjectReview {
 
     @Id
@@ -17,10 +18,10 @@ public class SubjectReview {
 
     @ManyToOne
     @JoinColumn(name = "author_id")
-    private CustomUser author;
+    private final CustomUser author;
 
-    private String title;
-    private String content;
-    private long voteCount;
+    private final String title;
+    private final String content;
+    private long voteCount = 0;
 
 }

@@ -69,9 +69,9 @@ public class DevelopmentConfig {
 
             CustomUser usr = customUserRepository.save(new CustomUser("test@test.com", "test", passwordEncoder.encode("test")));
 
-            SubjectReview iaecReview = subjectReviewRepo.save(new SubjectReview(0, usr, "Foi bom", "Nao teve prova, mas teve varios trabalhinhos", 0));
-            SubjectReview cooReview = subjectReviewRepo.save(new SubjectReview(0, usr, "Foi OK", "O conteudo foi passado com grande rigorosidade, mas atraves de slides.", 0));
-            SubjectReview fsiReview = subjectReviewRepo.save(new SubjectReview(0, usr, "STELLAR", "Prova online e tudo mais", 0));
+            SubjectReview iaecReview = subjectReviewRepo.save(new SubjectReview(usr, "Foi bom", "Nao teve prova, mas teve varios trabalhinhos"));
+            SubjectReview cooReview = subjectReviewRepo.save(new SubjectReview(usr, "Foi OK", "O conteudo foi passado com grande rigorosidade, mas atraves de slides."));
+            SubjectReview fsiReview = subjectReviewRepo.save(new SubjectReview(usr, "STELLAR", "Prova online e tudo mais"));
 
             Professor violeta = professorRepo.save(new Professor("Violeta Sun", "violeta@usp.br"));
             Professor edmir = professorRepo.save(new Professor("Edmir Parada Vasques Prado", "eprado@usp.br"));

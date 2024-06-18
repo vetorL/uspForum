@@ -27,6 +27,7 @@ public class Subject {
     private final Course course;
 
     @ManyToOne
+    @JoinColumn(name = "professor_id")
     private final Professor professor;
 
     @OneToMany

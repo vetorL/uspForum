@@ -1,13 +1,13 @@
 package com.example.uspForum.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @Entity
@@ -21,5 +21,8 @@ public class Professor {
 
     public final String name;
     public final String email;
+
+    @OneToMany(mappedBy = "professor")
+    private List<Subject> subjects = new ArrayList<>();
 
 }

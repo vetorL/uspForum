@@ -21,7 +21,8 @@ public class DevelopmentConfig {
                                         SubjectReviewRepository subjectReviewRepo,
                                         ProfessorRepository professorRepo,
                                         CourseRepository courseRepo, CustomUserRepository customUserRepository,
-                                        PasswordEncoder passwordEncoder) {
+                                        PasswordEncoder passwordEncoder,
+                                        VoteRepository voteRepository) {
         return args -> {
             Campus each = campusRepo.save(new Campus("Escola de Artes, Ciências e Humanidades", "EACH"));
             Campus eca = campusRepo.save(new Campus("Escola de Comunicações e Artes", "ECA"));
@@ -89,6 +90,8 @@ public class DevelopmentConfig {
             SubjectReview iaecReview = subjectReviewRepo.save(new SubjectReview(usr, iaec, "Foi bom", "Nao teve prova, mas teve varios trabalhinhos"));
             SubjectReview cooReview = subjectReviewRepo.save(new SubjectReview(usr, coo, "Foi OK", "O conteudo foi passado com grande rigorosidade, mas atraves de slides."));
             SubjectReview fsiReview = subjectReviewRepo.save(new SubjectReview(usr, fsi, "STELLAR", "Prova online e tudo mais"));
+
+            Vote iaecVote = voteRepository.save(new Vote(-1, usr, iaecReview));
 
             // below is fantasy data
 //            subjectRepo.save(new Subject(0, "Algoritmos e Estruturas de Dados", "AED", "ACH2025", "Sistemas de Informação", "São Carlos", "Roberto Felipe Dias Ferreira"));

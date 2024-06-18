@@ -19,8 +19,8 @@ public class Professor {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    public final String name;
-    public final String email;
+    private final String name;
+    private final String email;
 
     @OneToMany(mappedBy = "professor")
     private List<Subject> subjects = new ArrayList<>();

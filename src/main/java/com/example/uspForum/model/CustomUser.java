@@ -30,6 +30,9 @@ public class CustomUser implements UserDetails {
     @OneToMany(mappedBy = "author")
     private List<SubjectReview> subjectReviews = new ArrayList<>();
 
+    @OneToMany(mappedBy = "voter")
+    private List<Vote> votes = new ArrayList<>();
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return Arrays.asList(new SimpleGrantedAuthority("ROLE_USER"));

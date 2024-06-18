@@ -18,7 +18,7 @@ public class DevelopmentConfig {
                                         CampusRepository campusRepo,
                                         SubjectReviewRepository subjectReviewRepo,
                                         ProfessorRepository professorRepo,
-                                        CourseRepository courseRepo) {
+                                        CourseRepository courseRepo, CustomUserRepository customUserRepository) {
         return args -> {
             Campus each = campusRepo.save(new Campus(0, "Escola de Artes, Ciências e Humanidades", "EACH"));
             Campus eca = campusRepo.save(new Campus(0, "Escola de Comunicações e Artes", "ECA"));
@@ -64,9 +64,11 @@ public class DevelopmentConfig {
 
             Course si = courseRepo.save(new Course(0, "Sistemas de Informação", each));
 
-            SubjectReview iaecReview = subjectReviewRepo.save(new SubjectReview(0, "Foi bom", "Nao teve prova, mas teve varios trabalhinhos", 0));
-            SubjectReview cooReview = subjectReviewRepo.save(new SubjectReview(0, "Foi OK", "O conteudo foi passado com grande rigorosidade, mas atraves de slides.", 0));
-            SubjectReview fsiReview = subjectReviewRepo.save(new SubjectReview(0, "STELLAR", "Prova online e tudo mais", 0));
+            CustomUser usr = customUserRepository.save(new CustomUser(0, "test@test.com", "test", "test"));
+
+            SubjectReview iaecReview = subjectReviewRepo.save(new SubjectReview(0, usr, "Foi bom", "Nao teve prova, mas teve varios trabalhinhos", 0));
+            SubjectReview cooReview = subjectReviewRepo.save(new SubjectReview(0, usr, "Foi OK", "O conteudo foi passado com grande rigorosidade, mas atraves de slides.", 0));
+            SubjectReview fsiReview = subjectReviewRepo.save(new SubjectReview(0, usr, "STELLAR", "Prova online e tudo mais", 0));
 
             Professor violeta = professorRepo.save(new Professor(0, "Violeta Sun", "violeta@usp.br"));
             Professor edmir = professorRepo.save(new Professor(0, "Edmir Parada Vasques Prado", "eprado@usp.br"));

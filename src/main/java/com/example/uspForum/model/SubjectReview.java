@@ -15,6 +15,9 @@ public class SubjectReview {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
+    @ManyToOne
+    private CustomUser author;
+
     private String title;
     private String content;
     private long voteCount;

@@ -49,4 +49,15 @@ public class RegistrationControllerUnitTests {
                 .andExpect(redirectedUrl("/login"));
     }
 
+    @Test
+    void testPostRegisterFormWithInvalidToken() throws Exception {
+
+        RegistrationFormDTO form = new RegistrationFormDTO();
+
+        when(customUserRepository.save(form.toCustomUser(passwordEncoder))).thenReturn(new CustomUser());
+
+        this.mockMvc.perform(post("/registrar").with(csrf().useInvalidToken()))
+                .andExpect(status().isForbidden());
+    }
+
 }

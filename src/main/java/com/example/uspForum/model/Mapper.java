@@ -13,8 +13,7 @@ public class Mapper {
                 subjectCreationDTO.getAbbreviation(),
                 subjectCreationDTO.getCode(),
                 course,
-                professor,
-                new ArrayList<>()
+                professor
         );
     }
 

@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -30,7 +31,7 @@ public class Subject {
     @JoinColumn(name = "professor_id")
     private final Professor professor;
 
-    @OneToMany
-    private final List<SubjectReview> reviews;
+    @OneToMany(mappedBy = "subject")
+    private List<SubjectReview> reviews = new ArrayList<>();
 
 }

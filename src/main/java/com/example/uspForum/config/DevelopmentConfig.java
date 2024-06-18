@@ -69,21 +69,26 @@ public class DevelopmentConfig {
 
             CustomUser usr = customUserRepository.save(new CustomUser("test@test.com", "test", passwordEncoder.encode("test")));
 
-            SubjectReview iaecReview = subjectReviewRepo.save(new SubjectReview(usr, "Foi bom", "Nao teve prova, mas teve varios trabalhinhos"));
-            SubjectReview cooReview = subjectReviewRepo.save(new SubjectReview(usr, "Foi OK", "O conteudo foi passado com grande rigorosidade, mas atraves de slides."));
-            SubjectReview fsiReview = subjectReviewRepo.save(new SubjectReview(usr, "STELLAR", "Prova online e tudo mais"));
-
             Professor violeta = professorRepo.save(new Professor("Violeta Sun", "violeta@usp.br"));
             Professor edmir = professorRepo.save(new Professor("Edmir Parada Vasques Prado", "eprado@usp.br"));
             Professor coutinho = professorRepo.save(new Professor("Flavio Luiz Coutinho", "flcoutinho@usp.br"));
 
-            subjectRepo.save(new Subject("Introdução à Administração e Economia para Computação",
-                    "IAEC", "ACH2063", si, violeta, Arrays.asList(iaecReview)));
+            Subject iaec = new Subject("Introdução à Administração e Economia para Computação",
+                    "IAEC", "ACH2063", si, violeta);
 
-            subjectRepo.save(new Subject("Computação Orientada a Objetos", "COO", "ACH2003",
-                    si, coutinho, Arrays.asList(cooReview)));
-            subjectRepo.save(new Subject("Fundamentos de Sistemas de Informação", "FSI", "ACH2014",
-                    si, edmir, Arrays.asList(fsiReview)));
+            Subject coo = new Subject("Computação Orientada a Objetos", "COO", "ACH2003",
+                    si, coutinho);
+
+            Subject fsi = new Subject("Fundamentos de Sistemas de Informação", "FSI", "ACH2014",
+                    si, edmir);
+
+            subjectRepo.save(iaec);
+            subjectRepo.save(coo);
+            subjectRepo.save(fsi);
+
+            SubjectReview iaecReview = subjectReviewRepo.save(new SubjectReview(usr, iaec, "Foi bom", "Nao teve prova, mas teve varios trabalhinhos"));
+            SubjectReview cooReview = subjectReviewRepo.save(new SubjectReview(usr, coo, "Foi OK", "O conteudo foi passado com grande rigorosidade, mas atraves de slides."));
+            SubjectReview fsiReview = subjectReviewRepo.save(new SubjectReview(usr, fsi, "STELLAR", "Prova online e tudo mais"));
 
             // below is fantasy data
 //            subjectRepo.save(new Subject(0, "Algoritmos e Estruturas de Dados", "AED", "ACH2025", "Sistemas de Informação", "São Carlos", "Roberto Felipe Dias Ferreira"));

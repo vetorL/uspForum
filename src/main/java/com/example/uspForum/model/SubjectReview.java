@@ -20,6 +20,10 @@ public class SubjectReview {
     @JoinColumn(name = "author_id")
     private final CustomUser author;
 
+    @ManyToOne
+    @JoinColumn(name = "subject_id")
+    private final Subject subject;
+
     private final String title;
     private final String content;
     private long voteCount = 0;

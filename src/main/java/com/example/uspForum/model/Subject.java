@@ -4,30 +4,32 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 
 import java.util.List;
 
 @Data
 @Entity
-@AllArgsConstructor
-@NoArgsConstructor
+@RequiredArgsConstructor
+@NoArgsConstructor(force = true)
 public class Subject {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    private String name;
-    private String abbreviation;
-    private String code;
+    private final String name;
+    private final String abbreviation;
+    private final String code;
 
     @ManyToOne
-    private Course course;
+    @JoinColumn(name = "course_id")
+    private final Course course;
 
     @ManyToOne
-    private Professor professor;
+    private final Professor professor;
 
     @OneToMany
-    private List<SubjectReview> reviews;
+    private final List<SubjectReview> reviews;
 
 }

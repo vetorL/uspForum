@@ -77,12 +77,12 @@ public class DevelopmentConfig {
             Professor edmir = professorRepo.save(new Professor("Edmir Parada Vasques Prado", "eprado@usp.br"));
             Professor coutinho = professorRepo.save(new Professor("Flavio Luiz Coutinho", "flcoutinho@usp.br"));
 
-            subjectRepo.save(new Subject(0, "Introdução à Administração e Economia para Computação",
+            subjectRepo.save(new Subject("Introdução à Administração e Economia para Computação",
                     "IAEC", "ACH2063", si, violeta, Arrays.asList(iaecReview)));
 
-            subjectRepo.save(new Subject(0, "Computação Orientada a Objetos", "COO", "ACH2003",
+            subjectRepo.save(new Subject("Computação Orientada a Objetos", "COO", "ACH2003",
                     si, coutinho, Arrays.asList(cooReview)));
-            subjectRepo.save(new Subject(0, "Fundamentos de Sistemas de Informação", "FSI", "ACH2014",
+            subjectRepo.save(new Subject("Fundamentos de Sistemas de Informação", "FSI", "ACH2014",
                     si, edmir, Arrays.asList(fsiReview)));
 
             // below is fantasy data

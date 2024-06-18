@@ -6,6 +6,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.Arrays;
 
@@ -18,7 +19,8 @@ public class DevelopmentConfig {
                                         CampusRepository campusRepo,
                                         SubjectReviewRepository subjectReviewRepo,
                                         ProfessorRepository professorRepo,
-                                        CourseRepository courseRepo, CustomUserRepository customUserRepository) {
+                                        CourseRepository courseRepo, CustomUserRepository customUserRepository,
+                                        PasswordEncoder passwordEncoder) {
         return args -> {
             Campus each = campusRepo.save(new Campus(0, "Escola de Artes, Ciências e Humanidades", "EACH"));
             Campus eca = campusRepo.save(new Campus(0, "Escola de Comunicações e Artes", "ECA"));
@@ -64,7 +66,7 @@ public class DevelopmentConfig {
 
             Course si = courseRepo.save(new Course(0, "Sistemas de Informação", each));
 
-            CustomUser usr = customUserRepository.save(new CustomUser(0, "test@test.com", "test", "test"));
+            CustomUser usr = customUserRepository.save(new CustomUser(0, "test@test.com", "test", passwordEncoder.encode("test")));
 
             SubjectReview iaecReview = subjectReviewRepo.save(new SubjectReview(0, usr, "Foi bom", "Nao teve prova, mas teve varios trabalhinhos", 0));
             SubjectReview cooReview = subjectReviewRepo.save(new SubjectReview(0, usr, "Foi OK", "O conteudo foi passado com grande rigorosidade, mas atraves de slides.", 0));

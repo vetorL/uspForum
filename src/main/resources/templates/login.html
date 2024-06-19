@@ -1,23 +1,35 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
 <head>
-    <title>Please Log In</title>
+    <title>Login - Fórum da USP</title>
+    <link rel="stylesheet" th:href="@{/login.css}">
 </head>
 <body>
-<h1>Please Log In</h1>
-<div th:if="${param.error}">
-    Invalid username and password.</div>
-<div th:if="${param.logout}">
-    You have been logged out.</div>
-<form th:action="@{/login}" method="post">
-    <div>
-        <input type="text" name="username" placeholder="Username"/>
+    <h1>Login</h1>
+
+    <div th:if="${param.error}">
+        Nome de usuário e/ou senha inválido(s).
     </div>
-    <div>
-        <input type="password" name="password" placeholder="Password"/>
+
+    <div th:if="${param.logout}">
+        Logout realizado com sucesso.
     </div>
-    <input type="submit" value="Log in" />
-    <a th:href="@{/registrar}">Nao tem uma conta? Registre-se!</a>
-</form>
+
+    <form th:action="@{/login}" method="post">
+        <div>
+            <label>
+                Nome de usuário: <br/>
+                <input type="text" name="username" placeholder="Nome de usuário"/>
+            </label>
+        </div>
+        <div>
+            <label>
+                Senha: <br/>
+                <input type="password" name="password" placeholder="Senha"/>
+            </label>
+        </div>
+        <input type="submit" value="Fazer login" />
+        <a th:href="@{/registrar}">Não tem uma conta? Registre-se!</a>
+    </form>
 </body>
 </html>

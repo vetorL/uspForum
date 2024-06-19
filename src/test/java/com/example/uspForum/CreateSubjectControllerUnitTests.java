@@ -56,7 +56,7 @@ public class CreateSubjectControllerUnitTests {
         when(campusService.findAll()).thenReturn(new ArrayList<Campus>());
 
         this.mockMvc.perform(get("/criar"))
-                .andExpect(status().is3xxRedirection());
+                .andExpect(status().isUnauthorized());
 
     }
 }

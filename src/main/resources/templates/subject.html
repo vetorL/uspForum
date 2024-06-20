@@ -13,6 +13,22 @@
 
         <div id="subject-reviews">
             <h3>Reviews:</h3>
+
+            <form th:action="@{postar/{id}(id=${subject.id})}" th:object="${subjectReviewDTO}" method="post">
+                <fieldset>
+                    <legend>Postar review</legend>
+                    <label>
+                        Título:
+                        <input type="text" name="title">
+                    </label>
+                    <label>
+                        Conteúdo:
+                        <textarea name="content"></textarea>
+                    </label>
+                    <button type="submit">Postar</button>
+                </fieldset>
+            </form>
+
             <div th:each="review: ${subject.reviews}" th:insert="~{fragments/subject-review :: subject-review(${review})}" th:remove="tag"></div>
         </div>
     </main>

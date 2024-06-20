@@ -1,5 +1,6 @@
 package com.example.uspForum.service;
 
+import com.example.uspForum.model.CustomUser;
 import com.example.uspForum.model.Subject;
 import com.example.uspForum.model.SubjectReview;
 import com.example.uspForum.repository.SubjectRepository;
@@ -26,6 +27,10 @@ public class SubjectService {
 
     public void postSubjectReview(SubjectReview subjectReview) {
         subjectReviewRepository.save(subjectReview);
+    }
+
+    public boolean userAlreadyPostedReview(CustomUser author, Subject subject) {
+        return subjectReviewRepository.existsByAuthorAndSubject(author, subject);
     }
 
 }

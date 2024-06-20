@@ -44,6 +44,11 @@ public class SubjectController {
         Optional<Subject> subject = subjectService.findSubjectById(id);
 
         if(subject.isPresent()) {
+            if(subjectService.userAlreadyPostedReview(author, subject.get())) {
+                // blocks posting again
+                return "redirect:/disciplina/" + subject.get().getId();
+            }
+
             subjectService.postSubjectReview(
                     subjectReviewDTO.toSubjectReview(author, subject.get())
             );

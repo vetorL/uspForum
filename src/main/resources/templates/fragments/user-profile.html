@@ -13,7 +13,7 @@
             <a href="#" class="user-username">
                 <p th:text="${user.username}"></p>
             </a>
-            <p>Reputação: +439</p>
+            <p th:text="'Reputação: ' + ${user.getTotalVotes()}"></p>
         </div>
     </div>
 </body>

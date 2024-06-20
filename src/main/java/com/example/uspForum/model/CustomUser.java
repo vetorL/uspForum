@@ -37,6 +37,13 @@ public class CustomUser implements UserDetails {
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return Arrays.asList(new SimpleGrantedAuthority("ROLE_USER"));
     }
+
+    public long getTotalVotes() {
+        return votes.stream()
+                .mapToLong(Vote::getVote)
+                .sum();
+    }
+
     @Override
     public boolean isAccountNonExpired() {
         return true;

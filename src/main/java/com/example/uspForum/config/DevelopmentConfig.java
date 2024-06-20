@@ -65,8 +65,14 @@ public class DevelopmentConfig {
             Campus forp = campusRepo.save(new Campus("Faculdade de Odontologia de Ribeirão Preto", "FORP"));
             Campus cena = campusRepo.save(new Campus("Centro de Energia Nuclear na Agricultura", "CENA"));
             Campus fzea = campusRepo.save(new Campus("Faculdade de Zootecnia e Engenharia de Alimentos", "FZEA"));
+            Campus eesc = campusRepo.save(new Campus("Escola de Engenharia de São Carlos", "EESC"));
+            Campus iau = campusRepo.save(new Campus("Instituto de Arquitetura e Urbanismo", "IAU"));
+            Campus icmc = campusRepo.save(new Campus("Instituto de Ciências Matemáticas e de Computação", "ICMC"));
+            Campus ifsc = campusRepo.save(new Campus("Instituto de Física de São Carlos", "IFSC"));
+            Campus iqsc = campusRepo.save(new Campus("Instituto de Química de São Carlos", "IQSC"));
 
             Course si = courseRepo.save(new Course("Sistemas de Informação", each));
+            Course siSC = courseRepo.save(new Course("Sistemas de Informação", icmc));
 
             CustomUser usr = customUserRepository.save(new CustomUser("test@test.com", "test", passwordEncoder.encode("test")));
 

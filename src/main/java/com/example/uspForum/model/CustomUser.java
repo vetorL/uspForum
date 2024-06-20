@@ -27,10 +27,10 @@ public class CustomUser implements UserDetails {
     private final String username;
     private final String password;
 
-    @OneToMany(mappedBy = "author")
+    @OneToMany(mappedBy = "author", fetch = FetchType.EAGER)
     private List<SubjectReview> subjectReviews = new ArrayList<>();
 
-    @OneToMany(mappedBy = "voter")
+    @OneToMany(mappedBy = "voter", fetch = FetchType.EAGER)
     private List<Vote> votes = new ArrayList<>();
 
     @Override

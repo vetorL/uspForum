@@ -24,18 +24,6 @@ public class SecurityConfig {
     }
 
     @Bean
-    public UserDetailsService userDetailsService(CustomUserRepository customUserRepository) {
-        return username -> {
-            CustomUser customUser = customUserRepository.findByUsername(username);
-            if (customUser != null) {
-                return customUser;
-            }
-
-            throw new UsernameNotFoundException("Usuário '" + username + "' não encontrado");
-        };
-    }
-
-    @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests((authorize) -> authorize

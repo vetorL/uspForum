@@ -40,6 +40,7 @@ public class SecurityConfig {
         http
                 .authorizeHttpRequests((authorize) -> authorize
                         .requestMatchers("/criar").hasAuthority("ROLE_USER")
+                        .requestMatchers("/disciplina/postar/**").hasAuthority("ROLE_USER")
                         .anyRequest().permitAll())
                 .formLogin(form -> form
                         .loginPage("/login")

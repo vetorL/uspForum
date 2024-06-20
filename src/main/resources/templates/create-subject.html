@@ -32,7 +32,7 @@
                         Curso: <br/>
                         <input type="text" list="course-list" th:field="*{relatedCourseName}">
                         <datalist id="course-list">
-                            <option th:each="course : ${allCourses}" th:value="${course.name}" th:text="${course.name} + ' (' + ${course.campus.abbreviation} + ')'"></option>
+                            <option th:each="courseName : ${allCourseNames}" th:value="${courseName}" th:text="${courseName}"></option>
                         </datalist>
                     </label>
                 </p>

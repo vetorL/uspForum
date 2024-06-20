@@ -35,7 +35,7 @@ public class CreateSubjectController {
         model.addAttribute("subjectCreationDTO", new SubjectCreationDTO());
         model.addAttribute("campi", campusService.findAll());
         model.addAttribute("allProfessors", professorService.findAll());
-        model.addAttribute("allCourses", courseService.getAllCourses());
+        model.addAttribute("allCourseNames", courseService.getAllDistinctCourseNames());
         return "create-subject.html";
     }
 

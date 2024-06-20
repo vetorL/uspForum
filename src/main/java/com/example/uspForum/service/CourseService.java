@@ -16,10 +16,8 @@ public class CourseService {
         this.courseRepository = courseRepository;
     }
 
-    public List<Course> getAllCourses() {
-        List<Course> courses = new ArrayList<>();
-        courseRepository.findAll().forEach(courses::add);
-        return courses;
+    public List<String> getAllDistinctCourseNames() {
+        return courseRepository.findAllDistinctCourseNames();
     }
 
     public List<Course> findByNameAndCampusAbbreviation(String name, String campusAbbreviation) {

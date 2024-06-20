@@ -42,7 +42,7 @@ public class CreateSubjectControllerUnitTests {
 
         when(campusService.findAll()).thenReturn(new ArrayList<>());
         when(professorService.findAll()).thenReturn(new ArrayList<>());
-        when(courseService.getAllCourses()).thenReturn(new ArrayList<>());
+        when(courseService.getAllDistinctCourseNames()).thenReturn(new ArrayList<>());
 
         this.mockMvc.perform(get("/criar"))
                 .andExpect(status().isOk())

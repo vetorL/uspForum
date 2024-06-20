@@ -12,17 +12,7 @@
             <p th:text="${review.content}"></p>
         </div>
         <hr/>
-        <div class="reviewer-profile">
-            <a href="#">
-                <img class="reviewer-profile-picture" src="" alt="">
-            </a>
-            <div class="reviewer-info">
-                <a href="#" class="reviewer-username">
-                    <p th:text="${review.author.username}"></p>
-                </a>
-                <p>Reputação: +439</p>
-            </div>
-        </div>
+        <div th:replace="~{fragments/user-profile :: user-profile(${review.author})}"></div>
         <div class="review-vote">
             <button class="vote-button">+</button>
             <p class="vote-count" th:text="${review.getTotalVotes()}"></p>

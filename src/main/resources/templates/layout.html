@@ -13,15 +13,7 @@
 </head>
 <body>
     <header>
-        <div id="logo">
-            <h1>
-                <a th:href="@{/}">
-                    Fórum <br>
-                    da <span id="usp">USP</span>
-                </a>
-            </h1>
-            <p id="subtitulo">Criado por sistemáticos da informática</p>
-        </div>
+        <div th:replace="~{fragments/logo :: logo}"></div>
 
         <div th:replace="~{fragments/search-bar :: search-bar(query=${q})}"></div>
 

@@ -2,7 +2,13 @@
 <html th:replace="~{layout :: layout (~{:: main})}">
 <body>
 
-    <main></main>
+    <main>
+        <h2>Heróis da USP</h2>
+
+        <div th:each="user: ${heroes}"
+             th:insert="~{fragments/user-profile :: user-profile(${user})}"
+             th:remove="tag"></div>
+    </main>
 
 </body>
 </html>

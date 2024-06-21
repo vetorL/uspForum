@@ -27,6 +27,8 @@ public class CustomUser implements UserDetails {
     private final String username;
     private final String password;
 
+    private String profilePictureURL = "default-profile-picture.png";
+
     @OneToMany(mappedBy = "author", fetch = FetchType.EAGER)
     private List<SubjectReview> subjectReviews = new ArrayList<>();
 

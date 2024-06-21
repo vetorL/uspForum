@@ -14,7 +14,7 @@
         <div sec:authorize="isAuthenticated()" id="header-profile-picture">
             <!--            <div th:replace="~{fragments/user-profile :: user-profile(${#authentication.principal})}"></div>-->
             <a href="#">
-                <img class="user-profile-picture" src="" alt="">
+                <img class="user-profile-picture" th:src="@{images/default-profile-picture.png}" alt="">
             </a>
         </div>
 

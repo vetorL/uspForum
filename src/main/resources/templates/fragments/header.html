@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.w3.org/1999/xhtml"><head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <header th:fragment="header(query)">
+
+        <div th:replace="~{fragments/logo :: logo}"></div>
+
+        <div th:replace="~{fragments/search-bar :: search-bar(query=${q})}"></div>
+
+        <div sec:authorize="isAuthenticated()">
+            <!--            <div th:replace="~{fragments/user-profile :: user-profile(${#authentication.principal})}"></div>-->
+            <a href="#">
+                <img class="user-profile-picture" src="" alt="">
+            </a>
+        </div>
+
+        <div sec:authorize="isAnonymous()" id="login">
+            <a id="login-link" th:href="@{/login}">Fazer Login</a>
+        </div>
+
+    </header>
+</body>
+</html>

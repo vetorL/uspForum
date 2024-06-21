@@ -14,19 +14,9 @@
     <link rel="stylesheet" th:href="@{/user-profile.css}">
 </head>
 <body>
-    <header>
-        <div th:replace="~{fragments/logo :: logo}"></div>
 
-        <div th:replace="~{fragments/search-bar :: search-bar(query=${q})}"></div>
+    <div th:replace="~{fragments/header :: header(query=${q})}"></div>
 
-        <div sec:authorize="isAuthenticated()">
-            <div th:replace="~{fragments/user-profile :: user-profile(${#authentication.principal})}"></div>
-        </div>
-
-        <div sec:authorize="isAnonymous()" id="login">
-            <a id="login-link" th:href="@{/login}">Fazer Login</a>
-        </div>
-    </header>
 
     <main th:insert="${content}"></main>
 

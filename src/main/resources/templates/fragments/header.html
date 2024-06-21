@@ -11,7 +11,7 @@
 
         <div th:replace="~{fragments/search-bar :: search-bar(query=${q})}"></div>
 
-        <div sec:authorize="isAuthenticated()">
+        <div sec:authorize="isAuthenticated()" id="header-profile-picture">
             <!--            <div th:replace="~{fragments/user-profile :: user-profile(${#authentication.principal})}"></div>-->
             <a href="#">
                 <img class="user-profile-picture" src="" alt="">

@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
+import lombok.ToString;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -30,9 +31,11 @@ public class CustomUser implements UserDetails {
     private String profilePictureURL = "default-profile-picture.png";
 
     @OneToMany(mappedBy = "author", fetch = FetchType.EAGER)
+    @ToString.Exclude
     private List<SubjectReview> subjectReviews = new ArrayList<>();
 
     @OneToMany(mappedBy = "voter", fetch = FetchType.EAGER)
+    @ToString.Exclude
     private List<Vote> votes = new ArrayList<>();
 
     @Override

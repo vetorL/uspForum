@@ -43,9 +43,9 @@ public class CustomUser implements UserDetails {
         return Arrays.asList(new SimpleGrantedAuthority("ROLE_USER"));
     }
 
-    public long getRep() {
+    public int getRep() {
         return subjectReviews.stream()
-                .mapToLong(SubjectReview::getTotalVotes)
+                .mapToInt(SubjectReview::getTotalVotes)
                 .sum();
     }
 

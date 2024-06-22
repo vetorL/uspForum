@@ -75,6 +75,7 @@ public class DevelopmentConfig {
             Course siSC = courseRepo.save(new Course("Sistemas de Informação", icmc));
 
             CustomUser usr = customUserRepository.save(new CustomUser("test@test.com", "test", passwordEncoder.encode("test")));
+            CustomUser usr2 = customUserRepository.save(new CustomUser("test2@test.com", "test2", passwordEncoder.encode("test2")));
 
             Professor violeta = professorRepo.save(new Professor("Violeta Sun", "violeta@usp.br"));
             Professor edmir = professorRepo.save(new Professor("Edmir Parada Vasques Prado", "eprado@usp.br"));
@@ -97,7 +98,9 @@ public class DevelopmentConfig {
             SubjectReview cooReview = subjectReviewRepo.save(new SubjectReview(usr, coo, "Foi OK", "O conteudo foi passado com grande rigorosidade, mas atraves de slides."));
             SubjectReview fsiReview = subjectReviewRepo.save(new SubjectReview(usr, fsi, "STELLAR", "Prova online e tudo mais"));
 
-            Vote iaecVote = voteRepository.save(new Vote(-1, usr, iaecReview));
+            Vote iaecVote = voteRepository.save(new Vote(-1, usr2, iaecReview));
+            Vote fsiVote = voteRepository.save(new Vote(1, usr, fsiReview));
+            Vote cooVote = voteRepository.save(new Vote(-1, usr2, cooReview));
 
             // below is fantasy data
 //            subjectRepo.save(new Subject(0, "Algoritmos e Estruturas de Dados", "AED", "ACH2025", "Sistemas de Informação", "São Carlos", "Roberto Felipe Dias Ferreira"));

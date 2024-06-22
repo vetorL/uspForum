@@ -18,7 +18,7 @@
     <div th:replace="~{fragments/header :: header(query=${q})}"></div>
 
 
-    <main th:insert="${content}"></main>
+    <main th:replace="${content}"></main>
 
     <footer></footer>
 </body>

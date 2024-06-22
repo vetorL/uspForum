@@ -1,0 +1,40 @@
+#subtitulo {
+    margin-top: 0;
+    color: gray;
+    display: none;
+}
+
+#usp {
+    color: red;
+}
+
+#logo > h2 {
+    margin-bottom: 0;
+}
+
+#logo > h2 > a {
+    text-decoration: none;
+    color: black;
+}
+
+#logo {
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+@media only screen and (min-width: 1200px) {
+    #subtitulo {
+        display: inline-block;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    #logo {
+        grid-column: 1 / 2;
+        grid-row: 1 / 2;
+    }
+}

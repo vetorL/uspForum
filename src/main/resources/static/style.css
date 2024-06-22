@@ -12,12 +12,3 @@ main {
 button, input, select {
     font-size: 1.2rem;
 }
-
-#usp {
-    color: red;
-}
-
-#logo > h1 > a {
-    text-decoration: none;
-    color: black;
-}

@@ -3,25 +3,6 @@ header {
     grid-template-columns: 1fr 1fr;
 }
 
-h1 {
-    margin-bottom: 0;
-}
-
-#subtitulo {
-    margin-top: 0;
-    color: gray;
-    display: none;
-}
-
-#logo {
-    grid-column: 1 / 2;
-    grid-row: 1 / 2;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
 #login, #header-profile-picture {
     grid-column: 2 / 3;
     grid-row: 1 / 2;
@@ -44,21 +25,10 @@ h1 {
     grid-row: 2 / 3;
 }
 
-@media only screen and (min-width: 1200px) {
-    #subtitulo {
-        display: inline-block;
-    }
-}
-
 @media only screen and (min-width: 768px) {
 
     header {
         grid-template-columns: repeat(4, minmax(0, 1fr));
-    }
-
-    #logo {
-        grid-column: 1 / 2;
-        grid-row: 1 / 2;
     }
 
     #search-bar {

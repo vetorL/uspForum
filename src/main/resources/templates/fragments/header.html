@@ -14,7 +14,7 @@
         <div sec:authorize="isAuthenticated()" id="header-profile-picture">
             <a href="#">
                 <img class="user-profile-picture"
-                     th:src="@{images/{url}(url=${#authentication.principal.profilePictureURL})}" alt="">
+                     th:src="@{/images/{url}(url=${#authentication.principal.profilePictureURL})}" alt="">
             </a>
         </div>
 

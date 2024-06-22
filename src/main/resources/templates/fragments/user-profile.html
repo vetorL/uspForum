@@ -8,7 +8,7 @@
     <div class="user-profile" th:fragment="user-profile(user)">
         <a href="#">
             <img class="user-profile-picture"
-                 th:src="@{images/{url}(url=${user.profilePictureURL})}" alt="">
+                 th:src="@{/images/{url}(url=${user.profilePictureURL})}" alt="">
         </a>
         <div class="user-info">
             <a href="#" class="user-username">

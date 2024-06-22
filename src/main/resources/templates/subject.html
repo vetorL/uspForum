@@ -14,16 +14,19 @@
         <div id="subject-reviews">
             <h3>Reviews:</h3>
 
-            <form th:action="@{postar/{id}(id=${subject.id})}" th:object="${subjectReviewDTO}" method="post">
+            <form th:action="@{postar/{id}(id=${subject.id})}"
+                  th:object="${subjectReviewDTO}"
+                  method="post"
+                  id="subject-review-form">
                 <fieldset>
-                    <legend>Postar review</legend>
+                    <legend>Contribua com sua própria review!</legend>
                     <label>
-                        Título:
-                        <input type="text" name="title">
+                        Título: <br/>
+                        <input id="review-title" type="text" name="title">
                     </label>
                     <label>
-                        Conteúdo:
-                        <textarea name="content"></textarea>
+                        Conteúdo: <br/>
+                        <textarea id="review-content" name="content" rows="4"></textarea>
                     </label>
                     <button type="submit">Postar</button>
                 </fieldset>

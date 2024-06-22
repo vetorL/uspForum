@@ -1,3 +1,21 @@
 #subject-reviews {
 
 }
+
+#subject-review-form > fieldset {
+    display: flex;
+    flex-direction: column;
+}
+
+#subject-review-form > fieldset > label {
+    width: 100%;
+}
+
+#review-content, #review-title {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+#review-content {
+    resize: none;
+}

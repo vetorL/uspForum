@@ -1,6 +1,7 @@
 package com.example.uspForum.controller;
 
 import com.example.uspForum.repository.CustomUserRepository;
+import com.example.uspForum.service.CustomUserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -8,15 +9,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class IndexController {
 
-    private final CustomUserRepository customUserRepository;
+    private final CustomUserService customUserService;
 
-    public IndexController(CustomUserRepository customUserRepository) {
-        this.customUserRepository = customUserRepository;
+    public IndexController(CustomUserService customUserService) {
+        this.customUserService = customUserService;
     }
 
     @GetMapping("/")
     public String index(Model model) {
-        model.addAttribute("heroes", customUserRepository.findAll());
+        model.addAttribute("heroes", customUserService.findAllOrderByRepDesc());
         return "index.html";
     }
 

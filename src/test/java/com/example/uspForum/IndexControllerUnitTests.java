@@ -1,6 +1,6 @@
 package com.example.uspForum;
 
-import com.example.uspForum.repository.CustomUserRepository;
+import com.example.uspForum.service.CustomUserService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -20,14 +20,14 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class IndexControllerUnitTests {
 
     @MockBean
-    private CustomUserRepository customUserRepository;
+    private CustomUserService customUserService;
 
     @Autowired
     private MockMvc mockMvc;
 
     @Test
     public void getIndexTest() throws Exception {
-        when(customUserRepository.findAll()).thenReturn(new ArrayList<>());
+        when(customUserService.findAllOrderByRepDesc()).thenReturn(new ArrayList<>());
 
         this.mockMvc.perform(get("/"))
                 .andExpect(status().isOk())

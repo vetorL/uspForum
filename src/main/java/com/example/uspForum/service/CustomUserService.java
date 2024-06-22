@@ -7,6 +7,12 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 public class CustomUserService implements UserDetailsService {
 
@@ -24,6 +30,16 @@ public class CustomUserService implements UserDetailsService {
         }
 
         throw new UsernameNotFoundException("Usuário '" + username + "' não encontrado");
+    }
+
+    public List<CustomUser> findAllOrderByRepDesc() {
+        List<CustomUser> customUsers = new ArrayList<>();
+
+        customUserRepository.findAll().forEach(customUsers::add);
+
+        customUsers.sort(Comparator.comparingInt(CustomUser::getRep).reversed());
+
+        return customUsers;
     }
 
 }

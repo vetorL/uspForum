@@ -33,9 +33,9 @@ public class SubjectReview {
     private final String title;
     private final String content;
 
-    public long getTotalVotes() {
+    public int getTotalVotes() {
         return votes.stream()
-                .mapToLong(Vote::getVote)
+                .mapToInt(Vote::getVote)
                 .sum();
     }
 

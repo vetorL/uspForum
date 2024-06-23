@@ -1,5 +1,7 @@
 package com.example.uspForum;
 
+import com.example.uspForum.model.Campus;
+import com.example.uspForum.service.CampusService;
 import com.example.uspForum.service.CustomUserService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +12,7 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.ArrayList;
 
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -22,6 +25,9 @@ public class IndexControllerUnitTests {
     @MockBean
     private CustomUserService customUserService;
 
+    @MockBean
+    private CampusService campusService;
+
     @Autowired
     private MockMvc mockMvc;
 
@@ -32,6 +38,18 @@ public class IndexControllerUnitTests {
         this.mockMvc.perform(get("/"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("index.html"));
+    }
+
+    @Test
+    public void getCampusTest() throws Exception {
+
+        Campus campus = new Campus("tesing institution", "TEST");
+
+        when(campusService.findByAbbreviation("TEST")).thenReturn(campus);
+
+        this.mockMvc.perform(get("/" + campus.getAbbreviation()))
+                .andExpect(status().isOk())
+                .andExpect(view().name("campus.html"));
     }
 
 }

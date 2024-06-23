@@ -2,7 +2,6 @@ package com.example.uspForum;
 
 import com.example.uspForum.model.Campus;
 import com.example.uspForum.service.CampusService;
-import com.example.uspForum.service.CustomUserService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -10,9 +9,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.web.servlet.MockMvc;
 
-import java.util.ArrayList;
-
-import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -20,21 +16,24 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest
 @AutoConfigureMockMvc
-public class IndexControllerUnitTests {
+public class ArchiveControllerUnitTests {
 
     @MockBean
-    private CustomUserService customUserService;
+    private CampusService campusService;
 
     @Autowired
     private MockMvc mockMvc;
 
     @Test
-    public void getIndexTest() throws Exception {
-        when(customUserService.findAllOrderByRepDesc()).thenReturn(new ArrayList<>());
+    public void getCampusTest() throws Exception {
 
-        this.mockMvc.perform(get("/"))
+        Campus campus = new Campus("tesing institution", "TEST");
+
+        when(campusService.findByAbbreviation("TEST")).thenReturn(campus);
+
+        this.mockMvc.perform(get("/" + campus.getAbbreviation()))
                 .andExpect(status().isOk())
-                .andExpect(view().name("index.html"));
+                .andExpect(view().name("campus.html"));
     }
 
 }

@@ -36,6 +36,16 @@
     height: 3rem;
 }
 
+.vote-pressed-up {
+    background-color: green;
+    color: white;
+}
+
+.vote-pressed-down {
+    background-color: red;
+    color: white;
+}
+
 @media only screen and (min-width:768px) {
 
     .subject-review > hr {

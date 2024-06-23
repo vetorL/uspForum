@@ -14,9 +14,9 @@
         <hr/>
         <div th:replace="~{fragments/user-profile :: user-profile(${review.author})}"></div>
         <div class="review-vote">
-            <button class="vote-button">+</button>
+            <button class="vote-button vote-up">+</button>
             <p class="vote-count" th:text="${review.getTotalVotes()}"></p>
-            <button class="vote-button">-</button>
+            <button class="vote-button vote-down">-</button>
         </div>
     </div>
 

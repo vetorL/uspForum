@@ -4,32 +4,34 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - Fórum da USP</title>
+    <link rel="stylesheet" th:href="@{/style.css}">
     <link rel="stylesheet" th:href="@{/login.css}">
+    <link rel="stylesheet" th:href="@{/logo.css}">
 </head>
 <body>
+    <div th:replace="~{fragments/logo :: logo}"></div>
+
+    <hr>
+
     <h1>Login</h1>
 
-    <div th:if="${param.error}">
+    <div th:if="${param.error}" style="color: red">
         Nome de usuário e/ou senha inválido(s).
     </div>
 
-    <div th:if="${param.logout}">
+    <div th:if="${param.logout}" style="color: green">
         Logout realizado com sucesso.
     </div>
 
-    <form th:action="@{/login}" method="post">
-        <div>
-            <label>
-                Nome de usuário: <br/>
-                <input type="text" name="username" placeholder="Nome de usuário"/>
-            </label>
-        </div>
-        <div>
-            <label>
-                Senha: <br/>
-                <input type="password" name="password" placeholder="Senha"/>
-            </label>
-        </div>
+    <form th:action="@{/login}" method="post" id="login-form">
+        <label>
+            Nome de usuário: <br/>
+            <input type="text" name="username" placeholder="Nome de usuário"/>
+        </label>
+        <label>
+            Senha: <br/>
+            <input type="password" name="password" placeholder="Senha"/>
+        </label>
         <input type="submit" value="Fazer login" />
         <a th:href="@{/registrar}">Não tem uma conta? Registre-se!</a>
     </form>

@@ -1,0 +1,17 @@
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+hr {
+    width: 80%;
+}
+
+#login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}

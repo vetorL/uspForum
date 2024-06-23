@@ -1,24 +1,34 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
+<html th:replace="~{authenticationLayout :: authenticationLayout (~{:: main})}">
 <body>
+    <main>
+        <h1>Registrar-se:</h1>
 
-    <h1>Registrar-se:</h1>
+        <form method="POST" th:action="@{/registrar}" th:object="${registerFormDTO}" id="authentication-form">
+            <label>
+                Email: <br/>
+                <input type="email" name="email">
+            </label>
 
-    <form method="POST" th:action="@{/registrar}" id="registerFormDTO">
-        <label for="email">Email: </label>
-        <input type="email" name="email"/><br/>
-        <label for="username">Username: </label>
-        <input type="text" name="username"/><br/>
-        <label for="password">Password: </label>
-        <input type="password" name="password"/><br/>
-        <label for="confirm">Confirm password: </label>
-        <input type="password" name="confirm"/><br/>
+            <label>
+                Nome de usuário: <br/>
+                <input type="text" name="username">
+            </label>
 
-        <input type="submit" value="Registrar"/>
-    </form>
+            <label>
+                Senha: <br/>
+                <input type="password" name="password">
+            </label>
+
+            <label>
+                Confirme a senha: <br/>
+                <input type="password" name="confirm">
+            </label>
+
+            <input type="submit" value="Registrar"/>
+
+            <a th:href="@{/login}">Já possui uma conta? Faça login!</a>
+        </form>
+    </main>
 </body>
 </html>

@@ -20,6 +20,7 @@ public class Professor {
     private long id;
 
     private final String name;
+    private final String normalizedName;
     private final String email;
 
     @OneToMany(mappedBy = "professor")

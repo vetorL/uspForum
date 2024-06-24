@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <li>
+        <ul th:each="subject : ${subjects}">
+            <a href="#" th:text="${subject.professor.name}"></a>
+        </ul>
+    </li>
+</body>
+</html>

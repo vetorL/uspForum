@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1 th:text="${course.name} + ' (' + ${course.campus.abbreviation} + ')'"></h1>
+
+    <li>
+        <ul th:each="subject : ${course.subjects}">
+            <a href="#" th:text="${subject.name}"></a>
+        </ul>
+    </li>
+</body>
+</html>

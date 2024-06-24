@@ -65,7 +65,7 @@ public class ArchiveControllerUnitTests {
     }
 
     @Test
-    void getSubjectTest() throws Exception {
+    void getSubjectProfessorListTest() throws Exception {
         Campus campus = new Campus("tesing institution", "TEST");
         Course course = new Course("test name", "test-name", campus);
         Subject subject = new Subject("testing", "TST", "T438902", course, new Professor());

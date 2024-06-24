@@ -38,7 +38,7 @@ public class ArchiveController {
     }
 
     @GetMapping("/{campus}/{course}/{subject}")
-    public String getSubject(@PathVariable("campus") String campusAbbreviation,
+    public String getSubjectProfessorList(@PathVariable("campus") String campusAbbreviation,
                              @PathVariable("course") String courseNormalizedName,
                              @PathVariable("subject") String subjectAbbreviation,
                              Model model) {

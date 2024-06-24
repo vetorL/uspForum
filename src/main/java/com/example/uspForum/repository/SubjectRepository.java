@@ -35,4 +35,7 @@ public interface SubjectRepository extends CrudRepository<Subject, Long> {
     List<Subject> findByCourseNormalizedNameAndCourseCampusAbbreviationAndAbbreviation(
             String course_normalizedName, String course_campus_abbreviation, String abbreviation);
 
+    Subject findByCourseNormalizedNameAndCourseCampusAbbreviationAndAbbreviationAndProfessorNormalizedName(
+            String course_normalizedName, String course_campus_abbreviation,
+            String abbreviation, String professorNormalizedName);
 }

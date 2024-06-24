@@ -40,4 +40,12 @@ public class SubjectService {
                 courseNormalizedName, campusAbbreviation, subjectAbbreviation);
     };
 
+    public Subject findByCourseAndCampusAndSubjectAndProfessor(
+            String courseNormalizedName, String campusAbbreviation,
+            String subjectAbbreviation, String professorNormalizedName
+    ) {
+        return subjectRepository.findByCourseNormalizedNameAndCourseCampusAbbreviationAndAbbreviationAndProfessorNormalizedName(
+                courseNormalizedName, campusAbbreviation, subjectAbbreviation, professorNormalizedName);
+    }
+
 }

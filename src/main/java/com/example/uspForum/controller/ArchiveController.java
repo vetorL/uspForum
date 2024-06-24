@@ -1,5 +1,7 @@
 package com.example.uspForum.controller;
 
+import com.example.uspForum.model.SubjectReviewDTO;
+import com.example.uspForum.model.VoteDTO;
 import com.example.uspForum.service.CampusService;
 import com.example.uspForum.service.CourseService;
 import com.example.uspForum.service.SubjectService;
@@ -46,6 +48,20 @@ public class ArchiveController {
                 subjectService.findByCourseNormalizedNameAndCourseCampusAbbreviationAndAbbreviation(
                         courseNormalizedName, campusAbbreviation, subjectAbbreviation));
         return "subject-professor-list.html";
+    }
+
+    @GetMapping("/{campus}/{course}/{subject}/{professor}")
+    public String getSubject(@PathVariable("campus") String campusAbbreviation,
+                             @PathVariable("course") String courseNormalizedName,
+                             @PathVariable("subject") String subjectAbbreviation,
+                             @PathVariable("professor") String professorNormalizedName,
+                             Model model) {
+        model.addAttribute("subject",
+                subjectService.findByCourseAndCampusAndSubjectAndProfessor(
+                        courseNormalizedName, campusAbbreviation, subjectAbbreviation, professorNormalizedName));
+        model.addAttribute("subjectReviewDTO", new SubjectReviewDTO());
+        model.addAttribute("voteDTO", new VoteDTO());
+        return "subject.html";
     }
 
 }

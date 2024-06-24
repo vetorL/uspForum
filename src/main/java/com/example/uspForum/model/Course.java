@@ -19,6 +19,7 @@ public class Course {
     private long id;
 
     private final String name;
+    private final String normalizedName;
 
     @ManyToOne
     @JoinColumn(name = "campus_id")

@@ -10,7 +10,8 @@
 
     <li>
         <ul th:each="course : ${campus.courses}">
-            <a href="#" th:text="${course.name}"></a>
+            <a th:href="@{/arquivo/{campusAbbr}/{courseNM}(campusAbbr=${campus.abbreviation}, courseNM=${course.normalizedName})}"
+               th:text="${course.name}"></a>
         </ul>
     </li>
 

@@ -1,5 +1,9 @@
 body {
     margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 
 main {
@@ -7,8 +11,15 @@ main {
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    width: 90%;
 }
 
 button, input, select {
     font-size: 1.2rem;
+}
+
+@media only screen and (min-width: 768px) {
+    main {
+        width: 60%;
+    }
 }

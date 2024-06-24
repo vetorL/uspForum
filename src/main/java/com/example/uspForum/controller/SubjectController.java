@@ -7,7 +7,6 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
@@ -22,21 +21,6 @@ public class SubjectController {
     public SubjectController(SubjectService subjectService, SubjectReviewService subjectReviewService) {
         this.subjectService = subjectService;
         this.subjectReviewService = subjectReviewService;
-    }
-
-    @GetMapping("{id}")
-    public String getSubjectById(@PathVariable("id") Long id, Model model) {
-        Optional<Subject> subject = subjectService.findSubjectById(id);
-
-        if(subject.isPresent()) {
-            model.addAttribute("subject", subject.get());
-            model.addAttribute("subjectReviewDTO", new SubjectReviewDTO());
-            model.addAttribute("voteDTO", new VoteDTO());
-        } else {
-            return "redirect:/";
-        }
-
-        return "subject.html";
     }
 
     @PostMapping("/votar")
@@ -75,7 +59,8 @@ public class SubjectController {
     }
 
     @PostMapping("/postar/{id}")
-    public String postSubjectReview(@PathVariable("id") Long id,
+    public String postSubjectReview(@RequestHeader(value = HttpHeaders.REFERER, required = false) final String referrer,
+                                    @PathVariable("id") Long id,
                                     @ModelAttribute SubjectReviewDTO subjectReviewDTO,
                                     @AuthenticationPrincipal CustomUser author) {
 
@@ -84,13 +69,13 @@ public class SubjectController {
         if(subject.isPresent()) {
             if(subjectService.userAlreadyPostedReview(author, subject.get())) {
                 // blocks posting again
-                return "redirect:/disciplina/" + subject.get().getId();
+                return "redirect:" + referrer;
             }
 
             subjectService.postSubjectReview(
                     subjectReviewDTO.toSubjectReview(author, subject.get())
             );
-            return "redirect:/disciplina/" + subject.get().getId();
+            return "redirect:" + referrer;
         } else {
             return "redirect:/";
         }

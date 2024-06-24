@@ -32,4 +32,7 @@ public interface SubjectRepository extends CrudRepository<Subject, Long> {
             "LOWER(s.professor.name) LIKE LOWER(CONCAT('%', :teacherName, '%'))")
     List<Subject> findSubjectByTeacherName(String teacherName);
 
+    List<Subject> findByCourseNormalizedNameAndCourseCampusAbbreviationAndAbbreviation(
+            String course_normalizedName, String course_campus_abbreviation, String abbreviation);
+
 }

@@ -7,6 +7,7 @@ import com.example.uspForum.repository.SubjectRepository;
 import com.example.uspForum.repository.SubjectReviewRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -32,5 +33,11 @@ public class SubjectService {
     public boolean userAlreadyPostedReview(CustomUser author, Subject subject) {
         return subjectReviewRepository.existsByAuthorAndSubject(author, subject);
     }
+
+    public List<Subject> findByCourseNormalizedNameAndCourseCampusAbbreviationAndAbbreviation(
+            String courseNormalizedName, String campusAbbreviation, String subjectAbbreviation) {
+        return subjectRepository.findByCourseNormalizedNameAndCourseCampusAbbreviationAndAbbreviation(
+                courseNormalizedName, campusAbbreviation, subjectAbbreviation);
+    };
 
 }

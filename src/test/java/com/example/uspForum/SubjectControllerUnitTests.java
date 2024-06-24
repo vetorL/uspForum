@@ -36,7 +36,7 @@ public class SubjectControllerUnitTests {
     void testGetSubjectById() throws Exception {
         long subjectId = 1L;
 
-        Course course = new Course("Testing", new Campus("TST", "Testing Test"));
+        Course course = new Course("Testing", "testing", new Campus("TST", "Testing Test"));
 
         Subject subject = new Subject("Test Subject", "TS", "TCH4839", course,
                 new Professor("Testor", "testor@usp.br"));

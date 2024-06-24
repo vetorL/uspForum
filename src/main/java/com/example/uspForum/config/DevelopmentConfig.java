@@ -71,8 +71,8 @@ public class DevelopmentConfig {
             Campus ifsc = campusRepo.save(new Campus("Instituto de Física de São Carlos", "IFSC"));
             Campus iqsc = campusRepo.save(new Campus("Instituto de Química de São Carlos", "IQSC"));
 
-            Course si = courseRepo.save(new Course("Sistemas de Informação", each));
-            Course siSC = courseRepo.save(new Course("Sistemas de Informação", icmc));
+            Course si = courseRepo.save(new Course("Sistemas de Informação", "sistemas-de-informacao", each));
+            Course siSC = courseRepo.save(new Course("Sistemas de Informação", "sistemas-de-informacao", icmc));
 
             CustomUser usr = customUserRepository.save(new CustomUser("test@test.com", "test", passwordEncoder.encode("test")));
             CustomUser usr2 = customUserRepository.save(new CustomUser("test2@test.com", "test2", passwordEncoder.encode("test2")));

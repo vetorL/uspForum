@@ -60,7 +60,9 @@ public class CreationController {
 
         Subject createdSubject = createSubjectService.createSubject(subjectToBeCreated);
 
-        return "redirect:/disciplina/" + createdSubject.getId();
+        return "redirect:/arquivo/" + campus.getAbbreviation() + "/"
+                + createdSubject.getCourse().getNormalizedName() + "/" + createdSubject.getAbbreviation() + "/"
+                + professor.getNormalizedName();
     }
 
 }

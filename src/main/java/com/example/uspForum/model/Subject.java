@@ -1,10 +1,7 @@
 package com.example.uspForum.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
+import lombok.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,15 +20,18 @@ public class Subject {
     private final String abbreviation;
     private final String code;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
+    @ToString.Exclude
     @JoinColumn(name = "course_id")
     private final Course course;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
+    @ToString.Exclude
     @JoinColumn(name = "professor_id")
     private final Professor professor;
 
-    @OneToMany(mappedBy = "subject")
+    @OneToMany(mappedBy = "subject", fetch = FetchType.EAGER)
+    @ToString.Exclude
     private List<SubjectReview> reviews = new ArrayList<>();
 
 }

@@ -10,6 +10,8 @@ public interface CourseRepository extends CrudRepository<Course, Long> {
 
     List<Course> findByNameAndCampusAbbreviation(String name, String campusAbbreviation);
 
+    Course findByNormalizedNameAndCampusAbbreviation(String normalizedName, String campus_abbreviation);
+
     @Query("SELECT DISTINCT name FROM Course")
     List<String> findAllDistinctCourseNames();
 

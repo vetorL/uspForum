@@ -24,4 +24,8 @@ public class CourseService {
         return courseRepository.findByNameAndCampusAbbreviation(name, campusAbbreviation);
     }
 
+    public Course findByNormalizedNameAndCampusAbbreviation(String normalizedName, String campusAbbreviation) {
+        return courseRepository.findByNormalizedNameAndCampusAbbreviation(normalizedName, campusAbbreviation);
+    }
+
 }

@@ -66,7 +66,7 @@ public class ArchiveControllerUnitTests {
 
     @Test
     void getSubjectProfessorListTest() throws Exception {
-        Campus campus = new Campus("tesing institution", "TEST");
+        Campus campus = new Campus("testing institution", "TEST");
         Course course = new Course("test name", "test-name", campus);
         Subject subject = new Subject("testing", "TST", "T438902", course, new Professor());
 
@@ -80,6 +80,26 @@ public class ArchiveControllerUnitTests {
         this.mockMvc.perform(get(testURL))
                 .andExpect(status().isOk())
                 .andExpect(view().name("subject-professor-list.html"));
+    }
+
+    @Test
+    void getSubjectTest() throws Exception {
+        Campus campus = new Campus("testing institution", "TEST");
+        Course course = new Course("test name", "test-name", campus);
+        Professor professor = new Professor("Testor Tested", "testor-tested", "testor@usp.br");
+        Subject subject = new Subject("testing", "TST", "T438902", course, professor);
+
+        String testURL = "/arquivo/" + campus.getAbbreviation() + "/"
+                + course.getNormalizedName() + "/" + subject.getAbbreviation() + "/" + professor.getNormalizedName();
+
+        when(subjectService.findByCourseAndCampusAndSubjectAndProfessor(
+                course.getNormalizedName(), campus.getAbbreviation(), subject.getAbbreviation(),
+                professor.getNormalizedName()
+        )).thenReturn(subject);
+
+        this.mockMvc.perform(get(testURL))
+                .andExpect(status().isOk())
+                .andExpect(view().name("subject.html"));
     }
 
 }

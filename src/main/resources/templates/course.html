@@ -7,13 +7,13 @@
 <body>
     <h1 th:text="${course.name} + ' (' + ${course.campus.abbreviation} + ')'"></h1>
 
-    <li>
-        <ul th:each="subject : ${course.subjects}">
+    <ul th:each="subject : ${course.subjects}">
+        <li>
             <a th:href="@{/arquivo/{campusAbbr}/{courseNN}/{subjectAbbr}
             (campusAbbr=${course.campus.abbreviation}, courseNN=${course.normalizedName},
             subjectAbbr=${subject.abbreviation})}"
                th:text="${subject.name}"></a>
-        </ul>
-    </li>
+        </li>
+    </ul>
 </body>
 </html>

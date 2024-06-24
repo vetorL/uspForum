@@ -8,12 +8,12 @@
     <h1 th:text="${campus.abbreviation}"></h1>
     <h3 th:text="${campus.name}"></h3>
 
-    <li>
-        <ul th:each="course : ${campus.courses}">
-            <a th:href="@{/arquivo/{campusAbbr}/{courseNM}(campusAbbr=${campus.abbreviation}, courseNM=${course.normalizedName})}"
-               th:text="${course.name}"></a>
-        </ul>
-    </li>
 
+    <ul th:each="course : ${campus.courses}">
+        <li>
+        <a th:href="@{/arquivo/{campusAbbr}/{courseNM}(campusAbbr=${campus.abbreviation}, courseNM=${course.normalizedName})}"
+           th:text="${course.name}"></a>
+        </li>
+    </ul>
 </body>
 </html>

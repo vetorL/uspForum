@@ -5,15 +5,15 @@
     <title>Title</title>
 </head>
 <body>
-    <li>
-        <ul th:each="subject : ${subjects}">
+    <ul th:each="subject : ${subjects}">
+        <li>
             <a th:href="@{/arquivo/{campusAbbr}/{courseNN}/{subjectAbbr}/{professorNN}
             (campusAbbr=${subject.course.campus.abbreviation},
             courseNN=${subject.course.normalizedName},
             subjectAbbr=${subject.abbreviation},
             professorNN=${subject.professor.normalizedName})}"
                th:text="${subject.professor.name}"></a>
-        </ul>
-    </li>
+        </li>
+    </ul>
 </body>
 </html>

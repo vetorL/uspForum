@@ -2,6 +2,7 @@ package com.example.uspForum.controller;
 
 import com.example.uspForum.service.CampusService;
 import com.example.uspForum.service.CourseService;
+import com.example.uspForum.service.SubjectService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,10 +15,12 @@ public class ArchiveController {
 
     private final CampusService campusService;
     private final CourseService courseService;
+    private final SubjectService subjectService;
 
-    public ArchiveController(CampusService campusService, CourseService courseService) {
+    public ArchiveController(CampusService campusService, CourseService courseService, SubjectService subjectService) {
         this.campusService = campusService;
         this.courseService = courseService;
+        this.subjectService = subjectService;
     }
 
     @GetMapping("/{campus}")
@@ -32,6 +35,17 @@ public class ArchiveController {
         model.addAttribute("course",
                 courseService.findByNormalizedNameAndCampusAbbreviation(courseNormalizedName, campusAbbreviation));
         return "course.html";
+    }
+
+    @GetMapping("/{campus}/{course}/{subject}")
+    public String getSubject(@PathVariable("campus") String campusAbbreviation,
+                             @PathVariable("course") String courseNormalizedName,
+                             @PathVariable("subject") String subjectAbbreviation,
+                             Model model) {
+        model.addAttribute("subjects",
+                subjectService.findByCourseNormalizedNameAndCourseCampusAbbreviationAndAbbreviation(
+                        courseNormalizedName, campusAbbreviation, subjectAbbreviation));
+        return "subject-professor-list.html";
     }
 
 }

@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import java.util.List;
 
 @Controller
-public class CreateSubjectController {
+public class CreationController {
 
     private final CreateSubjectService createSubjectService;
     private final CampusService campusService;
@@ -22,7 +22,7 @@ public class CreateSubjectController {
     private final ProfessorService professorService;
     private final CourseService courseService;
 
-    public CreateSubjectController(CreateSubjectService createSubjectService, CampusService campusService, Mapper mapper, ProfessorService professorService, CourseService courseService) {
+    public CreationController(CreateSubjectService createSubjectService, CampusService campusService, Mapper mapper, ProfessorService professorService, CourseService courseService) {
         this.createSubjectService = createSubjectService;
         this.campusService = campusService;
         this.mapper = mapper;

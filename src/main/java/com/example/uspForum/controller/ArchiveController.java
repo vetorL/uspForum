@@ -26,4 +26,12 @@ public class ArchiveController {
         return "campus.html";
     }
 
+    @GetMapping("/{campus}/{course}")
+    public String getCourse(@PathVariable("campus") String campusAbbreviation,
+                            @PathVariable("course") String courseNormalizedName, Model model) {
+        model.addAttribute("course",
+                courseService.findByNormalizedNameAndCampusAbbreviation(courseNormalizedName, campusAbbreviation));
+        return "course.html";
+    }
+
 }

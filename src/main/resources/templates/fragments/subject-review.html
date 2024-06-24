@@ -14,7 +14,7 @@
         <hr/>
         <div th:replace="~{fragments/user-profile :: user-profile(${review.author})}"></div>
         <div class="review-vote">
-            <form th:action="@{votar}" th:object="${voteDTO}" method="post">
+            <form th:action="@{/disciplina/votar}" th:object="${voteDTO}" method="post">
                 <input type="hidden" value="up" name="vote" />
                 <input type="hidden" th:value="${review.id}" name="subjectReviewId" />
                 <button class="vote-button vote-up">+</button>

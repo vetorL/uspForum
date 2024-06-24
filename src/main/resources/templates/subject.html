@@ -14,7 +14,7 @@
         <div id="subject-reviews">
             <h3>Reviews:</h3>
 
-            <form th:action="@{postar/{id}(id=${subject.id})}"
+            <form th:action="@{/disciplina/postar/{id}(id=${subject.id})}"
                   th:object="${subjectReviewDTO}"
                   method="post"
                   id="subject-review-form">

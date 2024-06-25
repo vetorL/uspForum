@@ -4,6 +4,7 @@ import com.example.uspForum.model.SubjectReviewDTO;
 import com.example.uspForum.model.VoteDTO;
 import com.example.uspForum.service.CampusService;
 import com.example.uspForum.service.CourseService;
+import com.example.uspForum.service.ProfessorService;
 import com.example.uspForum.service.SubjectService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,11 +19,13 @@ public class ArchiveController {
     private final CampusService campusService;
     private final CourseService courseService;
     private final SubjectService subjectService;
+    private final ProfessorService professorService;
 
-    public ArchiveController(CampusService campusService, CourseService courseService, SubjectService subjectService) {
+    public ArchiveController(CampusService campusService, CourseService courseService, SubjectService subjectService, ProfessorService professorService) {
         this.campusService = campusService;
         this.courseService = courseService;
         this.subjectService = subjectService;
+        this.professorService = professorService;
     }
 
     @GetMapping("/{campus}")
@@ -62,6 +65,16 @@ public class ArchiveController {
         model.addAttribute("subjectReviewDTO", new SubjectReviewDTO());
         model.addAttribute("voteDTO", new VoteDTO());
         return "subject.html";
+    }
+
+    @GetMapping("/{campus}/docentes/{professor}")
+    public String getCampusProfessor(@PathVariable("campus") String campusAbbreviation,
+                             @PathVariable("professor") String professorNormalizedName,
+                             Model model) {
+        model.addAttribute("professor", professorService.findByCampusAbbreviationAndNormalizedName(
+                campusAbbreviation, professorNormalizedName
+        ));
+        return "professor.html";
     }
 
 }

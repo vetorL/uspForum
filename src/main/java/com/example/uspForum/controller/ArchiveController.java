@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.List;
+
 @Controller
 @RequestMapping("/arquivo")
 public class ArchiveController {
@@ -52,10 +54,11 @@ public class ArchiveController {
                              @PathVariable("course") String courseNormalizedName,
                              @PathVariable("subject") String subjectAbbreviation,
                              Model model) {
-        model.addAttribute("subjects",
-                subjectService.findByCourseNormalizedNameAndCourseCampusAbbreviationAndAbbreviation(
-                        courseNormalizedName, campusAbbreviation, subjectAbbreviation));
+        List<Subject> subjects = subjectService.findByCourseNormalizedNameAndCourseCampusAbbreviationAndAbbreviation(
+                courseNormalizedName, campusAbbreviation, subjectAbbreviation);
+        model.addAttribute("subjects", subjects);
         model.addAttribute("title", subjectAbbreviation);
+        model.addAttribute("sampleSubject", subjects.get(0));
         return "subject-professor-list.html";
     }
 

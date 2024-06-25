@@ -1,19 +1,17 @@
 <!DOCTYPE html>
-<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
+<html th:replace="~{layout :: layout (~{:: main})}">
 <body>
-    <ul th:each="subject : ${subjects}">
-        <li>
-            <a th:href="@{/arquivo/{campusAbbr}/{courseNN}/{subjectAbbr}/{professorNN}
+    <main>
+        <ul th:each="subject : ${subjects}">
+            <li>
+                <a th:href="@{/arquivo/{campusAbbr}/{courseNN}/{subjectAbbr}/{professorNN}
             (campusAbbr=${subject.course.campus.abbreviation},
             courseNN=${subject.course.normalizedName},
             subjectAbbr=${subject.abbreviation},
             professorNN=${subject.professor.normalizedName})}"
-               th:text="${subject.professor.name}"></a>
-        </li>
-    </ul>
+                   th:text="${subject.professor.name}"></a>
+            </li>
+        </ul>
+    </main>
 </body>
 </html>

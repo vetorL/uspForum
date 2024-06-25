@@ -21,7 +21,7 @@ public class Course {
     private final String name;
     private final String normalizedName;
 
-    private String gradePictureUrl = "default-grade.png";
+    private String gradePictureUrl;
 
     @ManyToOne
     @JoinColumn(name = "campus_id")

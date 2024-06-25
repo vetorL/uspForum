@@ -2,7 +2,7 @@
 <html th:replace="~{layout :: layout (~{:: main})}">
 <body>
     <main>
-        <div id="course-title">
+        <div id="section-title">
             <h1 th:text="${course.name} + ' (' + ${course.campus.abbreviation} + ')'"></h1>
             <p th:text="${course.campus.name}"></p>
             <hr>
@@ -17,7 +17,7 @@
                  th:alt="'Grade curricular ' + ${course.name}">
         </div>
 
-        <div id="course-subjects">
+        <div class="section-list">
             <h2>
                 <i>Disciplinas do curso:</i>
             </h2>

@@ -4,6 +4,10 @@
     gap: 1rem;
 }
 
+#subject-info > p > a {
+    color: black;
+}
+
 #subject-review-form > fieldset {
     display: flex;
     flex-direction: column;

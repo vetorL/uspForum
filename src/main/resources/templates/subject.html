@@ -5,12 +5,14 @@
     <main>
         <div id="subject-info">
             <h1 th:text="${subject.name}"></h1>
-            <p th:text="${subject.abbreviation}"></p>
-            <p th:text="${subject.code}"></p>
-            <a th:href="@{/arquivo/{campusAbbr}/{courseNN}(campusAbbr=${subject.course.campus.abbreviation},
+            <p th:text="'Abreviação: ' + ${subject.abbreviation}"></p>
+            <p th:text="'Código: ' + ${subject.code}"></p>
+            <p>
+                Curso: <a th:href="@{/arquivo/{campusAbbr}/{courseNN}(campusAbbr=${subject.course.campus.abbreviation},
             courseNN=${subject.course.normalizedName})}"
-               th:text="${subject.course.name} + ' (' + ${subject.course.campus.abbreviation} + ')'"></a>
-            <p th:text="${subject.professor.name}"></p>
+                   th:text="${subject.course.name} + ' (' + ${subject.course.campus.abbreviation} + ')'"></a>
+            </p>
+            <p th:text="'Professor(a): ' + ${subject.professor.name}"></p>
         </div>
 
         <div id="subject-reviews">

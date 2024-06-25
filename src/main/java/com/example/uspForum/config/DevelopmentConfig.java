@@ -78,12 +78,12 @@ public class DevelopmentConfig {
             CustomUser usr2 = customUserRepository.save(new CustomUser("test2@test.com", "test2", passwordEncoder.encode("test2")));
 
             Professor violeta = professorRepo.save(
-                    new Professor("Violeta Sun", "violeta-sun", "violeta@usp.br"));
+                    new Professor("Violeta Sun", "violeta-sun", "violeta@usp.br", each));
             Professor edmir = professorRepo.save(
                     new Professor("Edmir Parada Vasques Prado", "edmir-parada-vasques-prado",
-                            "eprado@usp.br"));
+                            "eprado@usp.br", each));
             Professor coutinho = professorRepo.save(new Professor("Flavio Luiz Coutinho",
-                    "flavio-luiz-coutinho", "flcoutinho@usp.br"));
+                    "flavio-luiz-coutinho", "flcoutinho@usp.br", each));
 
             Subject iaec = new Subject("Introdução à Administração e Economia para Computação",
                     "IAEC", "ACH2063", si, violeta);

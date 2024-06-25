@@ -1,10 +1,7 @@
 package com.example.uspForum.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
+import lombok.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,6 +19,11 @@ public class Professor {
     private final String name;
     private final String normalizedName;
     private final String email;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @ToString.Exclude
+    @JoinColumn(name = "campus_id")
+    private final Campus campus;
 
     @OneToMany(mappedBy = "professor")
     private List<Subject> subjects = new ArrayList<>();

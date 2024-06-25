@@ -23,4 +23,7 @@ public class Campus {
     @OneToMany(mappedBy = "campus")
     private List<Course> courses = new ArrayList<>();
 
+    @OneToMany(mappedBy = "campus")
+    private List<Professor> professors = new ArrayList<>();
+
 }

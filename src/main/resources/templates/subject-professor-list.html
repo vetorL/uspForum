@@ -4,7 +4,12 @@
     <main>
         <section id="section-title">
             <h1 th:text="${sampleSubject.name}"></h1>
-            <p th:text="${sampleSubject.abbreviation} + ' na ' + ${sampleSubject.course.campus.abbreviation}"></p>
+            <p>
+                <a th:href="@{/arquivo/{campusAbbr}/{courseNN}
+                    (campusAbbr=${sampleSubject.course.campus.abbreviation},
+                    courseNN=${sampleSubject.course.normalizedName})}"
+                    th:text="${sampleSubject.course.name} + ' na ' + ${sampleSubject.course.campus.abbreviation}"></a>
+            </p>
             <hr>
         </section>
 

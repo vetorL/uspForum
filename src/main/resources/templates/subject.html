@@ -33,8 +33,6 @@
             </form>
 
             <div th:each="review: ${subject.reviews}" th:insert="~{fragments/subject-review :: subject-review(${review})}" th:remove="tag"></div>
-
-            <script th:src="@{/js/subject-review.js}"></script>
         </div>
     </main>
 

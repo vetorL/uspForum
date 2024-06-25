@@ -28,6 +28,11 @@ public class CustomUser implements UserDetails {
     private final String username;
     private final String password;
 
+    @ManyToOne(fetch = FetchType.EAGER)
+    @ToString.Exclude
+    @JoinColumn(name = "campus_id")
+    private final Campus campus;
+
     private String profilePictureURL = "default-profile-picture.png";
 
     @OneToMany(mappedBy = "author", fetch = FetchType.EAGER)

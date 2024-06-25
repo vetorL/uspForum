@@ -17,11 +17,11 @@
     width: 100%;
 }
 
-#review-content, #review-title {
+.review-content, .review-title {
     width: 100%;
     box-sizing: border-box;
 }
 
-#review-content {
+.review-content {
     resize: none;
 }

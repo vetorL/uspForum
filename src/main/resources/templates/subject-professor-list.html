@@ -2,16 +2,53 @@
 <html th:replace="~{layout :: layout (~{:: main})}">
 <body>
     <main>
-        <ul th:each="subject : ${subjects}">
-            <li>
-                <a th:href="@{/arquivo/{campusAbbr}/{courseNN}/{subjectAbbr}/{professorNN}
+        <section id="section-title">
+            <h1 th:text="${sampleSubject.name}"></h1>
+            <p th:text="${sampleSubject.abbreviation} + ' na ' + ${sampleSubject.course.campus.abbreviation}"></p>
+            <hr>
+        </section>
+
+        <section class="section-list">
+            <h2>
+                <i>Oferecimento:</i>
+            </h2>
+            <ul th:each="subject : ${subjects}">
+                <li>
+                    <a th:href="@{/arquivo/{campusAbbr}/{courseNN}/{subjectAbbr}/{professorNN}
             (campusAbbr=${subject.course.campus.abbreviation},
             courseNN=${subject.course.normalizedName},
             subjectAbbr=${subject.abbreviation},
             professorNN=${subject.professor.normalizedName})}"
-                   th:text="${subject.professor.name}"></a>
-            </li>
-        </ul>
+                       th:text="${subject.abbreviation} + ' com ' + ${subject.professor.name}"></a>
+                </li>
+            </ul>
+        </section>
+
+        <section class="section-list">
+            <h2>
+                <i>Jupiter Web:</i>
+            </h2>
+            <ul>
+                <li>
+                    <a th:href="@{'https://uspdigital.usp.br/jupiterweb/obterDisciplina?sgldis=' + ${sampleSubject.code}}"
+                       target="_blank">
+                        Informações da Disciplina
+                    </a>
+                </li>
+                <li>
+                    <a th:href="@{'https://uspdigital.usp.br/jupiterweb/listarCursosRequisitos?coddis=' + ${sampleSubject.code}}"
+                       target="_blank">
+                        Requisitos para cursar
+                    </a>
+                </li>
+                <li>
+                    <a th:href="@{'https://uspdigital.usp.br/jupiterweb/obterTurma?sgldis=' + ${sampleSubject.code}}"
+                       target="_blank">
+                        Oferecimento para o semestre atual
+                    </a>
+                </li>
+            </ul>
+        </section>
     </main>
 </body>
 </html>

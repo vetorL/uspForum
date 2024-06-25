@@ -26,4 +26,8 @@ public class ProfessorService {
         return professors;
     }
 
+    public Professor findByCampusAbbreviationAndNormalizedName(String campusAbbreviation, String normalizedName) {
+        return professorRepository.findByCampusAbbreviationAndNormalizedName(campusAbbreviation, normalizedName);
+    }
+
 }

@@ -12,7 +12,11 @@
             courseNN=${subject.course.normalizedName})}"
                    th:text="${subject.course.name} + ' (' + ${subject.course.campus.abbreviation} + ')'"></a>
             </p>
-            <p th:text="'Professor(a): ' + ${subject.professor.name}"></p>
+            <p>
+                Professor(a): <a th:href="@{/arquivo/{campusAbbr}/docentes/{professorNN}
+            (campusAbbr=${subject.course.campus.abbreviation}, professorNN=${subject.professor.normalizedName})}"
+            th:text="${subject.professor.name}"></a>
+            </p>
         </div>
 
         <div id="subject-reviews">

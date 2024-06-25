@@ -16,6 +16,16 @@
             </label>
 
             <label>
+                Campus (abreviação): <br/>
+                <select id="campi" th:field="*{campusAbbr}">
+                    <option th:each="campus: ${campi}"
+                            th:value="${campus.abbreviation}"
+                            th:text="${campus.abbreviation}">
+                    </option>
+                </select>
+            </label>
+
+            <label>
                 Senha: <br/>
                 <input type="password" name="password">
             </label>

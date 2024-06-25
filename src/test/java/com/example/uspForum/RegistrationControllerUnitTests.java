@@ -1,5 +1,6 @@
 package com.example.uspForum;
 
+import com.example.uspForum.model.Campus;
 import com.example.uspForum.model.CustomUser;
 import com.example.uspForum.model.RegistrationFormDTO;
 import com.example.uspForum.repository.CustomUserRepository;
@@ -42,7 +43,7 @@ public class RegistrationControllerUnitTests {
 
         RegistrationFormDTO form = new RegistrationFormDTO();
 
-        when(customUserRepository.save(form.toCustomUser(passwordEncoder))).thenReturn(new CustomUser());
+        when(customUserRepository.save(form.toCustomUser(passwordEncoder, new Campus()))).thenReturn(new CustomUser());
 
         this.mockMvc.perform(post("/registrar").with(csrf()))
                 .andExpect(status().is3xxRedirection())
@@ -54,7 +55,7 @@ public class RegistrationControllerUnitTests {
 
         RegistrationFormDTO form = new RegistrationFormDTO();
 
-        when(customUserRepository.save(form.toCustomUser(passwordEncoder))).thenReturn(new CustomUser());
+        when(customUserRepository.save(form.toCustomUser(passwordEncoder, new Campus()))).thenReturn(new CustomUser());
 
         this.mockMvc.perform(post("/registrar").with(csrf().useInvalidToken()))
                 .andExpect(status().isForbidden());

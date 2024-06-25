@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -17,15 +17,35 @@
             <form th:action="@{/disciplina/votar}" th:object="${voteDTO}" method="post">
                 <input type="hidden" value="up" name="vote" />
                 <input type="hidden" th:value="${review.id}" name="subjectReviewId" />
-                <button class="vote-button vote-up">+</button>
+                <div sec:authorize="isAuthenticated()">
+                    <div th:if="${review.alreadyVoted(#authentication.principal, 'up')}">
+                        <button class="vote-button vote-up vote-pressed-up">+</button>
+                    </div>
+                    <div th:unless="${review.alreadyVoted(#authentication.principal, 'up')}">
+                        <button class="vote-button vote-up">+</button>
+                    </div>
+                </div>
+                <div sec:authorize="isAnonymous()">
+                    <button class="vote-button vote-up">+</button>
+                </div>
             </form>
 
             <p class="vote-count" th:text="${review.getTotalVotes()}"></p>
 
-            <form th:action="@{votar}" th:object="${voteDTO}" method="post">
+            <form th:action="@{/disciplina/votar}" th:object="${voteDTO}" method="post">
                 <input type="hidden" value="down" name="vote" />
                 <input type="hidden" th:value="${review.id}" name="subjectReviewId" />
-                <button class="vote-button vote-down">-</button>
+                <div sec:authorize="isAuthenticated()">
+                    <div th:if="${review.alreadyVoted(#authentication.principal, 'down')}">
+                        <button class="vote-button vote-down vote-pressed-down">-</button>
+                    </div>
+                    <div th:unless="${review.alreadyVoted(#authentication.principal, 'down')}">
+                        <button class="vote-button vote-down">-</button>
+                    </div>
+                </div>
+                <div sec:authorize="isAnonymous()">
+                    <button class="vote-button vote-down">-</button>
+                </div>
             </form>
         </div>
     </div>

@@ -39,4 +39,23 @@ public class SubjectReview {
                 .sum();
     }
 
+    public boolean alreadyVoted(CustomUser principal, String type) {
+
+        if(type.equals("up")) {
+            for(Vote vote : votes) {
+                if(vote.getVoter().getId() == principal.getId() && vote.getVote() == 1) {
+                    return true;
+                }
+            }
+        } else if(type.equals("down")) {
+            for(Vote vote : votes) {
+                if(vote.getVoter().getId() == principal.getId() && vote.getVote() == -1) {
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
+
 }

@@ -51,6 +51,7 @@ public class SearchController {
         model.addAttribute("q", q);
         model.addAttribute("results", results);
         model.addAttribute("message", message);
+        model.addAttribute("title", "busca: " + q);
 
         return "search.html";
     }

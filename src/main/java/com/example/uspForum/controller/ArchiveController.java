@@ -1,5 +1,7 @@
 package com.example.uspForum.controller;
 
+import com.example.uspForum.model.Course;
+import com.example.uspForum.model.Subject;
 import com.example.uspForum.model.SubjectReviewDTO;
 import com.example.uspForum.model.VoteDTO;
 import com.example.uspForum.service.CampusService;
@@ -37,8 +39,11 @@ public class ArchiveController {
     @GetMapping("/{campus}/{course}")
     public String getCourse(@PathVariable("campus") String campusAbbreviation,
                             @PathVariable("course") String courseNormalizedName, Model model) {
-        model.addAttribute("course",
-                courseService.findByNormalizedNameAndCampusAbbreviation(courseNormalizedName, campusAbbreviation));
+        Course course =
+                courseService.findByNormalizedNameAndCampusAbbreviation(courseNormalizedName, campusAbbreviation);
+
+        model.addAttribute("course", course);
+        model.addAttribute("title", campusAbbreviation + " - " + course.getName());
         return "course.html";
     }
 
@@ -50,6 +55,7 @@ public class ArchiveController {
         model.addAttribute("subjects",
                 subjectService.findByCourseNormalizedNameAndCourseCampusAbbreviationAndAbbreviation(
                         courseNormalizedName, campusAbbreviation, subjectAbbreviation));
+        model.addAttribute("title", subjectAbbreviation);
         return "subject-professor-list.html";
     }
 
@@ -59,11 +65,13 @@ public class ArchiveController {
                              @PathVariable("subject") String subjectAbbreviation,
                              @PathVariable("professor") String professorNormalizedName,
                              Model model) {
-        model.addAttribute("subject",
-                subjectService.findByCourseAndCampusAndSubjectAndProfessor(
-                        courseNormalizedName, campusAbbreviation, subjectAbbreviation, professorNormalizedName));
+        Subject subject = subjectService.findByCourseAndCampusAndSubjectAndProfessor(
+                courseNormalizedName, campusAbbreviation, subjectAbbreviation, professorNormalizedName);
+        model.addAttribute("subject", subject);
         model.addAttribute("subjectReviewDTO", new SubjectReviewDTO());
         model.addAttribute("voteDTO", new VoteDTO());
+        model.addAttribute("title",
+                subjectAbbreviation + " - " + subject.getProfessor().getName());
         return "subject.html";
     }
 

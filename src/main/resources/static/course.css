@@ -1,0 +1,26 @@
+#course-title {
+    text-align: center;
+}
+
+#course-title > h1 {
+    margin-bottom: 0;
+}
+
+#course-title > p {
+    margin: 0;
+}
+
+#course-grade-curricular {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#course-grade-curricular-image {
+    max-width: 100%;
+}
+
+#course-subjects > h2 {
+    text-align: center;
+}

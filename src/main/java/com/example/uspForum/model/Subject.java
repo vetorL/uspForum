@@ -1,14 +1,16 @@
 package com.example.uspForum.model;
 
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 
+import java.text.Normalizer;
 import java.util.ArrayList;
 import java.util.List;
 
 @Data
 @Entity
-@RequiredArgsConstructor
 @NoArgsConstructor(force = true)
 public class Subject {
 
@@ -17,6 +19,7 @@ public class Subject {
     private long id;
 
     private final String name;
+    private String normalizedName;
     private final String abbreviation;
     private final String code;
 
@@ -33,5 +36,20 @@ public class Subject {
     @OneToMany(mappedBy = "subject", fetch = FetchType.EAGER)
     @ToString.Exclude
     private List<SubjectReview> reviews = new ArrayList<>();
+
+    public Subject(String name, String abbreviation, String code, Course course, Professor professor) {
+        this.name = name;
+        this.normalizedName = normalizeName(name);
+        this.abbreviation = abbreviation;
+        this.code = code;
+        this.course = course;
+        this.professor = professor;
+    }
+
+    private String normalizeName(String name) {
+        name = Normalizer.normalize(name, Normalizer.Form.NFD);
+        name = name.replaceAll("[^\\p{ASCII}]", "");
+        return name.toLowerCase();
+    }
 
 }

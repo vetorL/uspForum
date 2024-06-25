@@ -7,7 +7,9 @@
             <h1 th:text="${subject.name}"></h1>
             <p th:text="${subject.abbreviation}"></p>
             <p th:text="${subject.code}"></p>
-            <p th:text="${subject.course.name} + ' (' + ${subject.course.campus.abbreviation} + ')'"></p>
+            <a th:href="@{/arquivo/{campusAbbr}/{courseNN}(campusAbbr=${subject.course.campus.abbreviation},
+            courseNN=${subject.course.normalizedName})}"
+               th:text="${subject.course.name} + ' (' + ${subject.course.campus.abbreviation} + ')'"></a>
             <p th:text="${subject.professor.name}"></p>
         </div>
 

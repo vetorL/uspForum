@@ -28,6 +28,7 @@ public class RegistrationController {
     public String registerForm(Model model) {
         model.addAttribute("registerFormDTO", new RegistrationFormDTO());
         model.addAttribute("campi", campusService.findAll());
+        model.addAttribute("title", "Registro");
         return "registration";
     }
 

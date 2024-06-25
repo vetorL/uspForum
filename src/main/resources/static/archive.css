@@ -10,6 +10,11 @@
     margin: 0;
 }
 
+#section-title > p > a {
+    text-decoration: none;
+    color: black;
+}
+
 .section-list {
     width: 90%;
 }

@@ -7,6 +7,13 @@
 <body>
     <h1 th:text="${course.name} + ' (' + ${course.campus.abbreviation} + ')'"></h1>
 
+    <h2>
+        Grade curricular:
+    </h2>
+
+    <img th:src="@{/images/{url}(url=${course.gradePictureURL})}" style="width: 50%" alt="">
+
+    <h2>Disciplinas do curso:</h2>
     <ul th:each="subject : ${course.subjects}">
         <li>
             <a th:href="@{/arquivo/{campusAbbr}/{courseNN}/{subjectAbbr}

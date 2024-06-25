@@ -6,7 +6,12 @@
         <div id="subject-info">
             <h1 th:text="${subject.name}"></h1>
             <p th:text="'Abreviação: ' + ${subject.abbreviation}"></p>
-            <p th:text="'Código: ' + ${subject.code}"></p>
+            <p>
+                Código: <a th:href="@{/arquivo/{campusAbbr}/{courseNN}/{subjectAbbr}
+                (campusAbbr=${subject.course.campus.abbreviation}, courseNN=${subject.course.normalizedName},
+                subjectAbbr=${subject.abbreviation})}"
+                           th:text="${subject.code}"></a>
+            </p>
             <p>
                 Curso: <a th:href="@{/arquivo/{campusAbbr}/{courseNN}(campusAbbr=${subject.course.campus.abbreviation},
             courseNN=${subject.course.normalizedName})}"

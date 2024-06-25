@@ -4,7 +4,10 @@
     <main>
         <div id="section-title">
             <h1 th:text="${course.name} + ' (' + ${course.campus.abbreviation} + ')'"></h1>
-            <p th:text="${course.campus.name}"></p>
+            <p>
+                <a th:href="@{/arquivo/{campusAbbr}(campusAbbr=${course.campus.abbreviation})}"
+                  th:text="${course.campus.name}"></a>
+            </p>
             <hr>
         </div>
 

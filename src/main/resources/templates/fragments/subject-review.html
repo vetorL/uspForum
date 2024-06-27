@@ -14,7 +14,7 @@
         <hr/>
         <div th:replace="~{fragments/user-profile :: user-profile(${review.author})}"></div>
         <div class="review-vote">
-            <form th:action="@{/disciplina/votar}" th:object="${voteDTO}" method="post">
+            <form th:action="@{/disciplina/votar}" th:object="${voteDTO}" method="post" class="vote-button-form">
                 <input type="hidden" value="up" name="vote" />
                 <input type="hidden" th:value="${review.id}" name="subjectReviewId" />
                 <div sec:authorize="isAuthenticated()">
@@ -32,7 +32,7 @@
 
             <p class="vote-count" th:text="${review.getTotalVotes()}"></p>
 
-            <form th:action="@{/disciplina/votar}" th:object="${voteDTO}" method="post">
+            <form th:action="@{/disciplina/votar}" th:object="${voteDTO}" method="post" class="vote-button-form">
                 <input type="hidden" value="down" name="vote" />
                 <input type="hidden" th:value="${review.id}" name="subjectReviewId" />
                 <div sec:authorize="isAuthenticated()">

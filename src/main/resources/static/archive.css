@@ -15,11 +15,11 @@
     color: black;
 }
 
-.section-list {
+.section-list, .section-info {
     width: 90%;
 }
 
-.section-list > h2 {
+.section-list > h2, .section-info > h2 {
     text-align: center;
 }
 
@@ -28,7 +28,7 @@
 }
 
 @media only screen and (min-width:768px) {
-    .section-list {
+    .section-list, .section-info {
         width: 50%;
     }
 }

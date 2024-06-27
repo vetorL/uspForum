@@ -23,41 +23,6 @@ public class SubjectController {
         this.subjectReviewService = subjectReviewService;
     }
 
-    @PostMapping("/votar")
-    @Transactional
-    public String postSubjectReviewVote(@RequestHeader(value = HttpHeaders.REFERER, required = false) final String referrer,
-                                      @ModelAttribute  VoteDTO voteDTO,
-                                      @AuthenticationPrincipal CustomUser voter) {
-
-        SubjectReview subjectReview = subjectReviewService.findById(voteDTO.getSubjectReviewId());
-
-        Vote vote = voteDTO.toVote(voter, subjectReview);
-
-        // if user already voted remove vote from database
-        if(subjectReviewService.userAlreadyVotedOnReview(voter, subjectReview)) {
-            // identify vote type
-            int value = subjectReviewService.getUserReviewVoteType(voter, subjectReview);
-
-            // if of the same type remove it from database
-            if(value == vote.getVote()) {
-                subjectReviewService.removeVoteFromReview(voter, subjectReview);
-            }
-
-            // if not of the same type then update it
-            else if (value != vote.getVote()) {
-                subjectReviewService.removeVoteFromReview(voter, subjectReview);
-                subjectReviewService.addVoteToReview(vote);
-            }
-
-        } else {
-            // else add vote to database
-            subjectReviewService.addVoteToReview(vote);
-        }
-
-        return "redirect:" + referrer;
-
-    }
-
     @PostMapping("/postar/{id}")
     public String postSubjectReview(@RequestHeader(value = HttpHeaders.REFERER, required = false) final String referrer,
                                     @PathVariable("id") Long id,

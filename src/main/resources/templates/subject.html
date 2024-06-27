@@ -61,6 +61,7 @@
 
             <div th:each="review: ${subject.reviews}" th:insert="~{fragments/subject-review :: subject-review(${review})}" th:remove="tag"></div>
         </div>
+        <script th:src="@{/js/subject.js}"></script>
     </main>
 
 </body>

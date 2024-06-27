@@ -2,6 +2,8 @@
 <html lang="pt-BR" th:fragment="layout (content)" xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
+    <meta name="_csrf" th:content="${_csrf.token}"/>
+    <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
     <meta charset="UTF-8">
     <title th:text="${title != null} ? ${title} + ' - Fórum da USP' : 'Fórum da USP'"></title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">

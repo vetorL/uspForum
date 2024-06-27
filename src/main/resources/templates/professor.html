@@ -1,10 +1,38 @@
 <!DOCTYPE html>
-<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
+<html th:replace="~{layout :: layout (~{:: main})}">
 <body>
-    <h1 th:text="${professor.name}"></h1>
+    <main>
+        <section id="section-title">
+            <h1 th:text="${professor.name}"></h1>
+            <p>
+                <a th:href="@{/arquivo/{campusAbbr}(campusAbbr=${professor.campus.abbreviation})}"
+                   th:text="${professor.campus.name}"></a>
+            </p>
+            <hr>
+        </section>
+
+        <section class="section-info">
+            <h2>
+                <i>Informações:</i>
+            </h2>
+            <p th:text="'Email: ' + ${professor.email}"></p>
+        </section>
+
+        <section class="section-list">
+            <h2>
+                <i>Disciplinas que já lecionou:</i>
+            </h2>
+            <ul th:each="subject : ${professor.subjects}">
+                <li>
+                    <a th:href="@{/arquivo/{campusAbbr}/{courseNN}/{subjectAbbr}/{professorNN}
+            (campusAbbr=${subject.course.campus.abbreviation},
+            courseNN=${subject.course.normalizedName},
+            subjectAbbr=${subject.abbreviation},
+            professorNN=${subject.professor.normalizedName})}"
+                       th:text="${subject.name} + ' (' + ${subject.abbreviation} + ')'"></a>
+                </li>
+            </ul>
+        </section>
+    </main>
 </body>
 </html>

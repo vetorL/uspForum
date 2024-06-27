@@ -11,7 +11,6 @@ A forum for USP
 - pagination of query results
 - pagination html
 - query results based on derived value
-- professor page
 - top contributors styling
 - placeholder ad banners
 - image logo

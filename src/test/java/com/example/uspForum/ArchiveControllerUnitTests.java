@@ -34,10 +34,11 @@ public class ArchiveControllerUnitTests {
     @MockBean
     private SubjectService subjectService;
 
+    @MockBean
+    private ProfessorService professorService;
+
     @Autowired
     private MockMvc mockMvc;
-    @Autowired
-    private ProfessorService professorService;
 
     @Test
     public void getCampusTest() throws Exception {
@@ -104,6 +105,7 @@ public class ArchiveControllerUnitTests {
                 .andExpect(view().name("subject.html"));
     }
 
+    @Test
     void getCampusProfessorTest() throws Exception {
         Campus campus = new Campus("testing institution", "TEST");
         Professor professor = new Professor("Testor Tested", "testor-tested", "testor@usp.br", campus);

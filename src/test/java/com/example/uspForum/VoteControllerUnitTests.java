@@ -1,8 +1,6 @@
 package com.example.uspForum;
 
 import com.example.uspForum.controller.VoteController;
-import com.example.uspForum.model.CustomUser;
-import com.example.uspForum.model.SubjectReview;
 import com.example.uspForum.model.VoteDTO;
 import com.example.uspForum.service.SubjectReviewService;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -15,7 +13,6 @@ import org.springframework.http.MediaType;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 
-import static org.mockito.Mockito.when;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -31,16 +28,9 @@ public class VoteControllerUnitTests {
 
     @Test
     @WithMockUser("test")
-    @DisplayName("Tests voting when the user has not already voted.")
-    void testVoteWhenNoVote() throws Exception {
+    @DisplayName("Tests voting when the user is authenticated.")
+    void testVotingAuthenticated() throws Exception {
         VoteDTO voteDTO = new VoteDTO(1, "up");
-
-        CustomUser voter = new CustomUser();
-        SubjectReview subjectReview = new SubjectReview();
-
-        when(subjectReviewService.findById(voteDTO.getSubjectReviewId())).thenReturn(subjectReview);
-
-        when(subjectReviewService.userAlreadyVotedOnReview(voter, subjectReview)).thenReturn(false);
 
         mockMvc.perform(post("/disciplina/votar")
                 .contentType(MediaType.APPLICATION_JSON)
@@ -53,13 +43,6 @@ public class VoteControllerUnitTests {
     @DisplayName("Tests voting when unauthenticated.")
     void testVotingUnauthenticated() throws Exception {
         VoteDTO voteDTO = new VoteDTO(1, "up");
-
-        CustomUser voter = new CustomUser();
-        SubjectReview subjectReview = new SubjectReview();
-
-        when(subjectReviewService.findById(voteDTO.getSubjectReviewId())).thenReturn(subjectReview);
-
-        when(subjectReviewService.userAlreadyVotedOnReview(voter, subjectReview)).thenReturn(false);
 
         mockMvc.perform(post("/disciplina/votar")
                         .contentType(MediaType.APPLICATION_JSON)

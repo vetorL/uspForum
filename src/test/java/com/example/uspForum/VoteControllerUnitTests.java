@@ -49,6 +49,25 @@ public class VoteControllerUnitTests {
                 .andExpect(status().isOk());
     }
 
+    @Test
+    @DisplayName("Tests voting when unauthenticated.")
+    void testVotingUnauthenticated() throws Exception {
+        VoteDTO voteDTO = new VoteDTO(1, "up");
+
+        CustomUser voter = new CustomUser();
+        SubjectReview subjectReview = new SubjectReview();
+
+        when(subjectReviewService.findById(voteDTO.getSubjectReviewId())).thenReturn(subjectReview);
+
+        when(subjectReviewService.userAlreadyVotedOnReview(voter, subjectReview)).thenReturn(false);
+
+        mockMvc.perform(post("/disciplina/votar")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(toJson(voteDTO))
+                        .with(csrf()))
+                        .andExpect(status().isUnauthorized());
+    }
+
     public static String toJson(final Object obj) {
         try {
             return new ObjectMapper().writeValueAsString(obj);

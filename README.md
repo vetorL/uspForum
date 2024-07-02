@@ -14,6 +14,6 @@ A forum for USP
 - top contributors styling
 - placeholder ad banners
 - image logo
-- stop page refresh when voting (JS Fetch API)
+- handle vote button coloring
 - add modal for review substitution confirmation
 - solve code redundancy in subject-review form

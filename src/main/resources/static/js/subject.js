@@ -29,7 +29,7 @@ Array.from(buttonForms).forEach(elem => {elem.addEventListener(
     }
 )})
 
-// Color Handling
+// Handling of the visual response
 
 let voteUpButtons = document.getElementsByClassName("vote-up");
 let voteDownButtons = document.getElementsByClassName("vote-down");

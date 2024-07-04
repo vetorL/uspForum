@@ -42,4 +42,8 @@ public class CustomUserService implements UserDetailsService {
         return customUsers;
     }
 
+    public CustomUser findByUsername(String username) {
+        return customUserRepository.findByUsername(username);
+    }
+
 }

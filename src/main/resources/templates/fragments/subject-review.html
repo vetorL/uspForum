@@ -22,15 +22,15 @@
                         <button class="vote-button vote-up vote-pressed-up">+</button>
                     </div>
                     <div th:unless="${review.alreadyVoted(#authentication.principal, 'up')}">
-                        <button class="vote-button vote-up">+</button>
+                        <button class="vote-button vote-up" th:id="'vote-up-' + ${review.id}">+</button>
                     </div>
                 </div>
                 <div sec:authorize="isAnonymous()">
-                    <button class="vote-button vote-up">+</button>
+                    <button class="vote-button vote-up" disabled>+</button>
                 </div>
             </form>
 
-            <p class="vote-count" th:text="${review.getTotalVotes()}"></p>
+            <p class="vote-count" th:text="${review.getTotalVotes()}" th:id="'vote-count-' + ${review.id}"></p>
 
             <form th:action="@{/disciplina/votar}" th:object="${voteDTO}" method="post" class="vote-button-form">
                 <input type="hidden" value="down" name="vote" />
@@ -40,11 +40,11 @@
                         <button class="vote-button vote-down vote-pressed-down">-</button>
                     </div>
                     <div th:unless="${review.alreadyVoted(#authentication.principal, 'down')}">
-                        <button class="vote-button vote-down">-</button>
+                        <button class="vote-button vote-down" th:id="'vote-down-' + ${review.id}">-</button>
                     </div>
                 </div>
                 <div sec:authorize="isAnonymous()">
-                    <button class="vote-button vote-down">-</button>
+                    <button class="vote-button vote-down" disabled>-</button>
                 </div>
             </form>
         </div>

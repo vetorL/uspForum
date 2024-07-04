@@ -1,5 +1,6 @@
-let buttonForms = document.getElementsByClassName("vote-button-form");
+// Calling the API
 
+let buttonForms = document.getElementsByClassName("vote-button-form");
 
 Array.from(buttonForms).forEach(elem => {elem.addEventListener(
     "submit", function (e) {
@@ -27,3 +28,50 @@ Array.from(buttonForms).forEach(elem => {elem.addEventListener(
         }).then(res => console.log(res)).catch(err => console.log(err));
     }
 )})
+
+// Color Handling
+
+let voteUpButtons = document.getElementsByClassName("vote-up");
+let voteDownButtons = document.getElementsByClassName("vote-down");
+
+Array.from(voteUpButtons).forEach(el => el.addEventListener('click', handleClickUp));
+
+Array.from(voteDownButtons).forEach(el => el.addEventListener('click', handleClickDown));
+
+function handleClickUp(e) {
+
+    let reviewId = e.currentTarget.id;
+    reviewId = reviewId.split("-")[2];
+
+    let sibling = document.getElementById("vote-down-" + reviewId);
+
+    if(sibling.classList.contains("vote-pressed-down")) {
+        sibling.classList.remove("vote-pressed-down");
+    }
+
+    if(e.currentTarget.classList.contains("vote-pressed-up")) {
+        e.currentTarget.classList.remove("vote-pressed-up");
+    } else {
+        e.currentTarget.classList.add("vote-pressed-up");
+    }
+}
+
+function handleClickDown(e) {
+
+    let reviewId = e.currentTarget.id;
+    reviewId = reviewId.split("-")[2];
+
+    let sibling = document.getElementById("vote-up-" + reviewId);
+
+    console.log(sibling);
+
+    if(sibling.classList.contains("vote-pressed-up")) {
+        sibling.classList.remove("vote-pressed-up");
+    }
+
+    if(e.currentTarget.classList.contains("vote-pressed-down")) {
+        e.currentTarget.classList.remove("vote-pressed-down");
+    } else {
+        e.currentTarget.classList.add("vote-pressed-down");
+    }
+}

@@ -44,15 +44,19 @@ function handleClickUp(e) {
     reviewId = reviewId.split("-")[2];
 
     let sibling = document.getElementById("vote-down-" + reviewId);
+    let countElem = document.getElementById("vote-count-" + reviewId);
 
     if(sibling.classList.contains("vote-pressed-down")) {
         sibling.classList.remove("vote-pressed-down");
+        countElem.innerText = String(Number(countElem.innerText) + 1);
     }
 
     if(e.currentTarget.classList.contains("vote-pressed-up")) {
         e.currentTarget.classList.remove("vote-pressed-up");
+        countElem.innerText = String(Number(countElem.innerText) - 1);
     } else {
         e.currentTarget.classList.add("vote-pressed-up");
+        countElem.innerText = String(Number(countElem.innerText) + 1);
     }
 }
 
@@ -62,16 +66,20 @@ function handleClickDown(e) {
     reviewId = reviewId.split("-")[2];
 
     let sibling = document.getElementById("vote-up-" + reviewId);
+    let countElem = document.getElementById("vote-count-" + reviewId);
 
     console.log(sibling);
 
     if(sibling.classList.contains("vote-pressed-up")) {
         sibling.classList.remove("vote-pressed-up");
+        countElem.innerText = String(Number(countElem.innerText) - 1);
     }
 
     if(e.currentTarget.classList.contains("vote-pressed-down")) {
         e.currentTarget.classList.remove("vote-pressed-down");
+        countElem.innerText = String(Number(countElem.innerText) + 1);
     } else {
         e.currentTarget.classList.add("vote-pressed-down");
+        countElem.innerText = String(Number(countElem.innerText) - 1);
     }
 }

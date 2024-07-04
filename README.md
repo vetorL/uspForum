@@ -14,6 +14,5 @@ A forum for USP
 - top contributors styling
 - placeholder ad banners
 - image logo
-- handle review vote rep updating script
 - add modal for review substitution confirmation
 - solve code redundancy in subject-review form

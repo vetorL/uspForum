@@ -1,5 +1,6 @@
 package com.example.uspForum.service;
 
+import com.example.uspForum.exception.CustomUserNotFoundException;
 import com.example.uspForum.model.CustomUser;
 import com.example.uspForum.repository.CustomUserRepository;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -8,10 +9,8 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class CustomUserService implements UserDetailsService {
@@ -42,8 +41,13 @@ public class CustomUserService implements UserDetailsService {
         return customUsers;
     }
 
-    public CustomUser findByUsername(String username) {
-        return customUserRepository.findByUsername(username);
+    public CustomUser findByUsername(String username) throws CustomUserNotFoundException {
+        CustomUser customUser = customUserRepository.findByUsername(username);
+        if (customUser != null) {
+            return customUser;
+        }
+
+        throw new CustomUserNotFoundException("Usuário '" + username + "' não encontrado");
     }
 
 }

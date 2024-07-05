@@ -12,7 +12,7 @@
         <div th:replace="~{fragments/search-bar :: search-bar(query=${q})}"></div>
 
         <div sec:authorize="isAuthenticated()" id="header-profile-picture">
-            <a href="#">
+            <a th:href="@{/perfil/{username}(username=${#authentication.principal.username})}">
                 <img class="user-profile-picture"
                      style="height: 50px; width: 50px"
                      th:src="@{/images/{url}(url=${#authentication.principal.profilePictureURL})}" alt="">

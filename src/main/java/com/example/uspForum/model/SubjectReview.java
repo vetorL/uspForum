@@ -1,7 +1,6 @@
 package com.example.uspForum.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
@@ -32,6 +31,7 @@ public class SubjectReview {
 
     private final String title;
     private final String content;
+    private final String recommendation;
 
     public int getTotalVotes() {
         return votes.stream()

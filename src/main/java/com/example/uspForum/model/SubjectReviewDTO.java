@@ -11,13 +11,15 @@ public class SubjectReviewDTO {
 
     private String title;
     private String content;
+    private String recommendation;
 
     public SubjectReview toSubjectReview(CustomUser author, Subject subject) {
         return new SubjectReview(
                 author,
                 subject,
                 title,
-                content
+                content,
+                recommendation
         );
     }
 

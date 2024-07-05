@@ -4,16 +4,22 @@
     <main>
         <h1>Registre-se:</h1>
 
-        <form method="POST" th:action="@{/registrar}" th:object="${registerFormDTO}" id="authentication-form">
+        <form method="POST" th:action="@{/registrar}" th:object="${registrationFormDTO}" id="authentication-form">
             <label>
                 Email: <br/>
-                <input type="email" name="email">
+                <input type="email" th:field="*{email}">
             </label>
+            <span class="validationError"
+                  th:if="${#fields.hasErrors('email')}"
+                  th:errors="*{email}"></span>
 
             <label>
                 Nome de usuário: <br/>
-                <input type="text" name="username">
+                <input type="text" th:field="*{username}">
             </label>
+            <span class="validationError"
+                  th:if="${#fields.hasErrors('username')}"
+                  th:errors="*{username}"></span>
 
             <label>
                 Campus (abreviação): <br/>
@@ -24,15 +30,21 @@
                     </option>
                 </select>
             </label>
+            <span class="validationError"
+                  th:if="${#fields.hasErrors('campusAbbr')}"
+                  th:errors="*{campusAbbr}"></span>
 
             <label>
                 Senha: <br/>
-                <input type="password" name="password">
+                <input type="password" th:field="*{password}">
             </label>
+            <span class="validationError"
+                  th:if="${#fields.hasErrors('password')}"
+                  th:errors="*{password}"></span>
 
             <label>
                 Confirme a senha: <br/>
-                <input type="password" name="confirm">
+                <input type="password">
             </label>
 
             <input type="submit" value="Registrar"/>

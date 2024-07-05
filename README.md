@@ -17,3 +17,9 @@ A forum for USP
 - add modal for review substitution confirmation
 - solve code redundancy in subject-review form
 - standard error page
+- account deletion
+- change password
+- remember me
+- user toggle option for "complete" anonymity 
+- profile configuration page (for changing username, profile picture, and toggling options)
+- em subject review (recomendo, nao recomendo, neutro)

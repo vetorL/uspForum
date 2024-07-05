@@ -23,3 +23,4 @@ A forum for USP
 - user toggle option for "complete" anonymity 
 - profile configuration page (for changing username, profile picture, and toggling options)
 - em subject review (recomendo, nao recomendo, neutro)
+- validate review post request

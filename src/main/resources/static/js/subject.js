@@ -25,7 +25,7 @@ Array.from(buttonForms).forEach(elem => {elem.addEventListener(
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(voteData)
-        }).then(res => console.log(res)).catch(err => console.log(err));
+        });
     }
 )})
 

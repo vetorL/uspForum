@@ -2,6 +2,7 @@ package com.example.uspForum;
 
 import com.example.uspForum.config.SecurityConfig;
 import com.example.uspForum.controller.ProfileController;
+import com.example.uspForum.exception.CustomUserNotFoundException;
 import com.example.uspForum.model.Campus;
 import com.example.uspForum.model.CustomUser;
 import com.example.uspForum.service.CustomUserService;
@@ -38,6 +39,16 @@ public class ProfileControllerUnitTests {
         mockMvc.perform(get("/perfil/{username}", "test"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("profile"));
+    }
+
+    @Test
+    @DisplayName("Tests GET request for an inexistent user's profile")
+    void testGetProfileInvalid() throws Exception {
+        when(customUserService.findByUsername(anyString())).thenThrow(new CustomUserNotFoundException(""));
+
+        mockMvc.perform(get("/perfil/{username}", "test"))
+                .andExpect(status().isNotFound())
+                .andExpect(view().name("error"));
     }
 
 }

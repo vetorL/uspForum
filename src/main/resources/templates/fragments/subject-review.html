@@ -44,6 +44,12 @@
                 </div>
             </form>
         </div>
+
+        <div class="review-recommendation"
+             th:classappend="|${review.recommendation.equals('Neutro') ? 'review-neutral' : ''}${review.recommendation.equals('Recomendo') ? 'review-recommended' : ''}${review.recommendation.equals('Não recomendo') ? 'review-not-recommended' : ''}|">
+            <p th:text="${review.recommendation}"></p>
+        </div>
+
     </div>
 
 </body>

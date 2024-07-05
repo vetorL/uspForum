@@ -100,9 +100,16 @@ public class DevelopmentConfig {
             subjectRepo.save(coo);
             subjectRepo.save(fsi);
 
-            SubjectReview iaecReview = subjectReviewRepo.save(new SubjectReview(usr, iaec, "Foi bom", "Nao teve prova, mas teve varios trabalhinhos"));
-            SubjectReview cooReview = subjectReviewRepo.save(new SubjectReview(usr, coo, "Foi OK", "O conteudo foi passado com grande rigorosidade, mas atraves de slides."));
-            SubjectReview fsiReview = subjectReviewRepo.save(new SubjectReview(usr, fsi, "STELLAR", "Prova online e tudo mais"));
+            SubjectReview iaecReview =
+                    subjectReviewRepo.save(new SubjectReview(usr, iaec, "Foi bom", "Nao teve prova, mas teve varios trabalhinhos",
+                            "Recomendo"));
+            SubjectReview cooReview =
+                    subjectReviewRepo.save(new SubjectReview(usr, coo,
+                            "Foi OK", "O conteudo foi passado com grande rigorosidade, mas atraves de slides.",
+                            "Não recomendo"));
+            SubjectReview fsiReview =
+                    subjectReviewRepo.save(new SubjectReview(usr, fsi, "STELLAR", "Prova online e tudo mais",
+                            "Neutro"));
 
             Vote iaecVote = voteRepository.save(new Vote(-1, usr2, iaecReview));
             Vote fsiVote = voteRepository.save(new Vote(1, usr, fsiReview));

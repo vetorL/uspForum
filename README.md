@@ -16,3 +16,4 @@ A forum for USP
 - image logo
 - add modal for review substitution confirmation
 - solve code redundancy in subject-review form
+- standard error page

@@ -18,6 +18,10 @@ button, input, select {
     font-size: 1.2rem;
 }
 
+.validationError {
+    color: red;
+}
+
 @media only screen and (min-width: 768px) {
     main {
         width: 60%;

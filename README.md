@@ -3,7 +3,7 @@ A forum for USP
 
 ### Todo list
 - usp email confirmation on sign up
-- profile page
+- style subject reviews specifically for profile page
 - image storage (AWS S3)
 - file storage (AWS S3)
 - image upload

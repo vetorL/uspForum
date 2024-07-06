@@ -1,6 +1,9 @@
 package com.example.uspForum.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
@@ -24,10 +27,18 @@ public class CustomUser implements UserDetails {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
+    @NotBlank(message = "Email é obrigatório")
+    @Size(min = 6, max = 254, message = "Email deve ter entre 6 e 254 caracteres")
     private final String email;
+
+    @NotBlank(message = "Nome de usuário é obrigatório")
+    @Size(min = 3, max = 30, message = "Nome de usuário deve ter entre 3 e 30 caracteres")
     private final String username;
+
+    @NotBlank(message = "Senha é obrigatório")
     private final String password;
 
+    @NotNull(message = "Campus é obrigatório")
     @ManyToOne(fetch = FetchType.EAGER)
     @ToString.Exclude
     @JoinColumn(name = "campus_id")

@@ -1,5 +1,6 @@
 package com.example.uspForum.model;
 
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
@@ -10,6 +11,7 @@ public class RegistrationFormDTO {
 
     @NotBlank(message = "Email é obrigatório")
     @Size(min = 6, max = 254, message = "Email deve ter entre 6 e 254 caracteres")
+    @Email(message = "O email deve ser @usp.br", regexp = "^[a-zA-Z0-9._%+-]+@usp\\.br$")
     private String email;
 
     @NotBlank(message = "Nome de usuário é obrigatório")

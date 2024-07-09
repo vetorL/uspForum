@@ -54,4 +54,8 @@ public class CustomUserService implements UserDetailsService {
         return customUserRepository.existsByUsername(username);
     }
 
+    public boolean existsByEmail(String email) {
+        return customUserRepository.existsByEmail(email);
+    }
+
 }

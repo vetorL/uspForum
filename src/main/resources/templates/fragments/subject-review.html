@@ -5,7 +5,7 @@
     <div class="subject-review" th:fragment="subject-review(review)">
         <div class="review-content">
             <h4 th:text="${review.title}"></h4>
-            <p th:text="${review.content}"></p>
+            <p th:text="${review.content}" style="word-break: break-all; white-space: normal"></p>
         </div>
         <hr/>
         <div th:replace="~{fragments/user-profile :: user-profile(${review.author})}"></div>

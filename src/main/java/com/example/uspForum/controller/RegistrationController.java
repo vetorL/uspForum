@@ -40,6 +40,10 @@ public class RegistrationController {
             errors.rejectValue("username", null, "Nome de usuário já existe!");
         }
 
+        if(customUserRepository.findByEmail(form.getEmail()) != null) {
+            errors.rejectValue("email", null, "Este e-mail já está cadastrado!");
+        }
+
         if (errors.hasErrors()) {
             model.addAttribute("campi", campusService.findAll());
             model.addAttribute("title", "Registro");

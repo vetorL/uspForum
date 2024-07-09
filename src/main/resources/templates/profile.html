@@ -16,7 +16,7 @@
 
         <hr id="profile-separator">
 
-        <section class="section-list" id="profile-contributions">
+        <section id="profile-contributions">
             <h2>Contribuições de <i th:text="${profile.username}"></i>:</h2>
             <div th:each="review: ${profile.subjectReviews}" th:insert="~{fragments/subject-review :: subject-review(${review})}" th:remove="tag"></div>
         </section>

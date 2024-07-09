@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<body>
+
+    <div th:fragment="profile-subject-review(review)">
+        <p class="subject-review--profile__subject-info">
+            Em <i th:text="${review.subject.name}"></i> com <i th:text="${review.subject.professor.name}"></i>
+        </p>
+        <div class="subject-review">
+            <div class="review-content">
+                <h4 th:text="${review.title}" class="text-word-break"></h4>
+                <p th:text="${review.content}" class="text-word-break"></p>
+            </div>
+            <hr/>
+            <div th:replace="~{fragments/user-profile :: user-profile(${review.author})}"></div>
+            <div class="review-vote">
+                <form th:action="@{/disciplina/votar}" th:object="${voteDTO}" method="post" class="vote-button-form">
+                    <input type="hidden" value="up" name="vote" />
+                    <input type="hidden" th:value="${review.id}" name="subjectReviewId" />
+                    <div sec:authorize="isAuthenticated()">
+                        <div th:if="${review.alreadyVoted(#authentication.principal, 'up')}">
+                            <button class="vote-button vote-up vote-pressed-up" th:id="'vote-up-' + ${review.id}">+</button>
+                        </div>
+                        <div th:unless="${review.alreadyVoted(#authentication.principal, 'up')}">
+                            <button class="vote-button vote-up" th:id="'vote-up-' + ${review.id}">+</button>
+                        </div>
+                    </div>
+                    <div sec:authorize="isAnonymous()">
+                        <button class="vote-button vote-up" disabled>+</button>
+                    </div>
+                </form>
+
+                <p class="vote-count" th:text="${review.getTotalVotes()}" th:id="'vote-count-' + ${review.id}"></p>
+
+                <form th:action="@{/disciplina/votar}" th:object="${voteDTO}" method="post" class="vote-button-form">
+                    <input type="hidden" value="down" name="vote" />
+                    <input type="hidden" th:value="${review.id}" name="subjectReviewId" />
+                    <div sec:authorize="isAuthenticated()">
+                        <div th:if="${review.alreadyVoted(#authentication.principal, 'down')}">
+                            <button class="vote-button vote-down vote-pressed-down" th:id="'vote-down-' + ${review.id}">-</button>
+                        </div>
+                        <div th:unless="${review.alreadyVoted(#authentication.principal, 'down')}">
+                            <button class="vote-button vote-down" th:id="'vote-down-' + ${review.id}">-</button>
+                        </div>
+                    </div>
+                    <div sec:authorize="isAnonymous()">
+                        <button class="vote-button vote-down" disabled>-</button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="review-recommendation"
+                 th:classappend="|${review.recommendation.equals('Neutro') ? 'review-neutral' : ''}${review.recommendation.equals('Recomendo') ? 'review-recommended' : ''}${review.recommendation.equals('Não recomendo') ? 'review-not-recommended' : ''}|">
+                <p th:text="${review.recommendation}"></p>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+</html>

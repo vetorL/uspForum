@@ -3,7 +3,6 @@ A forum for USP
 
 ### Todo list
 - usp email confirmation on sign up
-- style subject reviews specifically for profile page
 - image storage (AWS S3)
 - file storage (AWS S3)
 - image upload
@@ -26,3 +25,7 @@ A forum for USP
 - unique constraint for a given subject and professor
 - RegistrationControlller unit tests
 - add a footer (with report error and contact section)
+- add postedAt to subject-review
+- delete subject-review (do not delete associated votes)
+- edit subject-review (when edited reset vote count, but do not delete associated votes)
+- allow voting from profile page

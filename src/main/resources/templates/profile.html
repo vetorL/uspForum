@@ -18,7 +18,7 @@
 
         <section id="profile-contributions">
             <h2>Contribuições de <i th:text="${profile.username}"></i>:</h2>
-            <div th:each="review: ${profile.subjectReviews}" th:insert="~{fragments/subject-review :: subject-review(${review})}" th:remove="tag"></div>
+            <div th:each="review: ${profile.subjectReviews}" th:insert="~{fragments/profile-subject-review :: profile-subject-review(${review})}" th:remove="tag"></div>
         </section>
     </main>
 </body>

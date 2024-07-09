@@ -22,4 +22,7 @@ A forum for USP
 - remember me
 - user toggle option for "complete" anonymity 
 - profile configuration page (for changing username, profile picture, and toggling options)
-- validate review post request
+- validate review post request (controller and view)
+- unique constraint for a given subject and professor
+- RegistrationControlller unit tests
+- add a footer (with report error and contact section)

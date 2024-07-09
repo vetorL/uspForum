@@ -50,4 +50,8 @@ public class CustomUserService implements UserDetailsService {
         throw new CustomUserNotFoundException("Usuário '" + username + "' não encontrado");
     }
 
+    public boolean existsByUsername(String username) {
+        return customUserRepository.existsByUsername(username);
+    }
+
 }

@@ -9,4 +9,6 @@ public interface CustomUserRepository extends CrudRepository<CustomUser, Long> {
 
     CustomUser findByEmail(String email);
 
+    boolean existsByUsername(String username);
+
 }

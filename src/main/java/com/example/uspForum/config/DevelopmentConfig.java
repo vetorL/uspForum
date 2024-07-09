@@ -78,8 +78,8 @@ public class DevelopmentConfig {
                     passwordEncoder.encode("test"), each));
             CustomUser usr2 = customUserRepository.save(new CustomUser("test2@test.com", "test2",
                     passwordEncoder.encode("test2"), poli));
-            CustomUser usr3 = customUserRepository.save(new CustomUser("usuario@usp.br", "usuario",
-                    passwordEncoder.encode("usuario"), poli));
+            CustomUser usr3 = customUserRepository.save(new CustomUser("4133737163905494@usp.br", "4133737163905494",
+                    passwordEncoder.encode("4133737163905494"), poli));
 
             Professor violeta = professorRepo.save(
                     new Professor("Violeta Sun", "violeta-sun", "violeta@usp.br", each));

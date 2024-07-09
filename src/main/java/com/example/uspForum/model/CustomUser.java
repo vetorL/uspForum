@@ -34,7 +34,7 @@ public class CustomUser implements UserDetails {
     private final String email;
 
     @NotBlank(message = "Nome de usuário é obrigatório")
-    @Size(min = 3, max = 30, message = "Nome de usuário deve ter entre 3 e 30 caracteres")
+    @Size(min = 3, max = 16, message = "Nome de usuário deve ter entre 3 e 16 caracteres")
     @NaturalId
     private final String username;
 

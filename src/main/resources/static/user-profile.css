@@ -1,15 +1,16 @@
 .user-profile {
-    grid-column: 1 / 5;
+    grid-column: 1 / 2;
     grid-row: 3 / 4;
     padding: 0.5rem;
     display: flex;
+    flex-direction: column;
     align-items: center;
+    text-align: center;
     justify-content: space-around;
 }
 
 .user-info {
     color: black;
-    text-align: center;
 }
 
 .user-profile-picture {
@@ -24,13 +25,4 @@
 
 .user-info > p, .reviewer-username > p {
     margin: 0;
-}
-
-@media only screen and (min-width:768px) {
-    .user-profile {
-        grid-column: 1 / 2;
-        grid-row: 1 / 2;
-        flex-direction: column;
-        justify-content: center;
-    }
 }

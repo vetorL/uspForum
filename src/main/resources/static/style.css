@@ -22,6 +22,11 @@ button, input, select {
     color: red;
 }
 
+.text-word-break {
+    word-break: break-all;
+    white-space: normal;
+}
+
 @media only screen and (min-width: 768px) {
     main {
         width: 60%;

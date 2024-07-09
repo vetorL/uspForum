@@ -30,6 +30,7 @@ public class CustomUser implements UserDetails {
 
     @NotBlank(message = "Email é obrigatório")
     @Size(min = 6, max = 254, message = "Email deve ter entre 6 e 254 caracteres")
+    @Column(unique = true, nullable = false)
     private final String email;
 
     @NotBlank(message = "Nome de usuário é obrigatório")

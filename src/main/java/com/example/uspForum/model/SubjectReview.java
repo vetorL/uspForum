@@ -1,6 +1,9 @@
 package com.example.uspForum.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
@@ -29,8 +32,16 @@ public class SubjectReview {
     @OneToMany(mappedBy = "subjectReview")
     private List<Vote> votes = new ArrayList<>();
 
+    @NotBlank(message = "A review deve conter um título!")
+    @Size(min = 1, max = 50, message = "Título deve ter entre 1 e 50 caracteres.")
     private final String title;
+
+    @NotBlank
+    @Size(min = 1, max = 1000, message = "Conteúdo deve ter entre 1 e 1000 caracteres.")
     private final String content;
+
+    @NotBlank
+    @Pattern(regexp="^(Neutro|Recomendo|Não recomendo)$", message="Recomendação inválida")
     private final String recommendation;
 
     public int getTotalVotes() {

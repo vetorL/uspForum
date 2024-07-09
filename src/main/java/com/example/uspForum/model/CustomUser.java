@@ -8,6 +8,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.ToString;
+import org.hibernate.annotations.NaturalId;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -33,6 +34,7 @@ public class CustomUser implements UserDetails {
 
     @NotBlank(message = "Nome de usuário é obrigatório")
     @Size(min = 3, max = 30, message = "Nome de usuário deve ter entre 3 e 30 caracteres")
+    @NaturalId
     private final String username;
 
     @NotBlank(message = "Senha é obrigatório")

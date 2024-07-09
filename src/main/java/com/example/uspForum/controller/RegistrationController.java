@@ -36,6 +36,10 @@ public class RegistrationController {
 
     @PostMapping
     public String processRegistration(@Valid RegistrationFormDTO form, Errors errors, Model model) {
+        if(customUserRepository.findByUsername(form.getUsername()) != null) {
+            errors.rejectValue("username", null, "Nome de usuário já existe!");
+        }
+
         if (errors.hasErrors()) {
             model.addAttribute("campi", campusService.findAll());
             model.addAttribute("title", "Registro");

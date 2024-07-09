@@ -58,4 +58,8 @@ public class CustomUserService implements UserDetailsService {
         return customUserRepository.existsByEmail(email);
     }
 
+    public CustomUser save(CustomUser customUser) {
+        return customUserRepository.save(customUser);
+    }
+
 }

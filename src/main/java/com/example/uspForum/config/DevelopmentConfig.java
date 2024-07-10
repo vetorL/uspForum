@@ -89,7 +89,7 @@ public class DevelopmentConfig {
             Professor coutinho = professorRepo.save(new Professor("Flavio Luiz Coutinho",
                     "flavio-luiz-coutinho", "flcoutinho@usp.br", each));
 
-            Subject iaec = new Subject("Introdução à Administração e Economia para Computação",
+            Subject iaecVioleta = new Subject("Introdução à Administração e Economia para Computação",
                     "IAEC", "ACH2063", si, violeta);
 
             Subject coo = new Subject("Computação Orientada a Objetos", "COO", "ACH2003",
@@ -98,12 +98,19 @@ public class DevelopmentConfig {
             Subject fsi = new Subject("Fundamentos de Sistemas de Informação", "FSI", "ACH2014",
                     si, edmir);
 
-            subjectRepo.save(iaec);
+            Subject subjectIP = new Subject("Introdução à Programação", "IP", "ACH2001", si, coutinho);
+
+            Subject iaecEdmir = new Subject("Introdução à Administração e Economia para Computação",
+                    "IAEC", "ACH2063", si, edmir);
+
+            subjectRepo.save(iaecVioleta);
             subjectRepo.save(coo);
             subjectRepo.save(fsi);
+            subjectRepo.save(subjectIP);
+            subjectRepo.save(iaecEdmir);
 
             SubjectReview iaecReview =
-                    subjectReviewRepo.save(new SubjectReview(usr, iaec, "Foi bom", "Nao teve prova, mas teve varios trabalhinhos",
+                    subjectReviewRepo.save(new SubjectReview(usr, iaecVioleta, "Foi bom", "Nao teve prova, mas teve varios trabalhinhos",
                             "Recomendo"));
             SubjectReview cooReview =
                     subjectReviewRepo.save(new SubjectReview(usr, coo,

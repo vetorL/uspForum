@@ -2,37 +2,44 @@ package com.example.uspForum.service;
 
 import com.example.uspForum.model.Subject;
 import com.example.uspForum.repository.SubjectRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 public class SearchService {
 
+    private final int pageSize = 5;
     private final SubjectRepository subjectRepository;
 
     public SearchService(SubjectRepository subjectRepository) {
         this.subjectRepository = subjectRepository;
     }
 
-    public List<Subject> searchSubjectByCode(String subjectCode) {
-        return subjectRepository.findSubjectByCode(subjectCode);
+    public Page<Subject> searchSubjectByCode(String subjectCode, int pageNumber) {
+        Pageable page = PageRequest.of(pageNumber, pageSize);
+        return subjectRepository.findSubjectByCode(subjectCode, page);
     }
 
-    public List<Subject> searchSubjectByName(String subjectName) {
-        return subjectRepository.findSubjectByName(subjectName);
+    public Page<Subject> searchSubjectByName(String subjectName, int pageNumber) {
+        Pageable page = PageRequest.of(pageNumber, pageSize);
+        return subjectRepository.findSubjectByName(subjectName, page);
     }
 
-    public List<Subject> searchSubjectByAbbreviation(String subjectAbbreviation) {
-        return subjectRepository.findSubjectByAbbreviation(subjectAbbreviation);
+    public Page<Subject> searchSubjectByAbbreviation(String subjectAbbreviation, int pageNumber) {
+        Pageable page = PageRequest.of(pageNumber, pageSize);
+        return subjectRepository.findSubjectByAbbreviation(subjectAbbreviation, page);
     }
 
-    public List<Subject> searchSubjectByTeacherName(String teacherName) {
-        return subjectRepository.findSubjectByTeacherName(teacherName);
+    public Page<Subject> searchSubjectByTeacherName(String teacherName, int pageNumber) {
+        Pageable page = PageRequest.of(pageNumber, pageSize);
+        return subjectRepository.findSubjectByTeacherName(teacherName, page);
     }
 
-    public List<Subject> searchSubjectBySearchText(String subjectText) {
-        return subjectRepository.findSubjectBySearchText(subjectText);
+    public Page<Subject> searchSubjectBySearchText(String subjectText, int pageNumber) {
+        Pageable page = PageRequest.of(pageNumber, pageSize);
+        return subjectRepository.findSubjectBySearchText(subjectText, page);
     }
 
 }

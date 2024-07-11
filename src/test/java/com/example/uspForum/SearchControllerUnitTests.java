@@ -1,96 +1,56 @@
 package com.example.uspForum;
 
+import com.example.uspForum.config.SecurityConfig;
 import com.example.uspForum.controller.SearchController;
 import com.example.uspForum.service.SearchService;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.ui.Model;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.context.annotation.Import;
+import org.springframework.data.domain.Page;
+import org.springframework.test.web.servlet.MockMvc;
 
+import static org.hamcrest.Matchers.containsString;
+import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-import java.util.ArrayList;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.verify;
-
-@ExtendWith(MockitoExtension.class)
+@WebMvcTest(SearchController.class)
+@Import(SecurityConfig.class)
+@AutoConfigureMockMvc
 public class SearchControllerUnitTests {
 
-    @Mock
-    private Model model;
+    @Autowired
+    private MockMvc mockMvc;
 
-    @Mock
+    @MockBean
     private SearchService searchService;
 
-    @InjectMocks
-    private SearchController searchController;
-
     @Test
-    public void testGetSearchReturnsCorrectHtml() {
-
-        String result = searchController.search("", "", model);
-
-        assertEquals("search.html", result);
-    }
-
-    @Test
-    public void testGetSearchWithSubjectAbbreviation() {
+    @DisplayName("Search of type 'geral' calls correct service method")
+    void testSearchGeral() throws Exception {
         String q = "";
-        String t = "abreviacao-da-disciplina";
+        String t = "geral";
+        int p = 0;
 
-        String result = searchController.search(q, t, model);
+        // if the test were to call any other service method instead of this one it would return null, and not an empty
+        // page, thus throwing an error when the endpoint attempts to call a method upon the variable that stores the
+        // returned value
+        when(searchService.searchSubjectBySearchText(q, p)).thenReturn(Page.empty());
 
-        verify(searchService)
-                .searchSubjectByAbbreviation(q);
+        mockMvc.perform(get("/busca")
+                .param("q", q)
+                .param("t", t)
+                .param("p", String.valueOf(p))
+        )
+                .andExpect(status().isOk())
+                .andExpect(view().name("search"))
+                .andExpect(content().string(containsString("Não foram encontrados resultados para")));
     }
 
-    @Test
-    public void testGetSearchWithNoTypeHappyFlow() {
-        String q = "";
-        String t = "";
 
-        String result = searchController.search(q, t, model);
-
-        // Verify that it passes the correct attributes to the view
-        verify(model).addAttribute("results", new ArrayList<>());
-        verify(model).addAttribute("message",
-                "Não foram encontrados resultados para \'" + q + "\'");
-        verify(model).addAttribute("q", q);
-    }
-
-    @Test
-    public void testGetSearchWithSubjectCode() {
-        String q = "";
-        String t = "codigo-da-disciplina";
-
-        String result = searchController.search(q, t, model);
-
-        verify(searchService)
-                .searchSubjectByCode(q);
-    }
-
-    @Test
-    public void testGetSearchWithSubjectName() {
-        String q = "";
-        String t = "nome-da-disciplina";
-
-        String result = searchController.search(q, t, model);
-
-        verify(searchService)
-                .searchSubjectByName(q);
-    }
-
-    @Test
-    public void testGetSearchWithSubjectTeacher() {
-        String q = "";
-        String t = "professor";
-
-        String result = searchController.search(q, t, model);
-
-        verify(searchService)
-                .searchSubjectByTeacherName(q);
-    }
 
 }

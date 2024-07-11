@@ -21,7 +21,7 @@ public class RegistrationController {
     private final CustomUserService customUserService;
     private PasswordEncoder passwordEncoder;
 
-    public RegistrationController(CustomUserRepository customUserRepository, PasswordEncoder passwordEncoder, CampusService campusService, CustomUserService customUserService) {
+    public RegistrationController(PasswordEncoder passwordEncoder, CampusService campusService, CustomUserService customUserService) {
         this.passwordEncoder = passwordEncoder;
         this.campusService = campusService;
         this.customUserService = customUserService;

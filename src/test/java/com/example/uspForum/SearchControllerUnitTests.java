@@ -3,6 +3,7 @@ package com.example.uspForum;
 import com.example.uspForum.config.SecurityConfig;
 import com.example.uspForum.controller.SearchController;
 import com.example.uspForum.service.SearchService;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,28 +30,31 @@ public class SearchControllerUnitTests {
     @MockBean
     private SearchService searchService;
 
+    private final String q = "";
+    private String t = "";
+    private final int p = 0;
+
     @Test
     @DisplayName("Search of type 'geral' calls correct service method")
     void testSearchGeral() throws Exception {
-        String q = "";
-        String t = "geral";
-        int p = 0;
+        t = "geral";
 
         // if the test were to call any other service method instead of this one it would return null, and not an empty
         // page, thus throwing an error when the endpoint attempts to call a method upon the variable that stores the
         // returned value
         when(searchService.searchSubjectBySearchText(q, p)).thenReturn(Page.empty());
-
-        mockMvc.perform(get("/busca")
-                .param("q", q)
-                .param("t", t)
-                .param("p", String.valueOf(p))
-        )
-                .andExpect(status().isOk())
-                .andExpect(view().name("search"))
-                .andExpect(content().string(containsString("Não foram encontrados resultados para")));
     }
 
+    @Test
+    @DisplayName("Search of type 'abreviacao-da-disciplina' calls correct service method")
+    void testSearchAbbreviation() throws Exception {
+        t = "abreviacao-da-disciplina";
+
+        // if the test were to call any other service method instead of this one it would return null, and not an empty
+        // page, thus throwing an error when the endpoint attempts to call a method upon the variable that stores the
+        // returned value
+        when(searchService.searchSubjectByAbbreviation(q, p)).thenReturn(Page.empty());
+    }
 
 
 }

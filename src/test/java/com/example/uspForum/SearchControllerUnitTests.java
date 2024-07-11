@@ -56,5 +56,17 @@ public class SearchControllerUnitTests {
         when(searchService.searchSubjectByAbbreviation(q, p)).thenReturn(Page.empty());
     }
 
+    @AfterEach
+    void performGetRequest() throws Exception {
+        mockMvc.perform(get("/busca")
+                        .param("q", q)
+                        .param("t", t)
+                        .param("p", String.valueOf(p))
+                )
+                .andExpect(status().isOk())
+                .andExpect(view().name("search"))
+                .andExpect(content().string(containsString("Não foram encontrados resultados para")));
+    }
+
 
 }

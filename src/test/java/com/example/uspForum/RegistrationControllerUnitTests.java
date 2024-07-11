@@ -154,6 +154,13 @@ public class RegistrationControllerUnitTests {
             needsToContain = "Campus é obrigatório";
         }
 
+        @Test
+        @DisplayName("Tests case where the user attempts to register a blank password")
+        void testBlankPasswordRegistering() {
+            password = "";
+            needsToContain = "Senha é obrigatório";
+        }
+
         @AfterEach
         void performPostRequest() throws Exception {
             mockMvc.perform(post("/registrar")

@@ -70,6 +70,14 @@ public class SearchControllerUnitTests {
         when(searchService.searchSubjectByName(q, p)).thenReturn(Page.empty());
     }
 
+    @Test
+    @DisplayName("Search of type 'professor' calls correct service method")
+    void testSearchProfessor() throws Exception {
+        t = "professor";
+
+        when(searchService.searchSubjectByTeacherName(q, p)).thenReturn(Page.empty());
+    }
+
     @AfterEach
     void performGetRequest() throws Exception {
         mockMvc.perform(get("/busca")

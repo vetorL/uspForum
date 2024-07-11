@@ -1,6 +1,7 @@
 package com.example.uspForum;
 
 import com.example.uspForum.repository.CustomUserRepository;
+import com.example.uspForum.service.CampusService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,9 @@ public class RegistrationControllerUnitTests {
 
     @MockBean
     private PasswordEncoder passwordEncoder;
+
+    @MockBean
+    private CampusService campusService;
 
     @Autowired
     private MockMvc mockMvc;

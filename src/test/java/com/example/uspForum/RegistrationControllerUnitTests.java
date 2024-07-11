@@ -83,6 +83,25 @@ public class RegistrationControllerUnitTests {
     }
 
     @Test
+    @DisplayName("Tests case where the user attempts to register a blank email")
+    void testBlankEmailRegistering() throws Exception {
+        String email = "";
+        String username = "username";
+        String password = "password";
+        String campusAbbr = "TEST";
+
+        this.mockMvc.perform(post("/registrar")
+                        .param("email", email)
+                        .param("username", username)
+                        .param("password", password)
+                        .param("campusAbbr", campusAbbr)
+                        .with(csrf())
+                )
+                .andExpect(view().name("registration"))
+                .andExpect(content().string(containsString("Email é obrigatório")));
+    }
+
+    @Test
     void testPostRegisterFormWithInvalidToken() throws Exception {
         this.mockMvc.perform(post("/registrar").with(csrf().useInvalidToken()))
                 .andExpect(status().isForbidden());

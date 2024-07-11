@@ -44,12 +44,18 @@ public class RegistrationControllerUnitTests {
 
     @Test
     void testPostRegisterForm() throws Exception {
+        String email = "invalid@usp.br";
+        String username = "username";
+        String password = "password";
+        String campusAbbr = "TEST";
 
-        RegistrationFormDTO form = new RegistrationFormDTO();
-
-        when(customUserRepository.save(form.toCustomUser(passwordEncoder, new Campus()))).thenReturn(new CustomUser());
-
-        this.mockMvc.perform(post("/registrar").with(csrf()))
+        this.mockMvc.perform(post("/registrar")
+                        .param("email", email)
+                        .param("username", username)
+                        .param("password", password)
+                        .param("campusAbbr", campusAbbr)
+                        .with(csrf())
+                )
                 .andExpect(status().is3xxRedirection())
                 .andExpect(redirectedUrl("/login"));
     }

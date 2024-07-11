@@ -1,8 +1,5 @@
 package com.example.uspForum;
 
-import com.example.uspForum.model.Campus;
-import com.example.uspForum.model.CustomUser;
-import com.example.uspForum.model.RegistrationFormDTO;
 import com.example.uspForum.repository.CustomUserRepository;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -14,7 +11,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.test.web.servlet.MockMvc;
 
 import static org.hamcrest.Matchers.containsString;
-import static org.mockito.Mockito.when;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -80,11 +76,6 @@ public class RegistrationControllerUnitTests {
 
     @Test
     void testPostRegisterFormWithInvalidToken() throws Exception {
-
-        RegistrationFormDTO form = new RegistrationFormDTO();
-
-        when(customUserRepository.save(form.toCustomUser(passwordEncoder, new Campus()))).thenReturn(new CustomUser());
-
         this.mockMvc.perform(post("/registrar").with(csrf().useInvalidToken()))
                 .andExpect(status().isForbidden());
     }

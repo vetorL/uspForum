@@ -34,14 +34,15 @@ public class SearchControllerUnitTests {
     private String t = "";
     private final int p = 0;
 
+    // if the test were to call any other service method instead of the one that is mocked it would return null, and not
+    // an empty page, thus throwing an NullExceptionError when the endpoint attempts to call a method upon the variable
+    // that stores the returned value
+
     @Test
     @DisplayName("Search of type 'geral' calls correct service method")
     void testSearchGeral() throws Exception {
         t = "geral";
 
-        // if the test were to call any other service method instead of this one it would return null, and not an empty
-        // page, thus throwing an error when the endpoint attempts to call a method upon the variable that stores the
-        // returned value
         when(searchService.searchSubjectBySearchText(q, p)).thenReturn(Page.empty());
     }
 
@@ -50,9 +51,6 @@ public class SearchControllerUnitTests {
     void testSearchAbbreviation() throws Exception {
         t = "abreviacao-da-disciplina";
 
-        // if the test were to call any other service method instead of this one it would return null, and not an empty
-        // page, thus throwing an error when the endpoint attempts to call a method upon the variable that stores the
-        // returned value
         when(searchService.searchSubjectByAbbreviation(q, p)).thenReturn(Page.empty());
     }
 

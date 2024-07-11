@@ -100,6 +100,15 @@ public class RegistrationControllerUnitTests {
             needsToContain = "Email deve ter entre 6 e 254 caracteres";
         }
 
+        @Test
+        @DisplayName("Tests case where the user attempts to register an email that is too long")
+        void testLongEmailRegistering() {
+            email = "pY5SqFm428qtBCNfDuVy9KXiwFguhLLbdCQ4cp3S9aWU88BAeMDdgYJFTNHmbtGvxgUHUwnktb5mERyH7Y9X7fMy" +
+                    "MKTZCDhF4ZiUACQxRkJcg6j2yiiJiAvnyU4y3Jdrh5MvpzLBEB7Md8NFLW6V5T0ZUEBPEDYdzEXEZCGb2UZv2c0T" +
+                    "PYqNvcavbRRgrvWevpUXPekPUHK9TrrBGMUyr3jC0Z5Gu3uzHJQWHL5a3th4mWrgdK6uEQ7TifUUDpF@usp.br";
+            needsToContain = "Email deve ter entre 6 e 254 caracteres";
+        }
+
         @AfterEach
         void performPostRequest() throws Exception {
             mockMvc.perform(post("/registrar")

@@ -4,7 +4,6 @@ import com.example.uspForum.model.Campus;
 import com.example.uspForum.model.CustomUser;
 import com.example.uspForum.model.RegistrationFormDTO;
 import com.example.uspForum.repository.CustomUserRepository;
-import org.checkerframework.checker.units.qual.C;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +14,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.test.web.servlet.MockMvc;
 
 import static org.hamcrest.Matchers.containsString;
-import static org.mockito.ArgumentMatchers.contains;
 import static org.mockito.Mockito.when;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -43,8 +41,9 @@ public class RegistrationControllerUnitTests {
     }
 
     @Test
-    void testPostRegisterForm() throws Exception {
-        String email = "invalid@usp.br";
+    @DisplayName("Test successful registration (all fields are valid)")
+    void testSuccessfulRegistration() throws Exception {
+        String email = "valid@usp.br";
         String username = "username";
         String password = "password";
         String campusAbbr = "TEST";

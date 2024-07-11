@@ -109,6 +109,13 @@ public class RegistrationControllerUnitTests {
             needsToContain = "Email deve ter entre 6 e 254 caracteres";
         }
 
+        @Test
+        @DisplayName("Tests case where the user attempts to register a username that is too short")
+        void testShortUsernameRegistering() {
+            username = "a";
+            needsToContain = "Nome de usuário deve ter entre 3 e 16 caracteres";
+        }
+
         @AfterEach
         void performPostRequest() throws Exception {
             mockMvc.perform(post("/registrar")

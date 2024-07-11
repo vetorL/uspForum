@@ -54,6 +54,14 @@ public class SearchControllerUnitTests {
         when(searchService.searchSubjectByAbbreviation(q, p)).thenReturn(Page.empty());
     }
 
+    @Test
+    @DisplayName("Search of type 'codigo-da-disciplina' calls correct service method")
+    void testSearchCode() throws Exception {
+        t = "codigo-da-disciplina";
+
+        when(searchService.searchSubjectByCode(q, p)).thenReturn(Page.empty());
+    }
+
     @AfterEach
     void performGetRequest() throws Exception {
         mockMvc.perform(get("/busca")

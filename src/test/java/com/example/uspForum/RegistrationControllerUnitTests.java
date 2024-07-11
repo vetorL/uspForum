@@ -4,8 +4,7 @@ import com.example.uspForum.config.SecurityConfig;
 import com.example.uspForum.controller.RegistrationController;
 import com.example.uspForum.service.CampusService;
 import com.example.uspForum.service.CustomUserService;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -63,42 +62,49 @@ public class RegistrationControllerUnitTests {
                 .andExpect(redirectedUrl("/login"));
     }
 
-    @Test
-    @DisplayName("Tests case where the user attempts to register an email that does not have the USP domain")
-    void testNonUSPEmailRegistering() throws Exception {
-        String email = "invalid@email.com";
-        String username = "username";
-        String password = "password";
-        String campusAbbr = "TEST";
+    @Nested
+    class RegistrationFormValidationTests {
+        private String email;
+        private String username;
+        private String password;
+        private String campusAbbr;
+        private String needsToContain;
 
-        this.mockMvc.perform(post("/registrar")
-                    .param("email", email)
-                    .param("username", username)
-                    .param("password", password)
-                    .param("campusAbbr", campusAbbr)
-                    .with(csrf())
-                )
-                .andExpect(view().name("registration"))
-                .andExpect(content().string(containsString("O email deve ser @usp.br")));
-    }
+        @BeforeEach
+        void resetParameters() {
+            email = "valid@usp.br";
+            username = "username";
+            password = "password";
+            campusAbbr = "TEST";
+            needsToContain = "";
+        }
 
-    @Test
-    @DisplayName("Tests case where the user attempts to register a blank email")
-    void testBlankEmailRegistering() throws Exception {
-        String email = "";
-        String username = "username";
-        String password = "password";
-        String campusAbbr = "TEST";
+        @Test
+        @DisplayName("Tests case where the user attempts to register an email that does not have the USP domain")
+        void testNonUSPEmailRegistering() {
+            email = "invalid@email.com";
+            needsToContain = "O email deve ser @usp.br";
+        }
 
-        this.mockMvc.perform(post("/registrar")
-                        .param("email", email)
-                        .param("username", username)
-                        .param("password", password)
-                        .param("campusAbbr", campusAbbr)
-                        .with(csrf())
-                )
-                .andExpect(view().name("registration"))
-                .andExpect(content().string(containsString("Email é obrigatório")));
+        @Test
+        @DisplayName("Tests case where the user attempts to register a blank email")
+        void testBlankEmailRegistering() {
+            email = "";
+            needsToContain = "Email é obrigatório";
+        }
+
+        @AfterEach
+        void performPostRequest() throws Exception {
+            mockMvc.perform(post("/registrar")
+                            .param("email", email)
+                            .param("username", username)
+                            .param("password", password)
+                            .param("campusAbbr", campusAbbr)
+                            .with(csrf())
+                    )
+                    .andExpect(view().name("registration"))
+                    .andExpect(content().string(containsString(needsToContain)));
+        }
     }
 
     @Test

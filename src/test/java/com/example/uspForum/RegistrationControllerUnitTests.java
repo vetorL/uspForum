@@ -93,6 +93,13 @@ public class RegistrationControllerUnitTests {
             needsToContain = "Email é obrigatório";
         }
 
+        @Test
+        @DisplayName("Tests case where the user attempts to register an email that is too short")
+        void testShortEmailRegistering() {
+            email = "a@a";
+            needsToContain = "Email deve ter entre 6 e 254 caracteres";
+        }
+
         @AfterEach
         void performPostRequest() throws Exception {
             mockMvc.perform(post("/registrar")

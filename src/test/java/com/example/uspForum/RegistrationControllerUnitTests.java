@@ -14,6 +14,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.test.web.servlet.MockMvc;
 
 import static org.hamcrest.Matchers.containsString;
+import static org.mockito.Mockito.when;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -107,6 +108,14 @@ public class RegistrationControllerUnitTests {
                     "MKTZCDhF4ZiUACQxRkJcg6j2yiiJiAvnyU4y3Jdrh5MvpzLBEB7Md8NFLW6V5T0ZUEBPEDYdzEXEZCGb2UZv2c0T" +
                     "PYqNvcavbRRgrvWevpUXPekPUHK9TrrBGMUyr3jC0Z5Gu3uzHJQWHL5a3th4mWrgdK6uEQ7TifUUDpF@usp.br";
             needsToContain = "Email deve ter entre 6 e 254 caracteres";
+        }
+
+        @Test
+        @DisplayName("Tests case where the user attempts to register an email that is already registered")
+        void testRegisteringEmailThatIsAlreadyRegistered() {
+            email = "alreadyRegistered@usp.br";
+            when(customUserService.existsByEmail(email)).thenReturn(true);
+            needsToContain = "Este e-mail já está cadastrado!";
         }
 
         @Test

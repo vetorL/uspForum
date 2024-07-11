@@ -147,6 +147,13 @@ public class RegistrationControllerUnitTests {
             needsToContain = "Nome de usuário já existe!";
         }
 
+        @Test
+        @DisplayName("Tests case where the user attempts to register a blank campus")
+        void testBlankCampusRegistering() {
+            campusAbbr = "";
+            needsToContain = "Campus é obrigatório";
+        }
+
         @AfterEach
         void performPostRequest() throws Exception {
             mockMvc.perform(post("/registrar")

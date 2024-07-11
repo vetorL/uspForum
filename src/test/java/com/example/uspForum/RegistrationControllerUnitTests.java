@@ -119,6 +119,13 @@ public class RegistrationControllerUnitTests {
         }
 
         @Test
+        @DisplayName("Tests case where the user attempts to register a blank username")
+        void testBlankUsernameRegistering() {
+            username = "";
+            needsToContain = "Nome de usuário é obrigatório";
+        }
+
+        @Test
         @DisplayName("Tests case where the user attempts to register a username that is too short")
         void testShortUsernameRegistering() {
             username = "a";

@@ -27,17 +27,14 @@ public class SearchController {
         Page<Subject> results = Page.empty();
         String message = "";
 
-        if(t.equals("abreviacao-da-disciplina")) {
-            results = searchService.searchSubjectByAbbreviation(q, p);
-        } else if(t.equals("codigo-da-disciplina")) {
-            results = searchService.searchSubjectByCode(q, p);
-        } else if(t.equals("nome-da-disciplina")) {
-            results = searchService.searchSubjectByName(q, p);
-        } else if(t.equals("professor")) {
-            results = searchService.searchSubjectByTeacherName(q, p);
-        } else if(t.equals("geral")) {
-            results = searchService.searchSubjectBySearchText(q, p);
-        }
+        results = switch (t) {
+            case "abreviacao-da-disciplina" -> searchService.searchSubjectByAbbreviation(q, p);
+            case "codigo-da-disciplina" -> searchService.searchSubjectByCode(q, p);
+            case "nome-da-disciplina" -> searchService.searchSubjectByName(q, p);
+            case "professor" -> searchService.searchSubjectByTeacherName(q, p);
+            case "geral" -> searchService.searchSubjectBySearchText(q, p);
+            default -> results;
+        };
 
         long totalElements = results.getTotalElements();
 

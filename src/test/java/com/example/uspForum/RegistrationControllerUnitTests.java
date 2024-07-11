@@ -139,6 +139,14 @@ public class RegistrationControllerUnitTests {
             needsToContain = "Nome de usuário deve ter entre 3 e 16 caracteres";
         }
 
+        @Test
+        @DisplayName("Tests case where the user attempts to register a username that is already registered")
+        void testRegisteringNameThatIsAlreadyRegistered() {
+            username = "alreadyRegistered";
+            when(customUserService.existsByUsername(username)).thenReturn(true);
+            needsToContain = "Nome de usuário já existe!";
+        }
+
         @AfterEach
         void performPostRequest() throws Exception {
             mockMvc.perform(post("/registrar")

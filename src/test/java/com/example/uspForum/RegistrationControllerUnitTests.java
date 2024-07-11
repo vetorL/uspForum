@@ -2,6 +2,7 @@ package com.example.uspForum;
 
 import com.example.uspForum.repository.CustomUserRepository;
 import com.example.uspForum.service.CampusService;
+import com.example.uspForum.service.CustomUserService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +23,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class RegistrationControllerUnitTests {
 
     @MockBean
-    private CustomUserRepository customUserRepository;
+    private CustomUserService customUserService;
 
     @MockBean
     private PasswordEncoder passwordEncoder;

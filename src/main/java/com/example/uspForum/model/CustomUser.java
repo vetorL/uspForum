@@ -39,6 +39,7 @@ public class CustomUser implements UserDetails {
     private final String username;
 
     @NotBlank(message = "Senha é obrigatório")
+    @Size(max = 255, message = "Senha deve ter no máximo 255 caracteres")
     private final String password;
 
     @NotNull(message = "Campus é obrigatório")

@@ -19,6 +19,7 @@ public class RegistrationFormDTO {
     private String username;
 
     @NotBlank(message = "Senha é obrigatório")
+    @Size(max = 255, message = "Senha deve ter no máximo 255 caracteres")
     private String password;
 
     @NotBlank(message = "Campus é obrigatório")

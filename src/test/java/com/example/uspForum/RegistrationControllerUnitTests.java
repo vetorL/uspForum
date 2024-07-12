@@ -174,6 +174,13 @@ public class RegistrationControllerUnitTests {
             needsToContain = "Senha deve ter no máximo 255 caracteres";
         }
 
+        @Test
+        @DisplayName("Tests case where the user attempts to register without confirming password")
+        void testNoConfirmPasswordRegistering() {
+            confirmPassword = "";
+            needsToContain = "Confirmar senha é obrigatório";
+        }
+
         @AfterEach
         void performPostRequest() throws Exception {
             mockMvc.perform(post("/registrar")

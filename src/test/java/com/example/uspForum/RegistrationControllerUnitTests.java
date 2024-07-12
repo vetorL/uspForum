@@ -50,12 +50,14 @@ public class RegistrationControllerUnitTests {
         String email = "valid@usp.br";
         String username = "username";
         String password = "password";
+        String confirmPassword = "password";
         String campusAbbr = "TEST";
 
         this.mockMvc.perform(post("/registrar")
                         .param("email", email)
                         .param("username", username)
                         .param("password", password)
+                        .param("confirmPassword", confirmPassword)
                         .param("campusAbbr", campusAbbr)
                         .with(csrf())
                 )
@@ -68,6 +70,7 @@ public class RegistrationControllerUnitTests {
         private String email;
         private String username;
         private String password;
+        private String confirmPassword;
         private String campusAbbr;
         private String needsToContain;
 
@@ -76,6 +79,7 @@ public class RegistrationControllerUnitTests {
             email = "valid@usp.br";
             username = "username";
             password = "password";
+            confirmPassword = "password";
             campusAbbr = "TEST";
             needsToContain = "";
         }
@@ -176,6 +180,7 @@ public class RegistrationControllerUnitTests {
                             .param("email", email)
                             .param("username", username)
                             .param("password", password)
+                            .param("confirmPassword", confirmPassword)
                             .param("campusAbbr", campusAbbr)
                             .with(csrf())
                     )

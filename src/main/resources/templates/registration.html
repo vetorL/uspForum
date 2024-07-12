@@ -44,8 +44,11 @@
 
             <label>
                 Confirme a senha: <br/>
-                <input type="password">
+                <input type="password" th:field="*{confirmPassword}">
             </label>
+            <span class="validationError"
+                  th:if="${#fields.hasErrors('confirmPassword')}"
+                  th:errors="*{confirmPassword}"></span>
 
             <input type="submit" value="Registrar"/>
 

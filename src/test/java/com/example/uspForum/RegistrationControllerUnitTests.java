@@ -181,6 +181,13 @@ public class RegistrationControllerUnitTests {
             needsToContain = "Confirmar senha é obrigatório";
         }
 
+        @Test
+        @DisplayName("Tests case where the user attempts to register with invalid confirm password")
+        void testInvalidConfirmPasswordRegistering() {
+            confirmPassword = "invalid";
+            needsToContain = "Senhas devem ser idênticas!";
+        }
+
         @AfterEach
         void performPostRequest() throws Exception {
             mockMvc.perform(post("/registrar")

@@ -161,6 +161,15 @@ public class RegistrationControllerUnitTests {
             needsToContain = "Senha é obrigatório";
         }
 
+        @Test
+        @DisplayName("Tests case where the user attempts to register a password that is too long (>255 characters)")
+        void testTooLongPasswordRegistering() {
+            password = "7M6diPPfwK2M8uMdZWnZqpY5mtPy26SjwL1PEDbT9hVTqB6zvWacFNvR7LfDjnyTAqYFKrJ0j7La38Vnz9j2Wd3hDCqNh" +
+                    "GDGrCmJ0WYhrPhpeeGT8LfJGGXi6t7gvfCBYizfU5ktXTvMeRGcWthdhL8UE6AhNFVX5iziYbPbxufptSSV2RZADYKPre89J" +
+                    "yKaB34MawreRFwkaE7AQxAmqqupn4r0ZdrLHdCPMBnE9KFhPcpvvN5j1N9PhAwVJtXc";
+            needsToContain = "Senha deve ter no máximo 255 caracteres";
+        }
+
         @AfterEach
         void performPostRequest() throws Exception {
             mockMvc.perform(post("/registrar")

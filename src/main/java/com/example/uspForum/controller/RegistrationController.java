@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.Objects;
+
 @Controller
 @RequestMapping("/registrar")
 public class RegistrationController {
@@ -43,6 +45,10 @@ public class RegistrationController {
 
         if(customUserService.existsByEmail(form.getEmail())) {
             errors.rejectValue("email", null, "Este e-mail já está cadastrado!");
+        }
+
+        if(!Objects.equals(form.getPassword(), form.getConfirmPassword())) {
+            errors.rejectValue("confirmPassword", null, "Senhas devem ser idênticas!");
         }
 
         if (errors.hasErrors()) {

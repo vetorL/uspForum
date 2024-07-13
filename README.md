@@ -7,8 +7,7 @@ A forum for USP
 - file storage (AWS S3)
 - image upload
 - subject file tab
-- pagination of query results
-- pagination html
+- pagination of subject reviews
 - query results based on derived value
 - top contributors styling
 - placeholder ad banners
@@ -29,3 +28,5 @@ A forum for USP
 - delete subject-review (do not delete associated votes)
 - edit subject-review (when edited reset vote count, but do not delete associated votes)
 - allow voting from profile page
+- register user course
+- display user's course and campus

@@ -1,5 +1,6 @@
 package com.example.uspForum.config;
 
+import com.example.uspForum.service.CustomUserService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
@@ -12,6 +13,12 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 public class SecurityConfig {
+
+    private final CustomUserService customUserService;
+
+    public SecurityConfig(CustomUserService customUserService) {
+        this.customUserService = customUserService;
+    }
 
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -42,6 +49,7 @@ public class SecurityConfig {
                                 // everytime the app is restarted, making them log back inx
 //                                .key("uniqueAndSecret")
                                 .tokenValiditySeconds(86400*30) // token valid for 30 days
+                                .userDetailsService(customUserService)
                 );
 
         return http.build();

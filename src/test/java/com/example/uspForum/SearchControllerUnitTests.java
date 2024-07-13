@@ -2,6 +2,7 @@ package com.example.uspForum;
 
 import com.example.uspForum.config.SecurityConfig;
 import com.example.uspForum.controller.SearchController;
+import com.example.uspForum.service.CustomUserService;
 import com.example.uspForum.service.SearchService;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.DisplayName;
@@ -29,6 +30,12 @@ public class SearchControllerUnitTests {
 
     @MockBean
     private SearchService searchService;
+
+    // The rememberMe config in SecurityConfig needs to be manually injected with a UserDetailsService, thus
+    // CustomUserService Bean needs to exist for the configuration to take place (this is only necessary in this test
+    // due to the nature of @WebMvcTest vs @SpringBootTest)
+    @MockBean
+    private CustomUserService customUserService;
 
     private final String q = "";
     private String t = "";

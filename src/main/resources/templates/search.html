@@ -15,9 +15,9 @@
         </div>
 
         <nav class="search-result-navigation">
-            <button th:disabled="${!results.hasPrevious()}">< Anterior</button>
+            <a th:href="@{/busca(t=${searchType}, q=${q}, p=${currentPage - 1})}" th:hidden="${!results.hasPrevious()}">< Anterior</a>
             <span th:text="'Página ' + ${currentPage + 1} + ' de ' + ${results.getTotalPages()}"></span>
-            <button th:disabled="${!results.hasNext()}">Próximo ></button>
+            <a th:href="@{/busca(t=${searchType}, q=${q}, p=${currentPage + 1})}" th:hidden="${!results.hasNext()}">Próximo ></a>
         </nav>
     </main>
 

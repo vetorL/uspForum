@@ -1,0 +1,17 @@
+.search-result-navigation {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: center;
+    justify-content: center;
+}
+
+.search-result-navigation > button {
+    font-size: 1rem;
+}
+
+@media only screen and (min-width: 768px) {
+    .search-result-navigation {
+        flex-direction: row;
+    }
+}

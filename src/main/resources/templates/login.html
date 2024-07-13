@@ -5,7 +5,7 @@
         <h1>Login</h1>
 
         <div th:if="${param.error}" style="color: red">
-            Nome de usuário e/ou senha inválido(s).
+            Nome de usuário, Email e/ou senha inválido(s).
         </div>
 
         <div th:if="${param.logout}" style="color: green">
@@ -14,8 +14,8 @@
 
         <form th:action="@{/login}" method="post" id="authentication-form">
             <label>
-                Nome de usuário: <br/>
-                <input type="text" name="username" placeholder="Nome de usuário"/>
+                Nome de usuário ou Email: <br/>
+                <input type="text" name="username" placeholder="Nome de usuário ou Email"/>
             </label>
             <label>
                 Senha: <br/>

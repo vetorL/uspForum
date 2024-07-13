@@ -12,6 +12,7 @@
 #subject-review-form > fieldset {
     display: flex;
     flex-direction: column;
+    gap: 0.5rem;
 }
 
 #subject-review-form > fieldset > label {

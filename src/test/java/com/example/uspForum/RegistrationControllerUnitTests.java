@@ -152,6 +152,13 @@ public class RegistrationControllerUnitTests {
         }
 
         @Test
+        @DisplayName("Tests case where the user attempts to register a username that has non-latin characters")
+        void testNonLatinUsernameRegistering() {
+            username = ";?!*)";
+            needsToContain = "Nome de usuário deve possuir apenas caracteres alfanuméricos";
+        }
+
+        @Test
         @DisplayName("Tests case where the user attempts to register a blank campus")
         void testBlankCampusRegistering() {
             campusAbbr = "";

@@ -16,7 +16,7 @@
 
         <nav class="search-result-navigation">
             <button th:disabled="${!results.hasPrevious()}">< Anterior</button>
-            <span th:text="'Página 30 de ' + ${results.getTotalPages()}"></span>
+            <span th:text="'Página ' + ${currentPage + 1} + ' de ' + ${results.getTotalPages()}"></span>
             <button th:disabled="${!results.hasNext()}">Próximo ></button>
         </nav>
     </main>

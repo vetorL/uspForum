@@ -12,8 +12,13 @@
         </p>
 
         <div th:each="subject: ${results}" th:insert="~{fragments/subject-card :: subject-card(${subject})}" th:remove="tag">
-
         </div>
+
+        <nav class="search-result-navigation">
+            <button>< Anterior</button>
+            <span>Página 30 de 1000</span>
+            <button>Próximo ></button>
+        </nav>
     </main>
 
 </body>

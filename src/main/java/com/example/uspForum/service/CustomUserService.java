@@ -15,7 +15,7 @@ import java.util.List;
 @Service
 public class CustomUserService implements UserDetailsService {
 
-    private CustomUserRepository customUserRepository;
+    private final CustomUserRepository customUserRepository;
 
     public CustomUserService(CustomUserRepository customUserRepository) {
         this.customUserRepository = customUserRepository;
@@ -23,11 +23,19 @@ public class CustomUserService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        // Attempt to find the user via 'username'
         CustomUser customUser = customUserRepository.findByUsername(username);
         if (customUser != null) {
             return customUser;
         }
 
+        // Attempt to find user via 'email'
+        customUser = customUserRepository.findByEmail(username);
+        if (customUser != null) {
+            return customUser;
+        }
+
+        // User not found via 'email' nor via 'username'
         throw new UsernameNotFoundException("Usuário '" + username + "' não encontrado");
     }
 

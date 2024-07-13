@@ -5,18 +5,18 @@
     <main>
         <p th:text="${message}"></p>
 
-        <p th:if="${#lists.isEmpty(results)}">
+        <p th:if="${#lists.isEmpty(results.getContent())}">
             Parece que no momento não temos a disciplina que você procura :/
             <br>
             Contribua <a href="/criar">adicionando suas próprias disciplinas!</a>
         </p>
 
-        <div th:each="subject: ${results}" th:insert="~{fragments/subject-card :: subject-card(${subject})}" th:remove="tag">
+        <div th:each="subject: ${results.getContent()}" th:insert="~{fragments/subject-card :: subject-card(${subject})}" th:remove="tag">
         </div>
 
         <nav class="search-result-navigation">
             <button>< Anterior</button>
-            <span>Página 30 de 1000</span>
+            <span th:text="'Página 30 de ' + ${results.getTotalPages()}"></span>
             <button>Próximo ></button>
         </nav>
     </main>

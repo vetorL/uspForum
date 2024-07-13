@@ -24,9 +24,9 @@ A forum for USP
 - unique constraint for a given subject and professor
 - RegistrationControlller unit tests
 - add a footer (with report error and contact section)
-- add postedAt to subject-review
 - delete subject-review (do not delete associated votes)
 - edit subject-review (when edited reset vote count, but do not delete associated votes)
 - allow voting from profile page
 - register user course
 - display user's course and campus
+- display subject-review posted date

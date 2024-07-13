@@ -7,8 +7,10 @@ import jakarta.validation.constraints.Size;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Data
@@ -43,6 +45,10 @@ public class SubjectReview {
     @NotBlank
     @Pattern(regexp="^(Neutro|Recomendo|Não recomendo)$", message="Recomendação inválida")
     private final String recommendation;
+
+    @Column(nullable = false, updatable = false)
+    @CreationTimestamp
+    private Date createdAt;
 
     public int getTotalVotes() {
         return votes.stream()

@@ -48,7 +48,7 @@ public class RegistrationControllerUnitTests {
     @DisplayName("Test successful registration (all fields are valid)")
     void testSuccessfulRegistration() throws Exception {
         String email = "valid@usp.br";
-        String username = "username";
+        String username = "usuário1";
         String password = "password";
         String confirmPassword = "password";
         String campusAbbr = "TEST";

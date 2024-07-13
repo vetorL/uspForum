@@ -33,7 +33,15 @@ public class SecurityConfig {
                 .logout((logout) -> logout
                         .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                         .logoutSuccessUrl("/login?logout")
+                        .deleteCookies("JSESSIONID")
                         .permitAll()
+                )
+                .rememberMe(rememberMe -> rememberMe
+                                // spring generates a random key on startup by default,
+                                // the problem is that this invalidates all users' cookies
+                                // everytime the app is restarted, making them log back inx
+//                                .key("uniqueAndSecret")
+                                .tokenValiditySeconds(86400*30) // token valid for 30 days
                 );
 
         return http.build();

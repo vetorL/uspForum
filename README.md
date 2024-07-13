@@ -17,7 +17,6 @@ A forum for USP
 - standard error page
 - account deletion
 - change password
-- remember me
 - user toggle option for "complete" anonymity 
 - profile configuration page (for changing username, profile picture, and toggling options)
 - validate review post request (controller and view)

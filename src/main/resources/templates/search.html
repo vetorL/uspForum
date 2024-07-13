@@ -15,9 +15,9 @@
         </div>
 
         <nav class="search-result-navigation">
-            <button>< Anterior</button>
+            <button th:disabled="${!results.hasPrevious()}">< Anterior</button>
             <span th:text="'Página 30 de ' + ${results.getTotalPages()}"></span>
-            <button>Próximo ></button>
+            <button th:disabled="${!results.hasNext()}">Próximo ></button>
         </nav>
     </main>
 

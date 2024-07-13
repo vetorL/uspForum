@@ -2,6 +2,7 @@ package com.example.uspForum.model;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -16,6 +17,7 @@ public class RegistrationFormDTO {
 
     @NotBlank(message = "Nome de usuário é obrigatório")
     @Size(min = 3, max = 16, message = "Nome de usuário deve ter entre 3 e 16 caracteres")
+    @Pattern(regexp = "[\\p{IsLatin}\\p{Digit}]*", message = "Nome de usuário deve possuir apenas caracteres alfanuméricos")
     private String username;
 
     @NotBlank(message = "Senha é obrigatório")

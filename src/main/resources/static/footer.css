@@ -1,0 +1,22 @@
+.footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 1rem 0;
+    width: 100%;
+    border-top: 1px solid lightslategrey;
+    margin-top: 1rem;
+}
+
+.footer__nav {
+}
+
+.footer__link {
+    text-decoration: none;
+    color: #454545;
+}
+
+.footer__link:hover {
+    text-decoration: underline;
+}

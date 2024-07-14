@@ -10,7 +10,6 @@ A forum for USP
 - pagination of subject reviews
 - query results based on derived value
 - top contributors styling
-- placeholder ad banners
 - image logo
 - add modal for review substitution confirmation
 - solve code redundancy in subject-review form

@@ -24,7 +24,15 @@
 <body>
     <div th:replace="~{fragments/header :: header(query=${q})}"></div>
 
-    <main th:replace="${content}"></main>
+    <div class="layout__core">
+        <img class="banner banner--mobile" src="" alt="">
+        <img class="banner banner--desktop" style="float: left" src="" alt="">
+
+        <main th:replace="${content}"></main>
+
+        <img class="banner banner--mobile" src="" alt="">
+        <img class="banner banner--desktop" src="" alt="">
+    </div>
 
     <div th:replace="~{fragments/footer :: footer}"></div>
 </body>

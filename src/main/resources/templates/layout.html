@@ -19,14 +19,13 @@
     <link rel="stylesheet" th:href="@{/archive.css}">
     <link rel="stylesheet" th:href="@{/profile.css}">
     <link rel="stylesheet" th:href="@{/search.css}">
+    <link rel="stylesheet" th:href="@{/footer.css}">
 </head>
 <body>
-
     <div th:replace="~{fragments/header :: header(query=${q})}"></div>
-
 
     <main th:replace="${content}"></main>
 
-    <footer></footer>
+    <div th:replace="~{fragments/footer :: footer}"></div>
 </body>
 </html>

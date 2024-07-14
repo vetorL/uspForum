@@ -3,7 +3,7 @@
 <body>
 
     <main>
-        <h1>Maiores contribuidores</h1>
+        <h1 style="text-align: center">Maiores contribuidores</h1>
 
         <div th:each="user: ${heroes}"
              th:insert="~{fragments/user-profile :: user-profile(${user})}"

@@ -52,6 +52,8 @@ public class CustomUser implements UserDetails {
 
     private String profilePictureURL = "default-profile-picture.png";
 
+    private int rep = 0;
+
     @OneToMany(mappedBy = "author", fetch = FetchType.EAGER)
     @ToString.Exclude
     private List<SubjectReview> subjectReviews = new ArrayList<>();
@@ -63,12 +65,6 @@ public class CustomUser implements UserDetails {
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return Arrays.asList(new SimpleGrantedAuthority("ROLE_USER"));
-    }
-
-    public int getRep() {
-        return subjectReviews.stream()
-                .mapToInt(SubjectReview::getTotalVotes)
-                .sum();
     }
 
     @Override

@@ -16,7 +16,7 @@ public class IndexController {
 
     @GetMapping("/")
     public String index(Model model) {
-        model.addAttribute("heroes", customUserService.findAllOrderByRepDesc());
+        model.addAttribute("podium", customUserService.findAllOrderByRepDesc());
         return "index.html";
     }
 

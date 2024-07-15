@@ -1,7 +1,6 @@
 package com.example.uspForum;
 
-import com.example.uspForum.model.Campus;
-import com.example.uspForum.service.CampusService;
+import com.example.uspForum.model.CustomUser;
 import com.example.uspForum.service.CustomUserService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +11,6 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.ArrayList;
 
-import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -30,7 +28,14 @@ public class IndexControllerUnitTests {
 
     @Test
     public void getIndexTest() throws Exception {
-        when(customUserService.findAllOrderByRepDesc()).thenReturn(new ArrayList<>());
+        // These are necessary because the get method is called upon the model attribute 'podium' in the thymeleaf
+        // template, if they were not here an error would be thrown about a non-existent index
+        ArrayList<CustomUser> users = new ArrayList<>();
+        users.add(new CustomUser());
+        users.add(new CustomUser());
+        users.add(new CustomUser());
+
+        when(customUserService.findAllOrderByRepDesc()).thenReturn(users);
 
         this.mockMvc.perform(get("/"))
                 .andExpect(status().isOk())

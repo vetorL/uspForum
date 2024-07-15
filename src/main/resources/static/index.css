@@ -1,0 +1,28 @@
+.podium {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.podium__span {
+    font-size: 2rem;
+    margin-left: 0;
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
+}
+
+.podium__user-profile {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.podium--first-place, .podium--second-place, .podium--third-place {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.podium__separator {
+    width: 100%;
+}

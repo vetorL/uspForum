@@ -5,9 +5,29 @@
     <main>
         <h1 style="text-align: center">Maiores contribuidores</h1>
 
-        <div th:each="user: ${heroes}"
-             th:insert="~{fragments/user-profile :: user-profile(${user})}"
-             th:remove="tag"></div>
+        <div class="podium">
+            <!--First place-->
+            <div class="podium--first-place">
+                <span class="podium__span podium__span--first-place">1º</span>
+                <div class="podium__user-profile" th:insert="~{fragments/user-profile :: user-profile(${heroes.get(0)})}"></div>
+            </div>
+
+            <hr class="podium__separator">
+
+            <!--Second place-->
+            <div class="podium--second-place">
+                <span class="podium__span podium__span-second-place">2º</span>
+                <div class="podium__user-profile" th:insert="~{fragments/user-profile :: user-profile(${heroes.get(1)})}"></div>
+            </div>
+
+            <hr class="podium__separator">
+
+            <!--Third place-->
+            <div class="podium--third-place">
+                <span class="podium__span podium__span--third-place">3º</span>
+                <div class="podium__user-profile" th:insert="~{fragments/user-profile :: user-profile(${heroes.get(2)})}"></div>
+            </div>
+        </div>
     </main>
 
 </body>

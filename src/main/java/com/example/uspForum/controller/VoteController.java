@@ -31,6 +31,8 @@ public class VoteController {
 
         Vote vote = voteDTO.toVote(voter, subjectReview);
 
+        CustomUser subjectReviewAuthor = subjectReview.getAuthor();
+
         // if user already voted remove vote from database
         if(subjectReviewService.userAlreadyVotedOnReview(voter, subjectReview)) {
             // identify vote type
@@ -38,17 +40,40 @@ public class VoteController {
 
             // if of the same type remove it from database
             if(value == vote.getVote()) {
+                if(value == 1) {
+                    // upvote being removed, thus decreases rep
+                    subjectReviewAuthor.setRep(subjectReviewAuthor.getRep() - 1);
+                } else if(value == -1) {
+                    // down being removed, thus increases rep
+                    subjectReviewAuthor.setRep(subjectReviewAuthor.getRep() + 1);
+                }
+
+
                 subjectReviewService.removeVoteFromReview(voter, subjectReview);
             }
 
             // if not of the same type then update it
             else if (value != vote.getVote()) {
+                if(value == 1) {
+                    // user had upvoted, now downvotes
+                    // this decreases rep by 2
+                    subjectReviewAuthor.setRep(subjectReviewAuthor.getRep() - 2);
+                } else if(value == -1) {
+                    // user had downvoted, now upvotes
+                    // this increases rep by two
+                    subjectReviewAuthor.setRep(subjectReviewAuthor.getRep() + 2);
+                }
+
                 subjectReviewService.removeVoteFromReview(voter, subjectReview);
                 subjectReviewService.addVoteToReview(vote);
             }
 
         } else {
             // else add vote to database
+
+            // this is an entirely new vote, thus adding its value to the rep is enough
+            subjectReviewAuthor.setRep(subjectReviewAuthor.getRep() + vote.getVote());
+
             subjectReviewService.addVoteToReview(vote);
         }
     }

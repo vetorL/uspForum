@@ -111,4 +111,48 @@ public class VoteControllerUnitTests {
         assertEquals(1, subjectReview.getAuthor().getRep());
     }
 
+    @Test
+    @WithMockUser
+    @DisplayName("Test voting down when the user has yet to vote")
+    void testVoteDownWhenUserHasYetToVote() throws Exception {
+        // Given
+        long subjectReviewId = 1;
+        VoteDTO voteDTO = new VoteDTO(subjectReviewId, "down");
+        CustomUser voter = new CustomUser();
+        SubjectReview subjectReview = new SubjectReview(new CustomUser(),
+                new Subject(), "title", "content", "recommendation");
+
+        // Mocking behavior of findById
+        when(subjectReviewService.findById(voteDTO.getSubjectReviewId())).thenReturn(subjectReview);
+
+        // Mocking behavior of userAlreadyVotedOnReview (makes it return false)
+        when(subjectReviewService.userAlreadyVotedOnReview(voter, subjectReview))
+                .thenReturn(false);
+
+        // Make POST request
+        mockMvc.perform(post("/disciplina/votar")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(toJson(voteDTO))
+                        .with(csrf()))
+                .andExpect(status().isOk());
+
+        // ### VERIFICATIONS ###
+        // The verifications must come after the POST request
+
+        // Verify that findById was called just once
+        verify(subjectReviewService, times(1)).findById(anyLong());
+
+        // Verify that userAlreadyVotedOnReview was called just once
+        verify(subjectReviewService, times(1)).userAlreadyVotedOnReview(any(), any(SubjectReview.class));
+
+        // Verify that the addVoteToReview method was called just once
+        verify(subjectReviewService, times(1)).addVoteToReview(any(Vote.class));
+
+        // Verify that no other method was called on subjectReviewService after addVoteToReview
+        verifyNoMoreInteractions(subjectReviewService);
+
+        // Check that the subjectReview's author now has a rep of 1
+        assertEquals(-1, subjectReview.getAuthor().getRep());
+    }
+
 }

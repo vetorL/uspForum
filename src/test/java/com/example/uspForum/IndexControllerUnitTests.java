@@ -35,7 +35,7 @@ public class IndexControllerUnitTests {
         users.add(new CustomUser());
         users.add(new CustomUser());
 
-        when(customUserService.findAllOrderByRepDesc()).thenReturn(users);
+        when(customUserService.findTop3ByRepDesc()).thenReturn(users);
 
         this.mockMvc.perform(get("/"))
                 .andExpect(status().isOk())

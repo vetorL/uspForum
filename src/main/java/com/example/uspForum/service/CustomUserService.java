@@ -39,6 +39,10 @@ public class CustomUserService implements UserDetailsService {
         throw new UsernameNotFoundException("Usuário '" + username + "' não encontrado");
     }
 
+    public List<CustomUser> findTop3ByRepDesc() {
+        return customUserRepository.findFirst3ByOrderByRepDesc();
+    }
+
     public List<CustomUser> findAllOrderByRepDesc() {
         List<CustomUser> customUsers = new ArrayList<>();
 

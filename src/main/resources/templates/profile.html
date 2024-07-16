@@ -20,6 +20,8 @@
             <h2>Contribuições de <i th:text="${profile.username}"></i>:</h2>
             <div th:each="review: ${profile.subjectReviews}" th:insert="~{fragments/profile-subject-review :: profile-subject-review(${review})}" th:remove="tag"></div>
         </section>
+
+        <script th:src="@{/js/subject-review-vote.js}"></script>
     </main>
 </body>
 </html>

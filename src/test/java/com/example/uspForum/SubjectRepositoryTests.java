@@ -33,6 +33,8 @@ public class SubjectRepositoryTests {
 
     @BeforeEach
     void setUp() {
+        subjectRepository.deleteAll();
+
         Campus each = campusRepository
                 .save(new Campus("Escola de Artes, Ciências e Humanidades", "EACH"));
 
@@ -64,10 +66,5 @@ public class SubjectRepositoryTests {
         // Reference this page in case of headaches!
         // https://stackoverflow.com/questions/54876448/how-to-catch-hibernate-constraintviolationexception-or-spring-dataintegrityviol?rq=2
     }
-
-//    @AfterEach
-//    void tearDown() {
-//        subjectRepository.deleteAll();
-//    }
 
 }

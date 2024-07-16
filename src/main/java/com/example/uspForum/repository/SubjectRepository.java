@@ -3,13 +3,15 @@ package com.example.uspForum.repository;
 import com.example.uspForum.model.Subject;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.PagingAndSortingRepository;
 
 import java.util.List;
 
-public interface SubjectRepository extends CrudRepository<Subject, Long>, PagingAndSortingRepository<Subject, Long> {
+public interface SubjectRepository extends CrudRepository<Subject, Long>,
+        PagingAndSortingRepository<Subject, Long>, JpaRepository<Subject, Long> {
 
     @Query("SELECT s FROM Subject s WHERE " +
             "LOWER(s.name) LIKE LOWER(CONCAT('%', :searchText, '%')) OR " +

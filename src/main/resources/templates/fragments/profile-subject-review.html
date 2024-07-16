@@ -3,9 +3,14 @@
 <body>
 
     <div th:fragment="profile-subject-review(review)">
-        <p class="subject-review--profile__subject-info">
+        <a th:href="@{/arquivo/{campusAbbr}/{courseNN}/{subjectAbbr}/{professorNN}
+            (campusAbbr=${review.subject.course.campus.abbreviation},
+            courseNN=${review.subject.course.normalizedName},
+            subjectAbbr=${review.subject.abbreviation},
+            professorNN=${review.subject.professor.normalizedName})}"
+            class="subject-review--profile__subject-info">
             Em <i th:text="${review.subject.name}"></i> com <i th:text="${review.subject.professor.name}"></i>
-        </p>
+        </a>
         <div class="subject-review">
             <div class="review-content">
                 <h4 th:text="${review.title}" class="text-word-break"></h4>

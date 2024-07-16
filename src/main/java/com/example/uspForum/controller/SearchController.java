@@ -24,6 +24,9 @@ public class SearchController {
             @RequestParam int p,
             Model model) {
 
+        // Remove all leading and trailing whitespaces from query
+        q = q.trim();
+
         Page<Subject> results = Page.empty();
         String message = "";
 

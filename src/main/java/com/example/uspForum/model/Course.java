@@ -12,6 +12,8 @@ import java.util.List;
 @Data
 @NoArgsConstructor(force = true)
 @RequiredArgsConstructor
+@Table(uniqueConstraints = {@UniqueConstraint(name = "UniqueNameAndCampus",
+        columnNames = {"name", "campus_id"})})
 public class Course {
 
     @Id

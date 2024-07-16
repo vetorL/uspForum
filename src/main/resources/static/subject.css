@@ -27,3 +27,8 @@
 .review-content {
     resize: none;
 }
+
+.subject-review-form__character-counter {
+    color: gray;
+    float: right;
+}

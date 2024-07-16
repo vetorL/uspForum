@@ -79,3 +79,14 @@
     display: block;
     color: black;
 }
+
+.subject-review__footer {
+    grid-column: 1 / 3;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.subject-review__time-elapsed {
+    color: gray;
+}

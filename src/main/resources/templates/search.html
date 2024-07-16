@@ -5,7 +5,7 @@
     <main>
         <p th:text="${message}"></p>
 
-        <p th:if="${#lists.isEmpty(results.getContent())}">
+        <p th:if="${#lists.isEmpty(results.getContent())}" style="text-align: center">
             Parece que no momento não temos a disciplina que você procura :/
             <br>
             Contribua <a href="/criar">adicionando suas próprias disciplinas!</a>

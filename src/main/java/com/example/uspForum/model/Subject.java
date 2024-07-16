@@ -12,6 +12,8 @@ import java.util.List;
 @Data
 @Entity
 @NoArgsConstructor(force = true)
+@Table(uniqueConstraints = {@UniqueConstraint(name = "UniqueNameAndProfessorAndCourse",
+        columnNames = {"name", "professor_id", "course_id"})})
 public class Subject {
 
     @Id

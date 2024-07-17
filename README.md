@@ -20,7 +20,9 @@ A forum for USP
 - section of the website for guides
 - section of the website for international exchange programs
 - user toggle option for "complete" anonymity
-- solve problem of Ciclo Basico (how many of the are out there that I don't know about?)
+- solve problem of Ciclo Basico (how many of them are out there that I don't know about?)
+- creation section of the website (for creating subjects, professors and courses)
+- add section of the website for all advertised products
 
 ### Just work
 - subject file tab
@@ -29,13 +31,10 @@ A forum for USP
 - add modal for review substitution confirmation
 - profile configuration page (for changing username, profile picture, and toggling options)
 - validate review post request (controller and view)
-- delete subject-review (do not delete associated votes)
-- edit subject-review (when edited reset vote count, but do not delete associated votes)
-- allow voting from profile page
+- delete subject-review (delete associated votes, but do not update rep)
+- edit subject-review (when edited reset vote count and delete associated votes, but do not update rep)
 - register user course
 - display user's course and campus
-- display subject-review posted date
 - create problem reporting page
-- unique constraint for a given campus and course
 - fix subject creation
-- make subject-review in profile link to the subject
+- add report review option

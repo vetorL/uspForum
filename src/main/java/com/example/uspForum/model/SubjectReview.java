@@ -136,9 +136,12 @@ public class SubjectReview {
             }
             return "1 segundo";
 
+        } else {
+
+            return "0 segundos";
+
         }
 
-        return "";
     }
 
 }

@@ -1,5 +1,5 @@
-/* Dropdown Button */
-.options-dropdown__button {
+/* Dropdown Button and Option buttons */
+.options-dropdown__button, .subject-review__option {
     background: none;
     color: inherit;
     border: none;
@@ -9,6 +9,9 @@
     outline: inherit;
     display: flex;
     align-items: center;
+}
+
+.options-dropdown__button {
     justify-content: center;
 }
 
@@ -29,16 +32,16 @@
     z-index: 2;
 }
 
-/* Links inside the dropdown */
-.subject-review__options a {
+/* Buttons inside the dropdown */
+.subject-review__option {
     color: black;
     padding: 12px 16px;
-    text-decoration: none;
-    display: block;
+    width: 100%;
+    gap: 0.2rem;
 }
 
-/* Change color of dropdown links on hover */
-.subject-review__options a:hover {background-color: #ddd;}
+/* Change color of dropdown button on hover */
+.subject-review__options button:hover {background-color: #ddd;}
 
 /* Show the dropdown menu */
 .show {display:block;}

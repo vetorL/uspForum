@@ -10,7 +10,6 @@ function dropdown(e) {
 
 // Close the dropdown menu if the user clicks outside of it
 window.onclick = function(event) {
-    console.log(event.target);
     if (event.target.classList.contains("options-dropdown__background")) {
         let dropdowns = document.getElementsByClassName("subject-review__options");
         Array.from(dropdowns).forEach(element => {

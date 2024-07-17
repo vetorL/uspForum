@@ -5,6 +5,7 @@ import com.example.uspForum.model.SubjectReview;
 import com.example.uspForum.model.Vote;
 import com.example.uspForum.repository.SubjectReviewRepository;
 import com.example.uspForum.repository.VoteRepository;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -16,6 +17,11 @@ public class SubjectReviewService {
     public SubjectReviewService(SubjectReviewRepository subjectReviewRepository, VoteRepository voteRepository) {
         this.subjectReviewRepository = subjectReviewRepository;
         this.voteRepository = voteRepository;
+    }
+
+    @PreAuthorize("#subjectReview.author.username == authentication.principal.username")
+    public void delete(SubjectReview subjectReview) {
+        subjectReviewRepository.delete(subjectReview);
     }
 
     public SubjectReview findById(long id) {

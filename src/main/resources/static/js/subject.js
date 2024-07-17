@@ -1,9 +1,13 @@
 // Update .subject-review-form__character-counter as user writes
-document.getElementById("subject-review-form__content-input")
-    .addEventListener("input", updateCharacterCounter);
+const contentInput = document.getElementById("subject-review-form__content-input");
+if(contentInput != null) {
+    contentInput.addEventListener("input", updateCharacterCounter);
+}
 
-document.getElementById("subject-review-form__title-input")
-    .addEventListener("input", updateCharacterCounter);
+const titleInput = document.getElementById("subject-review-form__title-input");
+if(titleInput != null) {
+    titleInput.addEventListener("input", updateCharacterCounter);
+}
 
 function updateCharacterCounter(event) {
 

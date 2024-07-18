@@ -2,7 +2,7 @@
 <html lang="pt-BR" xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <body>
-    <div class="subject-review__options-dropdown" th:fragment="options-dropdown(reviewAuthor)">
+    <div class="subject-review__options-dropdown" th:fragment="options-dropdown(reviewAuthor, reviewId)">
         <button class="options-dropdown__button" type="button" onclick="dropdown(this)">
             <svg fill="gray" height="2rem" width="2rem" class="options-dropdown__button-svg"
                  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">

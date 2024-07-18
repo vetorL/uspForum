@@ -2,6 +2,7 @@ package com.example.uspForum;
 
 import com.example.uspForum.config.SecurityConfig;
 import com.example.uspForum.controller.SubjectReviewController;
+import com.example.uspForum.exception.NotFoundException;
 import com.example.uspForum.model.SubjectReview;
 import com.example.uspForum.service.CustomUserService;
 import com.example.uspForum.service.SubjectReviewService;
@@ -82,7 +83,7 @@ public class SubjectReviewControllerUnitTests {
 
         long subjectReviewId = 1L;
 
-        when(subjectReviewService.findById(subjectReviewId)).thenReturn(null);
+        when(subjectReviewService.findById(subjectReviewId)).thenThrow(NotFoundException.class);
 
         mockMvc.perform(delete("/api/v1/reviews/" + subjectReviewId).with(csrf()))
                 .andExpect(status().isNotFound());

@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.Import;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 
 import static org.mockito.Mockito.verifyNoInteractions;
@@ -41,6 +42,19 @@ public class SubjectReviewControllerUnitTests {
         mockMvc.perform(delete("/api/v1/reviews/" + subjectReviewId).with(csrf()))
                 .andExpect(status().is3xxRedirection())
                 .andExpect(redirectedUrl("http://localhost/login"));
+
+        verifyNoInteractions(subjectReviewService);
+    }
+
+    @Test
+    @WithMockUser
+    @DisplayName("Test deleting when user authenticated, but wrong csrf")
+    void testDeletingWhenNoCsrf() throws Exception {
+
+        long subjectReviewId = 1L;
+
+        mockMvc.perform(delete("/api/v1/reviews/" + subjectReviewId).with(csrf().useInvalidToken()))
+                .andExpect(status().isForbidden());
 
         verifyNoInteractions(subjectReviewService);
     }

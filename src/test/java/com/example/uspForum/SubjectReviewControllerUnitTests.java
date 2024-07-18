@@ -2,6 +2,7 @@ package com.example.uspForum;
 
 import com.example.uspForum.config.SecurityConfig;
 import com.example.uspForum.controller.SubjectReviewController;
+import com.example.uspForum.model.SubjectReview;
 import com.example.uspForum.service.CustomUserService;
 import com.example.uspForum.service.SubjectReviewService;
 import org.junit.jupiter.api.DisplayName;
@@ -13,7 +14,7 @@ import org.springframework.context.annotation.Import;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 
-import static org.mockito.Mockito.verifyNoInteractions;
+import static org.mockito.Mockito.*;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrl;
@@ -57,6 +58,21 @@ public class SubjectReviewControllerUnitTests {
                 .andExpect(status().isForbidden());
 
         verifyNoInteractions(subjectReviewService);
+    }
+
+    @Test
+    @WithMockUser
+    @DisplayName("Test deleting when user authenticated (happy flow)")
+    void testDeletingWhenAuthenticatedHappyFlow() throws Exception {
+
+        long subjectReviewId = 1L;
+
+        when(subjectReviewService.findById(subjectReviewId)).thenReturn(new SubjectReview());
+
+        mockMvc.perform(delete("/api/v1/reviews/" + subjectReviewId).with(csrf()))
+                .andExpect(status().isOk());
+
+        verify(subjectReviewService).delete(any(SubjectReview.class));
     }
 
 }

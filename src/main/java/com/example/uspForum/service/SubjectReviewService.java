@@ -1,5 +1,6 @@
 package com.example.uspForum.service;
 
+import com.example.uspForum.exception.NotFoundException;
 import com.example.uspForum.model.CustomUser;
 import com.example.uspForum.model.SubjectReview;
 import com.example.uspForum.model.Vote;
@@ -25,7 +26,8 @@ public class SubjectReviewService {
     }
 
     public SubjectReview findById(long id) {
-        return subjectReviewRepository.findById(id).orElse(null);
+        return subjectReviewRepository.findById(id)
+                .orElseThrow(() -> new NotFoundException("Review não encontrada"));
     }
 
     public void addVoteToReview(Vote vote) {

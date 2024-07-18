@@ -32,6 +32,7 @@ public class SecurityConfig {
                         .requestMatchers("/criar").hasAuthority("ROLE_USER")
                         .requestMatchers("/disciplina/postar/**").hasAuthority("ROLE_USER")
                         .requestMatchers("/disciplina/votar").hasAuthority("ROLE_USER")
+                        .requestMatchers("/api/v1/reviews/**").hasAuthority("ROLE_USER")
                         .anyRequest().permitAll())
                 .formLogin(form -> form
                         .loginPage("/login")

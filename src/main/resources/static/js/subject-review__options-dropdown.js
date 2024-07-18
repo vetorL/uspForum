@@ -79,5 +79,25 @@ document.getElementById("modalDeleteReview").addEventListener("submit", ev => {
             'charset': 'UTF-8',
             'Content-Type': 'application/json'
         }
-    }).then(response => console.log(response));
+    }).then(response => {
+        if(response.ok) {
+            onSuccessfulReviewDeletion(associatedReviewId);
+        }
+    });
 });
+
+function onSuccessfulReviewDeletion(associatedReviewId) {
+    // Close dropdown
+    let dropdowns = document.getElementsByClassName("subject-review__options");
+    Array.from(dropdowns).forEach(element => {
+        if (element.classList.contains('show')) {
+            element.classList.remove('show');
+        }
+    });
+
+    // Close modal
+    modal.style.display = "none";
+
+    // Remove subject-review fragment
+    document.getElementById("subject-review-" + associatedReviewId).remove();
+}

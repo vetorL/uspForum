@@ -33,18 +33,20 @@ window.onclick = function(event) {
 }
 
 // Get the modal
-var modal = document.getElementById("myModal");
+const modal = document.getElementById("myModal");
 
-// Get the button that opens the modal
-var btn = document.getElementById("myBtn");
-
-// Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[0];
+// Get the buttons that open the modal
+let modalButtons = document.getElementsByClassName("subject-review__option");
 
 // When the user clicks the button, open the modal
-btn.onclick = function() {
-    modal.style.display = "block";
-}
+Array.from(modalButtons).forEach(element => element.addEventListener(
+    "click", function() {
+        modal.style.display = "block";
+    }
+));
+
+// Get the <span> element that closes the modal
+const span = document.getElementsByClassName("close")[0];
 
 // When the user clicks on <span> (x), close the modal
 span.onclick = function() {

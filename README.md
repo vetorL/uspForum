@@ -31,7 +31,6 @@ A forum for USP
 - add modal for review substitution confirmation
 - profile configuration page (for changing username, profile picture, and toggling options)
 - validate review post request (controller and view)
-- delete subject-review (delete associated votes, but do not update rep)
 - edit subject-review (when edited reset vote count and delete associated votes, but do not update rep)
 - register user course
 - display user's course and campus

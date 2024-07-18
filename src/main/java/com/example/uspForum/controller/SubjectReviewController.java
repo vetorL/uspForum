@@ -23,13 +23,9 @@ public class SubjectReviewController {
     public ResponseEntity<?> delete(@PathVariable("id") long id) {
 
         SubjectReview subjectReview = subjectReviewService.findById(id);
+        subjectReviewService.delete(subjectReview);
 
-        if (subjectReview != null) {
-            subjectReviewService.delete(subjectReview);
-            return new ResponseEntity<>(HttpStatus.OK);
-        }
-
-        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
 }

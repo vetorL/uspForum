@@ -60,6 +60,10 @@ document.getElementById("modalDeleteReview").addEventListener("submit", ev => {
 
     const formData = new FormData(ev.target);
 
+    if(formData.get("insurance") !== "deletar") {
+        return;
+    }
+
     const associatedReviewId = formData.get("reviewId");
 
     const csrfToken = document.querySelector('meta[name="_csrf"]').getAttribute('content');

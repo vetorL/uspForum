@@ -95,7 +95,7 @@
                     <div class="modal-body">
                         <p>Digite "deletar" (sem as aspas) no campo abaixo e pressione <b>Confirmar</b> para deletar a review.</p>
                         <form id="modalDeleteReview" th:action="@{/api/v1/reviews}">
-                            <input type="text" placeholder="deletar">
+                            <input type="text" name="insurance" placeholder="deletar" required>
                             <input type="hidden" id="deleteReviewId" name="reviewId" value="">
                             <button type="submit">Confirmar</button>
                         </form>

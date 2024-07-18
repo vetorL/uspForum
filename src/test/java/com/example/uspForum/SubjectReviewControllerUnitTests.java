@@ -75,4 +75,19 @@ public class SubjectReviewControllerUnitTests {
         verify(subjectReviewService).delete(any(SubjectReview.class));
     }
 
+    @Test
+    @WithMockUser
+    @DisplayName("Test deleting when user authenticated, but review not found")
+    void testDeletingWhenAuthenticatedButReviewNotFound() throws Exception {
+
+        long subjectReviewId = 1L;
+
+        when(subjectReviewService.findById(subjectReviewId)).thenReturn(null);
+
+        mockMvc.perform(delete("/api/v1/reviews/" + subjectReviewId).with(csrf()))
+                .andExpect(status().isNotFound());
+
+        verify(subjectReviewService, never()).delete(any());
+    }
+
 }

@@ -1,9 +1,7 @@
 package com.example.uspForum.controller;
 
-import com.example.uspForum.model.CustomUser;
 import com.example.uspForum.model.SubjectReview;
 import com.example.uspForum.service.SubjectReviewService;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,8 +18,7 @@ public class SubjectReviewController {
     }
 
     @DeleteMapping
-    public void delete(@PathVariable("id") long id,
-                       @AuthenticationPrincipal CustomUser user) {
+    public void delete(@PathVariable("id") long id) {
 
         SubjectReview subjectReview = subjectReviewService.findById(id);
 

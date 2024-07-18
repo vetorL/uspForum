@@ -81,6 +81,28 @@
 
             <div th:each="review: ${subject.reviews}" th:insert="~{fragments/subject-review :: subject-review(${review})}" th:remove="tag"></div>
             <p th:if="${subject.reviews.isEmpty()}" style="text-align: center; font-style: italic">Parece que ainda não há reviews para essa disciplina :/</p>
+
+
+            <!-- The Modal -->
+            <div id="myModal" class="modal">
+
+                <!-- Modal content -->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <span class="close">&times;</span>
+                        <h2>Deseja mesmo deletar essa review?</h2>
+                    </div>
+                    <div class="modal-body">
+                        <p>Digite "deletar" (sem as aspas) no campo abaixo e pressione <b>Confirmar</b> para deletar a review.</p>
+                        <input type="text" placeholder="deletar">
+                        <button>Confirmar</button>
+                    </div>
+                    <div class="modal-footer">
+                        <p style="color: red; font-style: italic">Nota: essa ação não pode ser revertida!</p>
+                    </div>
+                </div>
+
+            </div>
         </div>
         <script th:src="@{/js/subject.js}"></script>
         <script th:src="@{/js/subject-review-vote.js}"></script>

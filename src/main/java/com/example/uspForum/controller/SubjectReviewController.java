@@ -2,6 +2,8 @@ package com.example.uspForum.controller;
 
 import com.example.uspForum.model.SubjectReview;
 import com.example.uspForum.service.SubjectReviewService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,14 +20,16 @@ public class SubjectReviewController {
     }
 
     @DeleteMapping
-    public void delete(@PathVariable("id") long id) {
+    public ResponseEntity<?> delete(@PathVariable("id") long id) {
 
         SubjectReview subjectReview = subjectReviewService.findById(id);
 
         if (subjectReview != null) {
             subjectReviewService.delete(subjectReview);
+            return new ResponseEntity<>(HttpStatus.OK);
         }
-        
+
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
 }

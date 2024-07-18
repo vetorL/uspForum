@@ -32,7 +32,7 @@ public class SubjectReview {
     @JoinColumn(name = "subject_id")
     private final Subject subject;
 
-    @OneToMany(mappedBy = "subjectReview")
+    @OneToMany(mappedBy = "subjectReview", cascade = CascadeType.REMOVE, orphanRemoval = true)
     private List<Vote> votes = new ArrayList<>();
 
     @NotBlank(message = "A review deve conter um título!")

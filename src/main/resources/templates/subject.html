@@ -94,9 +94,11 @@
                     </div>
                     <div class="modal-body">
                         <p>Digite "deletar" (sem as aspas) no campo abaixo e pressione <b>Confirmar</b> para deletar a review.</p>
-                        <input type="text" placeholder="deletar">
-                        <input type="hidden" id="deleteReviewId" name="reviewId" value="">
-                        <button>Confirmar</button>
+                        <form id="modalDeleteReview" th:action="@{/api/v1/reviews}">
+                            <input type="text" placeholder="deletar">
+                            <input type="hidden" id="deleteReviewId" name="reviewId" value="">
+                            <button type="submit">Confirmar</button>
+                        </form>
                     </div>
                     <div class="modal-footer">
                         <p style="color: red; font-style: italic">Nota: essa ação não pode ser revertida!</p>

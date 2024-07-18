@@ -53,3 +53,27 @@ const span = document.getElementsByClassName("close")[0];
 span.onclick = function() {
     modal.style.display = "none";
 }
+
+
+document.getElementById("modalDeleteReview").addEventListener("submit", ev => {
+    ev.preventDefault();
+
+    const formData = new FormData(ev.target);
+
+    const associatedReviewId = formData.get("reviewId");
+
+    const csrfToken = document.querySelector('meta[name="_csrf"]').getAttribute('content');
+    const csrfHeader = document.querySelector('meta[name="_csrf_header"]').getAttribute('content');
+
+    const url = 'http://localhost:8080/api/v1/reviews/' + associatedReviewId;
+
+    fetch(url, {
+        method: 'DELETE',
+        credentials: 'include',
+        headers: {
+            [csrfHeader]: csrfToken,
+            'charset': 'UTF-8',
+            'Content-Type': 'application/json'
+        }
+    }).then(response => console.log(response));
+});

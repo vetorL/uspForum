@@ -38,10 +38,11 @@ const modal = document.getElementById("myModal");
 // Get the buttons that open the modal
 let modalButtons = document.getElementsByClassName("subject-review__option");
 
-// When the user clicks the button, open the modal
+// When the user clicks the button, open the modal and set its hidden input's value to the id of the review associated
 Array.from(modalButtons).forEach(element => element.addEventListener(
-    "click", function() {
+    "click", function(e) {
         modal.style.display = "block";
+        document.getElementById("deleteReviewId").value = e.currentTarget.dataset.associatedReviewId;
     }
 ));
 

@@ -71,7 +71,7 @@ public class SubjectReviewControllerUnitTests {
         when(subjectReviewService.findById(subjectReviewId)).thenReturn(new SubjectReview());
 
         mockMvc.perform(delete("/api/v1/reviews/" + subjectReviewId).with(csrf()))
-                .andExpect(status().isOk());
+                .andExpect(status().isNoContent());
 
         verify(subjectReviewService).delete(any(SubjectReview.class));
     }

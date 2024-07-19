@@ -25,7 +25,7 @@ public class SubjectReviewController {
         SubjectReview subjectReview = subjectReviewService.findById(id);
         subjectReviewService.delete(subjectReview);
 
-        return new ResponseEntity<>(HttpStatus.OK);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
 }

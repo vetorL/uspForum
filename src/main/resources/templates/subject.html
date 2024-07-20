@@ -27,57 +27,7 @@
         <div id="subject-reviews">
             <h3>Reviews:</h3>
 
-            <form th:action="@{/disciplina/postar/{id}(id=${subject.id})}"
-                  th:object="${subjectReviewDTO}"
-                  method="post"
-                  id="subject-review-form">
-                <fieldset disabled sec:authorize="isAnonymous()">
-                    <p style="color: red">Apenas usuários logados podem postar reviews.</p>
-                    <legend>Contribua com sua própria review!</legend>
-                    <label>
-                        Título: <br/>
-                        <input class="review-title" type="text" name="title">
-                    </label>
-                    <label>
-                        Conteúdo: <br/>
-                        <textarea class="review-content" name="content" rows="10"></textarea>
-                    </label>
-                    <label>
-                        Recomendação: <br/>
-                        <select name="recommendation" required>
-                            <option selected="true" disabled>--- Escolha uma opção ---</option>
-                            <option value="Recomendo">Recomendo</option>
-                            <option value="Neutro">Neutro</option>
-                            <option value="Não recomendo">Não recomendo</option>
-                        </select>
-                    </label>
-                    <button type="submit">Postar</button>
-                </fieldset>
-
-                <fieldset sec:authorize="isAuthenticated()">
-                    <legend>Contribua com sua própria review!</legend>
-                    <label>
-                        Título: <br/>
-                        <input id="subject-review-form__title-input" class="review-title" type="text" name="title">
-                        <span class="subject-review-form__character-counter">0/50</span>
-                    </label>
-                    <label>
-                        Conteúdo: <br/>
-                        <textarea id="subject-review-form__content-input" class="review-content" name="content" rows="10"></textarea>
-                        <span class="subject-review-form__character-counter">0/1000</span>
-                    </label>
-                    <label>
-                        Recomendação: <br/>
-                        <select name="recommendation" required>
-                            <option selected disabled>--- Escolha uma opção ---</option>
-                            <option value="Recomendo">Recomendo</option>
-                            <option value="Neutro">Neutro</option>
-                            <option value="Não recomendo">Não recomendo</option>
-                        </select>
-                    </label>
-                    <button type="submit">Postar</button>
-                </fieldset>
-            </form>
+            <div th:replace="~{fragments/subject-review-post-form :: subject-review-post-form}"></div>
 
             <div th:each="review: ${subject.reviews}" th:insert="~{fragments/subject-review :: subject-review(${review})}" th:remove="tag"></div>
             <p th:if="${subject.reviews.isEmpty()}" style="text-align: center; font-style: italic">Parece que ainda não há reviews para essa disciplina :/</p>

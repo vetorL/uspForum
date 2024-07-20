@@ -8,7 +8,9 @@ import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mock.web.MockServletContext;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.test.context.support.WithMockUser;
+import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.context.web.WebAppConfiguration;
@@ -90,6 +92,7 @@ public class SubjectReviewControllerIntegrationTest {
         }
 
         @Test
+        @DirtiesContext
         @WithMockUser(username = "test")
         @DisplayName("Test that the review gets deleted when user who made the DELETE request is the author.")
         void deleteSuccessfulWhenUserIsAuthor() throws Exception {
@@ -104,6 +107,28 @@ public class SubjectReviewControllerIntegrationTest {
 
             // Check that after the DELETE request the subjectReview is no longer present in the DB
             assertEquals(Optional.empty(), subjectReviewRepository.findById(subjectReview.get().getId()));
+        }
+
+        @Test
+        @DirtiesContext
+        @WithMockUser(username = "notTheAuthor")
+        @DisplayName("Test that the review does not get deleted when the " +
+                "user who made the DELETE request is not the author.")
+        void deleteFailWhenUserNotAuthor() throws Exception {
+            long subjectReviewId = 1L;
+
+            // Check that before the DELETE request the subjectReview is present in the DB
+            Optional<SubjectReview> subjectReview = subjectReviewRepository.findById(subjectReviewId);
+            assertTrue(subjectReview.isPresent());
+
+            try {
+                mockMvc.perform(delete("/api/v1/reviews/" + subjectReview.get().getId()).with(csrf()));
+            } catch (Exception e) {
+                assertInstanceOf(AccessDeniedException.class, e.getCause());
+            }
+
+            // Check that after the DELETE request the subjectReview is still present in the DB
+            assertTrue(subjectReviewRepository.findById(subjectReview.get().getId()).isPresent());
         }
 
         @AfterEach

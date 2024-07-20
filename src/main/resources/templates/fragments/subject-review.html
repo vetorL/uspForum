@@ -32,11 +32,11 @@
                 <input type="hidden" value="down" name="vote" />
                 <input type="hidden" th:value="${review.id}" name="subjectReviewId" />
                 <div sec:authorize="isAuthenticated()">
-                    <div th:if="${review.alreadyVoted(#authentication.principal, 'down')}">
-                        <button class="vote-button vote-down vote-pressed-down" th:id="'vote-down-' + ${review.id}">-</button>
-                    </div>
-                    <div th:unless="${review.alreadyVoted(#authentication.principal, 'down')}">
-                        <button class="vote-button vote-down" th:id="'vote-down-' + ${review.id}">-</button>
+                    <div>
+                        <button class="vote-button vote-down"
+                                th:classappend="${review.alreadyVoted(#authentication.principal, 'down')
+                                ? 'vote-pressed-down' : ''}"
+                                th:id="'vote-down-' + ${review.id}">-</button>
                     </div>
                 </div>
                 <div sec:authorize="isAnonymous()">

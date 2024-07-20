@@ -118,6 +118,11 @@
     color: white;
 }
 
+.modal-title {
+    font-size: 1.4rem;
+    font-weight: bold;
+}
+
 @media only screen and (min-width: 768px) {
     .modal-content {
         width: 40%;

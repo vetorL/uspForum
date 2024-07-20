@@ -118,7 +118,10 @@ function sendDeleteHttpRequest(event, associatedReviewId) {
         }
     }).then(response => {
         if (response.ok) {
-            onSuccessfulReviewDeletion(associatedReviewId);
+            onSuccessfulRequest(associatedReviewId);
+
+            // Remove subject-review fragment
+            document.getElementById("subject-review-" + associatedReviewId).remove();
         }
     });
 }
@@ -130,7 +133,7 @@ function closeModals() {
     // reportModal.style.display = "none";
 }
 
-function onSuccessfulReviewDeletion(associatedReviewId) {
+function onSuccessfulRequest(associatedReviewId) {
     // Close dropdown
     let dropdowns = document.getElementsByClassName("subject-review__options");
     Array.from(dropdowns).forEach(element => {
@@ -139,9 +142,6 @@ function onSuccessfulReviewDeletion(associatedReviewId) {
         }
     });
 
-    // Close modal
-    deleteModal.style.display = "none";
-
-    // Remove subject-review fragment
-    document.getElementById("subject-review-" + associatedReviewId).remove();
+    // Close all modals
+    closeModals();
 }

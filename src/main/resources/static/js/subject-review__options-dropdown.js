@@ -27,34 +27,43 @@ window.onclick = function(event) {
     }
 
     // When the user clicks anywhere outside the modal, close it
-    if (event.target == modal) {
-        modal.style.display = "none";
+    if (event.target == deleteModal) {
+        deleteModal.style.display = "none";
+    } else if (event.target == editModal) {
+        editModal.style.display = "none";
     }
 }
 
-// Get the modal
-const modal = document.getElementById("deleteReviewModal");
+// Get the modals
+const deleteModal = document.getElementById("deleteReviewModal");
+const editModal = document.getElementById("editReviewModal");
 
-// Get the buttons that open the modal
+// Get the buttons that open the modals
 let modalButtons = document.getElementsByClassName("subject-review__option");
 
-// When the user clicks the button, open the modal and set its hidden input's value to the id of the review associated
+// When the user clicks a button, open the correct modal and set its hidden input's value to the id of the review
+// associated with the button that was clicked
 Array.from(modalButtons).forEach(element => element.addEventListener(
     "click", function(e) {
-        modal.style.display = "block";
-        document.getElementById("deleteReviewId").value = e.currentTarget.dataset.associatedReviewId;
+        if(e.currentTarget.innerText === "Editar") {
+            editModal.style.display = "block";
+            document.getElementById("editReviewId").value = e.currentTarget.dataset.associatedReviewId;
+        } else if (e.currentTarget.innerText === "Deletar") {
+            deleteModal.style.display = "block";
+            document.getElementById("deleteReviewId").value = e.currentTarget.dataset.associatedReviewId;
+        }
     }
 ));
 
 // Get the <span> element that closes the modal
-const span = document.getElementsByClassName("close")[0];
+const modalCloseSpanElements = document.getElementsByClassName("close");
 
-// When the user clicks on <span> (x), close the modal
-span.onclick = function() {
-    modal.style.display = "none";
-}
+// When the user clicks on a <span> (x), close all modals
+Array.from(modalCloseSpanElements).forEach(element => element.addEventListener("click", closeModals))
 
+// ### Listen for "submit" event triggering from the modal form elements ###
 
+// Listen for "submit" event triggering from the deletion modal
 document.getElementById("deleteReviewModalForm").addEventListener("submit", ev => {
     ev.preventDefault();
 
@@ -86,6 +95,13 @@ document.getElementById("deleteReviewModalForm").addEventListener("submit", ev =
     });
 });
 
+// Closes all modals by making their display property equal to "none"
+function closeModals() {
+    deleteModal.style.display = "none";
+    editModal.style.display = "none";
+    // reportModal.style.display = "none";
+}
+
 function onSuccessfulReviewDeletion(associatedReviewId) {
     // Close dropdown
     let dropdowns = document.getElementsByClassName("subject-review__options");
@@ -96,7 +112,7 @@ function onSuccessfulReviewDeletion(associatedReviewId) {
     });
 
     // Close modal
-    modal.style.display = "none";
+    deleteModal.style.display = "none";
 
     // Remove subject-review fragment
     document.getElementById("subject-review-" + associatedReviewId).remove();

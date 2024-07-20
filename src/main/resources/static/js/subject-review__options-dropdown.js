@@ -55,7 +55,7 @@ span.onclick = function() {
 }
 
 
-document.getElementById("modalDeleteReview").addEventListener("submit", ev => {
+document.getElementById("deleteReviewModalForm").addEventListener("submit", ev => {
     ev.preventDefault();
 
     const formData = new FormData(ev.target);

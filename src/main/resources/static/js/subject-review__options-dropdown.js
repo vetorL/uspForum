@@ -87,10 +87,15 @@ Array.from(modalCancelButtons).forEach(element => element.addEventListener("clic
 // ### Listen for "submit" event triggering from the modal form elements ###
 
 // Listen for "submit" event triggering from the deletion modal
-document.getElementById("deleteReviewModalForm").addEventListener("submit", ev => {
-    ev.preventDefault();
+document.getElementById("deleteReviewModalForm").addEventListener("submit", event => {
+    sendDeleteHttpRequest(event);
+});
 
-    const formData = new FormData(ev.target);
+// Sends a DELETE http request and if response OK calls onSuccessfulReviewDeletion
+function sendDeleteHttpRequest(event) {
+    event.preventDefault();
+
+    const formData = new FormData(event.target);
 
     if(formData.get("insurance") !== "deletar") {
         return;
@@ -112,11 +117,11 @@ document.getElementById("deleteReviewModalForm").addEventListener("submit", ev =
             'Content-Type': 'application/json'
         }
     }).then(response => {
-        if(response.ok) {
+        if (response.ok) {
             onSuccessfulReviewDeletion(associatedReviewId);
         }
     });
-});
+}
 
 // Closes all modals by making their display property equal to "none"
 function closeModals() {

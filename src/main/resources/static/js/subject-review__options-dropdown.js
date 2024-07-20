@@ -58,8 +58,14 @@ Array.from(modalButtons).forEach(element => element.addEventListener(
 // Get the <span> element that closes the modal
 const modalCloseSpanElements = document.getElementsByClassName("close");
 
+// Get the cancel button
+const modalCancelButtons = document.getElementsByClassName("modal-cancel");
+
 // When the user clicks on a <span> (x), close all modals
-Array.from(modalCloseSpanElements).forEach(element => element.addEventListener("click", closeModals))
+Array.from(modalCloseSpanElements).forEach(element => element.addEventListener("click", closeModals));
+
+// When the user clicks on a cancel button, close all modals
+Array.from(modalCancelButtons).forEach(element => element.addEventListener("click", closeModals));
 
 // ### Listen for "submit" event triggering from the modal form elements ###
 

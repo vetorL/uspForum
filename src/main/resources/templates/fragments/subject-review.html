@@ -4,8 +4,8 @@
     
     <div th:id="'subject-review-' + ${review.id}" class="subject-review" th:fragment="subject-review(review)">
         <div class="review-content">
-            <h4 th:text="${review.title}" class="text-word-break"></h4>
-            <p th:text="${review.content}" class="text-word-break"></p>
+            <h4 th:id="'subject-review-title-' + ${review.id}" th:text="${review.title}" class="text-word-break"></h4>
+            <p th:id="'subject-review-content-' + ${review.id}" th:text="${review.content}" class="text-word-break"></p>
         </div>
         <hr/>
         <div th:replace="~{fragments/user-profile :: user-profile(${review.author})}"></div>
@@ -47,7 +47,7 @@
 
         <div class="review-recommendation"
              th:classappend="|${review.recommendation.equals('Neutro') ? 'review-neutral' : ''}${review.recommendation.equals('Recomendo') ? 'review-recommended' : ''}${review.recommendation.equals('Não recomendo') ? 'review-not-recommended' : ''}|">
-            <p th:text="${review.recommendation}"></p>
+            <p th:id="'subject-review-recommendation-' + ${review.id}" th:text="${review.recommendation}"></p>
         </div>
 
         <div class="subject-review__footer">

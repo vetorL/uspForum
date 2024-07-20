@@ -4,9 +4,7 @@ import com.example.uspForum.controller.SubjectReviewController;
 import com.example.uspForum.model.*;
 import com.example.uspForum.repository.*;
 import jakarta.servlet.ServletContext;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mock.web.MockServletContext;
@@ -66,30 +64,51 @@ public class SubjectReviewControllerIntegrationTest {
         assertNotNull(webApplicationContext.getBean(SubjectReviewController.class));
     }
 
-    @Test
-    @WithMockUser(username = "test")
-    @DisplayName("Test that the review gets deleted when user who made the DELETE request is the author.")
-    void deleteSuccessfulWhenUserIsAuthor() throws Exception {
-        Campus each = campusRepository.save(new Campus("Escola de Artes, Ciências e Humanidades",
-                "EACH"));
+    @Nested
+    class HttpRequestsTests {
 
-        Course si = courseRepository.save(new Course("Sistemas de Informação",
-                "sistemas-de-informacao", each));
+        @BeforeEach
+        void populateDB() {
+            Campus each = campusRepository.save(new Campus("Escola de Artes, Ciências e Humanidades",
+                    "EACH"));
 
-        CustomUser usr = customUserRepository.save(new CustomUser("test@test.com", "test",
-                "password", each));
+            Course si = courseRepository.save(new Course("Sistemas de Informação",
+                    "sistemas-de-informacao", each));
 
-        Professor violeta = professorRepository.save(new Professor("Violeta Sun", "violeta-sun",
-                "violeta@usp.br", each));
+            CustomUser usr = customUserRepository.save(new CustomUser("test@test.com", "test",
+                    "password", each));
 
-        Subject iaecVioleta = subjectRepository.save(new Subject("Introdução à Administração e Economia para Computação",
-                "IAEC", "ACH2063", si, violeta));
+            Professor violeta = professorRepository.save(new Professor("Violeta Sun", "violeta-sun",
+                    "violeta@usp.br", each));
 
-        SubjectReview subjectReview = subjectReviewRepository.save(new SubjectReview(usr, iaecVioleta, "Foi bom",
-                "Nao teve prova, mas teve varios trabalhinhos", "Recomendo"));
+            Subject iaecVioleta = subjectRepository.save(new Subject("Introdução à Administração e Economia para Computação",
+                    "IAEC", "ACH2063", si, violeta));
 
-        mockMvc.perform(delete("/api/v1/reviews/" + subjectReview.getId()).with(csrf()))
-                .andExpect(status().isNoContent());
+            SubjectReview subjectReview = subjectReviewRepository.save(new SubjectReview(usr, iaecVioleta, "Foi bom",
+                    "Nao teve prova, mas teve varios trabalhinhos", "Recomendo"));
+        }
+
+        @Test
+        @WithMockUser(username = "test")
+        @DisplayName("Test that the review gets deleted when user who made the DELETE request is the author.")
+        void deleteSuccessfulWhenUserIsAuthor() throws Exception {
+            long subjectReviewId = 1L;
+
+            mockMvc.perform(delete("/api/v1/reviews/" + subjectReviewId).with(csrf()))
+                    .andExpect(status().isNoContent());
+        }
+
+        @AfterEach
+        void clearDB() {
+            // The calling order of deleteAll in these repositories is important because of referential constraint
+
+            subjectReviewRepository.deleteAll();
+            subjectRepository.deleteAll();
+            customUserRepository.deleteAll();
+            professorRepository.deleteAll();
+            courseRepository.deleteAll();
+            campusRepository.deleteAll();
+        }
+
     }
-
 }

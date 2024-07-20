@@ -99,8 +99,15 @@
 
 .modal-header {
     padding: 2px 16px;
-    background-color: red;
     color: white;
+}
+
+.modal-header--delete {
+    background-color: red;
+}
+
+.modal-header--edit {
+    background-color: blue;
 }
 
 .modal-body {

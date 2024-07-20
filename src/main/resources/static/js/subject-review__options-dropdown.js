@@ -45,12 +45,29 @@ let modalButtons = document.getElementsByClassName("subject-review__option");
 // associated with the button that was clicked
 Array.from(modalButtons).forEach(element => element.addEventListener(
     "click", function(e) {
+        const reviewId = e.currentTarget.dataset.associatedReviewId;
+
         if(e.currentTarget.innerText === "Editar") {
             editModal.style.display = "block";
-            document.getElementById("editReviewId").value = e.currentTarget.dataset.associatedReviewId;
+            document.getElementById("editReviewId").value = reviewId;
+
+            // # Populate inputs for editing #
+
+            // Populate title
+            document.getElementById("edit-review__title-input").value =
+                document.getElementById("subject-review-title-" + reviewId).innerText;
+
+            // Populate content
+            document.getElementById("edit-review__content-input").value =
+                document.getElementById("subject-review-content-" + reviewId).innerText;
+
+            // Populate recommendation
+            document.getElementById("edit-review__recommendation-input").value =
+                document.getElementById("subject-review-recommendation-" + reviewId).innerText;
+
         } else if (e.currentTarget.innerText === "Deletar") {
             deleteModal.style.display = "block";
-            document.getElementById("deleteReviewId").value = e.currentTarget.dataset.associatedReviewId;
+            document.getElementById("deleteReviewId").value = reviewId;
         }
     }
 ));

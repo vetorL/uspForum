@@ -9,6 +9,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mock.web.MockServletContext;
 import org.springframework.security.access.AccessDeniedException;
+import org.springframework.security.test.context.support.WithAnonymousUser;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ContextConfiguration;
@@ -125,6 +126,33 @@ public class SubjectReviewControllerIntegrationTest {
                 mockMvc.perform(delete("/api/v1/reviews/" + subjectReview.get().getId()).with(csrf()));
             } catch (Exception e) {
                 assertInstanceOf(AccessDeniedException.class, e.getCause());
+            }
+
+            // Check that after the DELETE request the subjectReview is still present in the DB
+            assertTrue(subjectReviewRepository.findById(subjectReview.get().getId()).isPresent());
+        }
+
+        @Test
+        @DirtiesContext
+        @WithAnonymousUser
+        @DisplayName("Test that the review does not get deleted when an " +
+                "anonymous user makes the DELETE request.")
+        void deleteFailWhenUserAnonymous() throws Exception {
+            long subjectReviewId = 1L;
+
+            // Check that before the DELETE request the subjectReview is present in the DB
+            Optional<SubjectReview> subjectReview = subjectReviewRepository.findById(subjectReviewId);
+            assertTrue(subjectReview.isPresent());
+
+            // NOTE: this test class is not configured with SecurityConfig, thus it does not block the request at the
+            // controller level. What happens is that when the controller delegates to the service layer the
+            // @PreAuthorize tries to access the authentication principal and fails, because it does not exist for
+            // an anonymous user, and so the delete method does not get executed, leading to a double layer of
+            // protection.
+            try {
+                mockMvc.perform(delete("/api/v1/reviews/" + subjectReview.get().getId()).with(csrf()));
+            } catch (Exception e) {
+                assertInstanceOf(IllegalArgumentException.class, e.getCause());
             }
 
             // Check that after the DELETE request the subjectReview is still present in the DB

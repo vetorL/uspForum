@@ -16,8 +16,9 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
-import static org.junit.jupiter.api.Assertions.assertInstanceOf;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import java.util.Optional;
+
+import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -94,8 +95,15 @@ public class SubjectReviewControllerIntegrationTest {
         void deleteSuccessfulWhenUserIsAuthor() throws Exception {
             long subjectReviewId = 1L;
 
-            mockMvc.perform(delete("/api/v1/reviews/" + subjectReviewId).with(csrf()))
+            // Check that before the DELETE request the subjectReview is present in the DB
+            Optional<SubjectReview> subjectReview = subjectReviewRepository.findById(subjectReviewId);
+            assertTrue(subjectReview.isPresent());
+
+            mockMvc.perform(delete("/api/v1/reviews/" + subjectReview.get().getId()).with(csrf()))
                     .andExpect(status().isNoContent());
+
+            // Check that after the DELETE request the subjectReview is no longer present in the DB
+            assertEquals(Optional.empty(), subjectReviewRepository.findById(subjectReview.get().getId()));
         }
 
         @AfterEach

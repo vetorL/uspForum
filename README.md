@@ -13,7 +13,6 @@ A forum for USP
 
 ### Optimizations
 - query results based on derived value (specifically votes associated with subject-review for ordering)
-- solve code redundancy in subject-review form
 - restrict number of login attempts and create throttling delays
 
 ### Brainstorming
@@ -25,7 +24,7 @@ A forum for USP
 - add section of the website for all advertised products
 
 ### Just work
-- subject file tab
+- subject file tab (Provas, Trabalhos & Listas)
 - pagination of subject reviews
 - image logo
 - add modal for review substitution confirmation
@@ -37,3 +36,4 @@ A forum for USP
 - create problem reporting page
 - fix subject creation
 - add report review option
+- option modals in profile

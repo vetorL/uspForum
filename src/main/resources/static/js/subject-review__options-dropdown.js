@@ -88,11 +88,6 @@ Array.from(modalCancelButtons).forEach(element => element.addEventListener("clic
 
 // Listen for "submit" event triggering from the deletion modal
 document.getElementById("deleteReviewModalForm").addEventListener("submit", event => {
-    sendDeleteHttpRequest(event);
-});
-
-// Sends a DELETE http request and if response OK calls onSuccessfulReviewDeletion
-function sendDeleteHttpRequest(event) {
     event.preventDefault();
 
     const formData = new FormData(event.target);
@@ -103,6 +98,11 @@ function sendDeleteHttpRequest(event) {
 
     const associatedReviewId = formData.get("reviewId");
 
+    sendDeleteHttpRequest(event, associatedReviewId);
+});
+
+// Sends a DELETE http request and if response OK calls onSuccessfulReviewDeletion
+function sendDeleteHttpRequest(event, associatedReviewId) {
     const csrfToken = document.querySelector('meta[name="_csrf"]').getAttribute('content');
     const csrfHeader = document.querySelector('meta[name="_csrf_header"]').getAttribute('content');
 

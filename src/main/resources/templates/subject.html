@@ -78,17 +78,18 @@
                         <form id="editReviewModalForm" th:action="@{/api/v1/reviews}">
                             <label>
                                 Título: <br/>
-                                <input class="review-title" type="text" name="title">
+                                <input id="edit-review__title-input" class="review-title" type="text" name="title">
                                 <span class="subject-review-form__character-counter">0/50</span>
                             </label>
                             <label>
                                 Conteúdo: <br/>
-                                <textarea class="review-content" name="content" rows="10"></textarea>
+                                <textarea id="edit-review__content-input" class="review-content" name="content"
+                                          rows="10"></textarea>
                                 <span class="subject-review-form__character-counter">0/1000</span>
                             </label>
                             <label>
                                 Recomendação: <br/>
-                                <select name="recommendation" required>
+                                <select name="recommendation" required id="edit-review__recommendation-input">
                                     <option disabled>--- Escolha uma opção ---</option>
                                     <option value="Recomendo">Recomendo</option>
                                     <option value="Neutro">Neutro</option>

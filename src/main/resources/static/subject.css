@@ -32,3 +32,8 @@
     color: gray;
     float: right;
 }
+
+#editReviewModalForm {
+    display: flex;
+    flex-direction: column;
+}

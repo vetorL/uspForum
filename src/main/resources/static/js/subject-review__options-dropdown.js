@@ -33,7 +33,7 @@ window.onclick = function(event) {
 }
 
 // Get the modal
-const modal = document.getElementById("myModal");
+const modal = document.getElementById("deleteReviewModal");
 
 // Get the buttons that open the modal
 let modalButtons = document.getElementsByClassName("subject-review__option");

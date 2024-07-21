@@ -22,13 +22,15 @@ public class SubjectReviewController {
 
     @PutMapping
     @ResponseBody
-    public ResponseEntity<SubjectReviewResponse> update(@PathVariable("id") long id, @RequestBody SubjectReviewDTO subjectReviewDTO,
-                                    @AuthenticationPrincipal CustomUser author) {
+    public ResponseEntity<SubjectReviewResponse> update(@PathVariable("id") long id,
+                                                        @RequestBody SubjectReviewDTO subjectReviewDTO,
+                                                        @AuthenticationPrincipal CustomUser author) {
 
         SubjectReview oldSubjectReview = subjectReviewService.findById(id);
         SubjectReview newSubjectReview = subjectReviewDTO.toSubjectReview(author, oldSubjectReview.getSubject());
 
-        SubjectReviewResponse subjectReviewResponse = subjectReviewService.deleteAndCreate(oldSubjectReview, newSubjectReview);
+        SubjectReviewResponse subjectReviewResponse =
+                subjectReviewService.deleteAndCreate(oldSubjectReview, newSubjectReview);
 
         return new ResponseEntity<SubjectReviewResponse>(subjectReviewResponse, HttpStatus.CREATED);
     }

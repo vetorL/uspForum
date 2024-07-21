@@ -3,6 +3,7 @@ package com.example.uspForum.controller;
 import com.example.uspForum.model.CustomUser;
 import com.example.uspForum.model.SubjectReview;
 import com.example.uspForum.model.SubjectReviewDTO;
+import com.example.uspForum.model.SubjectReviewResponse;
 import com.example.uspForum.service.SubjectReviewService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,15 +21,16 @@ public class SubjectReviewController {
     }
 
     @PutMapping
-    public ResponseEntity<?> update(@PathVariable("id") long id, @RequestBody SubjectReviewDTO subjectReviewDTO,
+    @ResponseBody
+    public ResponseEntity<SubjectReviewResponse> update(@PathVariable("id") long id, @RequestBody SubjectReviewDTO subjectReviewDTO,
                                     @AuthenticationPrincipal CustomUser author) {
 
         SubjectReview oldSubjectReview = subjectReviewService.findById(id);
         SubjectReview newSubjectReview = subjectReviewDTO.toSubjectReview(author, oldSubjectReview.getSubject());
 
-        subjectReviewService.deleteAndCreate(oldSubjectReview, newSubjectReview);
+        SubjectReviewResponse subjectReviewResponse = subjectReviewService.deleteAndCreate(oldSubjectReview, newSubjectReview);
 
-        return new ResponseEntity<>(HttpStatus.CREATED);
+        return new ResponseEntity<SubjectReviewResponse>(subjectReviewResponse, HttpStatus.CREATED);
     }
 
     @DeleteMapping

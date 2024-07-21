@@ -3,10 +3,12 @@ package com.example.uspForum;
 import com.example.uspForum.controller.SubjectReviewController;
 import com.example.uspForum.model.*;
 import com.example.uspForum.repository.*;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.ServletContext;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.mock.web.MockServletContext;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.test.context.support.WithAnonymousUser;
@@ -16,14 +18,18 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
 import java.util.Optional;
 
+import static com.example.uspForum.model.Mapper.toJson;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @ExtendWith(SpringExtension.class)
@@ -51,6 +57,9 @@ public class SubjectReviewControllerIntegrationTest {
 
     @Autowired
     private ProfessorRepository professorRepository;
+
+    @Autowired
+    private ObjectMapper objectMapper;
 
     private MockMvc mockMvc;
 
@@ -157,6 +166,41 @@ public class SubjectReviewControllerIntegrationTest {
 
             // Check that after the DELETE request the subjectReview is still present in the DB
             assertTrue(subjectReviewRepository.findById(subjectReview.get().getId()).isPresent());
+        }
+
+        @Test
+        @DirtiesContext
+        @WithMockUser(username = "test")
+        @DisplayName("Test that the review gets edited when user who made the PUT request is the author.")
+        void editSuccessfulWhenUserIsAuthor() throws Exception {
+            long subjectReviewId = 1L;
+            SubjectReviewDTO subjectReviewDTO = new SubjectReviewDTO("Edited Title", "Edited Content",
+                    "Neutro");
+
+            // Check that before the PUT request the subjectReview is present in the DB
+            Optional<SubjectReview> oldSubjectReview = subjectReviewRepository.findById(subjectReviewId);
+            assertTrue(oldSubjectReview.isPresent());
+
+            MvcResult result = mockMvc.perform(put("/api/v1/reviews/" + oldSubjectReview.get().getId())
+                            .contentType(MediaType.APPLICATION_JSON)
+                            .content(toJson(subjectReviewDTO))
+                            .with(csrf())
+                    )
+                    .andExpect(status().isCreated())
+                    .andExpect(content().json("{'title': 'Edited Title', 'content': 'Edited Content', " +
+                            "'recommendation': 'Neutro'}"))
+                    .andReturn();
+
+            String responseBody = result.getResponse().getContentAsString();
+            SubjectReviewResponse subjectReviewResponse =
+                    objectMapper.readValue(responseBody, SubjectReviewResponse.class);
+
+            // Check that after the PUT request the new subject review is present in the DB
+            Optional<SubjectReview> newSubjectReview = subjectReviewRepository.findById(subjectReviewResponse.getId());
+            assertTrue(newSubjectReview.isPresent());
+
+            // Check that after the PUT request the old subject review is no longer present in the DB
+            assertEquals(Optional.empty(), subjectReviewRepository.findById(oldSubjectReview.get().getId()));
         }
 
         @AfterEach

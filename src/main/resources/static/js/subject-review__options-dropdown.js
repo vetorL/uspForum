@@ -167,7 +167,8 @@ function sendPutHttpRequest(formData, associatedReviewId) {
         // Close modals and dropdowns
         onSuccessfulRequest(associatedReviewId);
 
-        console.log(data);
+        // Reload the page
+        location.reload();
     });
 }
 

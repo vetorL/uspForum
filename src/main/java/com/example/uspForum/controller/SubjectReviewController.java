@@ -1,7 +1,6 @@
 package com.example.uspForum.controller;
 
 import com.example.uspForum.model.CustomUser;
-import com.example.uspForum.model.Subject;
 import com.example.uspForum.model.SubjectReview;
 import com.example.uspForum.model.SubjectReviewDTO;
 import com.example.uspForum.service.SubjectReviewService;
@@ -24,11 +23,10 @@ public class SubjectReviewController {
     public ResponseEntity<?> update(@PathVariable("id") long id, @RequestBody SubjectReviewDTO subjectReviewDTO,
                                     @AuthenticationPrincipal CustomUser author) {
 
-        SubjectReview subjectReview = subjectReviewService.findById(id);
-        Subject subject = subjectReview.getSubject();
+        SubjectReview oldSubjectReview = subjectReviewService.findById(id);
+        SubjectReview newSubjectReview = subjectReviewDTO.toSubjectReview(author, oldSubjectReview.getSubject());
 
-        subjectReviewService.delete(subjectReview);
-        subjectReviewService.create(subjectReviewDTO.toSubjectReview(author, subject));
+        subjectReviewService.deleteAndCreate(oldSubjectReview, newSubjectReview);
 
         return new ResponseEntity<>(HttpStatus.CREATED);
     }

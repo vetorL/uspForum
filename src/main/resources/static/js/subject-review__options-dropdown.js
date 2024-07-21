@@ -109,8 +109,7 @@ document.getElementById("editReviewModalForm").addEventListener("submit", event 
 
     const associatedReviewId = formData.get("reviewId");
 
-    sendDeleteHttpRequest(event, associatedReviewId);
-    sendPostHttpRequest(formData, associatedReviewId);
+    sendPutHttpRequest(formData, associatedReviewId);
 });
 
 // Sends a DELETE http request and if response OK calls onSuccessfulReviewDeletion
@@ -139,7 +138,7 @@ function sendDeleteHttpRequest(event, associatedReviewId) {
 }
 
 // Send a POST http request for posting a subject review
-function sendPostHttpRequest(formData, associatedReviewId) {
+function sendPutHttpRequest(formData, associatedReviewId) {
     const csrfToken = document.querySelector('meta[name="_csrf"]').getAttribute('content');
     const csrfHeader = document.querySelector('meta[name="_csrf_header"]').getAttribute('content');
 
@@ -152,7 +151,7 @@ function sendPostHttpRequest(formData, associatedReviewId) {
     }
 
     fetch(url, {
-        method: 'POST',
+        method: 'PUT',
         credentials: 'include',
         headers: {
             [csrfHeader]: csrfToken,

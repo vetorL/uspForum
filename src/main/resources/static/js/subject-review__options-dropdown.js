@@ -101,6 +101,18 @@ document.getElementById("deleteReviewModalForm").addEventListener("submit", even
     sendDeleteHttpRequest(event, associatedReviewId);
 });
 
+// Listen for "submit" event triggering from the edit modal
+document.getElementById("editReviewModalForm").addEventListener("submit", event => {
+    event.preventDefault();
+
+    const formData = new FormData(event.target);
+
+    const associatedReviewId = formData.get("reviewId");
+
+    sendDeleteHttpRequest(event, associatedReviewId);
+    sendPostHttpRequest(formData, associatedReviewId);
+});
+
 // Sends a DELETE http request and if response OK calls onSuccessfulReviewDeletion
 function sendDeleteHttpRequest(event, associatedReviewId) {
     const csrfToken = document.querySelector('meta[name="_csrf"]').getAttribute('content');
@@ -122,6 +134,35 @@ function sendDeleteHttpRequest(event, associatedReviewId) {
 
             // Remove subject-review fragment
             document.getElementById("subject-review-" + associatedReviewId).remove();
+        }
+    });
+}
+
+// Send a POST http request for posting a subject review
+function sendPostHttpRequest(formData, associatedReviewId) {
+    const csrfToken = document.querySelector('meta[name="_csrf"]').getAttribute('content');
+    const csrfHeader = document.querySelector('meta[name="_csrf_header"]').getAttribute('content');
+
+    const url = 'http://localhost:8080/api/v1/reviews/' + associatedReviewId;
+
+    const subjectReviewDTO = {
+        title: formData.get("title"),
+        content: formData.get("content"),
+        recommendation: formData.get("recommendation")
+    }
+
+    fetch(url, {
+        method: 'POST',
+        credentials: 'include',
+        headers: {
+            [csrfHeader]: csrfToken,
+            'charset': 'UTF-8',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(subjectReviewDTO)
+    }).then(response => {
+        if (response.ok) {
+            console.log(response);
         }
     });
 }

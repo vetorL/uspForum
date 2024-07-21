@@ -3,7 +3,7 @@ package com.example.uspForum;
 import com.example.uspForum.config.SecurityConfig;
 import com.example.uspForum.controller.SubjectReviewController;
 import com.example.uspForum.exception.NotFoundException;
-import com.example.uspForum.model.SubjectReview;
+import com.example.uspForum.model.*;
 import com.example.uspForum.service.CustomUserService;
 import com.example.uspForum.service.SubjectReviewService;
 import org.junit.jupiter.api.DisplayName;
@@ -12,9 +12,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.Import;
+import org.springframework.http.MediaType;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 
+import static com.example.uspForum.model.Mapper.toJson;
 import static org.mockito.Mockito.*;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
@@ -116,6 +118,31 @@ public class SubjectReviewControllerUnitTests {
                 .andExpect(status().isForbidden());
 
         verifyNoInteractions(subjectReviewService);
+    }
+
+    @Test
+    @WithMockUser
+    @DisplayName("Test editing when user authenticated (happy flow)")
+    void testEditingWhenAuthenticatedHappyFlow() throws Exception {
+        long subjectReviewId = 1L;
+        SubjectReviewDTO subjectReviewDTO = new SubjectReviewDTO("title", "content",
+                "recommendation");
+
+        when(subjectReviewService.findById(subjectReviewId))
+                .thenReturn(new SubjectReview());
+        when(subjectReviewService.deleteAndCreate(any(SubjectReview.class), any(SubjectReview.class)))
+                .thenReturn(new SubjectReviewResponse());
+
+        mockMvc.perform(put("/api/v1/reviews/" + subjectReviewId)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(toJson(subjectReviewDTO))
+                        .with(csrf())
+                )
+                .andExpect(status().isCreated());
+
+        verify(subjectReviewService).findById(anyLong());
+        verify(subjectReviewService).deleteAndCreate(any(SubjectReview.class), any(SubjectReview.class));
+        verifyNoMoreInteractions(subjectReviewService);
     }
 
 }

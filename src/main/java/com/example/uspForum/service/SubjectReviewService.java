@@ -8,6 +8,7 @@ import com.example.uspForum.repository.SubjectReviewRepository;
 import com.example.uspForum.repository.VoteRepository;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class SubjectReviewService {
@@ -18,6 +19,12 @@ public class SubjectReviewService {
     public SubjectReviewService(SubjectReviewRepository subjectReviewRepository, VoteRepository voteRepository) {
         this.subjectReviewRepository = subjectReviewRepository;
         this.voteRepository = voteRepository;
+    }
+
+    @Transactional
+    public void deleteAndCreate(SubjectReview oldSubjectReview, SubjectReview newSubjectReview) {
+        subjectReviewRepository.delete(oldSubjectReview);
+        subjectReviewRepository.save(newSubjectReview);
     }
 
     @PreAuthorize("#subjectReview.author.username == authentication.principal.username")

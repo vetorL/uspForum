@@ -22,6 +22,7 @@ public class SubjectReviewService {
         this.voteRepository = voteRepository;
     }
 
+    @PreAuthorize("#oldSubjectReview.author.username == authentication.principal.username")
     @Transactional
     public SubjectReviewResponse deleteAndCreate(SubjectReview oldSubjectReview, SubjectReview newSubjectReview) {
         subjectReviewRepository.delete(oldSubjectReview);

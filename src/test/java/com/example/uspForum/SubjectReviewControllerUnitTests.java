@@ -105,4 +105,17 @@ public class SubjectReviewControllerUnitTests {
         verifyNoInteractions(subjectReviewService);
     }
 
+    @Test
+    @WithMockUser
+    @DisplayName("Test editing when user authenticated, but wrong csrf")
+    void testEditingWhenNoCsrf() throws Exception {
+
+        long subjectReviewId = 1L;
+
+        mockMvc.perform(put("/api/v1/reviews/" + subjectReviewId).with(csrf().useInvalidToken()))
+                .andExpect(status().isForbidden());
+
+        verifyNoInteractions(subjectReviewService);
+    }
+
 }

@@ -5,6 +5,7 @@ import com.example.uspForum.model.SubjectReview;
 import com.example.uspForum.model.SubjectReviewDTO;
 import com.example.uspForum.model.SubjectReviewResponse;
 import com.example.uspForum.service.SubjectReviewService;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -23,7 +24,7 @@ public class SubjectReviewController {
     @PutMapping
     @ResponseBody
     public ResponseEntity<SubjectReviewResponse> update(@PathVariable("id") long id,
-                                                        @RequestBody SubjectReviewDTO subjectReviewDTO,
+                                                        @Valid @RequestBody SubjectReviewDTO subjectReviewDTO,
                                                         @AuthenticationPrincipal CustomUser author) {
 
         SubjectReview oldSubjectReview = subjectReviewService.findById(id);

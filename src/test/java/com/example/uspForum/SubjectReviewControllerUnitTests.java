@@ -18,6 +18,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import static org.mockito.Mockito.*;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrl;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -89,6 +90,19 @@ public class SubjectReviewControllerUnitTests {
                 .andExpect(status().isNotFound());
 
         verify(subjectReviewService, never()).delete(any());
+    }
+
+    @Test
+    @DisplayName("Test editing when user unauthenticated")
+    void testEditingWhenUserUnauthenticated() throws Exception {
+
+        long subjectReviewId = 1L;
+
+        mockMvc.perform(put("/api/v1/reviews/" + subjectReviewId).with(csrf()))
+                .andExpect(status().is3xxRedirection())
+                .andExpect(redirectedUrl("http://localhost/login"));
+
+        verifyNoInteractions(subjectReviewService);
     }
 
 }

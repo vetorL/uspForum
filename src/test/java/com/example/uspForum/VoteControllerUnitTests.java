@@ -3,6 +3,7 @@ package com.example.uspForum;
 import com.example.uspForum.controller.VoteController;
 import com.example.uspForum.model.*;
 import com.example.uspForum.service.SubjectReviewService;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +13,6 @@ import org.springframework.http.MediaType;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 
-import static com.example.uspForum.model.Mapper.toJson;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
@@ -25,6 +25,9 @@ public class VoteControllerUnitTests {
 
     @Autowired
     private MockMvc mockMvc;
+
+    @Autowired
+    private ObjectMapper objectMapper;
 
     @MockBean
     private SubjectReviewService subjectReviewService;
@@ -42,7 +45,7 @@ public class VoteControllerUnitTests {
 
         mockMvc.perform(post("/disciplina/votar")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(toJson(voteDTO))
+                .content(objectMapper.writeValueAsString(voteDTO))
                 .with(csrf()))
                 .andExpect(status().isOk());
     }
@@ -54,7 +57,7 @@ public class VoteControllerUnitTests {
 
         mockMvc.perform(post("/disciplina/votar")
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content(toJson(voteDTO))
+                        .content(objectMapper.writeValueAsString(voteDTO))
                         .with(csrf()))
                         .andExpect(status().isUnauthorized());
     }
@@ -80,7 +83,7 @@ public class VoteControllerUnitTests {
         // Make POST request
         mockMvc.perform(post("/disciplina/votar")
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content(toJson(voteDTO))
+                        .content(objectMapper.writeValueAsString(voteDTO))
                         .with(csrf()))
                 .andExpect(status().isOk());
 
@@ -124,7 +127,7 @@ public class VoteControllerUnitTests {
         // Make POST request
         mockMvc.perform(post("/disciplina/votar")
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content(toJson(voteDTO))
+                        .content(objectMapper.writeValueAsString(voteDTO))
                         .with(csrf()))
                 .andExpect(status().isOk());
 
@@ -174,7 +177,7 @@ public class VoteControllerUnitTests {
         // Make POST request
         mockMvc.perform(post("/disciplina/votar")
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content(toJson(voteDTO))
+                        .content(objectMapper.writeValueAsString(voteDTO))
                         .with(csrf()))
                 .andExpect(status().isOk());
 
@@ -227,7 +230,7 @@ public class VoteControllerUnitTests {
         // Make POST request
         mockMvc.perform(post("/disciplina/votar")
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content(toJson(voteDTO))
+                        .content(objectMapper.writeValueAsString(voteDTO))
                         .with(csrf()))
                 .andExpect(status().isOk());
 
@@ -280,7 +283,7 @@ public class VoteControllerUnitTests {
         // Make POST request
         mockMvc.perform(post("/disciplina/votar")
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content(toJson(voteDTO))
+                        .content(objectMapper.writeValueAsString(voteDTO))
                         .with(csrf()))
                 .andExpect(status().isOk());
 
@@ -336,7 +339,7 @@ public class VoteControllerUnitTests {
         // Make POST request
         mockMvc.perform(post("/disciplina/votar")
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content(toJson(voteDTO))
+                        .content(objectMapper.writeValueAsString(voteDTO))
                         .with(csrf()))
                 .andExpect(status().isOk());
 

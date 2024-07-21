@@ -6,6 +6,7 @@ import com.example.uspForum.exception.NotFoundException;
 import com.example.uspForum.model.*;
 import com.example.uspForum.service.CustomUserService;
 import com.example.uspForum.service.SubjectReviewService;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +17,6 @@ import org.springframework.http.MediaType;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 
-import static com.example.uspForum.model.Mapper.toJson;
 import static org.mockito.Mockito.*;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
@@ -30,6 +30,9 @@ public class SubjectReviewControllerUnitTests {
 
     @Autowired
     private MockMvc mockMvc;
+
+    @Autowired
+    private ObjectMapper objectMapper;
 
     @MockBean
     private SubjectReviewService subjectReviewService;
@@ -135,7 +138,7 @@ public class SubjectReviewControllerUnitTests {
 
         mockMvc.perform(put("/api/v1/reviews/" + subjectReviewId)
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content(toJson(subjectReviewDTO))
+                        .content(objectMapper.writeValueAsString(subjectReviewDTO))
                         .with(csrf())
                 )
                 .andExpect(status().isCreated());
@@ -157,7 +160,7 @@ public class SubjectReviewControllerUnitTests {
 
         mockMvc.perform(put("/api/v1/reviews/" + subjectReviewId)
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content(toJson(subjectReviewDTO))
+                        .content(objectMapper.writeValueAsString(subjectReviewDTO))
                         .with(csrf())
                 )
                 .andExpect(status().isNotFound());

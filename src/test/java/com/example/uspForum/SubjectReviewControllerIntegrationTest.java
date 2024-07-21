@@ -24,7 +24,6 @@ import org.springframework.web.context.WebApplicationContext;
 
 import java.util.Optional;
 
-import static com.example.uspForum.model.Mapper.toJson;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
@@ -183,7 +182,7 @@ public class SubjectReviewControllerIntegrationTest {
 
             MvcResult result = mockMvc.perform(put("/api/v1/reviews/" + oldSubjectReview.get().getId())
                             .contentType(MediaType.APPLICATION_JSON)
-                            .content(toJson(subjectReviewDTO))
+                            .content(objectMapper.writeValueAsString(subjectReviewDTO))
                             .with(csrf())
                     )
                     .andExpect(status().isCreated())

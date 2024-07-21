@@ -126,7 +126,7 @@ public class SubjectReviewControllerUnitTests {
     void testEditingWhenAuthenticatedHappyFlow() throws Exception {
         long subjectReviewId = 1L;
         SubjectReviewDTO subjectReviewDTO = new SubjectReviewDTO("title", "content",
-                "recommendation");
+                "Neutro");
 
         when(subjectReviewService.findById(subjectReviewId))
                 .thenReturn(new SubjectReview());

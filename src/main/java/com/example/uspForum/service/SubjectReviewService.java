@@ -3,6 +3,7 @@ package com.example.uspForum.service;
 import com.example.uspForum.exception.NotFoundException;
 import com.example.uspForum.model.CustomUser;
 import com.example.uspForum.model.SubjectReview;
+import com.example.uspForum.model.SubjectReviewResponse;
 import com.example.uspForum.model.Vote;
 import com.example.uspForum.repository.SubjectReviewRepository;
 import com.example.uspForum.repository.VoteRepository;
@@ -22,9 +23,10 @@ public class SubjectReviewService {
     }
 
     @Transactional
-    public void deleteAndCreate(SubjectReview oldSubjectReview, SubjectReview newSubjectReview) {
+    public SubjectReviewResponse deleteAndCreate(SubjectReview oldSubjectReview, SubjectReview newSubjectReview) {
         subjectReviewRepository.delete(oldSubjectReview);
-        subjectReviewRepository.save(newSubjectReview);
+        SubjectReview updatedSubjectReview = subjectReviewRepository.save(newSubjectReview);
+        return SubjectReviewResponse.fromSubjectReview(updatedSubjectReview);
     }
 
     @PreAuthorize("#subjectReview.author.username == authentication.principal.username")

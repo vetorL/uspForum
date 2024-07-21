@@ -145,4 +145,25 @@ public class SubjectReviewControllerUnitTests {
         verifyNoMoreInteractions(subjectReviewService);
     }
 
+    @Test
+    @WithMockUser
+    @DisplayName("Test editing when user authenticated, but review not found")
+    void testEditingWhenAuthenticatedButReviewNotFound() throws Exception {
+        long subjectReviewId = 1L;
+        SubjectReviewDTO subjectReviewDTO = new SubjectReviewDTO("title", "content",
+                "Neutro");
+
+        when(subjectReviewService.findById(subjectReviewId)).thenThrow(NotFoundException.class);
+
+        mockMvc.perform(put("/api/v1/reviews/" + subjectReviewId)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(toJson(subjectReviewDTO))
+                        .with(csrf())
+                )
+                .andExpect(status().isNotFound());
+
+        verify(subjectReviewService, times(1)).findById(anyLong());
+        verifyNoMoreInteractions(subjectReviewService);
+    }
+
 }

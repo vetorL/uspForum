@@ -1,5 +1,6 @@
 package com.example.uspForum.model;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -13,6 +14,14 @@ public class Mapper {
                 course,
                 professor
         );
+    }
+
+    public static String toJson(final Object obj) {
+        try {
+            return new ObjectMapper().writeValueAsString(obj);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
 }

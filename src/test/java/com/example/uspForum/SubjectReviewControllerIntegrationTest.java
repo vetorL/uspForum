@@ -202,6 +202,35 @@ public class SubjectReviewControllerIntegrationTest {
             assertEquals(Optional.empty(), subjectReviewRepository.findById(oldSubjectReview.get().getId()));
         }
 
+        @Test
+        @DirtiesContext
+        @WithMockUser(username = "notTheAuthor")
+        @DisplayName("Test that the review does not get edited when the " +
+                "user who made the PUT request is not the author.")
+        void editFailWhenUserNotAuthor() throws Exception {
+            long subjectReviewId = 1L;
+            SubjectReviewDTO subjectReviewDTO = new SubjectReviewDTO("Edited Title", "Edited Content",
+                    "Neutro");
+
+            // Check that before the PUT request the subjectReview is present in the DB
+            Optional<SubjectReview> subjectReview = subjectReviewRepository.findById(subjectReviewId);
+            assertTrue(subjectReview.isPresent());
+
+            try {
+                mockMvc.perform(put("/api/v1/reviews/" + subjectReview.get().getId())
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(subjectReviewDTO))
+                        .with(csrf())
+                );
+            } catch (Exception e) {
+                assertInstanceOf(AccessDeniedException.class, e.getCause());
+            }
+
+            // Check that after the PUT request the subject review is still present in the DB
+            assertTrue(subjectReviewRepository.findById(subjectReview.get().getId()).isPresent());
+
+        }
+
         @AfterEach
         void clearDB() {
             // The calling order of deleteAll in these repositories is important because of referential constraint

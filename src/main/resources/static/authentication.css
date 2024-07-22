@@ -3,3 +3,17 @@
     flex-direction: column;
     gap: 1rem;
 }
+
+.password-visibility-toggle-button {
+    all: unset;
+    cursor: pointer;
+}
+
+#authentication-form > label > span {
+    display: flex;
+    gap: 0.2rem;
+}
+
+.password-visibility-off {
+    display: none;
+}

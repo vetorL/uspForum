@@ -231,6 +231,39 @@ public class SubjectReviewControllerIntegrationTest {
 
         }
 
+        @Test
+        @DirtiesContext
+        @WithAnonymousUser
+        @DisplayName("Test that the review does not get edited when an " +
+                "anonymous user makes the PUT request.")
+        void editFailWhenUserAnonymous() throws Exception {
+            long subjectReviewId = 1L;
+            SubjectReviewDTO subjectReviewDTO = new SubjectReviewDTO("Edited Title", "Edited Content",
+                    "Neutro");
+
+            // Check that before the PUT request the subjectReview is present in the DB
+            Optional<SubjectReview> subjectReview = subjectReviewRepository.findById(subjectReviewId);
+            assertTrue(subjectReview.isPresent());
+
+            // NOTE: this test class is not configured with SecurityConfig, thus it does not block the request at the
+            // controller level. What happens is that when the controller delegates to the service layer the
+            // @PreAuthorize tries to access the authentication principal and fails, because it does not exist for
+            // an anonymous user, and so the deleteAndCreate method does not get executed, leading to a double layer of
+            // protection.
+            try {
+                mockMvc.perform(put("/api/v1/reviews/" + subjectReview.get().getId())
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(subjectReviewDTO))
+                        .with(csrf())
+                );
+            } catch (Exception e) {
+                assertInstanceOf(IllegalArgumentException.class, e.getCause());
+            }
+
+            // Check that after the PUT request the subject review is still present in the DB
+            assertTrue(subjectReviewRepository.findById(subjectReview.get().getId()).isPresent());
+        }
+
         @AfterEach
         void clearDB() {
             // The calling order of deleteAll in these repositories is important because of referential constraint

@@ -116,7 +116,7 @@
     padding: 2px 16px;
 }
 
-#delete-insurance {
+#delete-insurance, #edit-insurance {
     width: 8rem;
 }
 

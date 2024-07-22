@@ -10,11 +10,13 @@
         <form action="/busca" method="get" id="search-form">
             <div id="search">
                 <select name="t" id="search-type">
-                    <option value="geral">Pesquisa geral</option>
-                    <option value="nome-da-disciplina">Nome da Disciplina</option>
-                    <option value="professor">Professor</option>
-                    <option value="abreviacao-da-disciplina">Abreviação da Disciplina</option>
-                    <option value="codigo-da-disciplina">Código da Disciplina</option>
+                    <optgroup label="Tipo de pesquisa">
+                        <option value="geral">Pesquisa geral</option>
+                        <option value="nome-da-disciplina">Nome da Disciplina</option>
+                        <option value="professor">Professor</option>
+                        <option value="abreviacao-da-disciplina">Abreviação da Disciplina</option>
+                        <option value="codigo-da-disciplina">Código da Disciplina</option>
+                    </optgroup>
                 </select>
 
                 <div id="search-main">

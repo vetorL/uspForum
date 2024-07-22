@@ -107,6 +107,10 @@ document.getElementById("editReviewModalForm").addEventListener("submit", event 
 
     const formData = new FormData(event.target);
 
+    if(formData.get("insurance") !== "editar") {
+        return;
+    }
+
     const associatedReviewId = formData.get("reviewId");
 
     sendPutHttpRequest(formData, associatedReviewId);

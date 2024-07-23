@@ -87,13 +87,14 @@
                         <form id="editReviewModalForm" th:action="@{/api/v1/reviews}">
                             <label>
                                 Título: <br/>
-                                <input id="edit-review__title-input" class="review-title" type="text" name="title">
+                                <input id="edit-review__title-input" class="review-title" type="text" name="title"
+                                       required>
                                 <span class="subject-review-form__character-counter">0/50</span>
                             </label>
                             <label>
                                 Conteúdo: <br/>
                                 <textarea id="edit-review__content-input" class="review-content" name="content"
-                                          rows="10"></textarea>
+                                          rows="10" required></textarea>
                                 <span class="subject-review-form__character-counter">0/1000</span>
                             </label>
                             <label>
@@ -110,7 +111,8 @@
                                 <label>
                                     Digite "editar" (sem as aspas) no campo abaixo e pressione <b>Confirmar</b> para
                                     editar a review. <br/>
-                                    <input id="edit-insurance" name="insurance" type="text" placeholder="editar" required>
+                                    <input id="edit-insurance" name="insurance" type="text" placeholder="editar"
+                                           required>
                                 </label>
                                 <button class="modal-cancel" type="button">Cancelar</button>
                                 <button type="submit">Confirmar</button>

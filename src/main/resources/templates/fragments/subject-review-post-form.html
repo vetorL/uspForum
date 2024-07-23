@@ -13,18 +13,19 @@
             <legend>Contribua com sua própria review!</legend>
             <label>
                 Título: <br/>
-                <input id="subject-review-form__title-input" class="review-title" type="text" name="title">
+                <input id="subject-review-form__title-input" class="review-title" type="text" name="title" required>
                 <span class="subject-review-form__character-counter">0/50</span>
             </label>
             <label>
                 Conteúdo: <br/>
-                <textarea id="subject-review-form__content-input" class="review-content" name="content" rows="10"></textarea>
+                <textarea id="subject-review-form__content-input" class="review-content" name="content" rows="10"
+                            required></textarea>
                 <span class="subject-review-form__character-counter">0/1000</span>
             </label>
             <label>
                 Recomendação: <br/>
                 <select name="recommendation" required>
-                    <option selected disabled>--- Escolha uma opção ---</option>
+                    <option value="" selected disabled>--- Escolha uma opção ---</option>
                     <option value="Recomendo">Recomendo</option>
                     <option value="Neutro">Neutro</option>
                     <option value="Não recomendo">Não recomendo</option>

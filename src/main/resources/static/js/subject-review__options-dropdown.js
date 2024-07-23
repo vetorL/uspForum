@@ -142,7 +142,7 @@ function sendDeleteHttpRequest(event, associatedReviewId) {
     });
 }
 
-// Send a POST http request for posting a subject review
+// Send a PUT http request for editing a subject review
 function sendPutHttpRequest(formData, associatedReviewId) {
     const csrfToken = document.querySelector('meta[name="_csrf"]').getAttribute('content');
     const csrfHeader = document.querySelector('meta[name="_csrf_header"]').getAttribute('content');

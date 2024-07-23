@@ -1,5 +1,6 @@
 package com.example.uspForum.service;
 
+import com.example.uspForum.exception.NotFoundException;
 import com.example.uspForum.model.CustomUser;
 import com.example.uspForum.model.Subject;
 import com.example.uspForum.model.SubjectReview;
@@ -24,6 +25,10 @@ public class SubjectService {
 
     public Optional<Subject> findSubjectById(Long id) {
         return subjectRepository.findById(id);
+    }
+
+    public Subject findById(Long id) {
+        return subjectRepository.findById(id).orElseThrow(() -> new NotFoundException("Disciplina não encontrada"));
     }
 
     public void postSubjectReview(SubjectReview subjectReview) {

@@ -12,7 +12,7 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/v1/reviews")
+@RequestMapping("/api/v1")
 public class SubjectReviewController {
 
     private final SubjectReviewService subjectReviewService;
@@ -21,7 +21,7 @@ public class SubjectReviewController {
         this.subjectReviewService = subjectReviewService;
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/reviews/{id}")
     @ResponseBody
     public ResponseEntity<SubjectReviewResponse> update(@PathVariable("id") long id,
                                                         @Valid @RequestBody SubjectReviewDTO subjectReviewDTO,
@@ -36,7 +36,7 @@ public class SubjectReviewController {
         return new ResponseEntity<SubjectReviewResponse>(subjectReviewResponse, HttpStatus.CREATED);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/reviews/{id}")
     public ResponseEntity<?> delete(@PathVariable("id") long id) {
 
         SubjectReview subjectReview = subjectReviewService.findById(id);

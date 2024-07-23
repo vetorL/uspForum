@@ -1,5 +1,6 @@
 package com.example.uspForum;
 
+import com.example.uspForum.exception.NotFoundException;
 import com.example.uspForum.model.Subject;
 import com.example.uspForum.repository.SubjectRepository;
 import com.example.uspForum.service.SubjectService;
@@ -12,6 +13,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
@@ -31,6 +33,19 @@ public class SubjectServiceUnitTests {
         when(subjectRepository.findById(subjectId)).thenReturn(Optional.of(subject));
 
         assertEquals(subject, subjectService.findById(subjectId));
+
+        verify(subjectRepository, times(1)).findById(subjectId);
+        verifyNoMoreInteractions(subjectRepository);
+    }
+
+    @Test
+    void findByNonExistentIdThrowsNotFoundException() {
+        long subjectId = 1L;
+        Subject subject = new Subject();
+
+        when(subjectRepository.findById(subjectId)).thenReturn(Optional.empty());
+
+        assertThrows(NotFoundException.class, () -> subjectService.findById(subjectId));
 
         verify(subjectRepository, times(1)).findById(subjectId);
         verifyNoMoreInteractions(subjectRepository);

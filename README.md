@@ -22,18 +22,21 @@ A forum for USP
 - solve problem of Ciclo Basico (how many of them are out there that I don't know about?)
 - creation section of the website (for creating subjects, professors and courses)
 - add section of the website for all advertised products
+- enable user promoted ads in exchange for money (they can advertise parties, their own merchandise, etc)
 
 ### Just work
-- subject file tab (Provas, Trabalhos & Listas)
 - pagination of subject reviews
 - image logo
 - add modal for review substitution confirmation
 - profile configuration page (for changing username, profile picture, and toggling options)
 - validate review post request (controller and view)
-- edit subject-review (when edited reset vote count and delete associated votes, but do not update rep)
 - register user course
 - display user's course and campus
 - create problem reporting page
 - fix subject creation
 - add report review option
 - option modals in profile
+- make subject review deletion update rep
+- make subject review editing update rep
+- author subject unique constraint in subject review
+- associatedFiles field in subject

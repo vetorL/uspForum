@@ -133,10 +133,11 @@ function sendDeleteHttpRequest(event, associatedReviewId) {
         }
     }).then(response => {
         if (response.ok) {
+            // Close modals and dropdowns
             onSuccessfulRequest(associatedReviewId);
 
-            // Remove subject-review fragment
-            document.getElementById("subject-review-" + associatedReviewId).remove();
+            // Reload the page
+            location.reload();
         }
     });
 }

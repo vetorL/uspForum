@@ -23,10 +23,6 @@ public class SubjectService {
         this.subjectReviewRepository = subjectReviewRepository;
     }
 
-    public Optional<Subject> findSubjectById(Long id) {
-        return subjectRepository.findById(id);
-    }
-
     public Subject findById(Long id) {
         return subjectRepository.findById(id).orElseThrow(() -> new NotFoundException("Disciplina não encontrada"));
     }

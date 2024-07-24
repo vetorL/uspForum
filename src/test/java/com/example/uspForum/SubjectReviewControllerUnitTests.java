@@ -15,13 +15,13 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.Import;
 import org.springframework.http.MediaType;
+import org.springframework.security.test.context.support.WithAnonymousUser;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 
 import static org.mockito.Mockito.*;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrl;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -171,6 +171,24 @@ public class SubjectReviewControllerUnitTests {
 
         verify(subjectReviewService, times(1)).findById(anyLong());
         verifyNoMoreInteractions(subjectReviewService);
+    }
+
+    @Test
+    @WithAnonymousUser
+    @DisplayName("Test creating when user unauthenticated")
+    void createWhenUserUnauthenticatedFails() throws Exception {
+        long associatedSubjectId = 1L;
+        SubjectReviewDTO subjectReviewDTO = new SubjectReviewDTO("title", "content",
+                "Neutro");
+
+        mockMvc.perform(post("/api/v1/subject/" + associatedSubjectId + "/reviews")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(subjectReviewDTO))
+                        .with(csrf()))
+                .andExpect(status().is3xxRedirection())
+                .andExpect(redirectedUrl("http://localhost/login"));
+
+        verifyNoInteractions(subjectReviewService);
     }
 
 }

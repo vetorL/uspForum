@@ -208,4 +208,25 @@ public class SubjectReviewControllerUnitTests {
         verifyNoInteractions(subjectReviewService);
     }
 
+    @Test
+    @WithMockUser
+    @DisplayName("Test creating when user authenticated (happy flow)")
+    void creatingWhenAuthenticatedHappyFlow() throws Exception {
+        long associatedSubjectId = 1L;
+        SubjectReviewDTO subjectReviewDTO = new SubjectReviewDTO("title", "content",
+                "Neutro");
+
+        when(subjectService.findById(associatedSubjectId)).thenReturn(new Subject());
+
+        mockMvc.perform(post("/api/v1/subject/" + associatedSubjectId + "/reviews")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(subjectReviewDTO))
+                        .with(csrf()))
+                .andExpect(status().isCreated());
+
+        verify(subjectService, times(1)).findById(anyLong());
+        verify(subjectService, times(1)).postSubjectReview(any(SubjectReview.class));
+        verifyNoMoreInteractions(subjectService);
+    }
+
 }

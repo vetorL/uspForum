@@ -188,7 +188,7 @@ public class SubjectReviewControllerUnitTests {
                 .andExpect(status().is3xxRedirection())
                 .andExpect(redirectedUrl("http://localhost/login"));
 
-        verifyNoInteractions(subjectReviewService);
+        verifyNoInteractions(subjectService);
     }
 
     @Test

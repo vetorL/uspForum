@@ -18,6 +18,8 @@ import java.util.concurrent.TimeUnit;
 @Entity
 @RequiredArgsConstructor
 @NoArgsConstructor(force = true)
+@Table(uniqueConstraints = {@UniqueConstraint(name = "UniqueAuthorAndSubject",
+        columnNames = {"author_id", "subject_id"})})
 public class SubjectReview {
 
     @Id

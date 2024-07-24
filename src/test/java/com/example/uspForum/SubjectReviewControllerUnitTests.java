@@ -6,6 +6,7 @@ import com.example.uspForum.exception.NotFoundException;
 import com.example.uspForum.model.*;
 import com.example.uspForum.service.CustomUserService;
 import com.example.uspForum.service.SubjectReviewService;
+import com.example.uspForum.service.SubjectService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -33,6 +34,9 @@ public class SubjectReviewControllerUnitTests {
 
     @Autowired
     private ObjectMapper objectMapper;
+
+    @MockBean
+    private SubjectService subjectService;
 
     @MockBean
     private SubjectReviewService subjectReviewService;

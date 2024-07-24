@@ -191,4 +191,21 @@ public class SubjectReviewControllerUnitTests {
         verifyNoInteractions(subjectReviewService);
     }
 
+    @Test
+    @WithMockUser
+    @DisplayName("Test creating when user authenticated, but invalid csrf")
+    void creatingWhenInvalidCsrfFails() throws Exception {
+        long subjectReviewId = 1L;
+        SubjectReviewDTO subjectReviewDTO = new SubjectReviewDTO("title", "content",
+                "Neutro");
+
+        mockMvc.perform(post("/api/v1/reviews/" + subjectReviewId)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(subjectReviewDTO))
+                        .with(csrf().useInvalidToken()))
+                .andExpect(status().isForbidden());
+
+        verifyNoInteractions(subjectReviewService);
+    }
+
 }

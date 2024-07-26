@@ -170,36 +170,31 @@ public class SubjectReviewControllerIntegrationTest {
         @Test
         @DirtiesContext
         @WithMockUser(username = "test")
-        @DisplayName("Test that the review gets edited when user who made the PUT request is the author.")
+        @DisplayName("Test that the review gets edited when user who made the request is the author.")
         void editSuccessfulWhenUserIsAuthor() throws Exception {
             long subjectReviewId = 1L;
             SubjectReviewDTO subjectReviewDTO = new SubjectReviewDTO("Edited Title", "Edited Content",
                     "Neutro");
 
-            // Check that before the PUT request the subjectReview is present in the DB
+            // Check that before the request the subjectReview is present in the DB
             Optional<SubjectReview> oldSubjectReview = subjectReviewRepository.findById(subjectReviewId);
             assertTrue(oldSubjectReview.isPresent());
 
-            MvcResult result = mockMvc.perform(put("/api/v1/reviews/" + oldSubjectReview.get().getId())
+            // Perform request
+            mockMvc.perform(put("/api/v1/reviews/" + oldSubjectReview.get().getId())
                             .contentType(MediaType.APPLICATION_JSON)
                             .content(objectMapper.writeValueAsString(subjectReviewDTO))
                             .with(csrf())
                     )
                     .andExpect(status().isCreated())
-                    .andExpect(content().json("{'title': 'Edited Title', 'content': 'Edited Content', " +
-                            "'recommendation': 'Neutro'}"))
                     .andReturn();
 
-            String responseBody = result.getResponse().getContentAsString();
-            SubjectReviewResponse subjectReviewResponse =
-                    objectMapper.readValue(responseBody, SubjectReviewResponse.class);
-
-            // Check that after the PUT request the new subject review is present in the DB
-            Optional<SubjectReview> newSubjectReview = subjectReviewRepository.findById(subjectReviewResponse.getId());
-            assertTrue(newSubjectReview.isPresent());
-
-            // Check that after the PUT request the old subject review is no longer present in the DB
-            assertEquals(Optional.empty(), subjectReviewRepository.findById(oldSubjectReview.get().getId()));
+            // Check that the subjectReview has been updated
+            Optional<SubjectReview> updatedSubjectReview = subjectReviewRepository.findById(subjectReviewId);
+            assertTrue(updatedSubjectReview.isPresent());
+            assertEquals(subjectReviewDTO.getTitle(), updatedSubjectReview.get().getTitle());
+            assertEquals(subjectReviewDTO.getContent(), updatedSubjectReview.get().getContent());
+            assertEquals(subjectReviewDTO.getRecommendation(), updatedSubjectReview.get().getRecommendation());
         }
 
         @Test

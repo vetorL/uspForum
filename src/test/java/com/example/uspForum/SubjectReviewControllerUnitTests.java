@@ -135,10 +135,7 @@ public class SubjectReviewControllerUnitTests {
         SubjectReviewDTO subjectReviewDTO = new SubjectReviewDTO("title", "content",
                 "Neutro");
 
-        when(subjectReviewService.findById(subjectReviewId))
-                .thenReturn(new SubjectReview());
-        when(subjectReviewService.deleteAndCreate(any(SubjectReview.class), any(SubjectReview.class)))
-                .thenReturn(new SubjectReviewResponse());
+        when(subjectReviewService.findById(subjectReviewId)).thenReturn(new SubjectReview());
 
         mockMvc.perform(put("/api/v1/reviews/" + subjectReviewId)
                         .contentType(MediaType.APPLICATION_JSON)
@@ -148,7 +145,7 @@ public class SubjectReviewControllerUnitTests {
                 .andExpect(status().isCreated());
 
         verify(subjectReviewService).findById(anyLong());
-        verify(subjectReviewService).deleteAndCreate(any(SubjectReview.class), any(SubjectReview.class));
+        verify(subjectReviewService).update(any(SubjectReview.class), any(SubjectReviewDTO.class));
         verifyNoMoreInteractions(subjectReviewService);
     }
 

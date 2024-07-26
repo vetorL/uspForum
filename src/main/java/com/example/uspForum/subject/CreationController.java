@@ -2,7 +2,6 @@ package com.example.uspForum.subject;
 
 import com.example.uspForum.campus.Campus;
 import com.example.uspForum.course.Course;
-import com.example.uspForum.util.*;
 import com.example.uspForum.campus.CampusService;
 import com.example.uspForum.professor.Professor;
 import com.example.uspForum.course.CourseService;
@@ -20,14 +19,13 @@ public class CreationController {
 
     private final CreateSubjectService createSubjectService;
     private final CampusService campusService;
-    private final Mapper mapper;
     private final ProfessorService professorService;
     private final CourseService courseService;
 
-    public CreationController(CreateSubjectService createSubjectService, CampusService campusService, Mapper mapper, ProfessorService professorService, CourseService courseService) {
+    public CreationController(CreateSubjectService createSubjectService, CampusService campusService,
+                              ProfessorService professorService, CourseService courseService) {
         this.createSubjectService = createSubjectService;
         this.campusService = campusService;
-        this.mapper = mapper;
         this.professorService = professorService;
         this.courseService = courseService;
     }

@@ -20,6 +20,10 @@ public class SubjectService {
         this.subjectReviewRepository = subjectReviewRepository;
     }
 
+    public Subject create(Subject subject) {
+        return subjectRepository.save(subject);
+    }
+
     public Subject findById(Long id) {
         return subjectRepository.findById(id).orElseThrow(() -> new NotFoundException("Disciplina não encontrada"));
     }

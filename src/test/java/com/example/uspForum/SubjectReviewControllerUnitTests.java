@@ -1,13 +1,14 @@
 package com.example.uspForum;
 
 import com.example.uspForum.config.SecurityConfig;
-import com.example.uspForum.controller.SubjectReviewController;
-import com.example.uspForum.dto.SubjectReviewDTO;
+import com.example.uspForum.subjectReview.SubjectReviewController;
+import com.example.uspForum.subject.Subject;
+import com.example.uspForum.subjectReview.SubjectReview;
+import com.example.uspForum.subjectReview.SubjectReviewDTO;
 import com.example.uspForum.exception.NotFoundException;
-import com.example.uspForum.model.*;
-import com.example.uspForum.service.CustomUserService;
-import com.example.uspForum.service.SubjectReviewService;
-import com.example.uspForum.service.SubjectService;
+import com.example.uspForum.customUser.CustomUserService;
+import com.example.uspForum.subjectReview.SubjectReviewService;
+import com.example.uspForum.subject.SubjectService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

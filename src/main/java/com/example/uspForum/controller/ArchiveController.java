@@ -1,13 +1,13 @@
 package com.example.uspForum.controller;
 
-import com.example.uspForum.model.Course;
-import com.example.uspForum.model.Subject;
-import com.example.uspForum.dto.SubjectReviewDTO;
-import com.example.uspForum.dto.VoteDTO;
-import com.example.uspForum.service.CampusService;
-import com.example.uspForum.service.CourseService;
-import com.example.uspForum.service.ProfessorService;
-import com.example.uspForum.service.SubjectService;
+import com.example.uspForum.course.Course;
+import com.example.uspForum.subject.Subject;
+import com.example.uspForum.subjectReview.SubjectReviewDTO;
+import com.example.uspForum.vote.VoteDTO;
+import com.example.uspForum.campus.CampusService;
+import com.example.uspForum.course.CourseService;
+import com.example.uspForum.professor.ProfessorService;
+import com.example.uspForum.subject.SubjectService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;

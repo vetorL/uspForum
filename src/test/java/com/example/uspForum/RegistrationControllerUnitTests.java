@@ -1,9 +1,9 @@
 package com.example.uspForum;
 
 import com.example.uspForum.config.SecurityConfig;
-import com.example.uspForum.controller.RegistrationController;
-import com.example.uspForum.service.CampusService;
-import com.example.uspForum.service.CustomUserService;
+import com.example.uspForum.customUser.RegistrationController;
+import com.example.uspForum.campus.CampusService;
+import com.example.uspForum.customUser.CustomUserService;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;

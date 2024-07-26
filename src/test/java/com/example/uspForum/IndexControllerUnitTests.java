@@ -1,7 +1,7 @@
 package com.example.uspForum;
 
-import com.example.uspForum.model.CustomUser;
-import com.example.uspForum.service.CustomUserService;
+import com.example.uspForum.customUser.CustomUser;
+import com.example.uspForum.customUser.CustomUserService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;

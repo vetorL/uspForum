@@ -1,11 +1,11 @@
 package com.example.uspForum;
 
 import com.example.uspForum.config.SecurityConfig;
-import com.example.uspForum.controller.ProfileController;
+import com.example.uspForum.customUser.ProfileController;
 import com.example.uspForum.exception.CustomUserNotFoundException;
-import com.example.uspForum.model.Campus;
-import com.example.uspForum.model.CustomUser;
-import com.example.uspForum.service.CustomUserService;
+import com.example.uspForum.campus.Campus;
+import com.example.uspForum.customUser.CustomUser;
+import com.example.uspForum.customUser.CustomUserService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

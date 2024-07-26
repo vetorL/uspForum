@@ -1,15 +1,24 @@
 package com.example.uspForum.config;
 
-import com.example.uspForum.model.*;
-import com.example.uspForum.repository.*;
+import com.example.uspForum.campus.Campus;
+import com.example.uspForum.campus.CampusRepository;
+import com.example.uspForum.course.Course;
+import com.example.uspForum.course.CourseRepository;
+import com.example.uspForum.customUser.CustomUser;
+import com.example.uspForum.customUser.CustomUserRepository;
+import com.example.uspForum.professor.Professor;
+import com.example.uspForum.professor.ProfessorRepository;
+import com.example.uspForum.subject.Subject;
+import com.example.uspForum.subject.SubjectRepository;
+import com.example.uspForum.subjectReview.SubjectReview;
+import com.example.uspForum.subjectReview.SubjectReviewRepository;
+import com.example.uspForum.vote.Vote;
+import com.example.uspForum.vote.VoteRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 import org.springframework.security.crypto.password.PasswordEncoder;
-
-import java.util.ArrayList;
-import java.util.Arrays;
 
 @Profile("dev")
 @Configuration

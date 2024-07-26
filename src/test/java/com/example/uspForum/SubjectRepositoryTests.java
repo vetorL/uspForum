@@ -1,13 +1,13 @@
 package com.example.uspForum;
 
-import com.example.uspForum.model.Campus;
-import com.example.uspForum.model.Course;
-import com.example.uspForum.model.Professor;
-import com.example.uspForum.model.Subject;
-import com.example.uspForum.repository.CampusRepository;
-import com.example.uspForum.repository.CourseRepository;
-import com.example.uspForum.repository.ProfessorRepository;
-import com.example.uspForum.repository.SubjectRepository;
+import com.example.uspForum.campus.Campus;
+import com.example.uspForum.course.Course;
+import com.example.uspForum.professor.Professor;
+import com.example.uspForum.subject.Subject;
+import com.example.uspForum.campus.CampusRepository;
+import com.example.uspForum.course.CourseRepository;
+import com.example.uspForum.professor.ProfessorRepository;
+import com.example.uspForum.subject.SubjectRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,6 +1,6 @@
 package com.example.uspForum.config;
 
-import com.example.uspForum.service.CustomUserService;
+import com.example.uspForum.customUser.CustomUserService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;

@@ -2,11 +2,11 @@ package com.example.uspForum;
 
 import com.example.uspForum.config.SecurityConfig;
 import com.example.uspForum.controller.CollectionController;
-import com.example.uspForum.model.Course;
-import com.example.uspForum.model.Professor;
-import com.example.uspForum.model.Subject;
-import com.example.uspForum.service.CustomUserService;
-import com.example.uspForum.service.SubjectService;
+import com.example.uspForum.course.Course;
+import com.example.uspForum.professor.Professor;
+import com.example.uspForum.subject.Subject;
+import com.example.uspForum.customUser.CustomUserService;
+import com.example.uspForum.subject.SubjectService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

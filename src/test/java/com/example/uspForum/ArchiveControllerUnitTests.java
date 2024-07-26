@@ -1,13 +1,13 @@
 package com.example.uspForum;
 
-import com.example.uspForum.model.Campus;
-import com.example.uspForum.model.Course;
-import com.example.uspForum.model.Professor;
-import com.example.uspForum.model.Subject;
-import com.example.uspForum.service.CampusService;
-import com.example.uspForum.service.CourseService;
-import com.example.uspForum.service.ProfessorService;
-import com.example.uspForum.service.SubjectService;
+import com.example.uspForum.campus.Campus;
+import com.example.uspForum.course.Course;
+import com.example.uspForum.professor.Professor;
+import com.example.uspForum.subject.Subject;
+import com.example.uspForum.campus.CampusService;
+import com.example.uspForum.course.CourseService;
+import com.example.uspForum.professor.ProfessorService;
+import com.example.uspForum.subject.SubjectService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;

@@ -1,6 +1,6 @@
 package com.example.uspForum.controller;
 
-import com.example.uspForum.service.CustomUserService;
+import com.example.uspForum.customUser.CustomUserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;

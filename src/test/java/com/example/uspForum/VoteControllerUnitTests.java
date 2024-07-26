@@ -1,9 +1,12 @@
 package com.example.uspForum;
 
-import com.example.uspForum.controller.VoteController;
-import com.example.uspForum.dto.VoteDTO;
-import com.example.uspForum.model.*;
-import com.example.uspForum.service.SubjectReviewService;
+import com.example.uspForum.vote.VoteController;
+import com.example.uspForum.customUser.CustomUser;
+import com.example.uspForum.vote.VoteDTO;
+import com.example.uspForum.subject.Subject;
+import com.example.uspForum.subjectReview.SubjectReviewService;
+import com.example.uspForum.subjectReview.SubjectReview;
+import com.example.uspForum.vote.Vote;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

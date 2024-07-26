@@ -2,6 +2,7 @@ package com.example.uspForum;
 
 import com.example.uspForum.config.SecurityConfig;
 import com.example.uspForum.controller.SubjectReviewController;
+import com.example.uspForum.dto.SubjectReviewDTO;
 import com.example.uspForum.exception.NotFoundException;
 import com.example.uspForum.model.*;
 import com.example.uspForum.service.CustomUserService;

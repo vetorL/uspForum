@@ -1,5 +1,8 @@
-package com.example.uspForum.model;
+package com.example.uspForum.dto;
 
+import com.example.uspForum.model.CustomUser;
+import com.example.uspForum.model.SubjectReview;
+import com.example.uspForum.model.Vote;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

@@ -1,6 +1,6 @@
 package com.example.uspForum.model;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.example.uspForum.dto.SubjectCreationDTO;
 import org.springframework.stereotype.Component;
 
 @Component

@@ -1,7 +1,6 @@
 package com.example.uspForum.controller;
 
-import com.example.uspForum.model.RegistrationFormDTO;
-import com.example.uspForum.repository.CustomUserRepository;
+import com.example.uspForum.dto.RegistrationFormDTO;
 import com.example.uspForum.service.CampusService;
 import com.example.uspForum.service.CustomUserService;
 import jakarta.validation.Valid;

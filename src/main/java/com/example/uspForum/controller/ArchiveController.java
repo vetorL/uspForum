@@ -2,8 +2,8 @@ package com.example.uspForum.controller;
 
 import com.example.uspForum.model.Course;
 import com.example.uspForum.model.Subject;
-import com.example.uspForum.model.SubjectReviewDTO;
-import com.example.uspForum.model.VoteDTO;
+import com.example.uspForum.dto.SubjectReviewDTO;
+import com.example.uspForum.dto.VoteDTO;
 import com.example.uspForum.service.CampusService;
 import com.example.uspForum.service.CourseService;
 import com.example.uspForum.service.ProfessorService;

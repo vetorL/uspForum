@@ -1,5 +1,6 @@
 package com.example.uspForum.controller;
 
+import com.example.uspForum.dto.SubjectReviewDTO;
 import com.example.uspForum.model.*;
 import com.example.uspForum.service.SubjectReviewService;
 import com.example.uspForum.service.SubjectService;

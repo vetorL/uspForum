@@ -1,6 +1,7 @@
 package com.example.uspForum;
 
 import com.example.uspForum.controller.VoteController;
+import com.example.uspForum.dto.VoteDTO;
 import com.example.uspForum.model.*;
 import com.example.uspForum.service.SubjectReviewService;
 import com.fasterxml.jackson.databind.ObjectMapper;

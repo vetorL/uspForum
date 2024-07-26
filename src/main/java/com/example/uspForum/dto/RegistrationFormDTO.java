@@ -1,5 +1,7 @@
-package com.example.uspForum.model;
+package com.example.uspForum.dto;
 
+import com.example.uspForum.model.Campus;
+import com.example.uspForum.model.CustomUser;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;

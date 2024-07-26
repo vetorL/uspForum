@@ -1,4 +1,4 @@
-package com.example.uspForum.model;
+package com.example.uspForum.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

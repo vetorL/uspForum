@@ -3,7 +3,7 @@ package com.example.uspForum.controller;
 import com.example.uspForum.model.CustomUser;
 import com.example.uspForum.model.SubjectReview;
 import com.example.uspForum.model.Vote;
-import com.example.uspForum.model.VoteDTO;
+import com.example.uspForum.dto.VoteDTO;
 import com.example.uspForum.service.SubjectReviewService;
 import org.springframework.http.MediaType;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;

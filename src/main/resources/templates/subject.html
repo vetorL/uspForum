@@ -36,11 +36,9 @@
         <div id="subject-reviews">
             <h3>Reviews:</h3>
 
-            <div th:replace="~{fragments/subject-review-post-form :: subject-review-post-form}"></div>
-
             <div th:each="review: ${subject.reviews}" th:insert="~{fragments/subject-review :: subject-review(${review})}" th:remove="tag"></div>
             <p th:if="${subject.reviews.isEmpty()}" style="text-align: center; font-style: italic">Parece que ainda não há reviews para essa disciplina :/</p>
-
+            <div th:replace="~{fragments/subject-review-post-form :: subject-review-post-form}"></div>
 
             <!-- The Delete Modal -->
             <div id="deleteReviewModal" class="modal">

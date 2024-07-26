@@ -38,8 +38,7 @@ public class SubjectReviewController {
     @PutMapping("/reviews/{id}")
     @ResponseBody
     public ResponseEntity<?> update(@PathVariable("id") long id,
-                                                        @Valid @RequestBody SubjectReviewDTO subjectReviewDTO,
-                                                        @AuthenticationPrincipal CustomUser author) {
+                                    @Valid @RequestBody SubjectReviewDTO subjectReviewDTO) {
 
         SubjectReview subjectReviewToBeUpdated = subjectReviewService.findById(id);
         subjectReviewService.update(subjectReviewToBeUpdated, subjectReviewDTO);

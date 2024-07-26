@@ -37,17 +37,14 @@ public class SubjectReviewController {
 
     @PutMapping("/reviews/{id}")
     @ResponseBody
-    public ResponseEntity<SubjectReviewResponse> update(@PathVariable("id") long id,
+    public ResponseEntity<?> update(@PathVariable("id") long id,
                                                         @Valid @RequestBody SubjectReviewDTO subjectReviewDTO,
                                                         @AuthenticationPrincipal CustomUser author) {
 
-        SubjectReview oldSubjectReview = subjectReviewService.findById(id);
-        SubjectReview newSubjectReview = subjectReviewDTO.toSubjectReview(author, oldSubjectReview.getSubject());
+        SubjectReview subjectReview = subjectReviewService.findById(id);
+        subjectReviewService.update(subjectReview, subjectReviewDTO);
 
-        SubjectReviewResponse subjectReviewResponse =
-                subjectReviewService.deleteAndCreate(oldSubjectReview, newSubjectReview);
-
-        return new ResponseEntity<SubjectReviewResponse>(subjectReviewResponse, HttpStatus.CREATED);
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
     @DeleteMapping("/reviews/{id}")

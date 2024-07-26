@@ -26,8 +26,7 @@ import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -181,7 +180,7 @@ public class SubjectReviewControllerIntegrationTest {
             assertTrue(oldSubjectReview.isPresent());
 
             // Perform request
-            mockMvc.perform(put("/api/v1/reviews/" + oldSubjectReview.get().getId())
+            mockMvc.perform(patch("/api/v1/reviews/" + oldSubjectReview.get().getId())
                             .contentType(MediaType.APPLICATION_JSON)
                             .content(objectMapper.writeValueAsString(subjectReviewDTO))
                             .with(csrf())

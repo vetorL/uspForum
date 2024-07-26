@@ -156,7 +156,7 @@ function sendPutHttpRequest(formData, associatedReviewId) {
     }
 
     fetch(url, {
-        method: 'PUT',
+        method: 'PATCH',
         credentials: 'include',
         headers: {
             [csrfHeader]: csrfToken,

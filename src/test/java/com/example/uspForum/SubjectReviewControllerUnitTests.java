@@ -137,7 +137,7 @@ public class SubjectReviewControllerUnitTests {
 
         when(subjectReviewService.findById(subjectReviewId)).thenReturn(new SubjectReview());
 
-        mockMvc.perform(put("/api/v1/reviews/" + subjectReviewId)
+        mockMvc.perform(patch("/api/v1/reviews/" + subjectReviewId)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(subjectReviewDTO))
                         .with(csrf())
@@ -159,7 +159,7 @@ public class SubjectReviewControllerUnitTests {
 
         when(subjectReviewService.findById(subjectReviewId)).thenThrow(NotFoundException.class);
 
-        mockMvc.perform(put("/api/v1/reviews/" + subjectReviewId)
+        mockMvc.perform(patch("/api/v1/reviews/" + subjectReviewId)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(subjectReviewDTO))
                         .with(csrf())

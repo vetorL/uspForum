@@ -35,7 +35,7 @@ public class SubjectReviewController {
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
-    @PutMapping("/reviews/{id}")
+    @PatchMapping("/reviews/{id}")
     @ResponseBody
     public ResponseEntity<?> update(@PathVariable("id") long id,
                                     @Valid @RequestBody SubjectReviewDTO subjectReviewDTO) {

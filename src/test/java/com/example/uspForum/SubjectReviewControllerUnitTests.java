@@ -142,7 +142,7 @@ public class SubjectReviewControllerUnitTests {
                         .content(objectMapper.writeValueAsString(subjectReviewDTO))
                         .with(csrf())
                 )
-                .andExpect(status().isCreated());
+                .andExpect(status().isOk());
 
         verify(subjectReviewService).findById(anyLong());
         verify(subjectReviewService).update(any(SubjectReview.class), any(SubjectReviewDTO.class));

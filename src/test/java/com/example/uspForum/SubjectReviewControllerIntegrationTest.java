@@ -186,7 +186,7 @@ public class SubjectReviewControllerIntegrationTest {
                             .content(objectMapper.writeValueAsString(subjectReviewDTO))
                             .with(csrf())
                     )
-                    .andExpect(status().isCreated())
+                    .andExpect(status().isOk())
                     .andReturn();
 
             // Check that the subjectReview has been updated

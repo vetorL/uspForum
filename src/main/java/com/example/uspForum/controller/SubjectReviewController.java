@@ -43,7 +43,7 @@ public class SubjectReviewController {
         SubjectReview subjectReviewToBeUpdated = subjectReviewService.findById(id);
         subjectReviewService.update(subjectReviewToBeUpdated, subjectReviewDTO);
 
-        return new ResponseEntity<>(HttpStatus.CREATED);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @DeleteMapping("/reviews/{id}")

@@ -41,8 +41,8 @@ public class SubjectReviewController {
                                                         @Valid @RequestBody SubjectReviewDTO subjectReviewDTO,
                                                         @AuthenticationPrincipal CustomUser author) {
 
-        SubjectReview subjectReview = subjectReviewService.findById(id);
-        subjectReviewService.update(subjectReview, subjectReviewDTO);
+        SubjectReview subjectReviewToBeUpdated = subjectReviewService.findById(id);
+        subjectReviewService.update(subjectReviewToBeUpdated, subjectReviewDTO);
 
         return new ResponseEntity<>(HttpStatus.CREATED);
     }

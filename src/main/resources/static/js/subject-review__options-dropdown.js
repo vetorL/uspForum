@@ -166,14 +166,12 @@ function sendPutHttpRequest(formData, associatedReviewId) {
         body: JSON.stringify(subjectReviewDTO)
     }).then(response => {
         if (response.ok) {
-            return response.json();
-        }
-    }).then(data => {
-        // Close modals and dropdowns
-        onSuccessfulRequest(associatedReviewId);
+            // Close modals and dropdowns
+            onSuccessfulRequest(associatedReviewId);
 
-        // Reload the page
-        location.reload();
+            // Reload the page
+            location.reload();
+        }
     });
 }
 

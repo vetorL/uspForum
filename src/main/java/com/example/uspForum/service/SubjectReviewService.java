@@ -21,14 +21,6 @@ public class SubjectReviewService {
 
     @PreAuthorize("#oldSubjectReview.author.username == authentication.principal.username")
     @Transactional
-    public SubjectReviewResponse deleteAndCreate(SubjectReview oldSubjectReview, SubjectReview newSubjectReview) {
-        subjectReviewRepository.delete(oldSubjectReview);
-        SubjectReview updatedSubjectReview = subjectReviewRepository.save(newSubjectReview);
-        return SubjectReviewResponse.fromSubjectReview(updatedSubjectReview);
-    }
-
-    @PreAuthorize("#oldSubjectReview.author.username == authentication.principal.username")
-    @Transactional
     public void update(SubjectReview oldSubjectReview, SubjectReviewDTO subjectReviewDTO) {
         SubjectReview updatedSubjectReview = new SubjectReview(oldSubjectReview.getAuthor(),
                 oldSubjectReview.getSubject(), subjectReviewDTO.getTitle(), subjectReviewDTO.getContent(),

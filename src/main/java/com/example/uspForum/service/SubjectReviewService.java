@@ -1,10 +1,7 @@
 package com.example.uspForum.service;
 
 import com.example.uspForum.exception.NotFoundException;
-import com.example.uspForum.model.CustomUser;
-import com.example.uspForum.model.SubjectReview;
-import com.example.uspForum.model.SubjectReviewResponse;
-import com.example.uspForum.model.Vote;
+import com.example.uspForum.model.*;
 import com.example.uspForum.repository.SubjectReviewRepository;
 import com.example.uspForum.repository.VoteRepository;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -28,6 +25,18 @@ public class SubjectReviewService {
         subjectReviewRepository.delete(oldSubjectReview);
         SubjectReview updatedSubjectReview = subjectReviewRepository.save(newSubjectReview);
         return SubjectReviewResponse.fromSubjectReview(updatedSubjectReview);
+    }
+
+    @PreAuthorize("#oldSubjectReview.author.username == authentication.principal.username")
+    @Transactional
+    public void update(SubjectReview oldSubjectReview, SubjectReviewDTO subjectReviewDTO) {
+        SubjectReview updatedSubjectReview = new SubjectReview(oldSubjectReview.getAuthor(),
+                oldSubjectReview.getSubject(), subjectReviewDTO.getTitle(), subjectReviewDTO.getContent(),
+                subjectReviewDTO.getRecommendation());
+
+        updatedSubjectReview.setId(oldSubjectReview.getId());
+
+        subjectReviewRepository.save(updatedSubjectReview);
     }
 
     @PreAuthorize("#subjectReview.author.username == authentication.principal.username")

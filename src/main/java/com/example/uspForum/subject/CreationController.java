@@ -17,17 +17,17 @@ import java.util.List;
 @Controller
 public class CreationController {
 
-    private final CreateSubjectService createSubjectService;
     private final CampusService campusService;
     private final ProfessorService professorService;
     private final CourseService courseService;
+    private final SubjectService subjectService;
 
-    public CreationController(CreateSubjectService createSubjectService, CampusService campusService,
-                              ProfessorService professorService, CourseService courseService) {
-        this.createSubjectService = createSubjectService;
+    public CreationController(CampusService campusService, ProfessorService professorService,
+                              CourseService courseService, SubjectService subjectService) {
         this.campusService = campusService;
         this.professorService = professorService;
         this.courseService = courseService;
+        this.subjectService = subjectService;
     }
 
     @GetMapping("/criar")
@@ -58,7 +58,7 @@ public class CreationController {
 
         Subject subjectToBeCreated = subjectCreationDTO.toSubject(course.get(0), professor);
 
-        Subject createdSubject = createSubjectService.createSubject(subjectToBeCreated);
+        Subject createdSubject = subjectService.create(subjectToBeCreated);
 
         return "redirect:/arquivo/" + campus.getAbbreviation() + "/"
                 + createdSubject.getCourse().getNormalizedName() + "/" + createdSubject.getAbbreviation() + "/"

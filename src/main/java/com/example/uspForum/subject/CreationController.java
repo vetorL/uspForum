@@ -58,7 +58,7 @@ public class CreationController {
 
         Professor professor = professorService.findByEmail(subjectCreationDTO.getProfessorEmail());
 
-        Subject subjectToBeCreated = mapper.toSubject(subjectCreationDTO, course.get(0), professor);
+        Subject subjectToBeCreated = subjectCreationDTO.toSubject(course.get(0), professor);
 
         Subject createdSubject = createSubjectService.createSubject(subjectToBeCreated);
 

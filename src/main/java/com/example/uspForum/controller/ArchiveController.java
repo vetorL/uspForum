@@ -20,25 +20,12 @@ import java.util.List;
 @RequestMapping("/arquivo")
 public class ArchiveController {
 
-    private final CourseService courseService;
     private final SubjectService subjectService;
     private final ProfessorService professorService;
 
-    public ArchiveController(CourseService courseService, SubjectService subjectService, ProfessorService professorService) {
-        this.courseService = courseService;
+    public ArchiveController(SubjectService subjectService, ProfessorService professorService) {
         this.subjectService = subjectService;
         this.professorService = professorService;
-    }
-
-    @GetMapping("/{campus}/{course}")
-    public String getCourse(@PathVariable("campus") String campusAbbreviation,
-                            @PathVariable("course") String courseNormalizedName, Model model) {
-        Course course =
-                courseService.findByNormalizedNameAndCampusAbbreviation(courseNormalizedName, campusAbbreviation);
-
-        model.addAttribute("course", course);
-        model.addAttribute("title", campusAbbreviation + " - " + course.getName());
-        return "course.html";
     }
 
     @GetMapping("/{campus}/{course}/{subject}")

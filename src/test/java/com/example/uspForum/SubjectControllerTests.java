@@ -16,6 +16,8 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.Import;
 import org.springframework.test.web.servlet.MockMvc;
 
+import java.util.List;
+
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -56,6 +58,26 @@ public class SubjectControllerTests {
                 .andExpect(status().isOk())
                 .andExpect(view().name("subject"));
 
+    }
+
+    @Test
+    @DisplayName("GET request for subject-professor-list is successful")
+    void readSubjectProfessorListIsSuccessful() throws Exception {
+
+        Campus campus = new Campus("testing institution", "TEST");
+        Course course = new Course("test name", "test-name", campus);
+        Subject subject = new Subject("testing", "TST", "T438902", course, new Professor());
+
+        String testURL = "/arquivo/" + campus.getAbbreviation() + "/"
+                + course.getNormalizedName() + "/" + subject.getAbbreviation();
+
+        when(subjectService.findByCourseNormalizedNameAndCourseCampusAbbreviationAndAbbreviation(
+                course.getNormalizedName(), campus.getAbbreviation(), subject.getAbbreviation()))
+                .thenReturn(List.of(subject));
+
+        this.mockMvc.perform(get(testURL))
+                .andExpect(status().isOk())
+                .andExpect(view().name("subject-professor-list"));
     }
 
 }

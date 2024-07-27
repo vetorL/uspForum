@@ -8,8 +8,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.List;
+
 @Controller
-@RequestMapping("/arquivo/{campusAbbr}/{courseNN}/{subjectNN}/{professorNN}")
+@RequestMapping("/arquivo/{campusAbbr}/{courseNN}/{subjectNN}")
 public class SubjectController {
 
     private final SubjectService subjectService;
@@ -18,7 +20,7 @@ public class SubjectController {
         this.subjectService = subjectService;
     }
 
-    @GetMapping
+    @GetMapping("/{professorNN}")
     public String read(@PathVariable("campusAbbr") String campusAbbreviation,
                        @PathVariable("courseNN") String courseNormalizedName,
                        @PathVariable("subjectNN") String subjectAbbreviation,
@@ -35,6 +37,22 @@ public class SubjectController {
                 subjectAbbreviation + " - " + subject.getProfessor().getName());
 
         return "subject";
+    }
+
+    @GetMapping
+    public String readSubjectProfessorList(@PathVariable("campusAbbr") String campusAbbreviation,
+                                           @PathVariable("courseNN") String courseNormalizedName,
+                                           @PathVariable("subjectNN") String subjectAbbreviation,
+                                           Model model) {
+
+        List<Subject> subjects = subjectService.findByCourseNormalizedNameAndCourseCampusAbbreviationAndAbbreviation(
+                courseNormalizedName, campusAbbreviation, subjectAbbreviation);
+
+        model.addAttribute("subjects", subjects);
+        model.addAttribute("title", subjectAbbreviation);
+        model.addAttribute("sampleSubject", subjects.get(0));
+
+        return "subject-professor-list";
     }
 
 }

@@ -54,7 +54,7 @@ public class SubjectControllerTests {
 
         this.mockMvc.perform(get(testURL))
                 .andExpect(status().isOk())
-                .andExpect(view().name("subject.html"));
+                .andExpect(view().name("subject"));
 
     }
 

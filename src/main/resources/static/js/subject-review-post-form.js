@@ -29,7 +29,9 @@ function sendPostHttpRequest(event) {
         },
         body: JSON.stringify(subjectReviewDTO)
     }).then(response => {
-        // Reload the page
-        location.reload();
+        if(response.ok) {
+            // Reload the page
+            location.reload();
+        }
     });
 }

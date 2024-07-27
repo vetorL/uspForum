@@ -26,9 +26,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class ArchiveControllerUnitTests {
 
     @MockBean
-    private CampusService campusService;
-
-    @MockBean
     private CourseService courseService;
 
     @MockBean
@@ -39,18 +36,6 @@ public class ArchiveControllerUnitTests {
 
     @Autowired
     private MockMvc mockMvc;
-
-    @Test
-    public void getCampusTest() throws Exception {
-
-        Campus campus = new Campus("tesing institution", "TEST");
-
-        when(campusService.findByAbbreviation("TEST")).thenReturn(campus);
-
-        this.mockMvc.perform(get("/arquivo/" + campus.getAbbreviation()))
-                .andExpect(status().isOk())
-                .andExpect(view().name("campus.html"));
-    }
 
     @Test
     public void getCourseTest() throws Exception {

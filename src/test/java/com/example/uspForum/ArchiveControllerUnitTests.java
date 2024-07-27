@@ -72,20 +72,4 @@ public class ArchiveControllerUnitTests {
                 .andExpect(view().name("subject.html"));
     }
 
-    @Test
-    void getCampusProfessorTest() throws Exception {
-        Campus campus = new Campus("testing institution", "TEST");
-        Professor professor = new Professor("Testor Tested", "testor-tested", "testor@usp.br", campus);
-
-        String testURL = "/arquivo/" + campus.getAbbreviation() + "/docentes/" + professor.getNormalizedName();
-
-        when(professorService.findByCampusAbbreviationAndNormalizedName(campus.getAbbreviation(),
-                professor.getNormalizedName()
-        )).thenReturn(professor);
-
-        this.mockMvc.perform(get(testURL))
-                .andExpect(status().isOk())
-                .andExpect(view().name("professor.html"));
-    }
-
 }

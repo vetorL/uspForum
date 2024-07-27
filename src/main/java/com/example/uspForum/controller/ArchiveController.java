@@ -1,13 +1,9 @@
 package com.example.uspForum.controller;
 
-import com.example.uspForum.course.Course;
 import com.example.uspForum.subject.Subject;
+import com.example.uspForum.subject.SubjectService;
 import com.example.uspForum.subjectReview.SubjectReviewDTO;
 import com.example.uspForum.vote.VoteDTO;
-import com.example.uspForum.campus.CampusService;
-import com.example.uspForum.course.CourseService;
-import com.example.uspForum.professor.ProfessorService;
-import com.example.uspForum.subject.SubjectService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,11 +17,9 @@ import java.util.List;
 public class ArchiveController {
 
     private final SubjectService subjectService;
-    private final ProfessorService professorService;
 
-    public ArchiveController(SubjectService subjectService, ProfessorService professorService) {
+    public ArchiveController(SubjectService subjectService) {
         this.subjectService = subjectService;
-        this.professorService = professorService;
     }
 
     @GetMapping("/{campus}/{course}/{subject}")
@@ -55,16 +49,6 @@ public class ArchiveController {
         model.addAttribute("title",
                 subjectAbbreviation + " - " + subject.getProfessor().getName());
         return "subject.html";
-    }
-
-    @GetMapping("/{campus}/docentes/{professor}")
-    public String getCampusProfessor(@PathVariable("campus") String campusAbbreviation,
-                             @PathVariable("professor") String professorNormalizedName,
-                             Model model) {
-        model.addAttribute("professor", professorService.findByCampusAbbreviationAndNormalizedName(
-                campusAbbreviation, professorNormalizedName
-        ));
-        return "professor.html";
     }
 
 }

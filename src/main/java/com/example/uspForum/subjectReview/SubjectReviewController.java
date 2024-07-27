@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -25,7 +26,12 @@ public class SubjectReviewController {
     @PostMapping(value = "/subject/{subjectId}/reviews", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> create(@PathVariable("subjectId") long subjectId,
                                     @AuthenticationPrincipal CustomUser author,
-                                    @Valid @RequestBody SubjectReviewDTO subjectReviewDTO) {
+                                    @Valid @RequestBody SubjectReviewDTO subjectReviewDTO,
+                                    Errors errors) {
+
+        if (errors.hasErrors()) {
+            return new ResponseEntity<>(errors.getAllErrors(), HttpStatus.BAD_REQUEST);
+        }
 
         Subject associatedSubject = subjectService.findById(subjectId);
         SubjectReview subjectReview = subjectReviewDTO.toSubjectReview(author, associatedSubject);

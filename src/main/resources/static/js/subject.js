@@ -1,6 +1,8 @@
 // Update .subject-review-form__character-counter as user writes
 const contentInput = document.getElementById("subject-review-form__content-input");
 const editContentInput = document.getElementById("edit-review__content-input");
+const postButton = document.getElementById("subject-review-form-post-button");
+
 if(contentInput != null) {
     contentInput.addEventListener("input", updateCharacterCounter);
 }
@@ -35,11 +37,17 @@ function updateCharacterCounter(event) {
         span_character_counter.style.color = "red";
         event.currentTarget.style.color = "red";
 
+        // Disable the post button
+        postButton.disabled = true;
+
     } else {
 
         // The user is within the character limit
         span_character_counter.style.color = "gray";
         event.currentTarget.style.color = "black";
+
+        // Enable the post button
+        postButton.disabled = false;
 
     }
 

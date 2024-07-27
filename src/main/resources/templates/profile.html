@@ -12,6 +12,9 @@
                 <h1 th:text="${profile.username}"></h1>
                 <p th:text="'Reputação: ' + ${profile.getRep()}"></p>
             </div>
+
+            <a th:if="${#authentication.principal.username == profile.username}" id="profile-logout-button"
+               th:href="@{/logout}">Logout</a>
         </section>
 
         <hr id="profile-separator">

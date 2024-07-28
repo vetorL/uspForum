@@ -1,5 +1,6 @@
 package com.example.uspForum.subject;
 
+import com.example.uspForum.subjectReview.SubjectReview;
 import com.example.uspForum.subjectReview.SubjectReviewDTO;
 import com.example.uspForum.vote.VoteDTO;
 import org.springframework.stereotype.Controller;
@@ -8,7 +9,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/arquivo/{campusAbbr}/{courseNN}/{subjectNN}")
@@ -30,7 +33,12 @@ public class SubjectController {
         Subject subject = subjectService.findByCourseAndCampusAndSubjectAndProfessor(
                 courseNormalizedName, campusAbbreviation, subjectAbbreviation, professorNormalizedName);
 
+        List<SubjectReview> sortedReviews = subject.getReviews().stream()
+                .sorted(Comparator.comparing(SubjectReview::getTotalVotes).reversed())
+                .toList();
+
         model.addAttribute("subject", subject);
+        model.addAttribute("sortedReviews", sortedReviews);
         model.addAttribute("subjectReviewDTO", new SubjectReviewDTO());
         model.addAttribute("voteDTO", new VoteDTO());
         model.addAttribute("title",

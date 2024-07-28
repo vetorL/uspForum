@@ -33,7 +33,6 @@ A forum for USP
 - option modals in profile
 - make subject review deletion update rep
 - associatedFiles field in subject
-- I'd like the subject reviews to be displayed by default in descending order according to the number of votes
 - I'd like to have the option to sort the subject reviews according to the most recent
 - As the user, I'd like to be able to report reviews
 - As the admin, I'd like to be able to have all the reported reviews displayed to me in a unified page for easy 

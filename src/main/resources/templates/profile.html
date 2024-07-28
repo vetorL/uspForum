@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html th:replace="~{layout :: layout (~{:: main})}">
+<html lang="pt-BR" th:replace="~{layout :: layout (~{:: main})}"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <body>
     <main>
         <section id="profile-main">
@@ -13,8 +14,8 @@
                 <p th:text="'Reputação: ' + ${profile.getRep()}"></p>
             </div>
 
-            <a th:if="${#authentication.principal.username == profile.username}" id="profile-logout-button"
-               th:href="@{/logout}">Logout</a>
+            <a sec:authorize="isAuthenticated()" th:if="${#authentication.principal.username == profile.username}"
+               id="profile-logout-button" th:href="@{/logout}">Logout</a>
         </section>
 
         <hr id="profile-separator">

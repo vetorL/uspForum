@@ -25,18 +25,17 @@ A forum for USP
 - enable user promoted ads in exchange for money (they can advertise parties, their own merchandise, etc)
 
 ### Just work
-- pagination of subject reviews
 - image logo
-- add modal for review substitution confirmation
 - profile configuration page (for changing username, profile picture, and toggling options)
-- validate review post request (controller and view)
 - register user course
-- display user's course and campus
 - create problem reporting page
 - fix subject creation
-- add report review option
 - option modals in profile
 - make subject review deletion update rep
-- make subject review editing update rep
-- author subject unique constraint in subject review
 - associatedFiles field in subject
+- I'd like the subject reviews to be displayed by default in descending order according to the number of votes
+- I'd like to have the option to sort the subject reviews according to the most recent
+- As the user, I'd like to be able to report reviews
+- As the admin, I'd like to be able to have all the reported reviews displayed to me in a unified page for easy 
+moderation
+- As the user, I'd like to be able to see the campus and courses of other users in their profile

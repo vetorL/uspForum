@@ -1,6 +1,7 @@
 package com.example.uspForum.subject;
 
 import com.example.uspForum.course.Course;
+import com.example.uspForum.customUser.CustomUser;
 import com.example.uspForum.professor.Professor;
 import com.example.uspForum.subjectReview.SubjectReview;
 import jakarta.persistence.*;
@@ -55,6 +56,20 @@ public class Subject {
         name = Normalizer.normalize(name, Normalizer.Form.NFD);
         name = name.replaceAll("[^\\p{ASCII}]", "");
         return name.toLowerCase();
+    }
+
+
+
+    public boolean isAlreadyReviewed(CustomUser principal) {
+
+        for(SubjectReview review : reviews) {
+            if(review.getAuthor().getUsername().equals(principal.getUsername())) {
+                return true;
+            }
+        }
+
+        return false;
+
     }
 
 }

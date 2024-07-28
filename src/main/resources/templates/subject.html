@@ -38,7 +38,14 @@
 
             <div th:each="review: ${subject.reviews}" th:insert="~{fragments/subject-review :: subject-review(${review})}" th:remove="tag"></div>
             <p th:if="${subject.reviews.isEmpty()}" style="text-align: center; font-style: italic">Parece que ainda não há reviews para essa disciplina :/</p>
-            <div th:replace="~{fragments/subject-review-post-form :: subject-review-post-form}"></div>
+
+            <div sec:authorize="isAuthenticated()" th:if="${subject.isAlreadyReviewed(#authentication.principal) == false}">
+                <div th:replace="~{fragments/subject-review-post-form :: subject-review-post-form}"></div>
+            </div>
+            <div sec:authorize="isAnonymous()">
+                <div th:replace="~{fragments/subject-review-post-form :: subject-review-post-form}"></div>
+            </div>
+
 
             <!-- The Delete Modal -->
             <div id="deleteReviewModal" class="modal">

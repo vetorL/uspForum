@@ -6,14 +6,18 @@
 
         <form method="POST" th:action="@{/registrar}" th:object="${registrationFormDTO}" id="authentication-form">
             <label>
-                Email: <br/>
-                <input type="email" th:field="*{email}" required>
+                <span style="display: inline; color: red">*</span>
+                Email da USP: <br/>
+                <input type="email" th:field="*{email}" required placeholder="exemplo@usp.br">
+                <span style="color: gray; font-size: 0.7rem; margin-top: 0.2rem">
+                    Seu email <b>NÃO</b> será disponibilizado publicamente.</span>
             </label>
             <span class="validationError"
                   th:if="${#fields.hasErrors('email')}"
                   th:errors="*{email}"></span>
 
             <label>
+                <span style="display: inline; color: red">*</span>
                 Nome de usuário: <br/>
                 <input type="text" th:field="*{username}" required>
             </label>
@@ -22,6 +26,7 @@
                   th:errors="*{username}"></span>
 
             <label>
+                <span style="display: inline; color: red">*</span>
                 Campus (abreviação): <br/>
                 <select id="campi" th:field="*{campusAbbr}" required>
                     <option th:each="campus: ${campi}"
@@ -35,6 +40,7 @@
                   th:errors="*{campusAbbr}"></span>
 
             <label>
+                <span style="display: inline; color: red">*</span>
                 Senha: <br/>
                 <span>
                     <input type="password" th:field="*{password}" required>
@@ -49,6 +55,7 @@
                   th:errors="*{password}"></span>
 
             <label>
+                <span style="display: inline; color: red">*</span>
                 Confirme a senha: <br/>
                 <span>
                     <input type="password" th:field="*{confirmPassword}" required>

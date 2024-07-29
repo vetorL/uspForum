@@ -34,7 +34,15 @@
         </div>
 
         <div id="subject-reviews">
-            <h3>Reviews:</h3>
+            <div id="subject-reviews-header">
+                <h3 th:text="${'Reviews ' + '(' + #lists.size(sortedReviews) + ')'}"></h3>
+                <label>
+                    <select name="filter" id="subject-reviews-filter">
+                        <option value="votos">Mais votados</option>
+                        <option th:selected="${sort == 'recentes'}" value="recentes">Mais recentes</option>
+                    </select>
+                </label>
+            </div>
 
             <div th:each="review: ${sortedReviews}" th:insert="~{fragments/subject-review :: subject-review(${review})}" th:remove="tag"></div>
             <p th:if="${subject.reviews.isEmpty()}" style="text-align: center; font-style: italic">Parece que ainda não há reviews para essa disciplina :/</p>

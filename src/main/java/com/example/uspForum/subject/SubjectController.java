@@ -8,10 +8,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.Comparator;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/arquivo/{campusAbbr}/{courseNN}/{subjectNN}")
@@ -28,17 +28,27 @@ public class SubjectController {
                        @PathVariable("courseNN") String courseNormalizedName,
                        @PathVariable("subjectNN") String subjectAbbreviation,
                        @PathVariable("professorNN") String professorNormalizedName,
+                       @RequestParam(required = false, defaultValue = "") String sort,
                        Model model) {
 
         Subject subject = subjectService.findByCourseAndCampusAndSubjectAndProfessor(
                 courseNormalizedName, campusAbbreviation, subjectAbbreviation, professorNormalizedName);
 
-        List<SubjectReview> sortedReviews = subject.getReviews().stream()
-                .sorted(Comparator.comparing(SubjectReview::getTotalVotes).reversed())
-                .toList();
+        List<SubjectReview> sortedReviews;
+
+        if (sort.equals("recentes")) {
+            sortedReviews = subject.getReviews().stream()
+                    .sorted(Comparator.comparing(SubjectReview::getCreatedAt).reversed())
+                    .toList();
+        } else {
+            sortedReviews = subject.getReviews().stream()
+                    .sorted(Comparator.comparing(SubjectReview::getTotalVotes).reversed())
+                    .toList();
+        }
 
         model.addAttribute("subject", subject);
         model.addAttribute("sortedReviews", sortedReviews);
+        model.addAttribute("sort", sort);
         model.addAttribute("subjectReviewDTO", new SubjectReviewDTO());
         model.addAttribute("voteDTO", new VoteDTO());
         model.addAttribute("title",

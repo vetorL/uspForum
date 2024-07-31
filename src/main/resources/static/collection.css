@@ -58,3 +58,44 @@
 .subject-collection-section-header {
     margin-bottom: 0.2rem;
 }
+
+.subject-collection-upload {
+    /*FLEX*/
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    gap: 1rem;
+    width: 90%;
+    border: 1px solid black;
+    padding: 1rem 0;
+}
+
+.subject-collection-upload > label {
+    /*FLEX*/
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    gap: 0.1rem;
+}
+
+#subject-collection-upload-file-label {
+    padding: 2rem;
+    border: 2px dashed black;
+    cursor: pointer;
+}
+
+#subject-collection-upload-file-label:hover {
+    border: 2px dashed blue;
+    color: blue;
+}
+
+#subject-collection-upload-file-label:hover > svg {
+    fill: blue;
+}
+
+#subject-file-upload-title {
+    width: 90%;
+}

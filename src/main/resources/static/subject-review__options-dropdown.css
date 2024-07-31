@@ -135,6 +135,14 @@
     font-weight: bold;
 }
 
+.subject-review__option:disabled {
+    color: gray;
+}
+
+.subject-review__option:disabled > svg {
+    fill: gray;
+}
+
 @media only screen and (min-width: 768px) {
     .modal-content {
         width: 40%;

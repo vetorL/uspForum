@@ -1,6 +1,7 @@
 package com.example.uspForum.customUser;
 
 import com.example.uspForum.campus.Campus;
+import com.example.uspForum.collection.File;
 import com.example.uspForum.vote.Vote;
 import com.example.uspForum.subjectReview.SubjectReview;
 import jakarta.persistence.*;
@@ -60,6 +61,10 @@ public class CustomUser implements UserDetails {
     @OneToMany(mappedBy = "author", fetch = FetchType.EAGER)
     @ToString.Exclude
     private List<SubjectReview> subjectReviews = new ArrayList<>();
+
+    @OneToMany(mappedBy = "uploader", fetch = FetchType.EAGER)
+    @ToString.Exclude
+    private List<File> files = new ArrayList<>();
 
     @OneToMany(mappedBy = "voter", fetch = FetchType.EAGER)
     @ToString.Exclude

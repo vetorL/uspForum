@@ -1,5 +1,6 @@
 package com.example.uspForum.subject;
 
+import com.example.uspForum.collection.File;
 import com.example.uspForum.course.Course;
 import com.example.uspForum.customUser.CustomUser;
 import com.example.uspForum.professor.Professor;
@@ -42,6 +43,10 @@ public class Subject {
     @OneToMany(mappedBy = "subject", fetch = FetchType.EAGER)
     @ToString.Exclude
     private List<SubjectReview> reviews = new ArrayList<>();
+
+    @OneToMany(mappedBy = "subject", fetch = FetchType.EAGER)
+    @ToString.Exclude
+    private List<File> files = new ArrayList<>();
 
     public Subject(String name, String abbreviation, String code, Course course, Professor professor) {
         this.name = name;

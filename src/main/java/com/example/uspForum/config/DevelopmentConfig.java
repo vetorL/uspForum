@@ -2,6 +2,8 @@ package com.example.uspForum.config;
 
 import com.example.uspForum.campus.Campus;
 import com.example.uspForum.campus.CampusRepository;
+import com.example.uspForum.collection.File;
+import com.example.uspForum.collection.FileRepository;
 import com.example.uspForum.course.Course;
 import com.example.uspForum.course.CourseRepository;
 import com.example.uspForum.customUser.CustomUser;
@@ -20,6 +22,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import java.util.List;
+
 @Profile("dev")
 @Configuration
 public class DevelopmentConfig {
@@ -31,7 +35,7 @@ public class DevelopmentConfig {
                                         ProfessorRepository professorRepo,
                                         CourseRepository courseRepo, CustomUserRepository customUserRepository,
                                         PasswordEncoder passwordEncoder,
-                                        VoteRepository voteRepository) {
+                                        VoteRepository voteRepository, FileRepository fileRepository) {
         return args -> {
             Campus each = campusRepo.save(new Campus("Escola de Artes, Ciências e Humanidades", "EACH"));
             Campus eca = campusRepo.save(new Campus("Escola de Comunicações e Artes", "ECA"));
@@ -117,6 +121,17 @@ public class DevelopmentConfig {
             subjectRepo.save(fsi);
             subjectRepo.save(subjectIP);
             subjectRepo.save(iaecEdmir);
+
+            File p1iaec2024 = new File("P1 - Turma 04 (2024)", "url", "Prova", iaecVioleta, usr);
+            fileRepository.save(p1iaec2024);
+
+            File lista1iaec2024 = new File("Lista 1 - Turma 04 (2024)", "url", "Lista", iaecVioleta,
+                    usr);
+            fileRepository.save(lista1iaec2024);
+
+            File trabiaec2024 = new File("Trab - Jogo Espaconave - Turma 04 (2024)", "url", "Trabalho",
+                    iaecVioleta, usr);
+            fileRepository.save(trabiaec2024);
 
             SubjectReview iaecReview =
                     subjectReviewRepo.save(new SubjectReview(usr, iaecVioleta, "Foi bom", "Nao teve prova, mas teve varios trabalhinhos",

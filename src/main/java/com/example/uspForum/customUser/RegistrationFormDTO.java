@@ -1,6 +1,5 @@
 package com.example.uspForum.customUser;
 
-import com.example.uspForum.campus.Campus;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
@@ -28,15 +27,11 @@ public class RegistrationFormDTO {
     @NotBlank(message = "Confirmar senha é obrigatório")
     private String confirmPassword;
 
-    @NotBlank(message = "Campus é obrigatório")
-    private String campusAbbr;
-
-    public CustomUser toCustomUser(PasswordEncoder passwordEncoder, Campus campus) {
+    public CustomUser toCustomUser(PasswordEncoder passwordEncoder) {
         return new CustomUser(
                 email,
                 username,
-                passwordEncoder.encode(password),
-                campus
+                passwordEncoder.encode(password)
         );
     }
 

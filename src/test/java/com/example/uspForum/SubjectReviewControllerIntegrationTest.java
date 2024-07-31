@@ -96,7 +96,7 @@ public class SubjectReviewControllerIntegrationTest {
                     "sistemas-de-informacao", each));
 
             CustomUser usr = customUserRepository.save(new CustomUser("test@test.com", "test",
-                    "password", each));
+                    "password"));
 
             Professor violeta = professorRepository.save(new Professor("Violeta Sun", "violeta-sun",
                     "violeta@usp.br", each));

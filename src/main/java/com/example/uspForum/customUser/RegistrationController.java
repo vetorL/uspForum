@@ -1,6 +1,5 @@
 package com.example.uspForum.customUser;
 
-import com.example.uspForum.campus.CampusService;
 import jakarta.validation.Valid;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -16,20 +15,17 @@ import java.util.Objects;
 @RequestMapping("/registrar")
 public class RegistrationController {
 
-    private final CampusService campusService;
     private final CustomUserService customUserService;
-    private PasswordEncoder passwordEncoder;
+    private final PasswordEncoder passwordEncoder;
 
-    public RegistrationController(PasswordEncoder passwordEncoder, CampusService campusService, CustomUserService customUserService) {
+    public RegistrationController(PasswordEncoder passwordEncoder, CustomUserService customUserService) {
         this.passwordEncoder = passwordEncoder;
-        this.campusService = campusService;
         this.customUserService = customUserService;
     }
 
     @GetMapping
     public String registerForm(Model model) {
         model.addAttribute("registrationFormDTO", new RegistrationFormDTO());
-        model.addAttribute("campi", campusService.findAll());
         model.addAttribute("title", "Registro");
         return "registration";
     }
@@ -49,13 +45,11 @@ public class RegistrationController {
         }
 
         if (errors.hasErrors()) {
-            model.addAttribute("campi", campusService.findAll());
             model.addAttribute("title", "Registro");
             return "registration";
         }
 
-        customUserService.save(form.toCustomUser(
-                passwordEncoder, campusService.findByAbbreviation(form.getCampusAbbr())));
+        customUserService.save(form.toCustomUser(passwordEncoder));
         return "redirect:/login";
     }
 

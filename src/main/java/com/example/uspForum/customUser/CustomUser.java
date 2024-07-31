@@ -1,12 +1,10 @@
 package com.example.uspForum.customUser;
 
-import com.example.uspForum.campus.Campus;
 import com.example.uspForum.collection.File;
-import com.example.uspForum.vote.Vote;
 import com.example.uspForum.subjectReview.SubjectReview;
+import com.example.uspForum.vote.Vote;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
@@ -47,12 +45,6 @@ public class CustomUser implements UserDetails {
     @NotBlank(message = "Senha é obrigatório")
     @Size(max = 255, message = "Senha deve ter no máximo 255 caracteres")
     private final String password;
-
-    @NotNull(message = "Campus é obrigatório")
-    @ManyToOne(fetch = FetchType.EAGER)
-    @ToString.Exclude
-    @JoinColumn(name = "campus_id")
-    private final Campus campus;
 
     private String profilePictureURL = "default-profile-picture.png";
 

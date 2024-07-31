@@ -27,20 +27,6 @@
 
             <label>
                 <span style="display: inline; color: red">*</span>
-                Campus (abreviação): <br/>
-                <select id="campi" th:field="*{campusAbbr}" required>
-                    <option th:each="campus: ${campi}"
-                            th:value="${campus.abbreviation}"
-                            th:text="${campus.abbreviation}">
-                    </option>
-                </select>
-            </label>
-            <span class="validationError"
-                  th:if="${#fields.hasErrors('campusAbbr')}"
-                  th:errors="*{campusAbbr}"></span>
-
-            <label>
-                <span style="display: inline; color: red">*</span>
                 Senha: <br/>
                 <span>
                     <input type="password" th:field="*{password}" required>

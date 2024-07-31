@@ -1,9 +1,8 @@
 package com.example.uspForum;
 
 import com.example.uspForum.config.SecurityConfig;
-import com.example.uspForum.customUser.RegistrationController;
-import com.example.uspForum.campus.CampusService;
 import com.example.uspForum.customUser.CustomUserService;
+import com.example.uspForum.customUser.RegistrationController;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -29,9 +28,6 @@ public class RegistrationControllerUnitTests {
     @MockBean
     private PasswordEncoder passwordEncoder;
 
-    @MockBean
-    private CampusService campusService;
-
     @Autowired
     private MockMvc mockMvc;
 
@@ -49,14 +45,12 @@ public class RegistrationControllerUnitTests {
         String username = "usuário1";
         String password = "password";
         String confirmPassword = "password";
-        String campusAbbr = "TEST";
 
         this.mockMvc.perform(post("/registrar")
                         .param("email", email)
                         .param("username", username)
                         .param("password", password)
                         .param("confirmPassword", confirmPassword)
-                        .param("campusAbbr", campusAbbr)
                         .with(csrf())
                 )
                 .andExpect(status().is3xxRedirection())
@@ -69,7 +63,6 @@ public class RegistrationControllerUnitTests {
         private String username;
         private String password;
         private String confirmPassword;
-        private String campusAbbr;
         private String needsToContain;
 
         @BeforeEach
@@ -78,7 +71,6 @@ public class RegistrationControllerUnitTests {
             username = "username";
             password = "password";
             confirmPassword = "password";
-            campusAbbr = "TEST";
             needsToContain = "";
         }
 
@@ -157,13 +149,6 @@ public class RegistrationControllerUnitTests {
         }
 
         @Test
-        @DisplayName("Tests case where the user attempts to register a blank campus")
-        void testBlankCampusRegistering() {
-            campusAbbr = "";
-            needsToContain = "Campus é obrigatório";
-        }
-
-        @Test
         @DisplayName("Tests case where the user attempts to register a blank password")
         void testBlankPasswordRegistering() {
             password = "";
@@ -200,7 +185,6 @@ public class RegistrationControllerUnitTests {
                             .param("username", username)
                             .param("password", password)
                             .param("confirmPassword", confirmPassword)
-                            .param("campusAbbr", campusAbbr)
                             .with(csrf())
                     )
                     .andExpect(view().name("registration"))

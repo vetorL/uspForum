@@ -35,7 +35,7 @@ public class ProfileControllerUnitTests {
     @DisplayName("Tests GET request for a user's profile page while unauthenticated")
     void testGetProfile() throws Exception {
         when(customUserService.findByUsername(anyString()))
-                .thenReturn(new CustomUser("a@a", "test", "a", new Campus()));
+                .thenReturn(new CustomUser("a@a", "test", "a"));
 
         mockMvc.perform(get("/perfil/{username}", "test")
                         .with(user(new CustomUser())))

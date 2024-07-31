@@ -88,11 +88,11 @@ public class DevelopmentConfig {
             Course siSC = courseRepo.save(new Course("Sistemas de Informação", "sistemas-de-informacao", icmc));
 
             CustomUser usr = customUserRepository.save(new CustomUser("test@test.com", "test",
-                    passwordEncoder.encode("test"), each));
+                    passwordEncoder.encode("test")));
             CustomUser usr2 = customUserRepository.save(new CustomUser("test2@test.com", "test2",
-                    passwordEncoder.encode("test2"), poli));
+                    passwordEncoder.encode("test2")));
             CustomUser usr3 = customUserRepository.save(new CustomUser("4133737163905494@usp.br", "4133737163905494",
-                    passwordEncoder.encode("4133737163905494"), poli));
+                    passwordEncoder.encode("4133737163905494")));
 
             Professor violeta = professorRepo.save(
                     new Professor("Violeta Sun", "violeta-sun", "violeta@usp.br", each));

@@ -3,9 +3,7 @@
 <body>
     <footer th:fragment="footer" class="footer">
         <nav class="footer__nav">
-            <a href="#" class="footer__link">Contato</a>
-            <span>|</span>
-            <a href="#" class="footer__link">Reportar problema</a>
+            <a th:href="@{/contato}" class="footer__link">Contato</a>
         </nav>
         <p style="color: gray; margin-top: 0">Criado por sistemáticos da informática</p>
 

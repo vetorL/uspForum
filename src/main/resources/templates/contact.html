@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-BR" th:replace="~{authenticationLayout :: authenticationLayout (~{:: main})}">
+<body>
+    <main>
+
+        <h1>Contato</h1>
+
+        <form id="contact-form">
+            <label>
+                Assunto:
+                <select name="assunto" required>
+                    <option value="" selected disabled>-- Selecione --</option>
+                    <option value="bug">Reportar Bug</option>
+                    <option value="melhoria">Sugestão de melhoria</option>
+                    <option value="business">Proposta de negócio</option>
+                    <option value="outro">Outro</option>
+                </select>
+            </label>
+
+            <label>
+                Texto:
+                <textarea rows="5" required></textarea>
+            </label>
+
+            <button type="submit">Enviar</button>
+        </form>
+
+    </main>
+</body>
+</html>

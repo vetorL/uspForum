@@ -31,12 +31,15 @@ window.onclick = function(event) {
         deleteModal.style.display = "none";
     } else if (event.target == editModal) {
         editModal.style.display = "none";
+    } else if (event.target == reportModal) {
+        reportModal.style.display = "none";
     }
 }
 
 // Get the modals
 const deleteModal = document.getElementById("deleteReviewModal");
 const editModal = document.getElementById("editReviewModal");
+const reportModal = document.getElementById("reportReviewModal")
 
 // Get the buttons that open the modals
 let modalButtons = document.getElementsByClassName("subject-review__option");
@@ -66,9 +69,17 @@ Array.from(modalButtons).forEach(element => element.addEventListener(
                 document.getElementById("subject-review-recommendation-" + reviewId).innerText;
 
         } else if (e.currentTarget.innerText === "Deletar") {
+
             deleteModal.style.display = "block";
             document.getElementById("deleteReviewId").value = reviewId;
+
+        } else if (e.currentTarget.innerText === "Reportar") {
+
+            reportModal.style.display = "block";
+            document.getElementById("reportReviewId").value = reviewId;
+
         }
+
     }
 ));
 
@@ -179,7 +190,7 @@ function sendPutHttpRequest(formData, associatedReviewId) {
 function closeModals() {
     deleteModal.style.display = "none";
     editModal.style.display = "none";
-    // reportModal.style.display = "none";
+    reportModal.style.display = "none";
 }
 
 function onSuccessfulRequest(associatedReviewId) {

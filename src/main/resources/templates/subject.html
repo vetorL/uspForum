@@ -138,6 +138,40 @@
                 </div>
 
             </div>
+
+            <!-- The Report Modal -->
+            <div id="reportReviewModal" class="modal">
+
+                <!-- Modal content -->
+                <div class="modal-content">
+                    <div class="modal-header modal-header--report">
+                        <span class="close">&times;</span>
+                        <p class="modal-title">Reportar Review</p>
+                    </div>
+                    <div class="modal-body">
+                        <form id="reportReviewModalForm" th:action="@{/api/v1/reviews}">
+                            <label>
+                                Motivo:
+                                <select name="motivo" required>
+                                    <option value="" selected disabled>-- Selecione --</option>
+                                    <option value="desrespeito">Desrespeito</option>
+                                    <option value="contexto">Fora de contexto</option>
+                                    <option value="spam">Spam</option>
+                                    <option value="falso">Conteúdo falso</option>
+                                    <option value="outro">Outro</option>
+                                </select>
+                            </label>
+                            <input type="hidden" id="reportReviewId" name="reviewId" value="">
+                            <div>
+                                <button class="modal-cancel" type="button">Cancelar</button>
+                                <button type="submit">Confirmar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+
         </div>
         <script th:src="@{/js/subject.js}"></script>
         <script th:src="@{/js/subject-review-vote.js}"></script>

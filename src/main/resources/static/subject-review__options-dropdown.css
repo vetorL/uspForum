@@ -112,6 +112,10 @@
     background-color: blue;
 }
 
+.modal-header--report {
+    background-color: black;
+}
+
 .modal-body {
     padding: 2px 16px;
 }

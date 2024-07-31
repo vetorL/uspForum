@@ -1,4 +1,4 @@
-package com.example.uspForum.controller;
+package com.example.uspForum.collection;
 
 import com.example.uspForum.subject.Subject;
 import com.example.uspForum.subject.SubjectService;

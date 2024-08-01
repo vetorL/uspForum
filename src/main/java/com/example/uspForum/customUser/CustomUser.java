@@ -17,7 +17,6 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
@@ -46,6 +45,8 @@ public class CustomUser implements UserDetails {
     @Size(max = 255, message = "Senha deve ter no máximo 255 caracteres")
     private final String password;
 
+    private String role = "USER";
+
     private String profilePictureURL = "default-profile-picture.png";
 
     private int rep = 0;
@@ -64,7 +65,12 @@ public class CustomUser implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return Arrays.asList(new SimpleGrantedAuthority("ROLE_USER"));
+        List<GrantedAuthority> list = new ArrayList<GrantedAuthority>();
+
+        String ROLE_PREFIX = "ROLE_";
+        list.add(new SimpleGrantedAuthority(ROLE_PREFIX + role));
+
+        return list;
     }
 
     @Override

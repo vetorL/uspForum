@@ -73,7 +73,7 @@ Array.from(modalButtons).forEach(element => element.addEventListener(
             deleteModal.style.display = "block";
             document.getElementById("deleteReviewId").value = reviewId;
 
-        } else if (e.currentTarget.innerText === "Reportar") {
+        } else if (e.currentTarget.innerText === "Denunciar") {
 
             reportModal.style.display = "block";
             document.getElementById("reportReviewId").value = reviewId;

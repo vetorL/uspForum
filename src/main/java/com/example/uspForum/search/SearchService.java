@@ -1,5 +1,7 @@
-package com.example.uspForum.subject;
+package com.example.uspForum.search;
 
+import com.example.uspForum.subject.Subject;
+import com.example.uspForum.subject.SubjectRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;

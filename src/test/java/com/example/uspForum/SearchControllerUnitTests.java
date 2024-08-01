@@ -1,9 +1,9 @@
 package com.example.uspForum;
 
 import com.example.uspForum.config.SecurityConfig;
-import com.example.uspForum.subject.SearchController;
+import com.example.uspForum.search.SearchController;
 import com.example.uspForum.customUser.CustomUserService;
-import com.example.uspForum.subject.SearchService;
+import com.example.uspForum.search.SearchService;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

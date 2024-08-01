@@ -1,5 +1,6 @@
-package com.example.uspForum.subject;
+package com.example.uspForum.search;
 
+import com.example.uspForum.subject.Subject;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

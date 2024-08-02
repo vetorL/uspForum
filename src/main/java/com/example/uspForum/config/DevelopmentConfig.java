@@ -94,6 +94,11 @@ public class DevelopmentConfig {
             CustomUser usr3 = customUserRepository.save(new CustomUser("4133737163905494@usp.br", "4133737163905494",
                     passwordEncoder.encode("4133737163905494")));
 
+            CustomUser admin = new CustomUser("admin@admin.com", "admin",
+                    passwordEncoder.encode("admin"));
+            admin.setRole("ADMIN");
+            customUserRepository.save(admin);
+
             Professor violeta = professorRepo.save(
                     new Professor("Violeta Sun", "violeta-sun", "violeta@usp.br", each));
             Professor edmir = professorRepo.save(

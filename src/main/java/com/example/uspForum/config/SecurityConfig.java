@@ -31,6 +31,7 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests((authorize) -> authorize
+                        .requestMatchers("/admin").hasAuthority("ROLE_ADMIN")
                         .requestMatchers("/criar").hasAuthority("ROLE_USER")
                         .requestMatchers("/contato").hasAuthority("ROLE_USER")
                         .requestMatchers("/disciplina/postar/**").hasAuthority("ROLE_USER")

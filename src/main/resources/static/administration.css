@@ -1,0 +1,19 @@
+#administration-tabs {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    text-align: center;
+    padding: 0 2rem;
+    border-bottom: 2px solid black;
+}
+
+.administration-tab {
+    text-decoration: none;
+    color: gray;
+}
+
+.administration-tab-selected {
+    color: black;
+    text-decoration: underline;
+}

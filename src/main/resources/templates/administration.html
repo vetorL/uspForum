@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="pt-BR" th:replace="~{authenticationLayout :: authenticationLayout (~{:: main})}">
+<body>
+    <main>
+
+        <h1>Administração</h1>
+
+        <nav id="administration-tabs">
+            <a th:href="@{/admin(tab='reviews')}" th:class="${tab == 'reviews' ? 'administration-tab-selected' :
+            'administration-tab'}">
+                Reviews denunciadas
+            </a>
+            <div style="border-left: 2px solid black; height: 2rem"></div>
+            <a th:href="@{/admin(tab='contact')}" th:class="${tab == 'contact' ? 'administration-tab-selected' :
+            'administration-tab'}">
+                Tentativas de contato
+            </a>
+        </nav>
+
+    </main>
+</body>
+</html>

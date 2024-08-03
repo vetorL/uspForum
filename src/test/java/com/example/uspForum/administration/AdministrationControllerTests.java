@@ -1,7 +1,6 @@
-package com.example.uspForum;
+package com.example.uspForum.administration;
 
 import com.example.uspForum.config.SecurityConfig;
-import com.example.uspForum.contact.ContactController;
 import com.example.uspForum.customUser.CustomUserService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -16,9 +15,9 @@ import org.springframework.test.web.servlet.MockMvc;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-@WebMvcTest(ContactController.class)
+@WebMvcTest(AdministrationController.class)
 @Import(SecurityConfig.class)
-public class ContactControllerTests {
+public class AdministrationControllerTests {
 
     @MockBean
     private CustomUserService customUserService;
@@ -27,22 +26,32 @@ public class ContactControllerTests {
     private MockMvc mockMvc;
 
     @Test
-    @WithMockUser
-    @DisplayName("GET is successful when authenticated")
-    void readIsSuccessfulWhenAuthenticated() throws Exception {
+    @WithMockUser(roles = {"ADMIN"})
+    @DisplayName("GET request by admin for reviews tab is successful")
+    void getReviewsTabByAdminRequestIsSuccessful() throws Exception {
 
-        mockMvc.perform(get("/contato"))
+        mockMvc.perform(get("/admin?tab=reviews"))
                 .andExpect(status().isOk())
-                .andExpect(view().name("contact"));
+                .andExpect(view().name("administration"));
+
+    }
+
+    @Test
+    @WithMockUser
+    @DisplayName("GET request by random user for reviews tab is forbidden")
+    void getReviewsTabByUserRequestIsUnsuccessful() throws Exception {
+
+        mockMvc.perform(get("/admin?tab=reviews"))
+                .andExpect(status().isForbidden());
 
     }
 
     @Test
     @WithAnonymousUser
-    @DisplayName("GET is unsuccessful when not authenticated")
-    void readIsUnsuccessfulWhenNotAuthenticated() throws Exception {
+    @DisplayName("GET request by anonymous user for reviews tab is unauthorized")
+    void getReviewsTabByAnonymousUserRequestIsUnsuccessful() throws Exception {
 
-        mockMvc.perform(get("/contato"))
+        mockMvc.perform(get("/admin?tab=reviews"))
                 .andExpect(status().is3xxRedirection())
                 .andExpect(redirectedUrl("http://localhost/login"));
 

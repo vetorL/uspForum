@@ -1,4 +1,4 @@
-package com.example.uspForum;
+package com.example.uspForum.subject;
 
 import com.example.uspForum.campus.Campus;
 import com.example.uspForum.campus.CampusService;

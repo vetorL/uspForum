@@ -1,9 +1,6 @@
-package com.example.uspForum;
+package com.example.uspForum.subject;
 
 import com.example.uspForum.exception.NotFoundException;
-import com.example.uspForum.subject.Subject;
-import com.example.uspForum.subject.SubjectRepository;
-import com.example.uspForum.subject.SubjectService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;

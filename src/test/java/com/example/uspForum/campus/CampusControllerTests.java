@@ -1,10 +1,6 @@
-package com.example.uspForum;
+package com.example.uspForum.campus;
 
-import com.example.uspForum.campus.Campus;
 import com.example.uspForum.config.SecurityConfig;
-import com.example.uspForum.course.Course;
-import com.example.uspForum.course.CourseController;
-import com.example.uspForum.course.CourseService;
 import com.example.uspForum.customUser.CustomUserService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -19,13 +15,14 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
-@WebMvcTest(CourseController.class)
+@WebMvcTest(CampusController.class)
 @Import(SecurityConfig.class)
-public class CourseControllerTests {
+public class CampusControllerTests {
 
     @MockBean
-    private CourseService courseService;
+    private CampusService campusService;
 
+    // Necessary for SecurityConfig
     @MockBean
     private CustomUserService customUserService;
 
@@ -33,21 +30,16 @@ public class CourseControllerTests {
     private MockMvc mockMvc;
 
     @Test
-    @DisplayName("GET request is succesful")
+    @DisplayName("GET request is successful")
     void readIsSuccessful() throws Exception {
 
-        Campus campus = new Campus("testing institution", "TEST");
-        Course course = new Course("test name", "test-name", campus);
+        String campusAbbr = "TEST";
 
-        String testURL = "/arquivo/" + campus.getAbbreviation() + "/" + course.getNormalizedName();
+        when(campusService.findByAbbreviation(campusAbbr)).thenReturn(new Campus());
 
-        when(courseService.findByNormalizedNameAndCampusAbbreviation(
-                course.getNormalizedName(), campus.getAbbreviation())).thenReturn(course);
-
-        this.mockMvc.perform(get(testURL))
+        mockMvc.perform(get("/arquivo/" + campusAbbr))
                 .andExpect(status().isOk())
-                .andExpect(view().name("course"));
-
+                .andExpect(view().name("campus"));
     }
 
 }

@@ -1,8 +1,6 @@
-package com.example.uspForum;
+package com.example.uspForum.professor;
 
 import com.example.uspForum.campus.Campus;
-import com.example.uspForum.campus.CampusController;
-import com.example.uspForum.campus.CampusService;
 import com.example.uspForum.config.SecurityConfig;
 import com.example.uspForum.customUser.CustomUserService;
 import org.junit.jupiter.api.DisplayName;
@@ -18,14 +16,13 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
-@WebMvcTest(CampusController.class)
+@WebMvcTest(ProfessorController.class)
 @Import(SecurityConfig.class)
-public class CampusControllerTests {
+public class ProfessorControllerTests {
 
     @MockBean
-    private CampusService campusService;
+    private ProfessorService professorService;
 
-    // Necessary for SecurityConfig
     @MockBean
     private CustomUserService customUserService;
 
@@ -36,13 +33,19 @@ public class CampusControllerTests {
     @DisplayName("GET request is successful")
     void readIsSuccessful() throws Exception {
 
-        String campusAbbr = "TEST";
+        Campus campus = new Campus("testing institution", "TEST");
+        Professor professor = new Professor("Tested", "tested", "testor@usp.br", campus);
 
-        when(campusService.findByAbbreviation(campusAbbr)).thenReturn(new Campus());
+        String testURL = "/arquivo/" + campus.getAbbreviation() + "/docentes/" + professor.getNormalizedName();
 
-        mockMvc.perform(get("/arquivo/" + campusAbbr))
+        when(professorService.findByCampusAbbreviationAndNormalizedName(campus.getAbbreviation(),
+                professor.getNormalizedName()
+        )).thenReturn(professor);
+
+        this.mockMvc.perform(get(testURL))
                 .andExpect(status().isOk())
-                .andExpect(view().name("campus"));
+                .andExpect(view().name("professor"));
+
     }
 
 }

@@ -1,4 +1,4 @@
-package com.example.uspForum;
+package com.example.uspForum.customUser;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

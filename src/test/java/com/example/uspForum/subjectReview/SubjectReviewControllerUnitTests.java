@@ -1,13 +1,9 @@
-package com.example.uspForum;
+package com.example.uspForum.subjectReview;
 
 import com.example.uspForum.config.SecurityConfig;
-import com.example.uspForum.subjectReview.SubjectReviewController;
 import com.example.uspForum.subject.Subject;
-import com.example.uspForum.subjectReview.SubjectReview;
-import com.example.uspForum.subjectReview.SubjectReviewDTO;
 import com.example.uspForum.exception.NotFoundException;
 import com.example.uspForum.customUser.CustomUserService;
-import com.example.uspForum.subjectReview.SubjectReviewService;
 import com.example.uspForum.subject.SubjectService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.DisplayName;

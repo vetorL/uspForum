@@ -1,19 +1,16 @@
-package com.example.uspForum;
+package com.example.uspForum.subjectReview;
 
+import com.example.uspForum.UspForumApplication;
 import com.example.uspForum.campus.Campus;
 import com.example.uspForum.campus.CampusRepository;
-import com.example.uspForum.subjectReview.SubjectReviewController;
 import com.example.uspForum.course.Course;
 import com.example.uspForum.course.CourseRepository;
 import com.example.uspForum.customUser.CustomUser;
 import com.example.uspForum.customUser.CustomUserRepository;
 import com.example.uspForum.subject.Subject;
 import com.example.uspForum.subject.SubjectRepository;
-import com.example.uspForum.subjectReview.SubjectReview;
-import com.example.uspForum.subjectReview.SubjectReviewDTO;
 import com.example.uspForum.professor.Professor;
 import com.example.uspForum.professor.ProfessorRepository;
-import com.example.uspForum.subjectReview.SubjectReviewRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.ServletContext;
 import org.junit.jupiter.api.*;

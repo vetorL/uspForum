@@ -1,11 +1,8 @@
-package com.example.uspForum;
+package com.example.uspForum.course;
 
 import com.example.uspForum.campus.Campus;
 import com.example.uspForum.config.SecurityConfig;
 import com.example.uspForum.customUser.CustomUserService;
-import com.example.uspForum.professor.Professor;
-import com.example.uspForum.professor.ProfessorController;
-import com.example.uspForum.professor.ProfessorService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,12 +16,12 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
-@WebMvcTest(ProfessorController.class)
+@WebMvcTest(CourseController.class)
 @Import(SecurityConfig.class)
-public class ProfessorControllerTests {
+public class CourseControllerTests {
 
     @MockBean
-    private ProfessorService professorService;
+    private CourseService courseService;
 
     @MockBean
     private CustomUserService customUserService;
@@ -33,21 +30,20 @@ public class ProfessorControllerTests {
     private MockMvc mockMvc;
 
     @Test
-    @DisplayName("GET request is successful")
+    @DisplayName("GET request is succesful")
     void readIsSuccessful() throws Exception {
 
         Campus campus = new Campus("testing institution", "TEST");
-        Professor professor = new Professor("Tested", "tested", "testor@usp.br", campus);
+        Course course = new Course("test name", "test-name", campus);
 
-        String testURL = "/arquivo/" + campus.getAbbreviation() + "/docentes/" + professor.getNormalizedName();
+        String testURL = "/arquivo/" + campus.getAbbreviation() + "/" + course.getNormalizedName();
 
-        when(professorService.findByCampusAbbreviationAndNormalizedName(campus.getAbbreviation(),
-                professor.getNormalizedName()
-        )).thenReturn(professor);
+        when(courseService.findByNormalizedNameAndCampusAbbreviation(
+                course.getNormalizedName(), campus.getAbbreviation())).thenReturn(course);
 
         this.mockMvc.perform(get(testURL))
                 .andExpect(status().isOk())
-                .andExpect(view().name("professor"));
+                .andExpect(view().name("course"));
 
     }
 

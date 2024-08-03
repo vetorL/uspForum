@@ -1,10 +1,6 @@
-package com.example.uspForum;
+package com.example.uspForum.customUser;
 
-import com.example.uspForum.campus.Campus;
 import com.example.uspForum.config.SecurityConfig;
-import com.example.uspForum.customUser.CustomUser;
-import com.example.uspForum.customUser.CustomUserService;
-import com.example.uspForum.customUser.ProfileController;
 import com.example.uspForum.exception.CustomUserNotFoundException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

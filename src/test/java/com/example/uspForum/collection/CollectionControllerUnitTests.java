@@ -1,7 +1,6 @@
-package com.example.uspForum;
+package com.example.uspForum.collection;
 
 import com.example.uspForum.config.SecurityConfig;
-import com.example.uspForum.collection.CollectionController;
 import com.example.uspForum.course.Course;
 import com.example.uspForum.professor.Professor;
 import com.example.uspForum.subject.Subject;

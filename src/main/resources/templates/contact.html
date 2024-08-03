@@ -5,10 +5,21 @@
 
         <h1>Contato</h1>
 
-        <form id="contact-form">
+        <div th:if="${contactRegistered}">
+            <p style="text-align: center">
+                <i style="color: green">Tentativa de contato realizada com sucesso!</i> <br/>
+                Analisaremos seu caso e retornaremos com uma resposta em breve.
+            </p>
+        </div>
+
+        <form th:unless="${contactRegistered}"
+              id="contact-form"
+              method="POST"
+              th:action="@{/contato}"
+              th:object="${contactDTO}">
             <label>
                 Assunto:
-                <select name="assunto" required>
+                <select name="assunto" required th:field="*{subjectMatter}">
                     <option value="" selected disabled>-- Selecione --</option>
                     <option value="bug">Reportar Bug</option>
                     <option value="melhoria">Sugestão de melhoria</option>
@@ -19,7 +30,7 @@
 
             <label>
                 Texto:
-                <textarea rows="5" required></textarea>
+                <textarea rows="5" required th:field="*{content}"></textarea>
             </label>
 
             <button type="submit">Enviar</button>

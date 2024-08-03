@@ -12,12 +12,17 @@ import org.springframework.security.test.context.support.WithAnonymousUser;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @WebMvcTest(ContactController.class)
 @Import(SecurityConfig.class)
 public class ContactControllerTests {
+
+    @MockBean
+    private ContactService contactService;
 
     @MockBean
     private CustomUserService customUserService;
@@ -44,6 +49,29 @@ public class ContactControllerTests {
         mockMvc.perform(get("/contato"))
                 .andExpect(status().is3xxRedirection())
                 .andExpect(redirectedUrl("http://localhost/login"));
+
+    }
+
+    @Test
+    @WithMockUser
+    @DisplayName("POST request is successful when authenticated")
+    void postIsSuccessfulWhenAuthenticated() throws Exception {
+
+        mockMvc.perform(post("/contato")
+                        .with(csrf()))
+                .andExpect(status().isOk())
+                .andExpect(view().name("contact"));
+
+    }
+
+    @Test
+    @WithMockUser
+    @DisplayName("POST request is unsuccessful when invalid csrf")
+    void postIsUnsuccessfulWhenInvalidCsrf() throws Exception {
+
+        mockMvc.perform(post("/contato")
+                        .with(csrf().useInvalidToken()))
+                .andExpect(status().isForbidden());
 
     }
 

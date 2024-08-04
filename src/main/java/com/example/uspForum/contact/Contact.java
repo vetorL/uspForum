@@ -32,4 +32,6 @@ public class Contact {
 
     private ContactStatus status = ContactStatus.PENDING;
 
+    private String response;
+
 }

@@ -28,6 +28,7 @@ public class ContactController {
 
         contactService.save(modelMapper.toContact(contactDTO, sender));
         model.addAttribute("contactRegistered", true);
+        model.addAttribute("contactAttempts", contactService.getPreviousContactAttempts(sender));
 
         return "contact";
     }

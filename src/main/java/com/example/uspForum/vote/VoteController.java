@@ -3,6 +3,7 @@ package com.example.uspForum.vote;
 import com.example.uspForum.customUser.CustomUser;
 import com.example.uspForum.subjectReview.SubjectReview;
 import com.example.uspForum.subjectReview.SubjectReviewService;
+import com.example.uspForum.util.ModelMapper;
 import org.springframework.http.MediaType;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,9 +15,11 @@ import org.springframework.web.bind.annotation.RestController;
 public class VoteController {
 
     private final SubjectReviewService subjectReviewService;
+    private final ModelMapper modelMapper;
 
-    public VoteController(SubjectReviewService subjectReviewService) {
+    public VoteController(SubjectReviewService subjectReviewService, ModelMapper modelMapper) {
         this.subjectReviewService = subjectReviewService;
+        this.modelMapper = modelMapper;
     }
 
     @PostMapping(value = "/disciplina/votar", consumes = MediaType.APPLICATION_JSON_VALUE)
@@ -27,7 +30,7 @@ public class VoteController {
             ) {
         SubjectReview subjectReview = subjectReviewService.findById(voteDTO.getSubjectReviewId());
 
-        Vote vote = voteDTO.toVote(voter, subjectReview);
+        Vote vote = modelMapper.toVote(voteDTO, voter, subjectReview);
 
         CustomUser subjectReviewAuthor = subjectReview.getAuthor();
 

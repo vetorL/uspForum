@@ -9,6 +9,8 @@ import com.example.uspForum.subject.Subject;
 import com.example.uspForum.subject.SubjectCreationDTO;
 import com.example.uspForum.subjectReview.SubjectReview;
 import com.example.uspForum.subjectReview.SubjectReviewDTO;
+import com.example.uspForum.vote.Vote;
+import com.example.uspForum.vote.VoteDTO;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -76,6 +78,40 @@ public class ModelMapperTests {
         assertEquals(subjectReviewDTO.getRecommendation(), subjectReview.getRecommendation());
         assertEquals(author, subjectReview.getAuthor());
         assertEquals(subject, subjectReview.getSubject());
+    }
+
+    @Test
+    @DisplayName("toVote method works when voting up")
+    void toVoteWorksWhenVotingUp() {
+        ModelMapper modelMapper = new ModelMapper();
+
+        VoteDTO voteDTO = new VoteDTO(1L, "up");
+
+        CustomUser voter = new CustomUser();
+        SubjectReview subjectReview = new SubjectReview();
+
+        Vote vote = modelMapper.toVote(voteDTO, voter, subjectReview);
+
+        assertEquals(1, vote.getVote());
+        assertEquals(voter, vote.getVoter());
+        assertEquals(subjectReview, vote.getSubjectReview());
+    }
+
+    @Test
+    @DisplayName("toVote method works when voting down")
+    void toVoteWorksWhenVotingDown() {
+        ModelMapper modelMapper = new ModelMapper();
+
+        VoteDTO voteDTO = new VoteDTO(1L, "down");
+
+        CustomUser voter = new CustomUser();
+        SubjectReview subjectReview = new SubjectReview();
+
+        Vote vote = modelMapper.toVote(voteDTO, voter, subjectReview);
+
+        assertEquals(-1, vote.getVote());
+        assertEquals(voter, vote.getVoter());
+        assertEquals(subjectReview, vote.getSubjectReview());
     }
 
 }

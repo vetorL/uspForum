@@ -14,7 +14,7 @@
             <p class="contact-content text-word-break" th:text="${contact.content}"></p>
         </div>
 
-        <div class="contact-attempt-section">
+        <div class="contact-attempt-section" style="margin-bottom: 0.5rem">
             <p>Status:</p>
             <div th:if="${contact.status.name() == 'PENDING'}">
                 <span style="color: red">PENDENTE</span>
@@ -27,9 +27,9 @@
             </div>
         </div>
 
-        <div class="contact-attempt-section contact-attempt-response">
+        <div th:if="${contact.response != null}" class="contact-attempt-section contact-attempt-response">
             <p>Resposta:</p>
-            <p class="text-word-break">O bug foi resolvido, obrigado por avisar.</p>
+            <p class="text-word-break" th:text="${contact.response}"></p>
         </div>
 
     </div>

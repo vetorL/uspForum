@@ -16,7 +16,15 @@
 
         <div class="contact-attempt-section">
             <p>Status:</p>
-            <p style="color: green">RESOLVIDO</p>
+            <div th:if="${contact.status.name() == 'PENDENTE'}">
+                <span style="color: red">PENDENTE</span>
+            </div>
+            <div th:if="${contact.status.name() == 'EM_ANDAMENTO'}">
+                <span style="color: orange">EM ANDAMENTO</span>
+            </div>
+            <div th:if="${contact.status.name() == 'RESOLVIDO'}">
+                <span style="color: green">RESOLVIDO</span>
+            </div>
         </div>
 
         <div class="contact-attempt-section contact-attempt-response">

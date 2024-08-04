@@ -1,6 +1,7 @@
 package com.example.uspForum.contact;
 
 import com.example.uspForum.customUser.CustomUser;
+import com.example.uspForum.util.ModelMapper;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,9 +14,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class ContactController {
 
     private final ContactService contactService;
+    private final ModelMapper modelMapper;
 
-    public ContactController(ContactService contactService) {
+    public ContactController(ContactService contactService, ModelMapper modelMapper) {
         this.contactService = contactService;
+        this.modelMapper = modelMapper;
     }
 
     @PostMapping
@@ -23,7 +26,7 @@ public class ContactController {
                          ContactDTO contactDTO,
                          Model model) {
 
-        contactService.save(contactDTO.toContact(sender));
+        contactService.save(modelMapper.toContact(contactDTO, sender));
         model.addAttribute("contactRegistered", true);
 
         return "contact";

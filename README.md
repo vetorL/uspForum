@@ -27,13 +27,8 @@ A forum for USP
 ### Just work
 - image logo
 - profile configuration page (for changing username, profile picture, and toggling options)
-- register user course
-- create problem reporting page
 - fix subject creation
 - option modals in profile
-- make subject review deletion update rep
-- associatedFiles field in subject
 - As the user, I'd like to be able to report reviews
 - As the admin, I'd like to be able to have all the reported reviews displayed to me in a unified page for easy 
 moderation
-- As the user, I'd like to be able to see the campus and courses of other users in their profile

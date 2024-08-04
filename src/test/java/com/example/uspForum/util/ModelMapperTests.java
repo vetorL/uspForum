@@ -2,7 +2,11 @@ package com.example.uspForum.util;
 
 import com.example.uspForum.contact.Contact;
 import com.example.uspForum.contact.ContactDTO;
+import com.example.uspForum.course.Course;
 import com.example.uspForum.customUser.CustomUser;
+import com.example.uspForum.professor.Professor;
+import com.example.uspForum.subject.Subject;
+import com.example.uspForum.subject.SubjectCreationDTO;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -29,6 +33,27 @@ public class ModelMapperTests {
         assertEquals(contactDTO.getSubjectMatter(), contact.getSubjectMatter());
         assertEquals(contactDTO.getContent(), contact.getContent());
         assertEquals(sender, contact.getSender());
+    }
+
+    @Test
+    @DisplayName("toSubject method works")
+    void toSubjectWorks() {
+        ModelMapper modelMapper = new ModelMapper();
+
+        SubjectCreationDTO subjectCreationDTO = new SubjectCreationDTO("name", "abbreviation",
+                "code", "relatedCourseName", "relatedCampusAbbreviation",
+                "professorEmail");
+
+        Course course = new Course();
+        Professor professor = new Professor();
+
+        Subject subject = modelMapper.toSubject(subjectCreationDTO, course, professor);
+
+        assertEquals(subjectCreationDTO.getName(), subject.getName());
+        assertEquals(subjectCreationDTO.getAbbreviation(), subject.getAbbreviation());
+        assertEquals(subjectCreationDTO.getCode(), subject.getCode());
+        assertEquals(course, subject.getCourse());
+        assertEquals(professor, subject.getProfessor());
     }
 
 }

@@ -6,6 +6,7 @@ import com.example.uspForum.campus.CampusService;
 import com.example.uspForum.professor.Professor;
 import com.example.uspForum.course.CourseService;
 import com.example.uspForum.professor.ProfessorService;
+import com.example.uspForum.util.ModelMapper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,13 +22,15 @@ public class CreationController {
     private final ProfessorService professorService;
     private final CourseService courseService;
     private final SubjectService subjectService;
+    private final ModelMapper modelMapper;
 
     public CreationController(CampusService campusService, ProfessorService professorService,
-                              CourseService courseService, SubjectService subjectService) {
+                              CourseService courseService, SubjectService subjectService, ModelMapper modelMapper) {
         this.campusService = campusService;
         this.professorService = professorService;
         this.courseService = courseService;
         this.subjectService = subjectService;
+        this.modelMapper = modelMapper;
     }
 
     @GetMapping("/criar")
@@ -56,7 +59,7 @@ public class CreationController {
 
         Professor professor = professorService.findByEmail(subjectCreationDTO.getProfessorEmail());
 
-        Subject subjectToBeCreated = subjectCreationDTO.toSubject(course.get(0), professor);
+        Subject subjectToBeCreated = modelMapper.toSubject(subjectCreationDTO, course.get(0), professor);
 
         Subject createdSubject = subjectService.create(subjectToBeCreated);
 

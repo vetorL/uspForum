@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<body>
+
+    <div class="contact-attempt" th:fragment="contact-attempt(contact)">
+
+        <div class="contact-attempt-section">
+            <p>Assunto:</p>
+            <p class="contact-subject-matter" th:text="${contact.subjectMatter}"></p>
+        </div>
+
+        <div class="contact-attempt-section">
+            <p>Texto:</p>
+            <p class="contact-content text-word-break" th:text="${contact.content}"></p>
+        </div>
+
+        <div class="contact-attempt-section">
+            <p>Status:</p>
+            <p style="color: green">RESOLVIDO</p>
+        </div>
+
+        <div class="contact-attempt-section contact-attempt-response">
+            <p>Resposta:</p>
+            <p class="text-word-break">O bug foi resolvido, obrigado por avisar.</p>
+        </div>
+
+    </div>
+
+</body>
+</html>

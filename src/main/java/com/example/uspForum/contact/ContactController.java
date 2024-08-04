@@ -33,9 +33,11 @@ public class ContactController {
     }
 
     @GetMapping
-    public String read(Model model) {
+    public String read(@AuthenticationPrincipal CustomUser sender,
+                       Model model) {
 
         model.addAttribute("contactDTO", new ContactDTO());
+        model.addAttribute("contactAttempts", contactService.getPreviousContactAttempts(sender));
 
         return "contact";
     }

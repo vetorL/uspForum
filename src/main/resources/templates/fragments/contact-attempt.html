@@ -16,13 +16,13 @@
 
         <div class="contact-attempt-section">
             <p>Status:</p>
-            <div th:if="${contact.status.name() == 'PENDENTE'}">
+            <div th:if="${contact.status.name() == 'PENDING'}">
                 <span style="color: red">PENDENTE</span>
             </div>
-            <div th:if="${contact.status.name() == 'EM_ANDAMENTO'}">
+            <div th:if="${contact.status.name() == 'IN_PROGRESS'}">
                 <span style="color: orange">EM ANDAMENTO</span>
             </div>
-            <div th:if="${contact.status.name() == 'RESOLVIDO'}">
+            <div th:if="${contact.status.name() == 'SOLVED'}">
                 <span style="color: green">RESOLVIDO</span>
             </div>
         </div>

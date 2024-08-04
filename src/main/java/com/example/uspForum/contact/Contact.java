@@ -30,6 +30,6 @@ public class Contact {
     @CreationTimestamp
     private Date createdAt;
 
-    private ContactStatus status = ContactStatus.PENDENTE;
+    private ContactStatus status = ContactStatus.PENDING;
 
 }

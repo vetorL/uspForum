@@ -36,6 +36,22 @@
             <button type="submit">Enviar</button>
         </form>
 
+        <section class="contact-attempts">
+            <h2 style="text-align: center; font-style: italic">
+                Tentativas de contato anteriores:
+            </h2>
+
+            <div th:if="${contactAttempts != null}">
+                <p th:if="${contactAttempts.isEmpty()}">
+                    Nenhuma tentativa de contato foi efetuada até o momento.
+                </p>
+            </div>
+
+            <div th:each="contact: ${contactAttempts}"
+                 th:insert="~{fragments/contact-attempt :: contact-attempt(${contact})}"
+                 th:remove="tag"></div>
+        </section>
+
     </main>
 </body>
 </html>

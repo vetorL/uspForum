@@ -3,6 +3,7 @@ package com.example.uspForum.subjectReview;
 import com.example.uspForum.customUser.CustomUser;
 import com.example.uspForum.subject.Subject;
 import com.example.uspForum.subject.SubjectService;
+import com.example.uspForum.util.ModelMapper;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -17,10 +18,13 @@ public class SubjectReviewController {
 
     private final SubjectReviewService subjectReviewService;
     private final SubjectService subjectService;
+    private final ModelMapper modelMapper;
 
-    public SubjectReviewController(SubjectReviewService subjectReviewService, SubjectService subjectService) {
+    public SubjectReviewController(SubjectReviewService subjectReviewService, SubjectService subjectService,
+                                   ModelMapper modelMapper) {
         this.subjectReviewService = subjectReviewService;
         this.subjectService = subjectService;
+        this.modelMapper = modelMapper;
     }
 
     @PostMapping(value = "/subject/{subjectId}/reviews", consumes = MediaType.APPLICATION_JSON_VALUE)
@@ -34,7 +38,7 @@ public class SubjectReviewController {
         }
 
         Subject associatedSubject = subjectService.findById(subjectId);
-        SubjectReview subjectReview = subjectReviewDTO.toSubjectReview(author, associatedSubject);
+        SubjectReview subjectReview = modelMapper.toSubjectReview(subjectReviewDTO, author, associatedSubject);
 
         subjectService.postSubjectReview(subjectReview);
 

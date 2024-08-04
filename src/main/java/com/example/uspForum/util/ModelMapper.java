@@ -7,6 +7,8 @@ import com.example.uspForum.customUser.CustomUser;
 import com.example.uspForum.professor.Professor;
 import com.example.uspForum.subject.Subject;
 import com.example.uspForum.subject.SubjectCreationDTO;
+import com.example.uspForum.subjectReview.SubjectReview;
+import com.example.uspForum.subjectReview.SubjectReviewDTO;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -23,6 +25,16 @@ public class ModelMapper {
                 subjectCreationDTO.getCode(),
                 course,
                 professor
+        );
+    }
+
+    public SubjectReview toSubjectReview(SubjectReviewDTO subjectReviewDTO, CustomUser author, Subject subject) {
+        return new SubjectReview(
+                author,
+                subject,
+                subjectReviewDTO.getTitle(),
+                subjectReviewDTO.getContent(),
+                subjectReviewDTO.getRecommendation()
         );
     }
 

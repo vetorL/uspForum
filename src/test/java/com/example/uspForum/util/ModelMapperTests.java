@@ -7,6 +7,8 @@ import com.example.uspForum.customUser.CustomUser;
 import com.example.uspForum.professor.Professor;
 import com.example.uspForum.subject.Subject;
 import com.example.uspForum.subject.SubjectCreationDTO;
+import com.example.uspForum.subjectReview.SubjectReview;
+import com.example.uspForum.subjectReview.SubjectReviewDTO;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -54,6 +56,26 @@ public class ModelMapperTests {
         assertEquals(subjectCreationDTO.getCode(), subject.getCode());
         assertEquals(course, subject.getCourse());
         assertEquals(professor, subject.getProfessor());
+    }
+
+    @Test
+    @DisplayName("toSubjectReview method works")
+    void toSubjectReviewWorks() {
+        ModelMapper modelMapper = new ModelMapper();
+
+        SubjectReviewDTO subjectReviewDTO =
+                new SubjectReviewDTO("title", "content", "recommendation");
+
+        CustomUser author = new CustomUser();
+        Subject subject = new Subject();
+
+        SubjectReview subjectReview = modelMapper.toSubjectReview(subjectReviewDTO, author, subject);
+
+        assertEquals(subjectReviewDTO.getTitle(), subjectReview.getTitle());
+        assertEquals(subjectReviewDTO.getContent(), subjectReview.getContent());
+        assertEquals(subjectReviewDTO.getRecommendation(), subjectReview.getRecommendation());
+        assertEquals(author, subjectReview.getAuthor());
+        assertEquals(subject, subjectReview.getSubject());
     }
 
 }

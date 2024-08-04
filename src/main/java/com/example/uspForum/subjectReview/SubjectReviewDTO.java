@@ -1,7 +1,5 @@
 package com.example.uspForum.subjectReview;
 
-import com.example.uspForum.customUser.CustomUser;
-import com.example.uspForum.subject.Subject;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
@@ -25,15 +23,5 @@ public class SubjectReviewDTO {
     @NotBlank
     @Pattern(regexp="^(Neutro|Recomendo|Não recomendo)$", message="Recomendação inválida")
     private String recommendation;
-
-    public SubjectReview toSubjectReview(CustomUser author, Subject subject) {
-        return new SubjectReview(
-                author,
-                subject,
-                title,
-                content,
-                recommendation
-        );
-    }
 
 }

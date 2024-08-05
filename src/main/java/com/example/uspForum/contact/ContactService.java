@@ -23,7 +23,7 @@ public class ContactService {
     }
 
     public List<Contact> getPreviousContactAttempts(CustomUser sender) {
-        return contactRepository.findAllBySender(sender);
+        return contactRepository.findAllBySenderOrderByCreatedAtDesc(sender);
     }
 
 }

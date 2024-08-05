@@ -38,11 +38,11 @@ public class ContactServiceTests {
 
         List<Contact> previousContactAttempts = List.of(contact);
 
-        when(contactRepository.findAllBySender(sender)).thenReturn(previousContactAttempts);
+        when(contactRepository.findAllBySenderOrderByCreatedAtDesc(sender)).thenReturn(previousContactAttempts);
 
         assertEquals(previousContactAttempts, contactService.getPreviousContactAttempts(sender));
 
-        verify(contactRepository, times(1)).findAllBySender(sender);
+        verify(contactRepository, times(1)).findAllBySenderOrderByCreatedAtDesc(sender);
         verifyNoMoreInteractions(contactRepository);
     }
 

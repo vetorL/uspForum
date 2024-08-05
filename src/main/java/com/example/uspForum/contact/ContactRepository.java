@@ -7,6 +7,6 @@ import java.util.List;
 
 public interface ContactRepository extends CrudRepository<Contact, Long> {
 
-    List<Contact> findAllBySender(CustomUser sender);
+    List<Contact> findAllBySenderOrderByCreatedAtDesc(CustomUser sender);
 
 }

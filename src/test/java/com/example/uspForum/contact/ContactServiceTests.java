@@ -11,7 +11,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
@@ -38,7 +38,7 @@ public class ContactServiceTests {
         when(contactRepository.findFirstBySenderOrderByCreatedAtDesc(contact.getSender())).thenReturn(null);
 
         // # Call method that is to be tested
-        contactService.save(contact);
+        assertTrue(contactService.save(contact));
 
         // # Verify interactions
 
@@ -69,7 +69,7 @@ public class ContactServiceTests {
         when(dateHandler.isOlderThanOneDay(lastContact.getCreatedAt())).thenReturn(false);
 
         // # Call method that is to be tested
-        contactService.save(contact);
+        assertFalse(contactService.save(contact));
 
         // # Verify interactions
 
@@ -100,7 +100,7 @@ public class ContactServiceTests {
         when(dateHandler.isOlderThanOneDay(lastContact.getCreatedAt())).thenReturn(true);
 
         // # Call method that is to be tested
-        contactService.save(contact);
+        assertTrue(contactService.save(contact));
 
         // # Verify interactions
 

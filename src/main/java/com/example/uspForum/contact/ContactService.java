@@ -19,7 +19,7 @@ public class ContactService {
     }
 
     @PreAuthorize("authenticated")
-    public void save(Contact contact) {
+    public boolean save(Contact contact) {
 
         // ### Saves the contact to the DB only if it has been more than 24 hours since the last attempt
 
@@ -33,12 +33,16 @@ public class ContactService {
             // Else reject it
             if(dateHandler.isOlderThanOneDay(lastContact.getCreatedAt())) {
                 contactRepository.save(contact);
+                return true;
             }
+
         } else {
             // # Case where the user has never attempted to initiate contact
             contactRepository.save(contact);
+            return true;
         }
 
+        return false;
     }
 
     public List<Contact> getPreviousContactAttempts(CustomUser sender) {

@@ -9,4 +9,6 @@ public interface ContactRepository extends CrudRepository<Contact, Long> {
 
     List<Contact> findAllBySenderOrderByCreatedAtDesc(CustomUser sender);
 
+    Contact findFirstBySenderOrderByCreatedAtDesc(CustomUser sender);
+
 }

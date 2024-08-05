@@ -1,6 +1,7 @@
 package com.example.uspForum.contact;
 
 import com.example.uspForum.customUser.CustomUser;
+import com.example.uspForum.util.DateHandler;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 
@@ -10,16 +11,34 @@ import java.util.List;
 public class ContactService {
 
     private final ContactRepository contactRepository;
+    private final DateHandler dateHandler;
 
-    public ContactService(ContactRepository contactRepository) {
+    public ContactService(ContactRepository contactRepository, DateHandler dateHandler) {
         this.contactRepository = contactRepository;
+        this.dateHandler = dateHandler;
     }
 
     @PreAuthorize("authenticated")
     public void save(Contact contact) {
 
-        // If user already made a contact attempt within the last 24 hours, reject it
-        contactRepository.save(contact);
+        // ### Saves the contact to the DB only if it has been more than 24 hours since the last attempt
+
+        // # Find most recent contact of the user
+        Contact lastContact = contactRepository.findFirstBySenderOrderByCreatedAtDesc(contact.getSender());
+
+        if (lastContact != null) {
+            // # Case where a contact attempt has already been made by the user
+
+            // If more than one day has passed since the last contact attempt, allow it to be saved
+            // Else reject it
+            if(dateHandler.isOlderThanOneDay(lastContact.getCreatedAt())) {
+                contactRepository.save(contact);
+            }
+        } else {
+            // # Case where the user has never attempted to initiate contact
+            contactRepository.save(contact);
+        }
+
     }
 
     public List<Contact> getPreviousContactAttempts(CustomUser sender) {

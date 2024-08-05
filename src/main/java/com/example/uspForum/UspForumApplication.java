@@ -1,5 +1,6 @@
 package com.example.uspForum;
 
+import com.example.uspForum.util.DateHandler;
 import com.example.uspForum.util.ModelMapper;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.boot.SpringApplication;
@@ -21,6 +22,11 @@ public class UspForumApplication {
 	@Bean
 	public ModelMapper modelMapper() {
 		return new ModelMapper();
+	}
+
+	@Bean
+	public DateHandler dateHandler() {
+		return new DateHandler();
 	}
 
 }

@@ -1,7 +1,7 @@
 package com.example.uspForum.subjectReview;
 
 import com.example.uspForum.customUser.CustomUser;
-import com.example.uspForum.reviewReport.ReviewReport;
+import com.example.uspForum.subjectReview.reviewReport.ReviewReport;
 import com.example.uspForum.subject.Subject;
 import com.example.uspForum.vote.Vote;
 import jakarta.persistence.*;

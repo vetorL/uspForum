@@ -9,6 +9,8 @@ import com.example.uspForum.subject.Subject;
 import com.example.uspForum.subject.SubjectCreationDTO;
 import com.example.uspForum.subjectReview.SubjectReview;
 import com.example.uspForum.subjectReview.SubjectReviewDTO;
+import com.example.uspForum.subjectReview.reviewReport.ReviewReport;
+import com.example.uspForum.subjectReview.reviewReport.ReviewReportDTO;
 import com.example.uspForum.vote.Vote;
 import com.example.uspForum.vote.VoteDTO;
 import org.springframework.stereotype.Component;
@@ -54,6 +56,12 @@ public class ModelMapper {
                 voter,
                 subjectReview
         );
+    }
+
+    public ReviewReport toReviewReport(ReviewReportDTO reviewReportDTO, CustomUser accuser,
+                                       SubjectReview subjectReview) {
+
+        return new ReviewReport(reviewReportDTO.getReason(), accuser, subjectReview);
     }
 
 }

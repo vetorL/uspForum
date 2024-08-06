@@ -9,6 +9,8 @@ import com.example.uspForum.subject.Subject;
 import com.example.uspForum.subject.SubjectCreationDTO;
 import com.example.uspForum.subjectReview.SubjectReview;
 import com.example.uspForum.subjectReview.SubjectReviewDTO;
+import com.example.uspForum.subjectReview.reviewReport.ReviewReport;
+import com.example.uspForum.subjectReview.reviewReport.ReviewReportDTO;
 import com.example.uspForum.vote.Vote;
 import com.example.uspForum.vote.VoteDTO;
 import org.junit.jupiter.api.DisplayName;
@@ -112,6 +114,23 @@ public class ModelMapperTests {
         assertEquals(-1, vote.getVote());
         assertEquals(voter, vote.getVoter());
         assertEquals(subjectReview, vote.getSubjectReview());
+    }
+
+    @Test
+    @DisplayName("toReviewReport works")
+    void toReviewReportWorks() {
+        // # Given
+        ReviewReportDTO reviewReportDTO = new ReviewReportDTO("reason");
+        CustomUser accuser = new CustomUser("email", "username", "password");
+        SubjectReview subjectReview = new SubjectReview();
+
+        // # Call method to be tested
+        ModelMapper modelMapper = new ModelMapper();
+        ReviewReport reviewReport = modelMapper.toReviewReport(reviewReportDTO, accuser, subjectReview);
+
+        assertEquals(reviewReportDTO.getReason(), reviewReport.getReason());
+        assertEquals(accuser, reviewReport.getAccuser());
+        assertEquals(subjectReview, reviewReport.getSubjectReview());
     }
 
 }

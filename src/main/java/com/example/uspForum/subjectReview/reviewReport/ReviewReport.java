@@ -21,7 +21,7 @@ public class ReviewReport {
 
     @ManyToOne
     @JoinColumn(name = "accuser_id")
-    private CustomUser accuser;
+    private final CustomUser accuser;
 
     @ManyToOne
     @JoinColumn(name = "subject_review_id")

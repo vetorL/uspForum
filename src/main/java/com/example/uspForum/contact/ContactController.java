@@ -27,7 +27,7 @@ public class ContactController {
                          Model model) {
 
         contactService.save(modelMapper.toContact(contactDTO, sender));
-        model.addAttribute("contactRegistered", true);
+        model.addAttribute("canContact", contactService.canContact(sender));
         model.addAttribute("contactAttempts", contactService.getPreviousContactAttempts(sender));
 
         return "contact";
@@ -37,6 +37,7 @@ public class ContactController {
     public String read(@AuthenticationPrincipal CustomUser sender,
                        Model model) {
 
+        model.addAttribute("canContact", contactService.canContact(sender));
         model.addAttribute("contactDTO", new ContactDTO());
         model.addAttribute("contactAttempts", contactService.getPreviousContactAttempts(sender));
 

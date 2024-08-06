@@ -5,14 +5,15 @@
 
         <h1>Contato</h1>
 
-        <div th:if="${contactRegistered}">
+        <div th:unless="${canContact}">
             <p style="text-align: center">
                 <i style="color: green">Tentativa de contato realizada com sucesso!</i> <br/>
-                Analisaremos seu caso e retornaremos com uma resposta em breve.
+                Analisaremos seu caso e retornaremos com uma resposta em breve. <br/>
+                <span style="color: gray">A opção de contato estará disponível novamente em 24 horas.</span>
             </p>
         </div>
 
-        <form th:unless="${contactRegistered}"
+        <form th:if="${canContact}"
               id="contact-form"
               method="POST"
               th:action="@{/contato}"

@@ -3,6 +3,7 @@ package com.example.uspForum.customUser;
 import com.example.uspForum.collection.File;
 import com.example.uspForum.contact.Contact;
 import com.example.uspForum.subjectReview.SubjectReview;
+import com.example.uspForum.subjectReview.reviewReport.ReviewReport;
 import com.example.uspForum.vote.Vote;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
@@ -67,6 +68,10 @@ public class CustomUser implements UserDetails {
     @OneToMany(mappedBy = "sender", fetch = FetchType.LAZY)
     @ToString.Exclude
     private List<Contact> contactAttempts = new ArrayList<>();
+
+    @OneToMany(mappedBy = "accuser", fetch = FetchType.LAZY)
+    @ToString.Exclude
+    private List<ReviewReport> reviewReports = new ArrayList<>();
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

@@ -31,7 +31,7 @@ public class ContactService {
 
             // If more than one day has passed since the last contact attempt, allow it to be saved
             // Else reject it
-            if(dateHandler.isOlderThanOneDay(lastContact.getCreatedAt())) {
+            if (dateHandler.isOlderThanOneDay(lastContact.getCreatedAt())) {
                 contactRepository.save(contact);
                 return true;
             }
@@ -43,6 +43,22 @@ public class ContactService {
         }
 
         return false;
+    }
+
+    public boolean canContact(CustomUser sender) {
+
+        // ### Returns true if it has been more than 24 hours since last contact attempt, else returns false
+
+        // # Find most recent contact of the user
+        Contact lastContact = contactRepository.findFirstBySenderOrderByCreatedAtDesc(sender);
+
+        // # Case where the user has never attempted to initiate contact
+        if (lastContact == null) {
+            return true;
+        }
+
+        // # Case where a contact attempt has already been made by the user
+        return dateHandler.isOlderThanOneDay(lastContact.getCreatedAt());
     }
 
     public List<Contact> getPreviousContactAttempts(CustomUser sender) {

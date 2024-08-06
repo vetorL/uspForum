@@ -118,6 +118,69 @@ public class ContactServiceTests {
     }
 
     @Test
+    @DisplayName("canContact works when user has never contacted")
+    void canContactWorksWhenUserHasNotContacted() {
+        CustomUser sender = new CustomUser();
+
+        when(contactRepository.findFirstBySenderOrderByCreatedAtDesc(sender)).thenReturn(null);
+
+        assertTrue(contactService.canContact(sender));
+
+        verify(contactRepository, times(1)).findFirstBySenderOrderByCreatedAtDesc(sender);
+        verifyNoMoreInteractions(contactRepository);
+    }
+
+    @Test
+    @DisplayName("canContact works when user has contacted within the last 24 hours")
+    void canContactWorksWhenUserHasContactedWithinLast24Hours() {
+        // # Given
+        Contact contact = new Contact();
+        CustomUser sender = new CustomUser();
+
+        // # Mock return of called methods
+        when(contactRepository.findFirstBySenderOrderByCreatedAtDesc(sender)).thenReturn(contact);
+        when(dateHandler.isOlderThanOneDay(contact.getCreatedAt())).thenReturn(false);
+
+        // # Call service method being tested and assert its return value
+        assertFalse(contactService.canContact(sender));
+
+        // # Verify interactions
+
+        // Interactions with contactRepository
+        verify(contactRepository, times(1)).findFirstBySenderOrderByCreatedAtDesc(sender);
+        verifyNoMoreInteractions(contactRepository);
+
+        // Interactions with dateHandler
+        verify(dateHandler, times(1)).isOlderThanOneDay(contact.getCreatedAt());
+        verifyNoMoreInteractions(dateHandler);
+    }
+
+    @Test
+    @DisplayName("canContact works when user has contacted more than 24 hours ago")
+    void canContactWorksWhenUserHasContactedMoreThan24HoursAgo() {
+        // # Given
+        Contact contact = new Contact();
+        CustomUser sender = new CustomUser();
+
+        // # Mock return of called methods
+        when(contactRepository.findFirstBySenderOrderByCreatedAtDesc(sender)).thenReturn(contact);
+        when(dateHandler.isOlderThanOneDay(contact.getCreatedAt())).thenReturn(true);
+
+        // # Call service method being tested and assert its return value
+        assertTrue(contactService.canContact(sender));
+
+        // # Verify interactions
+
+        // Interactions with contactRepository
+        verify(contactRepository, times(1)).findFirstBySenderOrderByCreatedAtDesc(sender);
+        verifyNoMoreInteractions(contactRepository);
+
+        // Interactions with dateHandler
+        verify(dateHandler, times(1)).isOlderThanOneDay(contact.getCreatedAt());
+        verifyNoMoreInteractions(dateHandler);
+    }
+
+    @Test
     void getPreviousContactAttemptsWorks() {
         CustomUser sender = new CustomUser();
         Contact contact = new Contact();

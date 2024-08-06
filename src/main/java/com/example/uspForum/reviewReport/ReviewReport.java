@@ -1,4 +1,4 @@
-package com.example.uspForum.report;
+package com.example.uspForum.reviewReport;
 
 import com.example.uspForum.subjectReview.SubjectReview;
 import jakarta.persistence.*;

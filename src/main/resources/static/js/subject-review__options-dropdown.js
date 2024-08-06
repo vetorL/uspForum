@@ -127,6 +127,48 @@ document.getElementById("editReviewModalForm").addEventListener("submit", event 
     sendPutHttpRequest(formData, associatedReviewId);
 });
 
+// Listen for "submit" event triggering from the report modal
+document.getElementById("reportReviewModal").addEventListener("submit", event => {
+   event.preventDefault();
+
+   const formData = new FormData(event.target);
+
+    const associatedReviewId = formData.get("reviewId");
+
+    sendReportPostHttpRequest(formData, associatedReviewId);
+});
+
+// Send a POST http request for reporting a subject review
+function sendReportPostHttpRequest(formData, associatedReviewId) {
+    const csrfToken = document.querySelector('meta[name="_csrf"]').getAttribute('content');
+    const csrfHeader = document.querySelector('meta[name="_csrf_header"]').getAttribute('content');
+
+    const url = 'http://localhost:8080/api/v1/reviews/' + associatedReviewId + '/report';
+
+    const reportReviewDTO = {
+        reason: formData.get("reason")
+    }
+
+    fetch(url, {
+        method: 'POST',
+        credentials: 'include',
+        headers: {
+            [csrfHeader]: csrfToken,
+            'charset': 'UTF-8',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(reportReviewDTO)
+    }).then(response => {
+        if (response.ok) {
+            // Close modals and dropdowns
+            onSuccessfulRequest(associatedReviewId);
+
+            // Reload the page
+            location.reload();
+        }
+    });
+}
+
 // Sends a DELETE http request and if response OK calls onSuccessfulReviewDeletion
 function sendDeleteHttpRequest(event, associatedReviewId) {
     const csrfToken = document.querySelector('meta[name="_csrf"]').getAttribute('content');

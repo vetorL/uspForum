@@ -1,6 +1,7 @@
 package com.example.uspForum.subjectReview;
 
 import com.example.uspForum.customUser.CustomUser;
+import com.example.uspForum.report.ReviewReport;
 import com.example.uspForum.subject.Subject;
 import com.example.uspForum.vote.Vote;
 import jakarta.persistence.*;
@@ -39,6 +40,9 @@ public class SubjectReview {
 
     @OneToMany(mappedBy = "subjectReview", cascade = CascadeType.REMOVE, orphanRemoval = true)
     private List<Vote> votes = new ArrayList<>();
+
+    @OneToMany(mappedBy = "subjectReview")
+    private List<ReviewReport> reviewReports = new ArrayList<>();
 
     @NotBlank(message = "A review deve conter um título!")
     @Size(min = 1, max = 50, message = "Título deve ter entre 1 e 50 caracteres.")

@@ -11,6 +11,8 @@ import lombok.RequiredArgsConstructor;
 @Data
 @RequiredArgsConstructor
 @NoArgsConstructor(force = true)
+@Table(uniqueConstraints = {@UniqueConstraint(name = "UniqueAccuserAndSubjectReview",
+        columnNames = {"accuser_id", "subject_review_id"})})
 public class ReviewReport {
 
     @Id

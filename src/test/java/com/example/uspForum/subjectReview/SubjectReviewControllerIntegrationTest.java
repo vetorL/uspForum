@@ -11,6 +11,8 @@ import com.example.uspForum.subject.Subject;
 import com.example.uspForum.subject.SubjectRepository;
 import com.example.uspForum.professor.Professor;
 import com.example.uspForum.professor.ProfessorRepository;
+import com.example.uspForum.subjectReview.reviewReport.ReviewReport;
+import com.example.uspForum.subjectReview.reviewReport.ReviewReportRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.ServletContext;
 import org.junit.jupiter.api.*;
@@ -63,6 +65,9 @@ public class SubjectReviewControllerIntegrationTest {
     private ProfessorRepository professorRepository;
 
     @Autowired
+    private ReviewReportRepository reviewReportRepository;
+
+    @Autowired
     private ObjectMapper objectMapper;
 
     private MockMvc mockMvc;
@@ -103,6 +108,12 @@ public class SubjectReviewControllerIntegrationTest {
 
             SubjectReview subjectReview = subjectReviewRepository.save(new SubjectReview(usr, iaecVioleta, "Foi bom",
                     "Nao teve prova, mas teve varios trabalhinhos", "Recomendo"));
+
+            CustomUser accuser = customUserRepository.save(new CustomUser("accuser@accuser.com",
+                    "accuser", "password"));
+
+            ReviewReport reviewReport = reviewReportRepository
+                    .save(new ReviewReport("reason", accuser, subjectReview));
         }
 
         @Test
@@ -274,6 +285,7 @@ public class SubjectReviewControllerIntegrationTest {
             professorRepository.deleteAll();
             courseRepository.deleteAll();
             campusRepository.deleteAll();
+            reviewReportRepository.deleteAll();
         }
 
     }

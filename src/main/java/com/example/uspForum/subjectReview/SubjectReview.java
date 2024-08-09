@@ -41,7 +41,7 @@ public class SubjectReview {
     @OneToMany(mappedBy = "subjectReview", cascade = CascadeType.REMOVE, orphanRemoval = true)
     private List<Vote> votes = new ArrayList<>();
 
-    @OneToMany(mappedBy = "subjectReview")
+    @OneToMany(mappedBy = "subjectReview", cascade = CascadeType.REMOVE, orphanRemoval = true)
     private List<ReviewReport> reviewReports = new ArrayList<>();
 
     @NotBlank(message = "A review deve conter um título!")

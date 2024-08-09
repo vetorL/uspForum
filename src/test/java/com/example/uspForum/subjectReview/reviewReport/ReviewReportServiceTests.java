@@ -32,4 +32,15 @@ public class ReviewReportServiceTests {
         verifyNoMoreInteractions(reviewReportRepository);
     }
 
+    @Test
+    @DisplayName("findAll works")
+    void findAllWorks() {
+        // # Call method to be tested
+        reviewReportService.findAll();
+
+        // # Verify interactions with reviewReportRepository
+        verify(reviewReportRepository, times(1)).findAll();
+        verifyNoMoreInteractions(reviewReportRepository);
+    }
+
 }

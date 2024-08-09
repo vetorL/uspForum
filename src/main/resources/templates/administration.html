@@ -19,6 +19,10 @@
             </a>
         </nav>
 
+        <section th:if="${tab == 'reviews'}">
+            <div th:replace="~{fragments/reviews-list-admin :: reviews-list-admin(${reviews})}"></div>
+        </section>
+
     </main>
 </body>
 </html>

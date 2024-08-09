@@ -5,6 +5,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.ArrayList;
+
 @Controller
 @RequestMapping("/admin")
 public class AdministrationController {
@@ -18,6 +20,7 @@ public class AdministrationController {
     public String reviews(Model model) {
 
         model.addAttribute("tab", "reviews");
+        model.addAttribute("reviews", new ArrayList<>());
 
         return "administration";
     }

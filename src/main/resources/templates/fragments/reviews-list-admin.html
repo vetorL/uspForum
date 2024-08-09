@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<body>
+
+    <div th:fragment="reviews-list-admin(reviews)">
+        <p th:if="${reviews.isEmpty()}"><i>Nenhuma review requer análise no momento.</i></p>
+    </div>
+
+</body>
+</html>

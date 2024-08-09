@@ -195,4 +195,17 @@ public class ContactServiceTests {
         verifyNoMoreInteractions(contactRepository);
     }
 
+    @Test
+    @DisplayName("findAll works")
+    void findAllWorks() {
+
+        // # Call method to be tested
+        contactService.findAll();
+
+        // # Verify interactions with contactRepository
+        verify(contactRepository, times(1)).findAll();
+        verifyNoMoreInteractions(contactRepository);
+    }
+
+
 }

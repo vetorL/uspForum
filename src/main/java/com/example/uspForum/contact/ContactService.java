@@ -5,6 +5,7 @@ import com.example.uspForum.util.DateHandler;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -65,4 +66,10 @@ public class ContactService {
         return contactRepository.findAllBySenderOrderByCreatedAtDesc(sender);
     }
 
+
+    public List<Contact> findAll() {
+        List<Contact> contacts = new ArrayList<>();
+        contactRepository.findAll().forEach(contacts::add);
+        return contacts;
+    }
 }

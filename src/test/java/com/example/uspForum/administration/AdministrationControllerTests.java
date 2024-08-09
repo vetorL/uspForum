@@ -2,6 +2,7 @@ package com.example.uspForum.administration;
 
 import com.example.uspForum.config.SecurityConfig;
 import com.example.uspForum.customUser.CustomUserService;
+import com.example.uspForum.subjectReview.reviewReport.ReviewReportService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,12 +13,16 @@ import org.springframework.security.test.context.support.WithAnonymousUser;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 
+import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @WebMvcTest(AdministrationController.class)
 @Import(SecurityConfig.class)
 public class AdministrationControllerTests {
+
+    @MockBean
+    private ReviewReportService reviewReportService;
 
     @MockBean
     private CustomUserService customUserService;
@@ -64,10 +69,14 @@ public class AdministrationControllerTests {
     @DisplayName("GET request by admin for Reviews is successful")
     void getReviewsByAdminRequestIsSuccessful() throws Exception {
 
+        // # Perform request
         mockMvc.perform(get("/admin/reviews"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("administration"));
 
+        // # Verify interactions with reviewReportService
+        verify(reviewReportService, times(1)).findAll();
+        verifyNoMoreInteractions(reviewReportService);
     }
 
     @Test

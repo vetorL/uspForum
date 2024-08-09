@@ -20,7 +20,7 @@ public class AdministrationController {
     public String reviews(Model model) {
 
         model.addAttribute("tab", "reviews");
-        model.addAttribute("reviews", new ArrayList<>());
+        model.addAttribute("reviewReports", new ArrayList<>());
 
         return "administration";
     }

@@ -57,4 +57,38 @@ public class AdministrationControllerTests {
 
     }
 
+    // ### Tests for /admin/reviews ###
+
+    @Test
+    @WithMockUser(roles = {"ADMIN"})
+    @DisplayName("GET request by admin for Reviews is successful")
+    void getReviewsByAdminRequestIsSuccessful() throws Exception {
+
+        mockMvc.perform(get("/admin/reviews"))
+                .andExpect(status().isOk())
+                .andExpect(view().name("administration"));
+
+    }
+
+    @Test
+    @WithMockUser
+    @DisplayName("GET request by random user for Reviews is forbidden")
+    void getReviewsByUserRequestIsUnsuccessful() throws Exception {
+
+        mockMvc.perform(get("/admin/reviews"))
+                .andExpect(status().isForbidden());
+
+    }
+
+    @Test
+    @WithAnonymousUser
+    @DisplayName("GET request by anonymous user for Reviews is unauthorized")
+    void getReviewsByAnonymousUserRequestIsUnsuccessful() throws Exception {
+
+        mockMvc.perform(get("/admin/reviews"))
+                .andExpect(status().is3xxRedirection())
+                .andExpect(redirectedUrl("http://localhost/login"));
+
+    }
+
 }

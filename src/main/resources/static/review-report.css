@@ -1,0 +1,23 @@
+.reported-review {
+    margin: 2rem 0;
+}
+
+.reported-review-info {
+    border: 3px solid black;
+    border-top: 0;
+    padding: 1rem;
+
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.reported-review-info > div span:first-child {
+    font-weight: bold;
+}
+
+.reported-review-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}

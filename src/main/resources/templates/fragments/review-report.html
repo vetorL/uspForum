@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<body>
+
+  <div th:fragment="review-report(reviewReport)" class="reported-review">
+
+    <div th:replace="~{fragments/profile-subject-review :: profile-subject-review(${reviewReport.subjectReview})}">
+    </div>
+
+    <div class="reported-review-info">
+
+      <div>
+        <span>Denunciado por:</span><br/>
+        <span th:text="${reviewReport.accuser.username}"></span>
+      </div>
+
+      <div>
+        <span>Motivo:</span><br/>
+        <span th:text="${reviewReport.reason}"></span>
+      </div>
+
+      <div class="reported-review-buttons">
+        <button>Deletar Review</button>
+        <button>Punir Usuário</button>
+        <button>Arquivar</button>
+      </div>
+
+    </div>
+  </div>
+
+</body>
+</html>

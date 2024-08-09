@@ -22,11 +22,22 @@
 
         <section id="profile-contributions">
             <h2>Contribuições de <i th:text="${profile.username}"></i>:</h2>
-            <div th:each="review: ${profile.subjectReviews}" th:insert="~{fragments/profile-subject-review :: profile-subject-review(${review})}" th:remove="tag"></div>
-            <p th:if="${profile.subjectReviews.isEmpty()}" style="text-align: center; font-style: italic">Este usuário ainda não possui contribuições.</p>
+
+            <div th:each="review: ${profile.subjectReviews}"
+                 th:insert="~{fragments/profile-subject-review :: profile-subject-review(${review})}" th:remove="tag">
+            </div>
+
+            <p th:if="${profile.subjectReviews.isEmpty()}" style="text-align: center; font-style: italic">
+                Este usuário ainda não possui contribuições.
+            </p>
+
+            <div th:replace="~{fragments/subject-review-options-modal :: subject-review-options-modal}"></div>
+
         </section>
 
+        <script th:src="@{/js/subject-review-char-counter.js}"></script>
         <script th:src="@{/js/subject-review-vote.js}"></script>
+        <script th:src="@{/js/subject-review__options-dropdown.js}"></script>
     </main>
 </body>
 </html>

@@ -22,4 +22,12 @@ public class AdministrationController {
         return "administration";
     }
 
+    @GetMapping("/contatos")
+    public String contacts(Model model) {
+
+        model.addAttribute("tab", "contacts");
+
+        return "administration";
+    }
+
 }

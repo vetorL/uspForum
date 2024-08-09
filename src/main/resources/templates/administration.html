@@ -11,7 +11,8 @@
                 Reviews denunciadas
             </a>
             <div style="border-left: 2px solid black; height: 2rem"></div>
-            <a th:href="@{/admin/contatos}" class="administration-tab">
+            <a th:href="@{/admin/contatos}" th:class="${tab == 'contacts' ? 'administration-tab-selected' :
+            'administration-tab'}">
                 Tentativas de contato
             </a>
         </nav>

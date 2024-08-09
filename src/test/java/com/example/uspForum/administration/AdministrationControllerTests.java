@@ -91,4 +91,38 @@ public class AdministrationControllerTests {
 
     }
 
+    // ### Tests for /admin/contacts ###
+
+    @Test
+    @WithMockUser(roles = {"ADMIN"})
+    @DisplayName("GET request by admin for Contacts is successful")
+    void getContactsByAdminRequestIsSuccessful() throws Exception {
+
+        mockMvc.perform(get("/admin/contatos"))
+                .andExpect(status().isOk())
+                .andExpect(view().name("administration"));
+
+    }
+
+    @Test
+    @WithMockUser
+    @DisplayName("GET request by random user for Contacts is forbidden")
+    void getContactsByUserRequestIsUnsuccessful() throws Exception {
+
+        mockMvc.perform(get("/admin/contatos"))
+                .andExpect(status().isForbidden());
+
+    }
+
+    @Test
+    @WithAnonymousUser
+    @DisplayName("GET request by anonymous user for Contacts is unauthorized")
+    void getContactsByAnonymousUserRequestIsUnsuccessful() throws Exception {
+
+        mockMvc.perform(get("/admin/contatos"))
+                .andExpect(status().is3xxRedirection())
+                .andExpect(redirectedUrl("http://localhost/login"));
+
+    }
+
 }

@@ -27,10 +27,10 @@ public class AdministrationControllerTests {
 
     @Test
     @WithMockUser(roles = {"ADMIN"})
-    @DisplayName("GET request by admin for reviews tab is successful")
-    void getReviewsTabByAdminRequestIsSuccessful() throws Exception {
+    @DisplayName("GET request by admin for index is successful")
+    void getIndexByAdminRequestIsSuccessful() throws Exception {
 
-        mockMvc.perform(get("/admin?tab=reviews"))
+        mockMvc.perform(get("/admin"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("administration"));
 
@@ -38,20 +38,20 @@ public class AdministrationControllerTests {
 
     @Test
     @WithMockUser
-    @DisplayName("GET request by random user for reviews tab is forbidden")
-    void getReviewsTabByUserRequestIsUnsuccessful() throws Exception {
+    @DisplayName("GET request by random user for index is forbidden")
+    void getIndexByUserRequestIsUnsuccessful() throws Exception {
 
-        mockMvc.perform(get("/admin?tab=reviews"))
+        mockMvc.perform(get("/admin"))
                 .andExpect(status().isForbidden());
 
     }
 
     @Test
     @WithAnonymousUser
-    @DisplayName("GET request by anonymous user for reviews tab is unauthorized")
-    void getReviewsTabByAnonymousUserRequestIsUnsuccessful() throws Exception {
+    @DisplayName("GET request by anonymous user for index is unauthorized")
+    void getIndexByAnonymousUserRequestIsUnsuccessful() throws Exception {
 
-        mockMvc.perform(get("/admin?tab=reviews"))
+        mockMvc.perform(get("/admin"))
                 .andExpect(status().is3xxRedirection())
                 .andExpect(redirectedUrl("http://localhost/login"));
 

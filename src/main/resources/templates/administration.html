@@ -6,13 +6,11 @@
         <h1>Administração</h1>
 
         <nav id="administration-tabs">
-            <a th:href="@{/admin(tab='reviews')}" th:class="${tab == 'reviews' ? 'administration-tab-selected' :
-            'administration-tab'}">
+            <a th:href="@{/admin/reviews}" class="administration-tab">
                 Reviews denunciadas
             </a>
             <div style="border-left: 2px solid black; height: 2rem"></div>
-            <a th:href="@{/admin(tab='contact')}" th:class="${tab == 'contact' ? 'administration-tab-selected' :
-            'administration-tab'}">
+            <a th:href="@{/admin/contatos}" class="administration-tab">
                 Tentativas de contato
             </a>
         </nav>

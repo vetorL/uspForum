@@ -3,6 +3,8 @@ package com.example.uspForum.subjectReview.reviewReport;
 import com.example.uspForum.customUser.CustomUser;
 import com.example.uspForum.subjectReview.SubjectReviewService;
 import com.example.uspForum.util.ModelMapper;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,9 +23,9 @@ public class ReviewReportController {
     }
 
     @PostMapping
-    public void processReport(@PathVariable("id") Long id,
-                              @RequestBody ReviewReportDTO reviewReportDTO,
-                              @AuthenticationPrincipal CustomUser accuser) {
+    public ResponseEntity<?> processReport(@PathVariable("id") Long id,
+                                           @RequestBody ReviewReportDTO reviewReportDTO,
+                                           @AuthenticationPrincipal CustomUser accuser) {
 
         ReviewReport reviewReport = modelMapper.toReviewReport(
                 reviewReportDTO,
@@ -31,6 +33,8 @@ public class ReviewReportController {
                 subjectReviewService.findById(id));
 
         reviewReportService.registerReport(reviewReport);
+
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
 }

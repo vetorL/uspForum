@@ -113,7 +113,7 @@ public class ReviewReportControllerTests {
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(reviewReportDTO))
                         .with(csrf()))
-                .andExpect(status().isOk());
+                .andExpect(status().isCreated());
 
         // # Verify interactions
 

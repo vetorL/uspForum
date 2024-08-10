@@ -103,6 +103,29 @@ public class ContactControllerIT {
 
     @Test
     @DirtiesContext
+    @WithMockUser
+    @DisplayName("Invalid content Contact POST is unsuccessful")
+    void invalidContentContactPostIsUnsuccessful() throws Exception {
+        // # Check that there are no Contacts in the DB
+        assertEquals(0, contactRepository.count());
+
+        // # Make POST request to create Contact
+
+        // NOTE: this test class is not configured with SecurityConfig, thus it does not block the request at the
+        // controller level. What happens is that when the controller delegates to the service layer the
+        // @PreAuthorize will decide whether to accept the request or not
+        mockMvc.perform(post("/contato")
+                        .param("subjectMatter", "Reportar Bug")
+                        .param("content", "")
+                        .with(csrf()))
+                .andExpect(status().isBadRequest());
+
+        // # Check that Contact is NOT in the DB
+        assertEquals(0, contactRepository.count());
+    }
+
+    @Test
+    @DirtiesContext
     @WithAnonymousUser
     @DisplayName("Valid Contact POST is unsuccessful when not authenticated")
     void validContactPostIsUnsuccessfulWhenUnauthenticated() throws Exception {

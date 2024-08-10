@@ -95,4 +95,17 @@ public class ContactControllerTests {
 
     }
 
+    @Test
+    @WithMockUser
+    @DisplayName("POST request is unsuccessful when invalid content parameter")
+    void postIsUnsuccessfulWhenInvalidContentParam() throws Exception {
+
+        mockMvc.perform(post("/contato")
+                        .param("subjectMatter", "Reportar Bug")
+                        .param("content", "")
+                        .with(csrf()))
+                .andExpect(status().isBadRequest());
+
+    }
+
 }

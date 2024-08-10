@@ -2,6 +2,7 @@ package com.example.uspForum.contact;
 
 import com.example.uspForum.customUser.CustomUser;
 import com.example.uspForum.util.ModelMapper;
+import jakarta.validation.Valid;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,7 +24,7 @@ public class ContactController {
 
     @PostMapping
     public String create(@AuthenticationPrincipal CustomUser sender,
-                         ContactDTO contactDTO,
+                         @Valid ContactDTO contactDTO,
                          Model model) {
 
         contactService.save(modelMapper.toContact(contactDTO, sender));

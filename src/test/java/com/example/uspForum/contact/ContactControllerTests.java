@@ -2,12 +2,14 @@ package com.example.uspForum.contact;
 
 import com.example.uspForum.config.SecurityConfig;
 import com.example.uspForum.customUser.CustomUserService;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.Import;
+import org.springframework.http.MediaType;
 import org.springframework.security.test.context.support.WithAnonymousUser;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
@@ -26,6 +28,9 @@ public class ContactControllerTests {
 
     @MockBean
     private CustomUserService customUserService;
+
+    @Autowired
+    private ObjectMapper objectMapper;
 
     @Autowired
     private MockMvc mockMvc;
@@ -58,6 +63,8 @@ public class ContactControllerTests {
     void postIsSuccessfulWhenAuthenticated() throws Exception {
 
         mockMvc.perform(post("/contato")
+                        .param("subjectMatter", "Reportar Bug")
+                        .param("content", "content")
                         .with(csrf()))
                 .andExpect(status().isOk())
                 .andExpect(view().name("contact"));
@@ -72,6 +79,19 @@ public class ContactControllerTests {
         mockMvc.perform(post("/contato")
                         .with(csrf().useInvalidToken()))
                 .andExpect(status().isForbidden());
+
+    }
+
+    @Test
+    @WithMockUser
+    @DisplayName("POST request is unsuccessful when invalid subject parameter")
+    void postIsUnsuccessfulWhenInvalidSubjectParam() throws Exception {
+
+        mockMvc.perform(post("/contato")
+                        .param("subjectMatter", "Invalid")
+                        .param("content", "content")
+                        .with(csrf()))
+                .andExpect(status().isBadRequest());
 
     }
 

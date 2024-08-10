@@ -60,6 +60,8 @@ public class SubjectReview {
     @CreationTimestamp
     private Date createdAt;
 
+    private boolean hasBeenEdited = false;
+
     public int getTotalVotes() {
         return votes.stream()
                 .mapToInt(Vote::getVote)

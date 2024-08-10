@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<body>
+
+    <div th:fragment="contacts-list-admin(contactAttempts)" class="contact-attempts">
+
+        <p th:if="${contactAttempts.isEmpty()}"><i>Nenhuma tentativa de contato pendente no momento.</i></p>
+
+        <div th:each="contact: ${contactAttempts}"
+             th:insert="~{fragments/contact-attempt :: contact-attempt(${contact})}"
+             th:remove="tag"></div>
+
+    </div>
+
+</body>
+</html>

@@ -1,5 +1,6 @@
 package com.example.uspForum.administration;
 
+import com.example.uspForum.contact.ContactService;
 import com.example.uspForum.subjectReview.reviewReport.ReviewReport;
 import com.example.uspForum.subjectReview.reviewReport.ReviewReportService;
 import org.springframework.stereotype.Controller;
@@ -14,9 +15,11 @@ import java.util.List;
 public class AdministrationController {
 
     private final ReviewReportService reviewReportService;
+    private final ContactService contactService;
 
-    public AdministrationController(ReviewReportService reviewReportService) {
+    public AdministrationController(ReviewReportService reviewReportService, ContactService contactService) {
         this.reviewReportService = reviewReportService;
+        this.contactService = contactService;
     }
 
     @GetMapping
@@ -39,6 +42,7 @@ public class AdministrationController {
     public String contacts(Model model) {
 
         model.addAttribute("tab", "contacts");
+        model.addAttribute("contactAttempts", contactService.findAll());
 
         return "administration";
     }

@@ -1,6 +1,7 @@
 package com.example.uspForum.administration;
 
 import com.example.uspForum.config.SecurityConfig;
+import com.example.uspForum.contact.ContactService;
 import com.example.uspForum.customUser.CustomUserService;
 import com.example.uspForum.subjectReview.reviewReport.ReviewReportService;
 import org.junit.jupiter.api.DisplayName;
@@ -23,6 +24,9 @@ public class AdministrationControllerTests {
 
     @MockBean
     private ReviewReportService reviewReportService;
+
+    @MockBean
+    private ContactService contactService;
 
     @MockBean
     private CustomUserService customUserService;

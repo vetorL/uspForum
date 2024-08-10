@@ -27,6 +27,7 @@ public class SubjectReviewService {
                 subjectReviewDTO.getRecommendation());
 
         updatedSubjectReview.setId(oldSubjectReview.getId());
+        updatedSubjectReview.setHasBeenEdited(true);
 
         subjectReviewRepository.save(updatedSubjectReview);
     }

@@ -30,6 +30,7 @@ public class ContactController {
         contactService.save(modelMapper.toContact(contactDTO, sender));
         model.addAttribute("canContact", contactService.canContact(sender));
         model.addAttribute("contactAttempts", contactService.getPreviousContactAttempts(sender));
+        model.addAttribute("title", "Contato");
 
         return "contact";
     }
@@ -41,6 +42,7 @@ public class ContactController {
         model.addAttribute("canContact", contactService.canContact(sender));
         model.addAttribute("contactDTO", new ContactDTO());
         model.addAttribute("contactAttempts", contactService.getPreviousContactAttempts(sender));
+        model.addAttribute("title", "Contato");
 
         return "contact";
     }

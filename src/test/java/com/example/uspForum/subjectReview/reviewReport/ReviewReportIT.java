@@ -34,8 +34,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
-import static org.junit.jupiter.api.Assertions.assertInstanceOf;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -120,12 +119,18 @@ public class ReviewReportIT {
         long subjectReviewId = 1L;
         ReviewReportDTO reviewReportDTO = new ReviewReportDTO("Outro");
 
+        // # Check that there are no reports in the DB
+        assertEquals(0, reviewReportRepository.count());
+
         // # Perform request
         mockMvc.perform(post("/api/v1/reviews/" + subjectReviewId + "/report")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(reviewReportDTO))
                         .with(csrf()))
                 .andExpect(status().isCreated());
+
+        // # Check that a report has been added to the DB
+        assertEquals(1, reviewReportRepository.count());
     }
 
     @Test
@@ -136,6 +141,9 @@ public class ReviewReportIT {
         // # Given
         long subjectReviewId = 1L;
         ReviewReportDTO reviewReportDTO = new ReviewReportDTO("reason");
+
+        // # Check that there are no reports in the DB
+        assertEquals(0, reviewReportRepository.count());
 
         // NOTE: this test class is not configured with SecurityConfig, thus it does not block the request at the
         // controller level. What happens is that when the controller delegates to the service layer the
@@ -154,6 +162,9 @@ public class ReviewReportIT {
             assertInstanceOf(ServletException.class, e);
 
         }
+
+        // # Check that no report has been added to the DB
+        assertEquals(0, reviewReportRepository.count());
     }
 
     @Test
@@ -164,6 +175,9 @@ public class ReviewReportIT {
         // # Given
         long subjectReviewId = 1L;
         ReviewReportDTO reviewReportDTO = new ReviewReportDTO("Outro");
+
+        // # Check that there are no reports in the DB
+        assertEquals(0, reviewReportRepository.count());
 
         // # Perform first request
         mockMvc.perform(post("/api/v1/reviews/" + subjectReviewId + "/report")
@@ -178,6 +192,9 @@ public class ReviewReportIT {
                         .content(objectMapper.writeValueAsString(reviewReportDTO))
                         .with(csrf()))
                 .andExpect(status().isCreated());
+
+        // # Check that there is only one report in the DB
+        assertEquals(1, reviewReportRepository.count());
     }
 
     @Test
@@ -189,12 +206,18 @@ public class ReviewReportIT {
         long subjectReviewId = 1L;
         ReviewReportDTO reviewReportDTO = new ReviewReportDTO("Invalid");
 
+        // # Check that there are no reports in the DB
+        assertEquals(0, reviewReportRepository.count());
+
         // # Perform request
         mockMvc.perform(post("/api/v1/reviews/" + subjectReviewId + "/report")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(reviewReportDTO))
                         .with(csrf()))
                 .andExpect(status().isBadRequest());
+
+        // # Check that no report has been added to the DB
+        assertEquals(0, reviewReportRepository.count());
     }
 
     @AfterEach

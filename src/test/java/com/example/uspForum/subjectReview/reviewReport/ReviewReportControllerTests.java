@@ -96,7 +96,7 @@ public class ReviewReportControllerTests {
     @DisplayName("Reporting works when authenticated")
     void reportingWorksWhenAuthenticated() throws Exception {
         // # Given
-        ReviewReportDTO reviewReportDTO = new ReviewReportDTO("reason");
+        ReviewReportDTO reviewReportDTO = new ReviewReportDTO("Outro");
 
         long subjectReviewId = 1L;
         SubjectReview subjectReview = new SubjectReview();
@@ -129,6 +129,36 @@ public class ReviewReportControllerTests {
         // Interactions with reviewReportService
         verify(reviewReportService).registerReport(any(ReviewReport.class));
         verifyNoMoreInteractions(reviewReportService);
+    }
+
+    @Test
+    @WithMockUser
+    @DisplayName("Reporting does not work when reason is invalid")
+    void reportingDoesNotWorkWhenReasonInvalid() throws Exception {
+        // # Given
+        ReviewReportDTO reviewReportDTO = new ReviewReportDTO("Invalid");
+
+        long subjectReviewId = 1L;
+        SubjectReview subjectReview = new SubjectReview();
+        subjectReview.setId(subjectReviewId);
+
+        // # Perform request
+        mockMvc.perform(post("/api/v1/reviews/" + subjectReviewId + "/report")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(reviewReportDTO))
+                        .with(csrf()))
+                .andExpect(status().isBadRequest());
+
+        // # Verify interactions
+
+        // Interactions with modelMapper
+        verifyNoInteractions(modelMapper);
+
+        // Interactions with subjectReviewService
+        verifyNoInteractions(subjectReviewService);
+
+        // Interactions with reviewReportService
+        verifyNoInteractions(reviewReportService);
     }
 
 }

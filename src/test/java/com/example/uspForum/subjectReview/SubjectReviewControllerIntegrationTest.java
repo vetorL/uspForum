@@ -113,7 +113,7 @@ public class SubjectReviewControllerIntegrationTest {
                     "accuser", "password"));
 
             ReviewReport reviewReport = reviewReportRepository
-                    .save(new ReviewReport("reason", accuser, subjectReview));
+                    .save(new ReviewReport("Outro", accuser, subjectReview));
         }
 
         @Test

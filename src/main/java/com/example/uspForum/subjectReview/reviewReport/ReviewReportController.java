@@ -3,6 +3,7 @@ package com.example.uspForum.subjectReview.reviewReport;
 import com.example.uspForum.customUser.CustomUser;
 import com.example.uspForum.subjectReview.SubjectReviewService;
 import com.example.uspForum.util.ModelMapper;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -24,7 +25,7 @@ public class ReviewReportController {
 
     @PostMapping
     public ResponseEntity<?> processReport(@PathVariable("id") Long id,
-                                           @RequestBody ReviewReportDTO reviewReportDTO,
+                                           @RequestBody @Valid ReviewReportDTO reviewReportDTO,
                                            @AuthenticationPrincipal CustomUser accuser) {
 
         ReviewReport reviewReport = modelMapper.toReviewReport(

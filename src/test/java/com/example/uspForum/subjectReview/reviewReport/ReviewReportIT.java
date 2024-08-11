@@ -118,7 +118,7 @@ public class ReviewReportIT {
     void reportSuccessfulWhenUserAuthenticated() throws Exception {
         // # Given
         long subjectReviewId = 1L;
-        ReviewReportDTO reviewReportDTO = new ReviewReportDTO("reason");
+        ReviewReportDTO reviewReportDTO = new ReviewReportDTO("Outro");
 
         // # Perform request
         mockMvc.perform(post("/api/v1/reviews/" + subjectReviewId + "/report")
@@ -163,7 +163,7 @@ public class ReviewReportIT {
     void reportingTwiceDoesNotThrowException() throws Exception {
         // # Given
         long subjectReviewId = 1L;
-        ReviewReportDTO reviewReportDTO = new ReviewReportDTO("reason");
+        ReviewReportDTO reviewReportDTO = new ReviewReportDTO("Outro");
 
         // # Perform first request
         mockMvc.perform(post("/api/v1/reviews/" + subjectReviewId + "/report")
@@ -178,6 +178,23 @@ public class ReviewReportIT {
                         .content(objectMapper.writeValueAsString(reviewReportDTO))
                         .with(csrf()))
                 .andExpect(status().isCreated());
+    }
+
+    @Test
+    @DirtiesContext
+    @WithMockUser
+    @DisplayName("Reporting unsuccessful when reason invalid")
+    void reportingUnsuccessfulWhenReasonInvalid() throws Exception {
+        // # Given
+        long subjectReviewId = 1L;
+        ReviewReportDTO reviewReportDTO = new ReviewReportDTO("Invalid");
+
+        // # Perform request
+        mockMvc.perform(post("/api/v1/reviews/" + subjectReviewId + "/report")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(reviewReportDTO))
+                        .with(csrf()))
+                .andExpect(status().isBadRequest());
     }
 
     @AfterEach

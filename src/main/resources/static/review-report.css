@@ -21,3 +21,7 @@
     flex-direction: column;
     gap: 0.5rem;
 }
+
+.reported-review-buttons > form > button {
+    width: 100%;
+}

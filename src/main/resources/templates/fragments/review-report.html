@@ -20,8 +20,9 @@
       </div>
 
       <div class="reported-review-buttons">
-        <form method="post">
-          <button>Deletar Review</button>
+        <form class="admin-delete-review">
+          <button type="submit">Deletar Review</button>
+          <input type="hidden" name="reviewId" th:value="${reviewReport.subjectReview.id}">
         </form>
         <button>Punir Usuário</button>
         <button>Arquivar Denúncia</button>

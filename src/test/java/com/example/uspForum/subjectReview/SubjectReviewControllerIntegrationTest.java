@@ -136,6 +136,24 @@ public class SubjectReviewControllerIntegrationTest {
 
         @Test
         @DirtiesContext
+        @WithMockUser(roles = {"ADMIN"})
+        @DisplayName("Test that the review gets deleted when user who made the DELETE request is the admin.")
+        void deleteSuccessfulWhenUserIsAdmin() throws Exception {
+            long subjectReviewId = 1L;
+
+            // Check that before the DELETE request the subjectReview is present in the DB
+            Optional<SubjectReview> subjectReview = subjectReviewRepository.findById(subjectReviewId);
+            assertTrue(subjectReview.isPresent());
+
+            mockMvc.perform(delete("/api/v1/reviews/" + subjectReview.get().getId()).with(csrf()))
+                    .andExpect(status().isNoContent());
+
+            // Check that after the DELETE request the subjectReview is no longer present in the DB
+            assertEquals(Optional.empty(), subjectReviewRepository.findById(subjectReview.get().getId()));
+        }
+
+        @Test
+        @DirtiesContext
         @WithMockUser(username = "notTheAuthor")
         @DisplayName("Test that the review does not get deleted when the " +
                 "user who made the DELETE request is not the author.")

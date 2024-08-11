@@ -32,7 +32,7 @@ public class SubjectReviewService {
         subjectReviewRepository.save(updatedSubjectReview);
     }
 
-    @PreAuthorize("#subjectReview.author.username == authentication.principal.username")
+    @PreAuthorize("#subjectReview.author.username == authentication.principal.username or hasRole('ROLE_ADMIN')")
     public void delete(SubjectReview subjectReview) {
         subjectReviewRepository.delete(subjectReview);
     }

@@ -44,4 +44,19 @@ public class SubjectReviewServiceTests {
         verifyNoMoreInteractions(subjectReviewRepository);
     }
 
+    @Test
+    @DisplayName("delete works")
+    void deleteWorks() {
+        // # Given
+        SubjectReview subjectReview = new SubjectReview(new CustomUser(), new Subject(), "title", "content",
+                "Neutro");
+
+        // # Call method to be tested
+        subjectReviewService.delete(subjectReview);
+
+        // # Verify interactions with subjectReviewRepository
+        verify(subjectReviewRepository, times(1)).delete(subjectReview);
+        verifyNoMoreInteractions(subjectReviewRepository);
+    }
+
 }

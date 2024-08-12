@@ -10,7 +10,7 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/v1/reviews/{id}/report")
+@RequestMapping("/api/v1")
 public class ReviewReportController {
 
     private final ReviewReportService reviewReportService;
@@ -23,7 +23,7 @@ public class ReviewReportController {
         this.subjectReviewService = subjectReviewService;
     }
 
-    @PostMapping
+    @PostMapping("/reviews/{id}/report")
     public ResponseEntity<?> processReport(@PathVariable("id") Long id,
                                            @RequestBody @Valid ReviewReportDTO reviewReportDTO,
                                            @AuthenticationPrincipal CustomUser accuser) {

@@ -28,12 +28,6 @@ public class ReviewReportService {
         reviewReportRepository.save(reviewReport);
     }
 
-    public List<ReviewReport> findAll() {
-        List<ReviewReport> reviewReports = new ArrayList<>();
-        reviewReportRepository.findAll().forEach(reviewReports::add);
-        return reviewReports;
-    }
-
     public List<ReviewReport> getActiveReviewReports() {
         return reviewReportRepository.findByArchivedFalse();
     }

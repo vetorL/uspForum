@@ -59,17 +59,6 @@ public class ReviewReportServiceTests {
     }
 
     @Test
-    @DisplayName("findAll works")
-    void findAllWorks() {
-        // # Call method to be tested
-        reviewReportService.findAll();
-
-        // # Verify interactions with reviewReportRepository
-        verify(reviewReportRepository, times(1)).findAll();
-        verifyNoMoreInteractions(reviewReportRepository);
-    }
-
-    @Test
     @DisplayName("getActiveReviewReports works")
     void getActiveReviewReportsWorks() {
         // # Call method to be tested

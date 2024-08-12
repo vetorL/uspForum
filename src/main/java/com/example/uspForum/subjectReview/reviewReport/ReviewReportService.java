@@ -3,7 +3,6 @@ package com.example.uspForum.subjectReview.reviewReport;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -30,6 +29,12 @@ public class ReviewReportService {
 
     public List<ReviewReport> getActiveReviewReports() {
         return reviewReportRepository.findByArchivedFalse();
+    }
+
+    @PreAuthorize("hasRole('ADMIN')")
+    public void archiveReport(ReviewReport reviewReport) {
+        reviewReport.setArchived(true);
+        reviewReportRepository.save(reviewReport);
     }
 
 }

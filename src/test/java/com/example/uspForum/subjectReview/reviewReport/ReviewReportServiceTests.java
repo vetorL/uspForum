@@ -9,6 +9,8 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
@@ -66,6 +68,26 @@ public class ReviewReportServiceTests {
 
         // # Verify interactions with reviewReportRepository
         verify(reviewReportRepository, times(1)).findByArchivedFalse();
+        verifyNoMoreInteractions(reviewReportRepository);
+    }
+
+    @Test
+    @DisplayName("archiveReport works")
+    void archiveReportWorks() {
+        // # Given:
+        ReviewReport reviewReport = new ReviewReport("Outro", new CustomUser(), new SubjectReview());
+
+        // archived property should be false before archiveReport is called
+        assertFalse(reviewReport.isArchived());
+
+        // # Call method to be tested
+        reviewReportService.archiveReport(reviewReport);
+
+        // archived property should now be true
+        assertTrue(reviewReport.isArchived());
+
+        // # Verify interactions with reviewReportRepository
+        verify(reviewReportRepository, times(1)).save(reviewReport);
         verifyNoMoreInteractions(reviewReportRepository);
     }
 

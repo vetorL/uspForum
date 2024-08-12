@@ -69,4 +69,15 @@ public class ReviewReportServiceTests {
         verifyNoMoreInteractions(reviewReportRepository);
     }
 
+    @Test
+    @DisplayName("getActiveReviewReports works")
+    void getActiveReviewReportsWorks() {
+        // # Call method to be tested
+        reviewReportService.getActiveReviewReports();
+
+        // # Verify interactions with reviewReportRepository
+        verify(reviewReportRepository, times(1)).findByArchivedFalse();
+        verifyNoMoreInteractions(reviewReportRepository);
+    }
+
 }

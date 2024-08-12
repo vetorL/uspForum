@@ -34,4 +34,8 @@ public class ReviewReportService {
         return reviewReports;
     }
 
+    public List<ReviewReport> getActiveReviewReports() {
+        return reviewReportRepository.findByArchivedFalse();
+    }
+
 }

@@ -79,7 +79,7 @@ public class AdministrationControllerTests {
                 .andExpect(view().name("administration"));
 
         // # Verify interactions with reviewReportService
-        verify(reviewReportService, times(1)).findAll();
+        verify(reviewReportService, times(1)).getActiveReviewReports();
         verifyNoMoreInteractions(reviewReportService);
     }
 

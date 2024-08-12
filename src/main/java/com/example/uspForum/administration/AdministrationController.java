@@ -30,7 +30,7 @@ public class AdministrationController {
     @GetMapping("/reviews")
     public String reviews(Model model) {
 
-        List<ReviewReport> reviewReports = reviewReportService.findAll();
+        List<ReviewReport> reviewReports = reviewReportService.getActiveReviewReports();
 
         model.addAttribute("tab", "reviews");
         model.addAttribute("reviewReports", reviewReports);

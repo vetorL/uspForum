@@ -32,4 +32,6 @@ public class ReviewReport {
     @ManyToOne
     @JoinColumn(name = "subject_review_id")
     private final SubjectReview subjectReview;
+
+    private boolean archived = false;
 }

@@ -1,5 +1,6 @@
 package com.example.uspForum.subjectReview.reviewReport;
 
+import com.example.uspForum.exception.NotFoundException;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 
@@ -25,6 +26,11 @@ public class ReviewReportService {
 
         // If it is the first time the user has reported the review, save
         reviewReportRepository.save(reviewReport);
+    }
+
+    public ReviewReport findById(long id) {
+        return reviewReportRepository.findById(id)
+                .orElseThrow(() -> new NotFoundException("Denúncia não encontrada"));
     }
 
     public List<ReviewReport> getActiveReviewReports() {

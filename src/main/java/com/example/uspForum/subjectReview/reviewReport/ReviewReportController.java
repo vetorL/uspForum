@@ -38,4 +38,13 @@ public class ReviewReportController {
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
+    @PatchMapping("/reports/{id}/archive")
+    public ResponseEntity<?> archiveReport(@PathVariable("id") long id) {
+
+        ReviewReport reviewReport = reviewReportService.findById(id);
+        reviewReportService.archiveReport(reviewReport);
+
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
 }

@@ -1,6 +1,7 @@
 package com.example.uspForum.subjectReview.reviewReport;
 
 import com.example.uspForum.config.SecurityConfig;
+import com.example.uspForum.customUser.CustomUser;
 import com.example.uspForum.customUser.CustomUserService;
 import com.example.uspForum.subjectReview.SubjectReview;
 import com.example.uspForum.subjectReview.SubjectReviewService;
@@ -19,6 +20,7 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import static org.mockito.Mockito.*;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.patch;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrl;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -148,6 +150,62 @@ public class ReviewReportControllerTests {
                         .content(objectMapper.writeValueAsString(reviewReportDTO))
                         .with(csrf()))
                 .andExpect(status().isBadRequest());
+
+        // # Verify interactions
+
+        // Interactions with modelMapper
+        verifyNoInteractions(modelMapper);
+
+        // Interactions with subjectReviewService
+        verifyNoInteractions(subjectReviewService);
+
+        // Interactions with reviewReportService
+        verifyNoInteractions(reviewReportService);
+    }
+
+    @Test
+    @WithMockUser(roles = {"ADMIN"})
+    @DisplayName("Report gets archived when user is ADMIN")
+    void reportingGetsArchivedWhenUserIsADMIN() throws Exception {
+        // # Given:
+        long reportId = 1L;
+        ReviewReport reviewReport = new ReviewReport("reason", new CustomUser(), new SubjectReview());
+
+        // # Mock return value of method calls
+        when(reviewReportService.findById(reportId)).thenReturn(reviewReport);
+
+        // # Perform request
+        mockMvc.perform(patch("/api/v1/reports/" + reportId + "/archive").with(csrf()))
+                .andExpect(status().isOk());
+
+        // # Verify interactions
+
+        // Interactions with modelMapper
+        verifyNoInteractions(modelMapper);
+
+        // Interactions with subjectReviewService
+        verifyNoInteractions(subjectReviewService);
+
+        // Interactions with reviewReportService
+        verify(reviewReportService).findById(reportId);
+        verify(reviewReportService).archiveReport(reviewReport);
+        verifyNoMoreInteractions(reviewReportService);
+    }
+
+    @Test
+    @WithMockUser
+    @DisplayName("Report archiving fails when USER")
+    void reportArchivingFailsWhenUSER() throws Exception {
+        // # Given:
+        long reportId = 1L;
+        ReviewReport reviewReport = new ReviewReport("reason", new CustomUser(), new SubjectReview());
+
+        // # Mock return value of method calls
+        when(reviewReportService.findById(reportId)).thenReturn(reviewReport);
+
+        // # Perform request
+        mockMvc.perform(patch("/api/v1/reports/" + reportId + "/archive").with(csrf()))
+                .andExpect(status().isForbidden());
 
         // # Verify interactions
 

@@ -17,3 +17,9 @@
 .password-visibility-off {
     display: none;
 }
+
+.authentication-tip {
+    color: gray;
+    font-size: 0.7rem;
+    margin-top: 0.2rem
+}

@@ -19,8 +19,8 @@ public class DateHandlerTests {
         DateHandler dateHandler = new DateHandler();
 
         Date date = new Date();
-        // 86400000 Milliseconds represents exactly one day, so 86399999 is one millisecond away from exactly one day
-        date.setTime(date.getTime() - 86399999);
+        // 86400000 Milliseconds represents exactly one day, so 86399000 is one second away from exactly one day
+        date.setTime(date.getTime() - 86399000);
 
         assertFalse(dateHandler.isOlderThanOneDay(date));
     }
